@@ -24,7 +24,7 @@ namespace VideoGame.Editor
                 string path = Folder + name + ".anim";
                 if (!force && File.Exists(path)) continue;
                 var actor = new GameObject("Animation authoring rig");
-                var visual = new GameObject("Visual"); visual.transform.SetParent(actor.transform); visual.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                var visual = new GameObject("Visual"); visual.transform.SetParent(actor.transform);
                 var model = Object.Instantiate(source, visual.transform);
                 var rig = new Rig(model.transform);
                 bool loop = name == "Idle" || name.StartsWith("Run");
@@ -71,6 +71,9 @@ namespace VideoGame.Editor
                 foreach (string key in new[] {"hips","chest","thigh_L","thigh_R","shin_L","shin_R","foot_L","foot_R","upper_arm_R","forearm_R","hand_R"})
                     if (!Bones.ContainsKey(key)) throw new System.InvalidOperationException("Animation rig missing " + key);
                 height = Vector3.Distance(Bones["hips"].position, Bones["foot_L"].position);
+                foreach (var toe in Bones["foot_L"].GetComponentsInChildren<Transform>())
+                    if (toe.name == "toe_L" && Vector3.Dot((toe.position - Bones["foot_L"].position).normalized, Vector3.forward) < .5f)
+                        throw new System.InvalidOperationException("Rig feet face backwards relative to actor forward");
             }
             public void Restore() { foreach (var bone in Bones.Values) { bone.localRotation = rotations[bone]; bone.localPosition = positions[bone]; } }
             void Turn(string name, Vector3 axis, float degrees) { if (Bones.TryGetValue(name, out var bone)) bone.rotation = Quaternion.AngleAxis(degrees, axis) * bone.rotation; }
@@ -91,10 +94,12 @@ namespace VideoGame.Editor
                     Vector3 direction = name == "RunBack" ? Vector3.back : name == "RunLeft" ? Vector3.left : name == "RunRight" ? Vector3.right : Vector3.forward;
                     Vector3 axis = Vector3.Cross(Vector3.up, direction);
                     float stride = Mathf.Sin(phase);
-                    Turn("thigh_L", axis, stride * 40); Turn("thigh_R", axis, -stride * 40);
-                    Turn("shin_L", Vector3.right, -Mathf.Max(0, -stride) * 65);
-                    Turn("shin_R", Vector3.right, -Mathf.Max(0, stride) * 65);
-                    Turn("foot_L", axis, -stride * 20); Turn("foot_R", axis, stride * 20);
+                    Turn("thigh_L", axis, -stride * 40); Turn("thigh_R", axis, stride * 40);
+                    float leftBend = Mathf.Max(0, stride) * 65, rightBend = Mathf.Max(0, -stride) * 65;
+                    Turn("shin_L", Vector3.right, leftBend);
+                    Turn("shin_R", Vector3.right, rightBend);
+                    Turn("foot_L", axis, stride * 40); Turn("foot_R", axis, -stride * 40);
+                    Turn("foot_L", Vector3.right, -leftBend); Turn("foot_R", Vector3.right, -rightBend);
                     Bones["hips"].position += Vector3.down * (height * (.055f + .025f * Mathf.Cos(phase * 2)));
                     Turn("chest", Vector3.up, stride * 7);
                 }
@@ -106,17 +111,17 @@ namespace VideoGame.Editor
                     Turn("chest", Vector3.up, -35 + 85 * swing);
                     Aim("upper_arm_L", "forearm_L", Vector3.forward * swing + Vector3.left * (1 - swing));
                     Aim("forearm_L", "hand_L", Vector3.forward + Vector3.right * (swing - .5f));
-                    Turn("thigh_L", Vector3.right, -swing * 20); Turn("shin_L", Vector3.right, -swing * 25);
+                    Turn("thigh_L", Vector3.right, -swing * 20); Turn("shin_L", Vector3.right, swing * 25);
                 }
                 else if (name == "Cast") { float throwPose = Mathf.Sin(t * Mathf.PI); Turn("upper_arm_L", Vector3.right, -throwPose * 125); Turn("forearm_L", Vector3.right, -throwPose * 55); Turn("chest", Vector3.up, throwPose * 25); }
-                else if (name == "Dash") { Turn("hips", Vector3.right, 35); Turn("thigh_L", Vector3.right, -60); Turn("shin_L", Vector3.right, -85); Turn("thigh_R", Vector3.right, 40); Bones["hips"].position += Vector3.down * height * .18f; }
+                else if (name == "Dash") { Turn("hips", Vector3.right, 35); Turn("thigh_L", Vector3.right, -60); Turn("shin_L", Vector3.right, 85); Turn("thigh_R", Vector3.right, 40); Bones["hips"].position += Vector3.down * height * .18f; }
                 else if (name == "Hit") { Turn("chest", Vector3.right, -Mathf.Sin(t * Mathf.PI) * 22); }
                 else if (name == "Death")
                 {
                     float fall = Mathf.SmoothStep(0, 1, Mathf.Clamp01(t / .8f));
                     Turn("hips", Vector3.right, -88 * fall);
                     Bones["hips"].position += (Vector3.down * .83f + Vector3.back * .25f) * height * fall;
-                    Turn("shin_L", Vector3.right, -30 * Mathf.Sin(t * Mathf.PI));
+                    Turn("shin_L", Vector3.right, 30 * Mathf.Sin(t * Mathf.PI));
                     Turn("upper_arm_R", Vector3.forward, 45 * fall); Turn("upper_arm_L", Vector3.forward, -45 * fall);
                 }
             }

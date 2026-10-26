@@ -23,6 +23,11 @@ public sealed class ActorCombatTests
     {
         var motion = game.Player.Motion;
         Assert.AreEqual(11, motion.Player.GetClipCount());
+        motion.Player.Play("Idle"); motion.Player.Sample();
+        foreach (var foot in motion.GetComponentsInChildren<Transform>())
+            if (foot.name == "foot_L" || foot.name == "foot_R")
+                foreach (var toe in foot.GetComponentsInChildren<Transform>())
+                    if (toe.name.StartsWith("toe_")) Assert.Greater(Vector3.Dot((toe.position - foot.position).normalized, game.Player.transform.forward), .5f, "Feet must face the same way as the actor and weapon");
         var skin = motion.GetComponentInChildren<SkinnedMeshRenderer>();
         Assert.IsNotNull(skin, "Actor needs a skin bound to the animated skeleton");
         var a = new Mesh(); var b = new Mesh();
@@ -32,6 +37,20 @@ public sealed class ActorCombatTests
         var av = a.vertices; var bv = b.vertices;
         for (int i = 0; i < av.Length; i++) difference = Mathf.Max(difference, Vector3.Distance(av[i], bv[i]));
         Assert.Greater(difference, .05f, "Moving bones must deform the visible mesh, not just an unused rig");
+        foreach (string side in new[] {"L", "R"})
+        {
+            motion.Player["RunForward"].normalizedTime = side == "L" ? .25f : .75f; motion.Player.Sample();
+            Transform thigh = null, knee = null, ankle = null;
+            foreach (var bone in motion.GetComponentsInChildren<Transform>())
+            {
+                if (bone.name == "thigh_" + side) thigh = bone;
+                if (bone.name == "shin_" + side) knee = bone;
+                if (bone.name == "foot_" + side) ankle = bone;
+            }
+            Vector3 chord = ankle.position - thigh.position;
+            Vector3 closest = thigh.position + chord * Vector3.Dot(knee.position - thigh.position, chord) / chord.sqrMagnitude;
+            Assert.Greater(Vector3.Dot(knee.position - closest, game.Player.transform.forward), .03f, "Knee must bend forward, not invert behind the leg");
+        }
         Object.Destroy(a); Object.Destroy(b);
         game.Player.enabled = false; game.Player.transform.rotation = Quaternion.identity; motion.Revive();
         for (int i = 0; i < 8; i++) { game.Player.transform.position += Vector3.forward * (4.5f * Time.deltaTime); yield return null; }

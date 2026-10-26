@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace VideoGame
 {
-    // Imported models are presentation only. Gameplay retains its existing colliders.
+    // Actors and hazards own their colliders; solid scenery uses mesh-bounds boxes.
     public sealed class Art : MonoBehaviour
     {
         public static readonly Color Cyan = new Color(.12f, .88f, 1);
@@ -11,7 +11,7 @@ namespace VideoGame
         readonly Dictionary<string, Material> palette = new Dictionary<string, Material>();
         readonly Dictionary<string, GameObject> models = new Dictionary<string, GameObject>();
 
-        public GameObject Model(string path, Transform parent, Vector3 position, float size, Color accent, float yaw = 0)
+        public GameObject Model(string path, Transform parent, Vector3 position, float size, Color accent, float yaw = 0, bool solid = true)
         {
             if (!models.TryGetValue(path, out var source))
             {
@@ -72,7 +72,24 @@ namespace VideoGame
                 renderer.receiveShadows = true;
             }
             foreach (var collider in model.GetComponentsInChildren<Collider>()) Destroy(collider);
-            if (path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner")) model.AddComponent<ActorAnimation>();
+            bool actor = path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner");
+            if (actor) model.AddComponent<ActorAnimation>();
+            else if (solid && path.StartsWith("Detailed/"))
+            {
+                var localBounds = new Bounds(); bool initialized = false;
+                foreach (var renderer in renderers)
+                {
+                    var meshBounds = renderer.localBounds;
+                    for (int corner = 0; corner < 8; corner++)
+                    {
+                        Vector3 offset = Vector3.Scale(meshBounds.extents, new Vector3((corner & 1) == 0 ? -1 : 1, (corner & 2) == 0 ? -1 : 1, (corner & 4) == 0 ? -1 : 1));
+                        Vector3 point = root.transform.InverseTransformPoint(renderer.transform.TransformPoint(meshBounds.center + offset));
+                        if (!initialized) { localBounds = new Bounds(point, Vector3.zero); initialized = true; } else localBounds.Encapsulate(point);
+                    }
+                }
+                root.layer = 9;
+                var blocker = root.AddComponent<BoxCollider>(); blocker.center = localBounds.center; blocker.size = localBounds.size;
+            }
             return root;
         }
         public void Deck(Vector3 center, float size, Transform parent)

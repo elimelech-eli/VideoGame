@@ -82,15 +82,19 @@ namespace VideoGame
             {
                 shotAt = Time.time + .14f;
                 Motion.Act("Fire");
-                Vector3 direction = AssistedDirection();
                 Vector3 start = transform.position + Vector3.up * .25f;
+                Vector3 direction = (GunAimPoint(start) - start).normalized;
                 Vector3 end = start + direction * 22;
-                if (Physics.Raycast(start + direction * .7f, direction, out var hit, 22))
+                var hits = Physics.RaycastAll(start, direction, 22, ~0, QueryTriggerInteraction.Ignore);
+                System.Array.Sort(hits, (a,b) => a.distance.CompareTo(b.distance));
+                foreach (var hit in hits)
                 {
+                    if (hit.collider.GetComponentInParent<Pilot>() == this) continue;
                     end = hit.point; CombatDamage.Apply(hit.collider, 20, start);
                     Prototype.Instance.Hit(end, Color.cyan);
+                    break;
                 }
-                Prototype.Instance.Trace(start + direction * .7f, end, Color.cyan);
+                Prototype.Instance.Trace(start, end, Color.cyan);
             }
             bool grenade = keyboard?.qKey.wasPressedThisFrame == true || pad?.rightShoulder.wasPressedThisFrame == true;
             if (grenade && Time.time >= grenadeAt && Prototype.Instance.InMission)
@@ -116,6 +120,33 @@ namespace VideoGame
                 if (delta.sqrMagnitude < 22 * 22 && dot > best) { best = dot; result = delta.normalized; }
             }
             return result;
+        }
+        Vector3 GunAimPoint(Vector3 muzzle)
+        {
+            if (!controllerAim && Mouse.current != null)
+            {
+                var ray = View.ScreenPointToRay(Mouse.current.position.ReadValue());
+                var hits = Physics.RaycastAll(ray, 200, ~0, QueryTriggerInteraction.Ignore);
+                System.Array.Sort(hits, (a,b) => a.distance.CompareTo(b.distance));
+                foreach (var hit in hits)
+                {
+                    if (hit.collider.GetComponentInParent<Pilot>() == this) continue;
+                    if (hit.collider.GetComponentInParent<Drone>() != null || hit.collider.GetComponentInParent<Destructible>() != null) return hit.collider.bounds.center;
+                    return hit.point;
+                }
+                return MousePoint();
+            }
+            Collider target = null; float nearest = 22;
+            foreach (var collider in Physics.OverlapSphere(transform.position, 22))
+            {
+                var enemy = collider.GetComponentInParent<Drone>();
+                var prop = collider.GetComponentInParent<Destructible>();
+                if ((enemy == null || enemy.Health <= 0) && (prop == null || prop.IsDestroyed)) continue;
+                Vector3 delta = collider.bounds.center - transform.position; delta.y = 0;
+                float distance = delta.magnitude;
+                if (distance < nearest && Vector3.Dot(facing, delta.normalized) > .94f) { nearest = distance; target = collider; }
+            }
+            return target != null ? target.bounds.center : muzzle + facing * 22;
         }
         public void Damage(float amount)
         {

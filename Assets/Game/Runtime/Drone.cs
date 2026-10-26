@@ -61,7 +61,7 @@ namespace VideoGame
             else if (Ranged)
             {
                 var bolt = new GameObject("Enemy bolt"); bolt.transform.SetParent(transform.parent);
-                bolt.transform.position = transform.position + delta.normalized * .7f;
+                bolt.transform.position = transform.position;
                 var trail = bolt.AddComponent<TrailRenderer>(); trail.time = .15f; trail.startWidth = .12f; trail.endWidth = .01f;
                 trail.startColor = new Color(1, .2f, .1f); trail.endColor = new Color(1, .1f, .1f, 0);
                 trail.sharedMaterial = Resources.Load<Material>("PrototypeTrace");
