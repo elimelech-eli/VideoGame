@@ -39,7 +39,7 @@ CI runs the complete gameplay suite with `-nographics`, matching local automatio
 
 ## Procedural sectors and visible falling cover — 2026-10-26
 
-Local regression: 12,017 core assertions over 1,000 layout seeds, four EditMode tests and 25 PlayMode tests passed. Seed tests verify deterministic geometry/content, unique cells, connected growth, valid sizes/themes, branching diversity and custom room counts. Runtime tests sample every doorway and connecting passage over four mission seeds for floor continuity and player clearance, verify a clear extraction approach, and traverse the enemy room-graph route to the starting room without crossing solid walls.
+Local regression: 12,017 core assertions over 1,000 layout seeds, four EditMode tests and 26 PlayMode tests passed. Seed tests verify deterministic geometry/content, unique cells, connected growth, valid sizes/themes, branching diversity and custom room counts. Runtime tests sample every doorway and connecting passage over four mission seeds for floor continuity and player clearance, verify a clear extraction approach, and traverse the enemy room-graph route to the starting room without crossing solid walls. A ranged enemy blocked by permanent cover must move rather than enter its firing windup.
 
 Wall tests now measure actual mesh-tip displacement rather than only the root transform. Enemy projectiles collapse rotated walls onto a player beyond the impact from all four cardinal orientations; the player takes exactly one 35-damage hit. The visible panel matches the collision volume, eliminating the previous 1.83-metre mesh / 2.4-metre box mismatch. Rendered player captures verify opposite-side falls and damage, sector geometry, room dressing and HUD map sizing.
 

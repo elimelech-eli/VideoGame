@@ -12,6 +12,10 @@ Use WASD or right-click to move; mouse to aim; left-click to shoot; Q for a gren
 
 Approach the cyan contract terminal, accept a mission, kill eight drones in the procedural area, return to the green extraction beacon, then claim the reward at the hub terminal.
 
+Each contract generates eight connected rooms with varied sizes, industrial themes, branching passages and safe doorway approaches. The sector map shows your position and extraction; its displayed seed identifies the layout. Enemies route through room doorways, and reinforcements keep the field active after the objective completes.
+
+![Procedural sector overview](docs/images/sector.png)
+
 Encounters include hunters, gunners, fast melee rushers, and bombardiers with marked AOE blasts. Shoot green medical caches and walk over the dropped medkit to heal. Enemy fire can detonate barrels or topple unstable cover onto you. Lethal damage plays a death animation before emergency recall to the Nexus.
 
 The player and all four enemy roles use different models. Nexus and combat zones have separate music, crossfades, atmospheric overhead lighting, light shafts, haze, and dust. Press M or click MUSIC to mute/unmute the soundtrack.

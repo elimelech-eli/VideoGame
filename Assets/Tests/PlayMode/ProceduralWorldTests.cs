@@ -58,6 +58,19 @@ public sealed class ProceduralWorldTests
         }
         yield return null;
     }
+    [UnityTest] public IEnumerator RangedEnemyMovesWhenPermanentCoverBlocksItsShot()
+    {
+        game.StartMission();game.Director.enabled=false;game.Player.enabled=false;
+        foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
+        game.Player.Teleport(new Vector3(0,1,4));
+        var cover=GameObject.CreatePrimitive(PrimitiveType.Cube);cover.transform.position=new Vector3(0,1,2);
+        cover.transform.localScale=new Vector3(4,2,.3f);cover.layer=9;
+        var gunner=game.SpawnDrone(Vector3.up,EnemyKind.Gunner);Physics.SyncTransforms();
+        yield return new WaitForSeconds(.3f);
+        Assert.Greater(gunner.transform.position.z,.2f,"A gunner in range should pursue a doorway rather than attack a permanent wall");
+        Assert.IsFalse(gunner.WindingUp);
+        Object.Destroy(cover);yield return null;
+    }
     [UnityTest] public IEnumerator RotatedWallVisibleTipAndCrushVolumeContinueBeyondImpact()
     {
         game.StartMission();game.Director.enabled=false;game.Player.enabled=false;
