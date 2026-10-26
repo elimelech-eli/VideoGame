@@ -1,0 +1,23 @@
+Detailed art sources, downloaded 2026-10-26:
+
+Sci-fi soldier by Irondust
+https://opengameart.org/content/sci-fi-soldier
+https://opengameart.org/sites/default/files/Sci-fi%20Soldiers.zip
+Publisher license: CC0 1.0 Universal
+https://creativecommons.org/publicdomain/zero/1.0/
+Included: original FBX, FederalSoldierSkin and EvilSkin texture maps.
+
+PBR Industrial Asset Pack by a52, adapted from rubberduck's High Quality Industrial Asset Pack
+https://opengameart.org/content/pbr-industrial-asset-pack
+https://opengameart.org/content/high-quality-industrial-asset-pack
+https://opengameart.org/sites/default/files/oga_industrial_a52_version_baked_models_0.zip
+Publisher license for models and textures: CC0 1.0 Universal
+Included: selected FBX exports from the baked Blender scene and their diffuse, normal, specular and AO textures.
+
+Metal Plates 017 A by ambientCG / Lennart Demes
+https://ambientcg.com/view?id=MetalPlates017A
+https://docs.ambientcg.com/license/
+Publisher license: CC0 1.0 Universal
+Included: original 1K JPG PBR maps.
+
+Bulkhead mesh, material setup, shaders and procedural rig motion were authored for this project. Conversion scripts are in Tools/Art.

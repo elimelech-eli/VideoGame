@@ -13,6 +13,8 @@ namespace VideoGame.Editor
             System.IO.Directory.CreateDirectory("Assets/Game/Resources");
             EnsureMaterial("PrototypeSurface", "Standard");
             EnsureMaterial("PrototypeTrace", "Sprites/Default");
+            EnsureMaterial("Cinematic", "Hidden/Nexus/Cinematic");
+            EnsureMaterial("Particle", "Nexus/Particle");
             const string path = "Assets/Game/Scenes/Prototype.unity";
             if (System.IO.File.Exists(path)) return;
             System.IO.Directory.CreateDirectory("Assets/Game/Scenes");
@@ -32,6 +34,7 @@ namespace VideoGame.Editor
         public static void BuildWindows()
         {
             EnsureScene();
+            DetailedAssets.Build();
             var report = BuildPipeline.BuildPlayer(new[] { "Assets/Game/Scenes/Prototype.unity" }, "Builds/Windows/VideoGame.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
                 throw new System.Exception("Windows build failed: " + report.summary.result);

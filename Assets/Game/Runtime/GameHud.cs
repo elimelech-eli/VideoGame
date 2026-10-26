@@ -27,6 +27,7 @@ namespace VideoGame
             var game = Prototype.Instance;
             if (game == null || game.Player == null) return;
             if (small == null) Styles();
+            DrawEnemyBars(game);
             Matrix4x4 previous = GUI.matrix;
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 720f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1280*scale)/2, (Screen.height - 720*scale)/2, 0), Quaternion.identity, Vector3.one * scale);
@@ -49,7 +50,7 @@ namespace VideoGame
                 Text(new Rect(145, 638, 130, 22), "OPERATIVE / 01", small, Art.Cyan);
                 Box(new Rect(45, 675, 230, 4), new Color(.12f, .2f, .25f));
                 Box(new Rect(45, 675, 230 * Mathf.Clamp01(game.Player.Health / 100), 4), Art.Cyan);
-                Skill(400, "01", "PULSE RIFLE", "LMB / RT", 0, Art.Cyan);
+                Skill(400, "01", "PULSE CANNON", "LMB / RT", 0, Art.Cyan);
                 Skill(560, "02", "FRAG GRENADE", "Q / RB", game.Player.GrenadeRemaining, Art.Amber);
                 Skill(720, "03", "GROUND DASH", "SPACE / B", game.Player.DashRemaining, Art.Cyan);
                 Text(new Rect(1030, 637, 220, 25), $"{game.Mission.Credits:000000}  CR", title, Color.white);
@@ -66,6 +67,21 @@ namespace VideoGame
                 Text(new Rect(30, 567, 335, 26), "WASD / LS   MOVE      RMB   MOVE TO POINT", small, muted);
             }
             finally { GUI.matrix = previous; GUI.color = Color.white; }
+        }
+        void DrawEnemyBars(Prototype game)
+        {
+            float scale = Mathf.Clamp(Screen.height / 720f, .65f, 2);
+            foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))
+            {
+                if (!enemy.HealthBarVisible) continue;
+                Vector3 point = game.Player.View.WorldToScreenPoint(enemy.transform.position + Vector3.up * 1.35f);
+                if (point.z <= 0 || point.x < 0 || point.x > Screen.width || point.y < 0 || point.y > Screen.height) continue;
+                float width = 64 * scale, height = 5 * scale;
+                float x = point.x - width / 2, y = Screen.height - point.y;
+                Box(new Rect(x - 2, y - 2, width + 4, height + 4), new Color(.015f, .02f, .03f, .95f));
+                Box(new Rect(x, y, width, height), new Color(.18f, .08f, .08f));
+                Box(new Rect(x, y, width * enemy.Health / Drone.MaxHealth, height), new Color(1, .24f, .12f));
+            }
         }
         void Skill(float x, string index, string name, string key, float cooldown, Color accent)
         {
