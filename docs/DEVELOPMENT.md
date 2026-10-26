@@ -30,4 +30,4 @@ In GitHub Settings → Branches, protect `master`: require a pull request, requi
 - Die during a contract; verify progress is discarded without granting a reward.
 - Check the Unity Console for errors. Record whether a physical controller was tested.
 
-The prototype uses geometric placeholders, an open connected room layout and immediate-mode debug UI. No art, sound, persistence, inventory, attributes, dialogue or base management are implemented yet.
+The prototype uses imported CC0 sci-fi models, an open connected room layout, a styled immediate-mode HUD and basic synthesized combat sounds. No persistence, inventory, attribute effects, dialogue or base management are implemented yet. See ASSETS.md for provenance and presentation limitations.

@@ -12,6 +12,7 @@ namespace VideoGame
             if (game == null || !game.InMission) return;
             Vector3 delta = game.Player.transform.position - transform.position; delta.y = 0;
             float distance = delta.magnitude;
+            if (delta.sqrMagnitude > .01f) transform.rotation = Quaternion.LookRotation(delta);
             if (distance > 19) return;
             float range = Ranged ? 7 : 1.4f;
             if (distance > range)

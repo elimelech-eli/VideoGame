@@ -13,11 +13,13 @@ namespace VideoGame
         public bool InMission { get; private set; }
         public Pilot Player { get; private set; }
         public int Seed { get; private set; } = 104729;
+        public Art Visuals { get; private set; }
+        public Vector3 Terminal => terminal;
         Transform world;
         Camera view;
         Vector3 terminal;
         string message = "Welcome home. Approach the cyan terminal to accept a contract.";
-        GUIStyle heading, label;
+        public string Message => message;
         readonly List<Material> materials = new List<Material>();
         readonly Dictionary<Color, Material> surfaces = new Dictionary<Color, Material>();
         Material traceMaterial;
@@ -33,6 +35,7 @@ namespace VideoGame
         void Awake()
         {
             Instance = this;
+            Visuals = gameObject.AddComponent<Art>();
             Application.runInBackground = true;
             view = new GameObject("Isometric Camera").AddComponent<Camera>();
             view.transform.SetParent(transform);
@@ -41,7 +44,7 @@ namespace VideoGame
             shotSound = Tone("Pulse", 150, .07f);
             blastSound = Tone("Blast", 55, .3f);
             view.orthographic = true;
-            view.orthographicSize = 12;
+            view.orthographicSize = 10;
             view.backgroundColor = new Color(.015f, .02f, .045f);
             view.clearFlags = CameraClearFlags.SolidColor;
             view.transform.rotation = Quaternion.Euler(55, 45, 0);
@@ -49,8 +52,14 @@ namespace VideoGame
             light.transform.SetParent(transform);
             light.type = LightType.Directional;
             light.transform.rotation = Quaternion.Euler(50, -30, 0);
-            light.intensity = 1.2f;
-            RenderSettings.ambientLight = new Color(.3f, .35f, .5f);
+            light.color = new Color(.7f, .82f, 1);
+            light.intensity = .9f;
+            light.shadows = LightShadows.Soft;
+            QualitySettings.shadowDistance = 60;
+            QualitySettings.pixelLightCount = 4;
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+            RenderSettings.ambientLight = new Color(.16f, .2f, .28f);
+            RenderSettings.reflectionIntensity = .3f;
             var player = Shape("Pilot", PrimitiveType.Capsule, Vector3.up, new Vector3(.8f, 1, .8f), Color.cyan, transform);
             Destroy(player.GetComponent<Collider>());
             var controller = player.AddComponent<CharacterController>();
@@ -59,11 +68,16 @@ namespace VideoGame
             controller.minMoveDistance = 0;
             Player = player.AddComponent<Pilot>();
             Player.View = view;
-            var gun = Shape("Gun", PrimitiveType.Cube, Vector3.zero, new Vector3(.2f, .2f, .9f), Color.white, player.transform);
-            gun.transform.localPosition = new Vector3(.45f, .1f, .5f);
-            Destroy(gun.GetComponent<Collider>());
+            player.GetComponent<Renderer>().enabled = false;
+            var visual = Visuals.Model("Space/astronautB", player.transform, new Vector3(0, -1, 0), 1.9f, Art.Cyan, 180);
+            player.AddComponent<ActorPresentation>().Visual = visual.transform;
+            Visuals.Model("Blaster/blaster-e", player.transform, new Vector3(.35f, -.05f, .3f), .95f, Art.Cyan, 180);
+            Visuals.PointLight(new Vector3(0, 2, 0), Art.Cyan, player.transform, 4);
+            gameObject.AddComponent<GameHud>();
             BuildHub();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
+            string capture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_SCREEN");
+            if (!string.IsNullOrEmpty(capture)) StartCoroutine(CapturePresentation(capture));
         }
         public GameObject Shape(string title, PrimitiveType type, Vector3 position, Vector3 scale, Color color, Transform parent)
         {
@@ -77,7 +91,9 @@ namespace VideoGame
                 material = new Material(Resources.Load<Material>("PrototypeSurface"));
                 material.color = color;
                 material.EnableKeyword("_EMISSION");
-                material.SetColor("_EmissionColor", color * .2f);
+                material.SetColor("_EmissionColor", color.maxColorComponent > .8f ? color * .7f : Color.black);
+                material.SetFloat("_Metallic", .4f);
+                material.SetFloat("_Glossiness", .32f);
                 materials.Add(material);
                 surfaces.Add(color, material);
             }
@@ -98,17 +114,54 @@ namespace VideoGame
             ResetWorld();
             Floor(Vector3.zero, 18, new Color(.07f, .11f, .16f));
             terminal = new Vector3(0, 1, 5);
-            Shape("Contract terminal", PrimitiveType.Cube, terminal, new Vector3(2, 2, 1), Color.cyan, world);
-            for (int i = -1; i <= 1; i += 2)
-                Shape("Habitat", PrimitiveType.Cube, new Vector3(i * 6, 2, 5), new Vector3(3, 4, 3), new Color(.2f, .12f, .3f), world);
+            Visuals.Model("Station/computer-wide", world, new Vector3(0, 0, 5), 3, Art.Cyan, 180);
+            Visuals.Strip(new Vector3(0, .02f, 3), new Vector3(4, .04f, .08f), Art.Cyan, world);
+            Visuals.Sign("CONTRACT UPLINK", new Vector3(0, 3.2f, 5), .65f, Art.Cyan, world);
+            Visuals.Sign("NEXUS  /  OPERATIONS", new Vector3(0, .06f, -4), .9f, new Color(.4f, .62f, .7f), world);
+            Visuals.Model("Space/craft_speederA", world, new Vector3(-5.5f, .1f, -2.5f), 4.8f, Art.Cyan, -35);
+            Visuals.Model("Station/table-display", world, new Vector3(5, 0, 1), 2.8f, Art.Cyan);
+            Visuals.PointLight(new Vector3(0, 3, 5), Art.Cyan, world, 12);
+            Visuals.PointLight(new Vector3(-6, 2, -3), Art.Amber, world, 9);
+            DressRoom(Vector3.zero, 18, 0, true);
         }
         void Floor(Vector3 center, float size, Color color)
         {
             Shape("Floor", PrimitiveType.Cube, center + Vector3.down * .25f, new Vector3(size, .5f, size), color, world).layer = 8;
+            var panels = new GameObject("Deck panels"); panels.transform.SetParent(world);
+            int count = Mathf.RoundToInt(size / 2);
+            for (int x = 0; x < count; x++)
+                for (int z = 0; z < count; z++)
+                    Visuals.Model("Station/floor-detail", panels.transform, center + new Vector3(-size/2 + 1 + x*2, -.12f, -size/2 + 1 + z*2), 1.96f, Art.Cyan, ((x + z) % 2) * 90);
             for (int i = -1; i <= 1; i += 2)
             {
-                var strip = Shape("Neon", PrimitiveType.Cube, center + new Vector3(i * (size / 2 - .1f), .02f, 0), new Vector3(.08f, .04f, size), Color.cyan, world);
-                Destroy(strip.GetComponent<Collider>());
+                Visuals.Strip(center + new Vector3(i * (size / 2 - .1f), .02f, 0), new Vector3(.04f, .025f, size), new Color(.06f, .24f, .3f), world);
+            }
+        }
+        void DressRoom(Vector3 center, float size, int index, bool hub = false)
+        {
+            float edge = size / 2 - 1;
+            var accent = hub ? Art.Cyan : Art.Amber;
+            // Low scenery leaves the central combat lanes and room-to-room joins clear.
+            for (int side = -1; side <= 1; side += 2)
+            {
+                Vector3 corner = center + new Vector3(side * edge, 0, edge);
+                Visuals.Model("Space/machine_generatorLarge", world, corner, 2.4f, accent, 90);
+                Visuals.Model("Station/container-tall", world, center + new Vector3(side * edge, 0, -edge), 1.8f, accent);
+                Visuals.PointLight(corner + Vector3.up * 2.5f, accent, world, 7);
+                Visuals.Strip(corner + Vector3.up * 1.6f, new Vector3(.08f, 1.4f, .08f), accent, world);
+                for (int j = 0; j < 2; j++)
+                    Visuals.Model("Station/container", world, center + new Vector3(side * (edge - j * 1.35f), 0, -edge), 1.2f, accent, j * 90);
+            }
+            if (hub)
+            {
+                for (int x = -6; x <= 6; x += 3)
+                    Visuals.Model("Station/wall", world, center + new Vector3(x, 0, edge + .5f), 3, accent);
+            }
+            else
+            {
+                Visuals.Sign("SECTOR " + index.ToString("00"), center + new Vector3(0, .06f, 4.5f), .7f, new Color(.5f, .45f, .35f), world);
+                var pipe = Visuals.Model("Station/pipe", world, center + new Vector3(edge, .3f, 1), 3, accent, 90);
+                pipe.transform.localRotation = Quaternion.Euler(90, 90, 0);
             }
         }
         public void StartMission()
@@ -120,17 +173,24 @@ namespace VideoGame
             var rooms = MapLayout.Generate(Seed);
             var random = new System.Random(Seed);
             terminal = new Vector3(-4, .5f, -4);
-            Shape("Extraction beacon", PrimitiveType.Cylinder, terminal, new Vector3(2, .5f, 2), Color.green, world);
+            Shape("Extraction beacon", PrimitiveType.Cylinder, terminal - Vector3.up * .4f, new Vector3(2, .1f, 2), new Color(.08f, .4f, .3f), world);
+            Visuals.Model("Station/table-display", world, terminal - Vector3.up * .5f, 2, Art.Cyan);
+            Visuals.Sign("EXTRACTION", terminal + Vector3.up * 2, .6f, Art.Cyan, world);
+            Visuals.PointLight(terminal + Vector3.up * 2, Art.Cyan, world);
             for (int i = 0; i < rooms.Count; i++)
             {
                 Vector3 center = new Vector3(rooms[i].X * 14, 0, rooms[i].Y * 14);
                 Floor(center, 14, i % 2 == 0 ? new Color(.1f, .09f, .16f) : new Color(.08f, .14f, .16f));
+                DressRoom(center, 14, i);
                 if (i == 0) continue;
                 for (int j = 0; j < 2; j++)
                 {
                     Vector3 point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
                     bool ranged = (i + j) % 3 == 0;
                     var enemy = Shape(ranged ? "Ranged drone" : "Hunter drone", ranged ? PrimitiveType.Sphere : PrimitiveType.Capsule, point, Vector3.one, ranged ? Color.magenta : new Color(1, .3f, .1f), world);
+                    enemy.GetComponent<Renderer>().enabled = false;
+                    var enemyArt = Visuals.Model(ranged ? "Space/turret_double" : "Space/astronautA", enemy.transform, new Vector3(0, ranged ? -.4f : -1, 0), ranged ? 1.7f : 1.85f, ranged ? new Color(1, .15f, .5f) : Art.Amber, 180);
+                    var presentation = enemy.AddComponent<ActorPresentation>(); presentation.Visual = enemyArt.transform; presentation.Hover = ranged;
                     enemy.AddComponent<Drone>().Ranged = ranged;
                 }
             }
@@ -164,11 +224,16 @@ namespace VideoGame
         {
             var effect = Shape("Impact", PrimitiveType.Sphere, position, Vector3.one * radius, color, world);
             Destroy(effect.GetComponent<Collider>());
-            Destroy(effect, .12f);
+            var burst = effect.AddComponent<Burst>(); burst.Duration = .18f; burst.Growth = 2;
+            for (int i = 0; i < 5; i++)
+            {
+                Vector3 delta = new Vector3(Mathf.Cos(i * 2.4f), .3f, Mathf.Sin(i * 2.4f));
+                Trace(position, position + delta * radius, color, false);
+            }
         }
-        public void Trace(Vector3 from, Vector3 to, Color color)
+        public void Trace(Vector3 from, Vector3 to, Color color, bool sound = true)
         {
-            audioSource.PlayOneShot(shotSound, .12f);
+            if (sound) audioSource.PlayOneShot(shotSound, .12f);
             var trace = new GameObject("Tracer").AddComponent<LineRenderer>();
             trace.transform.SetParent(world);
             trace.positionCount = 2; trace.SetPosition(0, from); trace.SetPosition(1, to);
@@ -186,6 +251,8 @@ namespace VideoGame
             Vector3 start = Player.transform.position;
             var grenade = Shape("Grenade", PrimitiveType.Sphere, start, Vector3.one * .3f, Color.yellow, world);
             Destroy(grenade.GetComponent<Collider>());
+            grenade.GetComponent<Renderer>().enabled = false;
+            Visuals.Model("Blaster/grenade-a", grenade.transform, Vector3.zero, .35f, Art.Amber);
             for (float t = 0; t < 1; t += Time.deltaTime * 2)
             {
                 if (grenade == null) yield break;
@@ -195,31 +262,9 @@ namespace VideoGame
             if (grenade == null) yield break;
             Destroy(grenade);
             audioSource.PlayOneShot(blastSound, .3f);
-            Hit(target, Color.yellow, 7);
+            Hit(target, Art.Amber, 2);
             foreach (var collider in Physics.OverlapSphere(target, 4))
                 collider.GetComponent<Drone>()?.Damage(80);
-        }
-        void OnGUI()
-        {
-            if (Player == null) return;
-            if (heading == null)
-            {
-                heading = new GUIStyle(GUI.skin.label) { fontSize = 25, fontStyle = FontStyle.Bold };
-                label = new GUIStyle(GUI.skin.label) { fontSize = 16, wordWrap = true };
-            }
-            GUI.Box(new Rect(16, 16, 440, 230), "");
-            GUILayout.BeginArea(new Rect(30, 26, 412, 210));
-            GUILayout.Label(InMission ? "FIELD CONTRACT" : "HOME / OPERATIONS", heading);
-            GUILayout.Label($"Health {Mathf.CeilToInt(Player.Health)} / 100    Credits {Mission.Credits}", label);
-            GUILayout.Label($"Drones {Mission.Kills} / {Mission.Target}    Grenade {Player.GrenadeRemaining:0.0}s", label);
-            GUILayout.Label(message, label);
-            if (Vector3.Distance(Player.transform.position, terminal) < 3.5f)
-            {
-                string action = InMission ? "Extract" : Mission.Stage == MissionStage.Complete ? "Claim reward" : "Accept contract";
-                if (GUILayout.Button(action + " [E / A]", GUILayout.Height(32))) Interact();
-            }
-            GUILayout.EndArea();
-            GUI.Label(new Rect(20, Screen.height - 65, Screen.width - 40, 60), "WASD / Left stick: move  |  RMB: move to point  |  LMB / RT: fire\nQ / RB: grenade  |  Space / B: dash  |  E / A: interact  |  Right stick: aim", label);
         }
         void OnDestroy()
         {
@@ -227,6 +272,19 @@ namespace VideoGame
             if (shotSound != null) Destroy(shotSound);
             if (blastSound != null) Destroy(blastSound);
             if (Instance == this) Instance = null;
+        }
+        IEnumerator CapturePresentation(string directory)
+        {
+            System.IO.Directory.CreateDirectory(directory);
+            yield return new WaitForSeconds(2);
+            ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory, "hub-ui.png"));
+            yield return new WaitForSeconds(1);
+            StartMission();
+            var rooms = MapLayout.Generate(Seed);
+            Player.Teleport(new Vector3(rooms[1].X * 14, 1, rooms[1].Y * 14));
+            foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.enabled = false;
+            yield return new WaitForSeconds(2);
+            ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory, "field-ui.png"));
         }
         static AudioClip Tone(string name, float frequency, float duration)
         {
