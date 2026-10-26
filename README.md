@@ -2,6 +2,10 @@
 
 Unity **6000.3.26f1**, C#, PC. Early local single-player proof of concept.
 
+![Operations hub with imported sci-fi assets](docs/images/hub.png)
+
+![Combat sector and HUD](docs/images/combat.png)
+
 Open this directory in Unity Hub using the pinned Editor. Allow package import and scene setup to complete, open `Assets/Game/Scenes/Prototype.unity`, then press Play. The editor setup creates that scene on first import if needed.
 
 Use WASD or right-click to move; mouse to aim; left-click to shoot; Q for a grenade; Space to dash; E to interact. Controller: left stick moves, right stick aims, RT fires, RB throws a grenade, B dashes, A interacts.
@@ -11,6 +15,7 @@ Approach the cyan contract terminal, accept a mission, kill eight drones in the 
 - [Game profile](docs/GAME_PROFILE.md)
 - [Development pipeline and testing](docs/DEVELOPMENT.md)
 - [Validation and current limitations](docs/VALIDATION.md)
+- [Asset sources and licenses](docs/ASSETS.md)
 
 License-free core checks: `dotnet run --project Tests/CoreChecks/CoreChecks.csproj --configuration Release`.
 

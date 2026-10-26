@@ -9,6 +9,7 @@ namespace VideoGame
         public Camera View;
         public float Health = 100;
         public float GrenadeRemaining => Mathf.Max(0, grenadeAt - Time.time);
+        public float DashRemaining => Mathf.Max(0, dashAt - Time.time);
         CharacterController controller;
         Vector3? destination;
         Vector3 facing = Vector3.forward, dashDirection;
