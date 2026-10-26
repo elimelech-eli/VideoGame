@@ -70,6 +70,18 @@ public sealed class MenuTests
         InputSystem.QueueStateEvent(mouse,new MouseState{position=Point(688,225),buttons=1});yield return null;yield return null;
         Assert.That(game.Menus.Draft.Master,Is.EqualTo(.9f).Within(.001f));
     }
+    [UnityTest] public IEnumerator HiddenTerminalPromptDoesNotInterceptGameplayInput()
+    {
+        float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);
+        Vector2 point=new Vector2((Screen.width-1280*scale)/2+600*scale,(Screen.height-720*scale)/2+170*scale);
+        InputSystem.QueueStateEvent(mouse,new MouseState{position=point});yield return null;yield return null;
+        Assert.Greater(Vector3.Distance(game.Player.transform.position,game.Terminal),3.5f);
+        Assert.IsFalse(game.Menus.BlocksPlayerInput,"A hidden terminal button must not create an input dead zone");
+        game.Player.Teleport(game.Terminal+Vector3.back*2);yield return null;
+        Assert.IsTrue(game.Menus.BlocksPlayerInput,"The visible terminal button should intercept clicks");
+        game.Player.Teleport(Vector3.up);yield return null;
+        Assert.IsFalse(game.Menus.BlocksPlayerInput);
+    }
     [UnityTest] public IEnumerator EscapeAndStartPauseAndResumeWithoutDashOrInteraction()
     {
         InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Escape));yield return null;yield return null;

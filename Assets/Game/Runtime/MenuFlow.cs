@@ -39,7 +39,8 @@ namespace VideoGame
                 point.y=720-point.y;return point;
             }
         }
-        public bool BlocksPlayerInput => BlocksGameplay || new Rect(30,90,350,24).Contains(PointerPosition) || new Rect(440,522,400,57).Contains(PointerPosition);
+        public bool BlocksPlayerInput => BlocksGameplay || new Rect(30,90,350,24).Contains(PointerPosition)
+            || (Vector3.Distance(game.Player.transform.position,game.Terminal)<3.5f && new Rect(440,522,400,57).Contains(PointerPosition));
         public bool CanSave => HasSession && !game.InMission && !game.Player.IsDead;
         public float DamageMultiplier => new[]{.5f,1f,1.5f,2.5f}[(int)Difficulty];
         public float DisplaySeconds => Mathf.Max(0,displayDeadline-Time.realtimeSinceStartup);
