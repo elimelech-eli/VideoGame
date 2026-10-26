@@ -10,6 +10,7 @@ namespace VideoGame
         Transform actor;
         Vector3 previous;
         float actionUntil;
+        bool robot;
         void Awake()
         {
             actor = GetComponentInParent<Pilot>()?.transform;
@@ -17,16 +18,22 @@ namespace VideoGame
             previous = actor.position;
             Player = gameObject.AddComponent<Animation>();
             Player.cullingType = AnimationCullingType.AlwaysAnimate;
-            foreach (var clip in Resources.LoadAll<AnimationClip>("Animations")) Player.AddClip(clip, clip.name);
+            string model = name.Replace("(Clone)", "").Trim();
+            robot = model == "Crawler" || model == "Roller" || model == "Blaster" || model == "Lobber";
+            foreach (var clip in Resources.LoadAll<AnimationClip>(robot ? "RobotAnimations/" + model : "Animations")) Player.AddClip(clip, clip.name);
             if (Player["Idle"] == null) throw new System.InvalidOperationException("Missing baked actor animations");
             foreach (string name in new[] {"Fire", "Hit", "Cast"})
             {
+                if (robot) continue;
                 Player[name].layer = 1;
                 Player[name].wrapMode = WrapMode.Once;
                 foreach (var bone in GetComponentsInChildren<Transform>())
                     if (bone.name == "chest") { Player[name].AddMixingTransform(bone, true); break; }
             }
             Player.Play("Idle");
+            if (robot)
+                foreach (string state in new[] {"Fire", "Hit", "Cast", "Melee", "Death", "Dash"})
+                    Player[state].speed = Player[state].length / (state == "Death" ? 1.25f : state == "Melee" ? .65f : state == "Cast" ? .8f : state == "Dash" ? .35f : state == "Hit" ? .2f : .45f);
         }
         public void Act(string state)
         {
@@ -38,7 +45,7 @@ namespace VideoGame
             if (state == "Death") Dead = true;
             if (Dead) foreach (AnimationState clip in Player) if (clip.layer == 1) Player.Stop(clip.name);
             CurrentState = state;
-            actionUntil = Time.time + Player[state].length;
+            actionUntil = Time.time + Player[state].length / Mathf.Max(.01f, Player[state].speed);
             Player.CrossFade(state, state == "Death" ? .08f : .045f);
             Player[state].time = 0;
         }

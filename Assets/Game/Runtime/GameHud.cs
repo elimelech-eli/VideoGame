@@ -36,6 +36,7 @@ namespace VideoGame
                 Text(new Rect(28, 22, 350, 28), "N E X U S", title, Color.white);
                 Text(new Rect(30, 52, 350, 22), game.InMission ? "COMBAT ZONE  /  SIGNAL ONLINE" : "OPERATIONS  /  SAFE ZONE", small, Art.Cyan);
                 Box(new Rect(30, 79, 180, 2), Art.Cyan);
+                if (GUI.Button(new Rect(30, 90, 180, 24), game.Music.Enabled ? "MUSIC ON  [M]" : "MUSIC OFF  [M]", small)) game.Music.Toggle();
                 Panel(new Rect(944, 24, 308, 145), game.InMission ? Art.Amber : Art.Cyan);
                 Text(new Rect(964, 36, 260, 22), game.InMission ? "CONTRACT  /  DRONE SUPPRESSION" : "HOME  /  OPERATIONS", small, muted);
                 Text(new Rect(964, 62, 260, 32), game.InMission ? "Clear the sector" : "Awaiting deployment", title, Color.white);
@@ -81,7 +82,9 @@ namespace VideoGame
             foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))
             {
                 if (!enemy.HealthBarVisible) continue;
-                Vector3 point = game.Player.View.WorldToScreenPoint(enemy.transform.position + Vector3.up * 1.35f);
+                var collider = enemy.GetComponent<Collider>();
+                Vector3 anchor = enemy.transform.position; anchor.y = collider.bounds.max.y + .25f;
+                Vector3 point = game.Player.View.WorldToScreenPoint(anchor);
                 if (point.z <= 0 || point.x < 0 || point.x > Screen.width || point.y < 0 || point.y > Screen.height) continue;
                 float width = 64 * scale, height = 5 * scale;
                 float x = point.x - width / 2, y = Screen.height - point.y;

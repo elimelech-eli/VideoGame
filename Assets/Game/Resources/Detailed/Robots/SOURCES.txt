@@ -1,0 +1,16 @@
+Robot Enemy Pack
+Source: https://opengameart.org/content/robot-enemy-pack
+Original archive: https://opengameart.org/sites/default/files/buddyarena%20blend.zip
+Publisher: Teh_Bucket
+Concepts: TrickyTriangles (https://trickytriangles.itch.io/)
+Models: toiletsnakes (https://toiletsnakes.itch.io/) and Teh_Bucket (http://teh_bucket.itch.io/)
+License declared by publisher: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
+Retrieved: 2026-10-26
+
+Selected models: crawler, roller, blaster, lobber. Distinct original meshes and rigs.
+Exports preserve original idle, move, attack and die1 actions. Unity clips alias
+these actions to the gameplay animation states; playback speed adapts attack duration.
+Textures are included as published; Unity materials tint the colorable panel map.
+Reproduce FBX exports using Tools/Art/export_robots.py and Blender 4.5 with the
+original archive extracted locally. Blender is not required to build or play.
+

@@ -16,9 +16,12 @@ namespace VideoGame
         public Art Visuals { get; private set; }
         public Vector3 Terminal => terminal;
         public EncounterDirector Director { get; private set; }
+        public Soundtrack Music { get; private set; }
+        public Atmosphere Ambience { get; private set; }
         Transform world;
         Camera view;
         Vector3 terminal;
+        bool fixedPresentationCamera;
         string message = "Welcome home. Approach the cyan terminal to accept a contract.";
         public string Message => message;
         readonly List<Material> materials = new List<Material>();
@@ -64,6 +67,8 @@ namespace VideoGame
             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
             RenderSettings.ambientLight = new Color(.16f, .2f, .28f);
             RenderSettings.reflectionIntensity = .3f;
+            Music = gameObject.AddComponent<Soundtrack>();
+            Ambience = gameObject.AddComponent<Atmosphere>(); Ambience.KeyLight = light;
             var player = Shape("Pilot", PrimitiveType.Capsule, Vector3.up, new Vector3(.8f, 1, .8f), Color.cyan, transform);
             Destroy(player.GetComponent<Collider>());
             var controller = player.AddComponent<CharacterController>();
@@ -82,6 +87,8 @@ namespace VideoGame
             if (!string.IsNullOrEmpty(capture)) StartCoroutine(CapturePresentation(capture));
             string animationCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_ANIMATION");
             if (!string.IsNullOrEmpty(animationCapture)) StartCoroutine(CaptureAnimations(animationCapture));
+            string rosterCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_ROSTER");
+            if (!string.IsNullOrEmpty(rosterCapture)) StartCoroutine(CaptureRoster(rosterCapture));
         }
         public GameObject Shape(string title, PrimitiveType type, Vector3 position, Vector3 scale, Color color, Transform parent)
         {
@@ -116,6 +123,7 @@ namespace VideoGame
         public void BuildHub()
         {
             InMission = false;
+            Music.SetBattle(false); Ambience.SetBattle(false);
             ResetWorld();
             Floor(Vector3.zero, 18, new Color(.07f, .11f, .16f));
             terminal = new Vector3(0, 1, 5);
@@ -128,6 +136,7 @@ namespace VideoGame
             Visuals.PointLight(new Vector3(0, 3, 5), Art.Cyan, world, 12);
             Visuals.PointLight(new Vector3(-6, 2, -3), Art.Amber, world, 9);
             DressRoom(Vector3.zero, 18, 0, true);
+            Ambience.Room(Vector3.zero, world, true);
             StartCoroutine(RefreshReflections());
         }
         void Floor(Vector3 center, float size, Color color)
@@ -170,6 +179,7 @@ namespace VideoGame
             if (Player.IsDead) return;
             if (!Mission.Accept()) return;
             InMission = true;
+            Music.SetBattle(true); Ambience.SetBattle(true);
             ResetWorld();
             Seed++;
             var rooms = MapLayout.Generate(Seed);
@@ -186,6 +196,7 @@ namespace VideoGame
                 centers.Add(center);
                 Floor(center, 14, i % 2 == 0 ? new Color(.1f, .09f, .16f) : new Color(.08f, .14f, .16f));
                 DressRoom(center, 14, i);
+                Ambience.Room(center, world, false);
                 SpawnDestructible(center + new Vector3(4, 0, -3), false);
                 SpawnDestructible(center + new Vector3(2, 0, -3), false);
                 SpawnDestructible(center + new Vector3(-5.5f, 0, 2), true);
@@ -213,12 +224,15 @@ namespace VideoGame
             bool ranged = kind == EnemyKind.Gunner || kind == EnemyKind.Bombardier;
             var enemy = Shape(ranged ? "Ranged drone" : "Hunter drone", ranged ? PrimitiveType.Sphere : PrimitiveType.Capsule, point, Vector3.one, ranged ? Color.magenta : Art.Amber, world);
             enemy.GetComponent<Renderer>().enabled = false;
-            var enemyArt = Visuals.Model(ranged ? "Detailed/Prefabs/Gunner" : "Detailed/Prefabs/Hunter", enemy.transform, new Vector3(0, -1, 0), 2.05f, ranged ? new Color(1, .15f, .5f) : Art.Amber);
+            string model = kind == EnemyKind.Hunter ? "Crawler" : kind == EnemyKind.Rusher ? "Roller" : kind == EnemyKind.Gunner ? "Blaster" : "Lobber";
+            float size = kind == EnemyKind.Bombardier ? 2.6f : kind == EnemyKind.Rusher ? 1.65f : kind == EnemyKind.Hunter ? 2.2f : 2.35f;
+            var enemyArt = Visuals.Model("Detailed/Robots/Prefabs/" + model, enemy.transform, new Vector3(0, -1, 0), size, Art.Amber);
             var drone = enemy.AddComponent<Drone>(); drone.Kind = kind;
-            if (kind == EnemyKind.Rusher) enemyArt.transform.localScale *= .88f;
-            if (kind == EnemyKind.Bombardier) enemyArt.transform.localScale *= 1.12f;
+            var originalCollider = enemy.GetComponent<Collider>(); originalCollider.enabled = false; Destroy(originalCollider);
+            var bounds = Art.RenderedBounds(enemyArt);
+            var body = enemy.AddComponent<BoxCollider>(); body.center = enemy.transform.InverseTransformPoint(bounds.center); body.size = bounds.size;
             Color roleColor = kind == EnemyKind.Rusher ? new Color(1, .25f, .1f) : kind == EnemyKind.Bombardier ? new Color(.75f, .3f, 1) : ranged ? Color.magenta : Art.Amber;
-            Visuals.Sign(kind.ToString().ToUpperInvariant(), point + Vector3.up * 1.65f, .27f, roleColor, enemy.transform);
+            Visuals.Sign(kind.ToString().ToUpperInvariant(), new Vector3(point.x, bounds.max.y + .35f, point.z), .27f, roleColor, enemy.transform);
             return drone;
         }
         public Destructible SpawnMedicalCache(Vector3 position)
@@ -313,6 +327,7 @@ namespace VideoGame
         }
         void LateUpdate()
         {
+            if (fixedPresentationCamera) return;
             view.transform.position = Player.transform.position + new Vector3(-10.7f, 18, -10.7f);
         }
         public void Hit(Vector3 position, Color color, float radius = .3f)
@@ -422,6 +437,26 @@ namespace VideoGame
                 }
             }
             motion.Player.enabled = true; motion.enabled = true; Player.enabled = true; motion.Revive(); view.orthographicSize = 7.5f;
+        }
+        IEnumerator CaptureRoster(string directory)
+        {
+            System.IO.Directory.CreateDirectory(directory);
+            yield return new WaitForSeconds(2);
+            fixedPresentationCamera = true; view.orthographicSize = 5.8f;
+            view.transform.position = Vector3.up + new Vector3(-10.7f,18,-10.7f);
+            Player.Teleport(view.transform.right * -6 + Vector3.up); Player.enabled = false;
+            Quaternion facing = Quaternion.LookRotation(new Vector3(-1,0,-1)); Player.transform.rotation = facing;
+            var signRoot = new GameObject("Operative gallery label"); signRoot.transform.SetParent(Player.transform);
+            Visuals.Sign("OPERATIVE", Player.transform.position + Vector3.up * 1.7f,.3f,Art.Cyan,signRoot.transform);
+            for(int i=0;i<4;i++)
+            {
+                var enemy = SpawnDrone(view.transform.right * (-3+i*3) + Vector3.up,(EnemyKind)i);
+                enemy.transform.rotation = facing;
+            }
+            yield return new WaitForSeconds(1);
+            ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"roster.png"));
+            yield return new WaitForSeconds(.5f);
+            Destroy(signRoot); Player.enabled=true; fixedPresentationCamera=false; view.orthographicSize=7.5f; BuildHub();
         }
         static AudioClip Tone(string name, float frequency, float duration)
         {
