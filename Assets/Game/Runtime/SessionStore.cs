@@ -14,11 +14,14 @@ namespace VideoGame
         public float Master = 1, Music = 1, Effects = 1;
         public int Quality = 2, Width = 1280, Height = 720, WindowMode, VSync, FrameRate = 120;
         public float AimDeadzone = .2f;
+        public float ScreenShake = .5f;
+        public bool ReducedEffects;
         public bool AimAssist = true, MusicMuted;
         public GameSettings Copy() => JsonUtility.FromJson<GameSettings>(JsonUtility.ToJson(this));
         public void Sanitize()
         {
             Master = SafeVolume(Master); Music = SafeVolume(Music); Effects = SafeVolume(Effects);
+            ScreenShake = float.IsNaN(ScreenShake) || float.IsInfinity(ScreenShake) ? .5f : Mathf.Clamp01(ScreenShake);
             Quality = Mathf.Clamp(Quality,0,2); WindowMode = Mathf.Clamp(WindowMode,0,2);
             Width = Mathf.Clamp(Width,800,7680); Height = Mathf.Clamp(Height,600,4320);
             VSync = Mathf.Clamp(VSync,0,1);

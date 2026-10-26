@@ -82,6 +82,7 @@ namespace VideoGame
             {
                 shotAt = Time.time + .14f;
                 Motion.Act("Fire");
+                Motion.Kick();
                 Vector3 start = transform.position + Vector3.up * .25f;
                 Vector3 direction = (GunAimPoint(start) - start).normalized;
                 Vector3 end = start + direction * 22;
@@ -91,7 +92,7 @@ namespace VideoGame
                 {
                     if (hit.collider.GetComponentInParent<Pilot>() == this) continue;
                     end = hit.point; CombatDamage.Apply(hit.collider, 20, start, direction);
-                    Prototype.Instance.Hit(end, Color.cyan);
+                    Prototype.Instance.Feedback.Contact(end, hit.collider.GetComponentInParent<Drone>() != null);
                     break;
                 }
                 Prototype.Instance.Trace(start, end, Color.cyan);

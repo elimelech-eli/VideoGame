@@ -11,6 +11,19 @@ namespace VideoGame
         Vector3 previous;
         float actionUntil;
         bool robot;
+        float recoil;
+        Vector3 recoilRest;
+        public void Kick()
+        {
+            if (recoil <= 0) recoilRest = transform.localPosition;
+            recoil = .045f;
+        }
+        void LateUpdate()
+        {
+            if (recoil <= 0 || Time.timeScale == 0) return;
+            recoil = Mathf.MoveTowards(recoil, 0, Time.deltaTime * .5f);
+            transform.localPosition = recoilRest - transform.parent.InverseTransformDirection(actor.forward) * recoil;
+        }
         void Awake()
         {
             actor = GetComponentInParent<Pilot>()?.transform;
@@ -51,6 +64,8 @@ namespace VideoGame
         }
         public void Revive()
         {
+            if (recoil > 0) transform.localPosition = recoilRest;
+            recoil = 0;
             Dead = false; actionUntil = 0; previous = actor.position;
             CurrentState = "Idle"; Player.Play("Idle"); Player["Idle"].time = 0; Player.Sample();
         }

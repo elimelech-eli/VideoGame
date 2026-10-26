@@ -77,6 +77,8 @@ namespace VideoGame
                 trail.startColor = new Color(1, .2f, .1f); trail.endColor = new Color(1, .1f, .1f, 0);
                 trail.sharedMaterial = Resources.Load<Material>("PrototypeTrace");
                 bolt.AddComponent<EnemyBolt>().Direction = delta.normalized;
+                game.Feedback.Shot(transform.position + delta.normalized * .5f, transform.position + delta.normalized * .9f, new Color(1, .3f, .1f));
+                Motion.Kick();
             }
             else if (delta.magnitude < 2.2f)
             {
@@ -117,7 +119,7 @@ namespace VideoGame
                 var player = hit.collider.GetComponentInParent<Pilot>();
                 if (player != null) player.Damage(12);
                 else hit.collider.GetComponentInParent<Destructible>()?.Damage(12, before, Direction);
-                Prototype.Instance.Hit(hit.point, new Color(1, .2f, .1f));
+                Prototype.Instance.Feedback.Contact(hit.point, player != null);
                 Destroy(gameObject); return;
             }
             transform.position += step;
