@@ -32,10 +32,17 @@ namespace VideoGame
         public bool IsMedical;
         public Vector3 FallDirection { get; private set; }
         public bool IsDestroyed { get; private set; }
+        Vector3 lastImpact;
         public float Health { get; private set; } = 40;
         public void Damage(float amount, Vector3? source = null, Vector3? incoming = null)
         {
             if (IsDestroyed || amount <= 0) return;
+            if (IsWall)
+            {
+                Vector3 impulse = incoming ?? (transform.position - (source ?? Prototype.Instance.Player.transform.position));
+                impulse.y = 0;
+                if (impulse.sqrMagnitude > .0001f) lastImpact = impulse.normalized;
+            }
             Health = Mathf.Max(0, Health - amount);
             if (Health > 0) { Prototype.Instance.Hit(transform.position + Vector3.up * .7f, Art.Amber); return; }
             // Set the guard before applying radial damage so barrel chains cannot recurse forever.
@@ -49,10 +56,8 @@ namespace VideoGame
             }
             else if (IsWall)
             {
-                Vector3 direction = incoming ?? (transform.position - (source ?? Prototype.Instance.Player.transform.position));
-                direction.y = 0;
-                if (direction.sqrMagnitude < .01f) direction = transform.forward;
-                FallDirection = direction.normalized; StartCoroutine(Topple());
+                FallDirection = lastImpact.sqrMagnitude > 0 ? lastImpact : transform.forward;
+                StartCoroutine(Topple());
             }
             else
             {
@@ -70,9 +75,14 @@ namespace VideoGame
             Quaternion start = transform.rotation;
             Vector3 axis = Vector3.Cross(Vector3.up, direction);
             var struck = new HashSet<Object>();
+            // Telegraph the continuation of the killing impact, from the foot of
+            // the panel toward the victim side. This uses the same vector as physics.
+            Prototype.Instance.Trace(transform.position + Vector3.up * .08f,
+                transform.position + direction * shape.size.y + Vector3.up * .08f, Art.Amber, false);
             for (float t = 0; t < 1; t += Time.deltaTime / .7f)
             {
                 transform.rotation = Quaternion.AngleAxis(Mathf.SmoothStep(0, 86, t), axis) * start;
+                Physics.SyncTransforms();
                 if (t > .35f)
                 {
                     Vector3 center = transform.TransformPoint(shape.center);

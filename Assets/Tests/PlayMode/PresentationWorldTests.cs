@@ -21,12 +21,27 @@ public sealed class PresentationWorldTests
         {
             Vector3 direction=Quaternion.Euler(0,i*45,0)*Vector3.forward;
             var wall=game.SpawnDestructible(Vector3.zero,true);
+            var mesh = wall.GetComponentInChildren<MeshFilter>();
+            var vertices = mesh.sharedMesh.vertices;
+            Vector3 top = Vector3.zero; int topCount = 0;
+            float maxY = float.MinValue;
+            foreach (var vertex in vertices) maxY = Mathf.Max(maxY, mesh.transform.TransformPoint(vertex).y);
+            foreach (var vertex in vertices)
+            {
+                Vector3 point = mesh.transform.TransformPoint(vertex);
+                if (point.y > maxY - .15f) { top += point; topCount++; }
+            }
+            top = wall.transform.InverseTransformPoint(top / topCount);
+            var body = wall.GetComponent<BoxCollider>();
+            Assert.That(Art.RenderedBounds(mesh.gameObject).size.y, Is.EqualTo(body.size.y).Within(.02f));
             // A near-edge impact position must not turn a straight shot sideways.
             wall.Damage(40,new Vector3(1,1,-.2f),direction);
             Assert.Greater(Vector3.Dot(wall.FallDirection,direction),.999f);
             yield return new WaitForSeconds(.8f);
             Vector3 fallenUp=wall.transform.up; fallenUp.y=0;
             Assert.Greater(Vector3.Dot(fallenUp.normalized,direction),.99f);
+            Vector3 visibleFall = wall.transform.TransformPoint(top) - wall.transform.position; visibleFall.y = 0;
+            Assert.Greater(Vector3.Dot(visibleFall.normalized,direction),.98f,"Actual mesh top must continue along the shot");
             Object.Destroy(wall.gameObject); yield return null;
         }
     }

@@ -23,7 +23,7 @@ Robots use the artist's native actions, aliased to those gameplay state names, w
 
 The player's visual rig faces the same direction as its actor and weapon; gait keys preserve forward knee flexion and level feet. Tests check visible mesh deformation, toe direction, and knee direction.
 
-Industrial scenery, including machinery, containers, and boundary wall modules, has mesh-bounds box collision on the obstacle layer. It blocks movement, gunfire, and enemy projectiles. Interactive hazards retain their own damageable colliders. Gun shots start at the player and stop at the first solid hit; mouse aim uses the clicked collider, with a small allowance for clicking an actor's ground footprint. Controller assistance includes destructibles at their actual height, so direct fire can break low medical caches. Medkit drops remain nonblocking. General pathfinding is not implemented; enemies use local obstacle steering.
+Industrial scenery, including machinery, containers, and boundary wall modules, has mesh-bounds box collision on the obstacle layer. It blocks movement, gunfire, and enemy projectiles. Interactive hazards retain their own damageable colliders. Gun shots start at the player and stop at the first solid hit; mouse aim uses the clicked collider, with a small allowance for clicking an actor's ground footprint. Controller assistance includes destructibles at their actual height, so direct fire can break low medical caches. Medkit drops remain nonblocking. Enemies use room-graph routing through doorway centers with local obstacle steering. Right-click player movement remains direct steering.
 
 Validation includes timing/no-healing, post-objective reinforcements and population caps, barrel chains, projectile-triggered cover collapse onto the player, health-drop collection/capping, mesh deformation and anatomical direction under animation, delayed death recall/replay, fast melee windup/range, fixed AOE warning/damage/escape, direct mouse/controller gunfire on medical caches, and solid scenery blocking both sides' shots and player movement at close range.
 
@@ -32,3 +32,12 @@ Validation includes timing/no-healing, post-objective reinforcements and populat
 The Nexus uses a cool teal fill and warm practical accents; combat shifts toward violet/blue fill and red/orange overhead accents. Spot cookies, subtle additive light shafts, distance haze, and low-density dust give the rooms atmosphere while retaining readable floors and hazard labels. These are lightweight built-in-renderer effects rather than a full volumetric lighting system.
 
 Two licensed cyberpunk recordings provide separate Nexus and battle themes. Music streams from disk, loops, and crossfades over 1.5 seconds when entering a mission or returning to the Nexus, including death recall. Lethal damage lowers the music during the death sequence. Press M or click MUSIC in the HUD to mute/unmute both music channels; combat sound effects remain audible.
+
+
+## Procedural sectors
+
+Each accepted contract advances the seed shown on the HUD. Eight rooms grow from a seeded frontier in all four directions; branches can reconnect into loops. Rooms are 12, 14 or 16 metres square on a 20-metre grid, with four-metre connecting passages and solid perimeter panels. Every room has a route back to the starting extraction room. The seed controls room size, reactor/freight/relay dressing, hazard orientation and initial enemy positions. Props occupy corners so the center crossing and doorway approaches remain open. Extraction has no destructible hazards.
+
+The sector map marks the player in amber and extraction in green. Reinforcements use the new spacing, reject solid scenery and continue after contract completion. Room-graph pursuit guides enemies toward doorways. This is a modular industrial layout generator, not arbitrary terrain generation; room geometry and art still use the existing kit.
+
+The unstable panel's visible dimensions and crushing box now match (2.4 metres tall). Each valid incoming impact records its horizontal continuation; the final hit selects the fall, and zero-length impulses retain the last valid direction. Mesh-tip regression checks cover eight shot directions, plus real enemy bolts against panels rotated through all four cardinal orientations. Physics queries synchronize the rotating panel before checking victims.

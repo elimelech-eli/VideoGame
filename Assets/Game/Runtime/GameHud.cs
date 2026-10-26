@@ -45,6 +45,7 @@ namespace VideoGame
                 Box(new Rect(964, 138, 266, 3), new Color(.12f, .19f, .23f));
                 Box(new Rect(964, 138, 266 * (game.InMission ? (float)game.Mission.Kills / game.Mission.Target : 1), 3), game.InMission ? Art.Amber : Art.Cyan);
 
+                if (game.InMission) DrawMap(game);
                 Panel(new Rect(28, 602, 270, 88), Art.Cyan);
                 Text(new Rect(45, 610, 100, 20), "VITALS", small, muted);
                 Text(new Rect(45, 628, 100, 40), Mathf.CeilToInt(game.Player.Health).ToString("000"), number, Color.white);
@@ -75,6 +76,35 @@ namespace VideoGame
                 }
             }
             finally { GUI.matrix = previous; GUI.color = Color.white; }
+        }
+        void DrawMap(Prototype game)
+        {
+            var rooms = game.Layout; if (rooms == null) return;
+            Panel(new Rect(30,130,180,190),Art.Cyan);
+            Text(new Rect(40,138,165,20),"SECTOR / " + game.Seed,small,muted);
+            int minX=0,maxX=0,minY=0,maxY=0;
+            foreach(var room in rooms) { minX=Mathf.Min(minX,room.X);maxX=Mathf.Max(maxX,room.X);minY=Mathf.Min(minY,room.Y);maxY=Mathf.Max(maxY,room.Y); }
+            float unit=Mathf.Min(144f/(maxX-minX+1),140f/(maxY-minY+1));
+            Vector2 Origin(float x,float y) => new Vector2(48+(x-minX+.5f)*unit,300-(y-minY+.5f)*unit);
+            foreach(var room in rooms)
+            {
+                var a=Origin(room.X,room.Y);
+                foreach(var other in rooms)
+                {
+                    if(!MapLayout.Adjacent(room,other))continue;
+                    var b=Origin(other.X,other.Y);
+                    Box(new Rect(Mathf.Min(a.x,b.x)-1,Mathf.Min(a.y,b.y)-1,Mathf.Abs(a.x-b.x)+2,Mathf.Abs(a.y-b.y)+2),muted);
+                }
+            }
+            foreach(var room in rooms)
+            {
+                var point=Origin(room.X,room.Y);float size=room.Size/(float)MapLayout.Spacing*unit;
+                Box(new Rect(point.x-size/2,point.y-size/2,size,size),room.X==0&&room.Y==0 ? new Color(.1f,.5f,.4f) : new Color(.17f,.28f,.35f));
+            }
+            var player=Origin(game.Player.transform.position.x/MapLayout.Spacing,game.Player.transform.position.z/MapLayout.Spacing);
+            Box(new Rect(player.x-3,player.y-3,6,6),Art.Amber);
+            var exit=Origin(game.Terminal.x/MapLayout.Spacing,game.Terminal.z/MapLayout.Spacing);
+            Box(new Rect(exit.x-2,exit.y-2,4,4),Color.green);
         }
         void DrawEnemyBars(Prototype game)
         {
