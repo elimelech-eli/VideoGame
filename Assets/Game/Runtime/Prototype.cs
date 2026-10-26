@@ -19,6 +19,7 @@ namespace VideoGame
         public EncounterDirector Director { get; private set; }
         public Soundtrack Music { get; private set; }
         public Atmosphere Ambience { get; private set; }
+        public MenuFlow Menus { get; private set; }
         Transform world;
         Camera view;
         Vector3 terminal;
@@ -35,7 +36,13 @@ namespace VideoGame
         static void Boot()
         {
             if (FindFirstObjectByType<Prototype>() == null)
-                new GameObject("Prototype").AddComponent<Prototype>();
+            {
+                var game = new GameObject("Prototype").AddComponent<Prototype>();
+                bool capture = false;
+                foreach(string variable in new[]{"POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS"})
+                    capture |= !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(variable));
+                if(!capture) game.Menus.OpenMain(false,true);
+            }
         }
         void Awake()
         {
@@ -83,6 +90,7 @@ namespace VideoGame
             Visuals.PointLight(new Vector3(0, 2, 0), Art.Cyan, player.transform, 4);
             gameObject.AddComponent<GameHud>();
             BuildHub();
+            Menus = gameObject.AddComponent<MenuFlow>();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
             string capture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_SCREEN");
             if (!string.IsNullOrEmpty(capture)) StartCoroutine(CapturePresentation(capture));
@@ -92,6 +100,20 @@ namespace VideoGame
             if (!string.IsNullOrEmpty(sectorsCapture)) StartCoroutine(CaptureSectors(sectorsCapture));
             string rosterCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_ROSTER");
             if (!string.IsNullOrEmpty(rosterCapture)) StartCoroutine(CaptureRoster(rosterCapture));
+        }
+        public void NewSession()
+        {
+            StopAllCoroutines();Mission=new Mission();Seed=104729;BuildHub();
+        }
+        public void EndSession()
+        {
+            StopAllCoroutines();Mission=new Mission();BuildHub();
+        }
+        public void RestoreCheckpoint(NexusCheckpoint data)
+        {
+            if(data==null || !data.Valid())throw new System.ArgumentException("Invalid Nexus checkpoint.");
+            var restored=Mission.RestoreHub(data.Target,(MissionStage)data.Stage,data.Kills,data.Credits);
+            StopAllCoroutines();Mission=restored;Seed=data.Seed;BuildHub();
         }
         public GameObject Shape(string title, PrimitiveType type, Vector3 position, Vector3 scale, Color color, Transform parent)
         {
@@ -179,7 +201,8 @@ namespace VideoGame
         }
         public void StartMission()
         {
-            if (Player.IsDead) return;
+            if (Player.IsDead || Menus?.BlocksGameplay == true) return;
+            Menus?.AutoSave();
             if (!Mission.Accept()) return;
             InMission = true;
             Music.SetBattle(true); Ambience.SetBattle(true);
@@ -226,6 +249,7 @@ namespace VideoGame
             Director = directorObject.AddComponent<EncounterDirector>(); Director.Initialize(this, centers, Seed);
             DrawBoundaries(rooms);
             StartCoroutine(RefreshReflections());
+            Menus?.MissionStarted();
             message = "Contract active: destroy 8 drones. Return to the green beacon to extract.";
         }
         public Vector3 PursuitTarget(Vector3 from, Vector3 target)
@@ -391,7 +415,8 @@ namespace VideoGame
         }
         void Update()
         {
-            if (Player.IsDead) return;
+            audioSource.volume = (Menus?.Settings.Master ?? 1) * (Menus?.Settings.Effects ?? 1);
+            if (Player.IsDead || Menus?.BlocksGameplay == true) return;
             bool interact = Keyboard.current?.eKey.wasPressedThisFrame == true || Gamepad.current?.buttonSouth.wasPressedThisFrame == true;
             if (interact && Vector3.Distance(Player.transform.position, terminal) < 3.5f) Interact();
             if (Player.Health <= 0) Player.Damage(1);
@@ -401,19 +426,20 @@ namespace VideoGame
         {
             message = "Operative lost. Emergency recall to the Nexus...";
             yield return new WaitForSeconds(1.6f);
+            while (Menus?.IsOpen == true) yield return null;
             if (!Player.IsDead) yield break;
-            Mission.Abandon(); BuildHub();
+            Mission.Abandon(); BuildHub(); Menus?.AutoSave();
             message = "Recovered at the Nexus. Contract failed; accept a new contract to retry.";
         }
         public void Interact()
         {
-            if (Player.IsDead) return;
+            if (Player.IsDead || Menus?.BlocksGameplay == true) return;
             if (InMission)
             {
                 if (Mission.Stage != MissionStage.Complete) { message = "Eliminate the contract targets before extracting."; return; }
-                BuildHub(); message = "Contract complete. Talk to the terminal to collect your reward.";
+                BuildHub(); Menus?.AutoSave(); message = "Contract complete. Talk to the terminal to collect your reward.";
             }
-            else if (Mission.ClaimReward()) message = "Reward received: 100 credits. Another contract is available.";
+            else if (Mission.ClaimReward()) { Menus?.AutoSave(); message = "Reward received: 100 credits. Another contract is available."; }
             else StartMission();
         }
         void LateUpdate()
@@ -479,6 +505,7 @@ namespace VideoGame
                 grenade.transform.position = Vector3.Lerp(start, target, t) + Vector3.up * (Mathf.Sin(t * Mathf.PI) * 4);
                 yield return null;
             }
+            while (Menus?.IsOpen == true) yield return null;
             if (grenade == null) yield break;
             Destroy(grenade);
             Explosion(target, 4);

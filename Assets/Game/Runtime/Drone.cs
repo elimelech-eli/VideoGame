@@ -24,7 +24,7 @@ namespace VideoGame
         void Update()
         {
             var game = Prototype.Instance;
-            if (Health <= 0 || game == null || !game.InMission || game.Player.IsDead || WindingUp) return;
+            if (Time.timeScale == 0 || Health <= 0 || game == null || !game.InMission || game.Player.IsDead || WindingUp) return;
             Vector3 delta = game.Player.transform.position - transform.position; delta.y = 0;
             float distance = delta.magnitude;
             if (delta.sqrMagnitude > .01f) transform.rotation = Quaternion.LookRotation(delta);
@@ -60,6 +60,7 @@ namespace VideoGame
             Motion.Act(Kind == EnemyKind.Bombardier ? "Cast" : Ranged ? "Fire" : "Melee");
             Vector3 target = game.Player.transform.position;
             yield return new WaitForSeconds(Ranged ? .15f : .3f);
+            while (game.Menus?.IsOpen == true) yield return null;
             WindingUp = false;
             if (Health <= 0 || !game.InMission || game.Player.IsDead) yield break;
             Vector3 delta = game.Player.transform.position - transform.position; delta.y = 0;
@@ -103,6 +104,7 @@ namespace VideoGame
         float life;
         void Update()
         {
+            if (Time.timeScale == 0) return;
             life += Time.deltaTime;
             Vector3 before = transform.position;
             Vector3 step = Direction.normalized * (8 * Time.deltaTime);
@@ -146,7 +148,7 @@ namespace VideoGame
         }
         void Update()
         {
-            if (ring == null) return;
+            if (ring == null || Time.timeScale == 0) return;
             float t = Mathf.Clamp01((Time.time - started) / WarningDuration);
             float pulse = .08f + .05f * Mathf.Sin(t * 40); ring.startWidth = ring.endWidth = pulse;
             Vector3 point = Vector3.Lerp(launch, Target, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * 5;

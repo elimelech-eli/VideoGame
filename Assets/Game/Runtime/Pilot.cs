@@ -34,7 +34,7 @@ namespace VideoGame
         }
         void Update()
         {
-            if (IsDead) return;
+            if (IsDead || Prototype.Instance.Menus?.BlocksPlayerInput == true) return;
             var keyboard = Keyboard.current;
             var mouse = Mouse.current;
             var pad = Gamepad.current;
@@ -54,9 +54,9 @@ namespace VideoGame
             }
             movement = Vector3.ClampMagnitude(movement, 1);
             if (mouse != null && (mouse.delta.ReadValue().sqrMagnitude > .1f || mouse.leftButton.wasPressedThisFrame)) controllerAim = false;
-            if (pad != null && pad.rightStick.ReadValue().sqrMagnitude > .09f)
+            if (pad != null && pad.rightStick.ReadUnprocessedValue().sqrMagnitude > Mathf.Pow(Prototype.Instance.Menus?.Settings.AimDeadzone ?? .2f,2))
             {
-                Vector2 aim = pad.rightStick.ReadValue(); facing = (View.transform.right * aim.x + cameraForward * aim.y).normalized; controllerAim = true;
+                Vector2 aim = pad.rightStick.ReadUnprocessedValue(); facing = (View.transform.right * aim.x + cameraForward * aim.y).normalized; controllerAim = true;
             }
             if (!controllerAim)
             {
@@ -109,7 +109,7 @@ namespace VideoGame
         }
         Vector3 AssistedDirection()
         {
-            if (!controllerAim) return facing;
+            if (!controllerAim || Prototype.Instance.Menus?.Settings.AimAssist == false) return facing;
             float best = .94f;
             Vector3 result = facing;
             foreach (var drone in FindObjectsByType<Drone>(FindObjectsSortMode.None))
@@ -137,6 +137,7 @@ namespace VideoGame
                 }
                 return MousePoint();
             }
+            if (Prototype.Instance.Menus?.Settings.AimAssist == false) return muzzle + facing * 22;
             Collider target = null; float nearest = 22;
             foreach (var collider in Physics.OverlapSphere(transform.position, 22))
             {
@@ -167,8 +168,8 @@ namespace VideoGame
         }
         public void Damage(float amount)
         {
-            if (IsDead || amount <= 0 || Time.time < dashUntil) return;
-            Health = Mathf.Max(0, Health - amount);
+            if (IsDead || amount <= 0 || Time.time < dashUntil || Prototype.Instance.Menus?.IsOpen == true) return;
+            Health = Mathf.Max(0, Health - amount * (Prototype.Instance.Menus?.DamageMultiplier ?? 1));
             if (Health > 0) Motion.Act("Hit");
             else
             {

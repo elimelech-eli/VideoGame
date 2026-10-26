@@ -20,7 +20,10 @@ In GitHub Settings → Branches, protect `master`: require a pull request, requi
 
 ## Manual smoke test
 
-- Start at the hub and approach the cyan terminal. E / controller A accepts.
+- Start at the main menu. Check disabled Continue on a fresh profile, New Game, and mouse/keyboard/controller navigation.
+- Pause with Escape / controller Start. Verify Resume, Options, Difficulty, safe return/exit confirmation and no gameplay input leaking through the UI.
+- At the Nexus, save a manual slot, load it, and Continue after a fresh launch. During missions, verify Save is disabled with the checkpoint restriction explained.
+- Approach the cyan terminal. E / controller A accepts.
 - Confirm WASD, right-click movement, and controller left stick each work.
 - Aim with mouse / right stick; fire with left mouse / RT.
 - Throw a grenade with Q / RB. Check cooldown and area damage.

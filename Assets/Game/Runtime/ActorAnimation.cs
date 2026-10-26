@@ -56,6 +56,7 @@ namespace VideoGame
         }
         void Update()
         {
+            if (Time.timeScale == 0) return;
             Vector3 velocity = (actor.position - previous) / Mathf.Max(.001f, Time.deltaTime); velocity.y = 0;
             previous = actor.position;
             if (Dead || Time.time < actionUntil) return;

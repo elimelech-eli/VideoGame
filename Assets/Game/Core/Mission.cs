@@ -15,6 +15,12 @@ namespace VideoGame.Core
             if (target < 1) throw new ArgumentOutOfRangeException(nameof(target));
             Target = target;
         }
+        public static Mission RestoreHub(int target, MissionStage stage, int kills, int credits)
+        {
+            bool valid = stage == MissionStage.Complete || stage == MissionStage.Rewarded ? kills == target : stage == MissionStage.Available && kills == 0;
+            if (!valid || credits < 0) throw new ArgumentException("Invalid Nexus mission state.");
+            return new Mission(target) { Stage = stage, Kills = kills, Credits = credits };
+        }
         public bool Accept()
         {
             if (Stage != MissionStage.Available && Stage != MissionStage.Rewarded) return false;

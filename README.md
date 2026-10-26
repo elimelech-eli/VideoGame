@@ -2,11 +2,15 @@
 
 Unity **6000.3.26f1**, C#, PC. Early local single-player proof of concept.
 
+![Main menu](docs/images/main-menu.png)
+
 ![Operations hub with imported sci-fi assets](docs/images/hub.png)
 
 ![Combat sector and HUD](docs/images/combat.png)
 
 Open this directory in Unity Hub using the pinned Editor. Allow package import and scene setup to complete, open `Assets/Game/Scenes/Prototype.unity`, then press Play. The editor setup creates that scene on first import if needed.
+
+Choose New Game or Continue from the opening menu. Escape / controller Start pauses; menus support mouse, keyboard and controller navigation. Saving uses Nexus checkpoints: save at the hub, and Continue returns to the latest checkpoint. Options include audio, display/graphics and controller aiming. See [menus and checkpoints](docs/MENUS.md).
 
 Use WASD or right-click to move; mouse to aim; left-click to shoot; Q for a grenade; Space to dash; E to interact. Controller: left stick moves, right stick aims, RT fires, RB throws a grenade, B dashes, A interacts.
 
@@ -24,6 +28,7 @@ The player and all four enemy roles use different models. Nexus and combat zones
 
 ![Authored idle, running and death poses](docs/images/animations.png)
 
+- [Menus, options and Nexus checkpoints](docs/MENUS.md)
 - [Game profile](docs/GAME_PROFILE.md)
 - [Development pipeline and testing](docs/DEVELOPMENT.md)
 - [Validation and current limitations](docs/VALIDATION.md)
