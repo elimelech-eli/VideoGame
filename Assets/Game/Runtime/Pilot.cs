@@ -8,6 +8,8 @@ namespace VideoGame
     {
         public Camera View;
         public float Health = 100;
+        public bool IsDead { get; private set; }
+        public ActorAnimation Motion => GetComponentInChildren<ActorAnimation>();
         public float GrenadeRemaining => Mathf.Max(0, grenadeAt - Time.time);
         public float DashRemaining => Mathf.Max(0, dashAt - Time.time);
         CharacterController controller;
@@ -32,6 +34,7 @@ namespace VideoGame
         }
         void Update()
         {
+            if (IsDead) return;
             var keyboard = Keyboard.current;
             var mouse = Mouse.current;
             var pad = Gamepad.current;
@@ -66,6 +69,7 @@ namespace VideoGame
             {
                 dashDirection = movement.sqrMagnitude > .01f ? movement.normalized : facing;
                 dashUntil = Time.time + .16f; dashAt = Time.time + .8f; destination = null;
+                Motion.Act("Dash");
             }
             Vector3 velocity = Time.time < dashUntil ? dashDirection * 22 : movement * 7;
             // Refuse steps beyond a floor edge; the same guard applies during a dash.
@@ -77,12 +81,13 @@ namespace VideoGame
             if (fire && Time.time >= shotAt && Prototype.Instance.InMission)
             {
                 shotAt = Time.time + .14f;
+                Motion.Act("Fire");
                 Vector3 direction = AssistedDirection();
                 Vector3 start = transform.position + Vector3.up * .25f;
                 Vector3 end = start + direction * 22;
                 if (Physics.Raycast(start + direction * .7f, direction, out var hit, 22))
                 {
-                    end = hit.point; CombatDamage.Apply(hit.collider, 20);
+                    end = hit.point; CombatDamage.Apply(hit.collider, 20, start);
                     Prototype.Instance.Hit(end, Color.cyan);
                 }
                 Prototype.Instance.Trace(start + direction * .7f, end, Color.cyan);
@@ -91,6 +96,7 @@ namespace VideoGame
             if (grenade && Time.time >= grenadeAt && Prototype.Instance.InMission)
             {
                 grenadeAt = Time.time + 4;
+                Motion.Act("Cast");
                 Vector3 target = controllerAim ? transform.position + AssistedDirection() * 7 : MousePoint();
                 Vector3 delta = target - transform.position; delta.y = 0;
                 target = transform.position + Vector3.ClampMagnitude(delta, 10); target.y = .2f;
@@ -104,6 +110,7 @@ namespace VideoGame
             Vector3 result = facing;
             foreach (var drone in FindObjectsByType<Drone>(FindObjectsSortMode.None))
             {
+                if (drone.Health <= 0) continue;
                 Vector3 delta = drone.transform.position - transform.position; delta.y = 0;
                 float dot = Vector3.Dot(facing, delta.normalized);
                 if (delta.sqrMagnitude < 22 * 22 && dot > best) { best = dot; result = delta.normalized; }
@@ -112,7 +119,26 @@ namespace VideoGame
         }
         public void Damage(float amount)
         {
-            if (Time.time >= dashUntil) Health = Mathf.Max(0, Health - amount);
+            if (IsDead || amount <= 0 || Time.time < dashUntil) return;
+            Health = Mathf.Max(0, Health - amount);
+            if (Health > 0) Motion.Act("Hit");
+            else
+            {
+                IsDead = true; destination = null;
+                controller.enabled = false; Motion.Act("Death");
+                Prototype.Instance.BeginPlayerDeath();
+            }
+        }
+        public bool Heal(float amount)
+        {
+            if (IsDead || amount <= 0 || Health >= 100) return false;
+            Health = Mathf.Min(100, Health + amount); return true;
+        }
+        public void Revive()
+        {
+            IsDead = false; Health = 100; controller.enabled = true;
+            shotAt = grenadeAt = dashAt = dashUntil = 0; destination = null;
+            Motion.Revive();
         }
     }
 }

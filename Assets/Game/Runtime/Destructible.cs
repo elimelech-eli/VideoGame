@@ -6,10 +6,10 @@ namespace VideoGame
 {
     public static class CombatDamage
     {
-        public static void Apply(Collider collider, float amount)
+        public static void Apply(Collider collider, float amount, Vector3? source = null)
         {
             if (collider.GetComponentInParent<Drone>() is Drone enemy) enemy.Damage(amount);
-            else collider.GetComponentInParent<Destructible>()?.Damage(amount);
+            else collider.GetComponentInParent<Destructible>()?.Damage(amount, source);
         }
         public static void Area(Vector3 center, float radius, float damage, float playerDamage = 0)
         {
@@ -19,7 +19,7 @@ namespace VideoGame
                 var enemy = collider.GetComponentInParent<Drone>();
                 var prop = collider.GetComponentInParent<Destructible>();
                 if (enemy != null && visited.Add(enemy)) enemy.Damage(damage);
-                else if (prop != null && visited.Add(prop)) prop.Damage(damage);
+                else if (prop != null && visited.Add(prop)) prop.Damage(damage, center);
             }
             var player = Prototype.Instance.Player;
             if (playerDamage > 0 && Vector3.Distance(player.transform.position, center) < radius) player.Damage(playerDamage);
@@ -29,9 +29,11 @@ namespace VideoGame
     public sealed class Destructible : MonoBehaviour
     {
         public bool IsWall;
+        public bool IsMedical;
+        Vector3 fallDirection;
         public bool IsDestroyed { get; private set; }
         public float Health { get; private set; } = 40;
-        public void Damage(float amount)
+        public void Damage(float amount, Vector3? source = null)
         {
             if (IsDestroyed || amount <= 0) return;
             Health = Mathf.Max(0, Health - amount);
@@ -39,7 +41,19 @@ namespace VideoGame
             // Set the guard before applying radial damage so barrel chains cannot recurse forever.
             IsDestroyed = true;
             foreach (var collider in GetComponentsInChildren<Collider>()) collider.enabled = false;
-            if (IsWall) StartCoroutine(Topple());
+            if (IsMedical)
+            {
+                Prototype.Instance.SpawnHealthPickup(transform.position + Vector3.up * .3f);
+                Prototype.Instance.Hit(transform.position + Vector3.up * .5f, Color.green, .6f);
+                gameObject.SetActive(false); Destroy(gameObject);
+            }
+            else if (IsWall)
+            {
+                fallDirection = transform.position - (source ?? Prototype.Instance.Player.transform.position);
+                fallDirection.y = 0;
+                if (fallDirection.sqrMagnitude < .01f) fallDirection = transform.forward;
+                fallDirection.Normalize(); StartCoroutine(Topple());
+            }
             else
             {
                 var center = transform.position + Vector3.up * .7f;
@@ -51,10 +65,7 @@ namespace VideoGame
         }
         IEnumerator Topple()
         {
-            Vector3 direction = transform.position - Prototype.Instance.Player.transform.position;
-            direction.y = 0;
-            if (direction.sqrMagnitude < .01f) direction = transform.forward;
-            direction.Normalize();
+            Vector3 direction = fallDirection;
             Quaternion start = transform.rotation;
             Vector3 axis = Vector3.Cross(Vector3.up, direction);
             var struck = new HashSet<Object>();

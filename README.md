@@ -12,6 +12,10 @@ Use WASD or right-click to move; mouse to aim; left-click to shoot; Q for a gren
 
 Approach the cyan contract terminal, accept a mission, kill eight drones in the procedural area, return to the green extraction beacon, then claim the reward at the hub terminal.
 
+Encounters include hunters, gunners, fast melee rushers, and bombardiers with marked AOE blasts. Shoot green medical caches and walk over the dropped medkit to heal. Enemy fire can detonate barrels or topple unstable cover onto you. Lethal damage plays a death animation before emergency recall to the Nexus.
+
+![Authored idle, running and death poses](docs/images/animations.png)
+
 - [Game profile](docs/GAME_PROFILE.md)
 - [Development pipeline and testing](docs/DEVELOPMENT.md)
 - [Validation and current limitations](docs/VALIDATION.md)

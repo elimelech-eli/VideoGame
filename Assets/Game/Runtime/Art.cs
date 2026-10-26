@@ -72,7 +72,7 @@ namespace VideoGame
                 renderer.receiveShadows = true;
             }
             foreach (var collider in model.GetComponentsInChildren<Collider>()) Destroy(collider);
-            if (path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner")) model.AddComponent<SkeletalMotion>();
+            if (path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner")) model.AddComponent<ActorAnimation>();
             return root;
         }
         public void Deck(Vector3 center, float size, Transform parent)
