@@ -1,0 +1,16 @@
+Nexus and battle soundtrack
+Source: https://opengameart.org/content/t-t-free-cyberpunk-pack-2
+Artist: Alexander Ehlers / tricksntraps
+Publisher license: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
+Retrieved: 2026-10-26
+
+Nexus.ogg = night_club_chill_100bpm.ogg
+https://opengameart.org/sites/default/files/night_club_chill_100bpm.ogg
+
+Battle.ogg = ai_fight_120bpm.ogg
+https://opengameart.org/sites/default/files/ai_fight_120bpm.ogg
+
+The original OGG files are renamed, otherwise unmodified. Unity streams and loops
+them at a restrained volume, with a 1.5-second zone crossfade. M or the HUD music
+button mutes/unmutes both channels. These are licensed music recordings, not the
+procedural pulse/blast sound effects used by the combat prototype.

@@ -17,6 +17,10 @@ namespace VideoGame
         public ActorAnimation Motion => GetComponentInChildren<ActorAnimation>();
         public bool WindingUp { get; private set; }
         float attackAt;
+        void LateUpdate()
+        {
+            foreach (var label in GetComponentsInChildren<TextMesh>()) label.transform.rotation = Quaternion.Euler(55,45,0);
+        }
         void Update()
         {
             var game = Prototype.Instance;
@@ -104,7 +108,7 @@ namespace VideoGame
                 if (hit.collider.GetComponentInParent<Drone>() != null) continue;
                 var player = hit.collider.GetComponentInParent<Pilot>();
                 if (player != null) player.Damage(12);
-                else hit.collider.GetComponentInParent<Destructible>()?.Damage(12, before);
+                else hit.collider.GetComponentInParent<Destructible>()?.Damage(12, before, Direction);
                 Prototype.Instance.Hit(hit.point, new Color(1, .2f, .1f));
                 Destroy(gameObject); return;
             }

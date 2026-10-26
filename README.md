@@ -14,6 +14,10 @@ Approach the cyan contract terminal, accept a mission, kill eight drones in the 
 
 Encounters include hunters, gunners, fast melee rushers, and bombardiers with marked AOE blasts. Shoot green medical caches and walk over the dropped medkit to heal. Enemy fire can detonate barrels or topple unstable cover onto you. Lethal damage plays a death animation before emergency recall to the Nexus.
 
+The player and all four enemy roles use different models. Nexus and combat zones have separate music, crossfades, atmospheric overhead lighting, light shafts, haze, and dust. Press M or click MUSIC to mute/unmute the soundtrack.
+
+![Distinct operative, crawler, gun platform, roller and artillery models](docs/images/roster.png)
+
 ![Authored idle, running and death poses](docs/images/animations.png)
 
 - [Game profile](docs/GAME_PROFILE.md)

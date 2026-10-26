@@ -6,10 +6,10 @@ namespace VideoGame
 {
     public static class CombatDamage
     {
-        public static void Apply(Collider collider, float amount, Vector3? source = null)
+        public static void Apply(Collider collider, float amount, Vector3? source = null, Vector3? incoming = null)
         {
             if (collider.GetComponentInParent<Drone>() is Drone enemy) enemy.Damage(amount);
-            else collider.GetComponentInParent<Destructible>()?.Damage(amount, source);
+            else collider.GetComponentInParent<Destructible>()?.Damage(amount, source, incoming);
         }
         public static void Area(Vector3 center, float radius, float damage, float playerDamage = 0)
         {
@@ -30,10 +30,10 @@ namespace VideoGame
     {
         public bool IsWall;
         public bool IsMedical;
-        Vector3 fallDirection;
+        public Vector3 FallDirection { get; private set; }
         public bool IsDestroyed { get; private set; }
         public float Health { get; private set; } = 40;
-        public void Damage(float amount, Vector3? source = null)
+        public void Damage(float amount, Vector3? source = null, Vector3? incoming = null)
         {
             if (IsDestroyed || amount <= 0) return;
             Health = Mathf.Max(0, Health - amount);
@@ -49,10 +49,10 @@ namespace VideoGame
             }
             else if (IsWall)
             {
-                fallDirection = transform.position - (source ?? Prototype.Instance.Player.transform.position);
-                fallDirection.y = 0;
-                if (fallDirection.sqrMagnitude < .01f) fallDirection = transform.forward;
-                fallDirection.Normalize(); StartCoroutine(Topple());
+                Vector3 direction = incoming ?? (transform.position - (source ?? Prototype.Instance.Player.transform.position));
+                direction.y = 0;
+                if (direction.sqrMagnitude < .01f) direction = transform.forward;
+                FallDirection = direction.normalized; StartCoroutine(Topple());
             }
             else
             {
@@ -65,7 +65,8 @@ namespace VideoGame
         }
         IEnumerator Topple()
         {
-            Vector3 direction = fallDirection;
+            Vector3 direction = FallDirection;
+            var shape = GetComponent<BoxCollider>();
             Quaternion start = transform.rotation;
             Vector3 axis = Vector3.Cross(Vector3.up, direction);
             var struck = new HashSet<Object>();
@@ -74,8 +75,9 @@ namespace VideoGame
                 transform.rotation = Quaternion.AngleAxis(Mathf.SmoothStep(0, 86, t), axis) * start;
                 if (t > .35f)
                 {
-                    Vector3 center = transform.position + direction * 1.3f + Vector3.up * .6f;
-                    foreach (var collider in Physics.OverlapBox(center, new Vector3(1.25f, .9f, 1.5f), Quaternion.LookRotation(direction)))
+                    Vector3 center = transform.TransformPoint(shape.center);
+                    Vector3 halfSize = Vector3.Scale(shape.size * .5f, transform.lossyScale);
+                    foreach (var collider in Physics.OverlapBox(center, halfSize, transform.rotation))
                     {
                         var enemy = collider.GetComponentInParent<Drone>();
                         var player = collider.GetComponentInParent<Pilot>();

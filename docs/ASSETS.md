@@ -12,6 +12,12 @@ The current presentation uses PBR assets under `Resources/Detailed`. Original so
 
 The bulkhead mesh, rendering setup, and rig-specific animation keyframes were authored for this project. FBX exports, prefabs, materials, and baked Unity animation clips are committed, so builds do not require Blender or external downloads. `ActorAnimationBuilder` reproduces the clips; its menu command rebuilds them when poses change. The initial animation set covers idle, four movement directions, fire, melee, throw, dash, hit, and death, with upper-body layering for firing while moving. This is an industrial visual prototype, not a claim of Diablo IV production quality.
 
+## Enemy models and music
+
+The player retains the Irondust armored operative. Each enemy role now has different geometry and a different original rig from Teh_Bucket's [Robot Enemy Pack](https://opengameart.org/content/robot-enemy-pack), published as CC0: Crawler for hunters, Roller for rushers, Blaster for gunners, and Lobber for bombardiers. The artist's idle, movement, attack, and death actions are exported and baked into gameplay clips. Role colors supplement the different shapes. Export instructions and source records are included under `Tools/Art` and `Resources/Detailed/Robots`.
+
+The Nexus uses **Night Club Chill (100 BPM)** and combat uses **AI Fight (120 BPM)** by Alexander Ehlers / tricksntraps, from the CC0 [T & T Free Cyberpunk Pack 2](https://opengameart.org/content/t-t-free-cyberpunk-pack-2). Original files and exact download URLs are recorded in `Resources/Audio/SOURCES.txt`. Tracks are streamed, looped and crossfaded, and can be muted using M or the HUD music button.
+
 ## Earlier low-poly pass
 
 Selected original FBX models and palette textures are included under `Assets/Game/Resources/Art`. All three packs are by **Kenney**, distributed under **Creative Commons Zero (CC0)**, allowing redistribution and commercial use. Each pack's original license is included beside its models.

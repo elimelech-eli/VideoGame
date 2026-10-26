@@ -15,6 +15,7 @@ namespace VideoGame.Editor
             EnsureMaterial("PrototypeTrace", "Sprites/Default");
             EnsureMaterial("Cinematic", "Hidden/Nexus/Cinematic");
             EnsureMaterial("Particle", "Nexus/Particle");
+            EnsureMaterial("Atmosphere", "Nexus/Atmospheric Shaft");
             const string path = "Assets/Game/Scenes/Prototype.unity";
             if (System.IO.File.Exists(path)) return;
             System.IO.Directory.CreateDirectory("Assets/Game/Scenes");
@@ -35,6 +36,7 @@ namespace VideoGame.Editor
         {
             EnsureScene();
             DetailedAssets.Build();
+            RobotAssets.Build();
             ActorAnimationBuilder.Build();
             var report = BuildPipeline.BuildPlayer(new[] { "Assets/Game/Scenes/Prototype.unity" }, "Builds/Windows/VideoGame.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)

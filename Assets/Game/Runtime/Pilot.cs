@@ -90,7 +90,7 @@ namespace VideoGame
                 foreach (var hit in hits)
                 {
                     if (hit.collider.GetComponentInParent<Pilot>() == this) continue;
-                    end = hit.point; CombatDamage.Apply(hit.collider, 20, start);
+                    end = hit.point; CombatDamage.Apply(hit.collider, 20, start, direction);
                     Prototype.Instance.Hit(end, Color.cyan);
                     break;
                 }

@@ -26,13 +26,10 @@ namespace VideoGame
             var model = Instantiate(source, root.transform);
             model.transform.localPosition = Vector3.zero;
             if (!path.StartsWith("Detailed/")) model.transform.localRotation = Quaternion.identity;
+            bool robot = path.Contains("/Robots/Prefabs/");
+            if (robot) { var animation = model.AddComponent<ActorAnimation>(); animation.Player.Sample(); }
             var renderers = model.GetComponentsInChildren<Renderer>();
-            var bounds = new Bounds(model.transform.position, Vector3.zero);
-            bool first = true;
-            foreach (var renderer in renderers)
-            {
-                if (first) { bounds = renderer.bounds; first = false; } else bounds.Encapsulate(renderer.bounds);
-            }
+            var bounds = RenderedBounds(model, robot);
             float factor = size / Mathf.Max(.001f, Mathf.Max(bounds.size.x, Mathf.Max(bounds.size.y, bounds.size.z)));
             model.transform.localScale *= factor;
             // Place the asset's lowest point on its parent's floor plane.
@@ -72,9 +69,9 @@ namespace VideoGame
                 renderer.receiveShadows = true;
             }
             foreach (var collider in model.GetComponentsInChildren<Collider>()) Destroy(collider);
-            bool actor = path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner");
-            if (actor) model.AddComponent<ActorAnimation>();
-            else if (solid && path.StartsWith("Detailed/"))
+            bool actor = path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner") || path.Contains("/Robots/Prefabs/");
+            if (actor && !robot) model.AddComponent<ActorAnimation>();
+            else if (!actor && solid && path.StartsWith("Detailed/"))
             {
                 var localBounds = new Bounds(); bool initialized = false;
                 foreach (var renderer in renderers)
@@ -91,6 +88,27 @@ namespace VideoGame
                 var blocker = root.AddComponent<BoxCollider>(); blocker.center = localBounds.center; blocker.size = localBounds.size;
             }
             return root;
+        }
+        public static Bounds RenderedBounds(GameObject root, bool bakeSkin = true)
+        {
+            var bounds = new Bounds(root.transform.position,Vector3.zero); bool first = true;
+            foreach(var renderer in root.GetComponentsInChildren<Renderer>())
+            {
+                Bounds part = renderer.bounds;
+                if(bakeSkin && renderer is SkinnedMeshRenderer skin)
+                {
+                    var mesh = new Mesh(); skin.BakeMesh(mesh,true); var local = mesh.bounds;
+                    part = new Bounds(skin.transform.TransformPoint(local.center),Vector3.zero);
+                    for(int corner=0;corner<8;corner++)
+                    {
+                        Vector3 signs=new Vector3((corner&1)==0?-1:1,(corner&2)==0?-1:1,(corner&4)==0?-1:1);
+                        part.Encapsulate(skin.transform.TransformPoint(local.center+Vector3.Scale(local.extents,signs)));
+                    }
+                    Destroy(mesh);
+                }
+                if(first){bounds=part;first=false;}else bounds.Encapsulate(part);
+            }
+            return bounds;
         }
         public void Deck(Vector3 center, float size, Transform parent)
         {

@@ -13,7 +13,7 @@ namespace VideoGame.Editor
             var importer = (ModelImporter)assetImporter;
             importer.importCameras = false; importer.importLights = false;
             importer.materialImportMode = ModelImporterMaterialImportMode.None;
-            importer.animationType = ModelImporterAnimationType.Generic;
+            importer.animationType = assetPath.Contains("/Robots/") ? ModelImporterAnimationType.Legacy : ModelImporterAnimationType.Generic;
             importer.isReadable = true;
         }
         void OnPreprocessTexture()
@@ -22,7 +22,7 @@ namespace VideoGame.Editor
             var importer = (TextureImporter)assetImporter;
             importer.maxTextureSize = 2048;
             string lower = assetPath.ToLowerInvariant();
-            if (lower.Contains("normalmap") || lower.Contains("normalgl") || lower.Contains("_norm.")) importer.textureType = TextureImporterType.NormalMap;
+            if (lower.Contains("normalmap") || lower.Contains("normalgl") || lower.Contains("_norm.") || lower.Contains(" norm.") || lower.Contains(" normal.")) importer.textureType = TextureImporterType.NormalMap;
             else if (!lower.Contains("albedo") && !lower.Contains("_diff") && !lower.Contains("_color")) importer.sRGBTexture = false;
         }
     }

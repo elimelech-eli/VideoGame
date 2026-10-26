@@ -48,6 +48,7 @@ jobs:
         with:
           projectPath: .
           testMode: all
+          customParameters: -nographics
           artifactsPath: artifacts/unity
       - uses: actions/upload-artifact@v4
         if: always()
