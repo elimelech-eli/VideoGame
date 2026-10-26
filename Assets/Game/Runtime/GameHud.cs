@@ -25,7 +25,7 @@ namespace VideoGame
         void OnGUI()
         {
             var game = Prototype.Instance;
-            if (game == null || game.Player == null) return;
+            if (game == null || game.Player == null || game.Menus?.IsOpen == true) return;
             if (small == null) Styles();
             DrawEnemyBars(game);
             Matrix4x4 previous = GUI.matrix;
@@ -36,6 +36,7 @@ namespace VideoGame
                 Text(new Rect(28, 22, 350, 28), "N E X U S", title, Color.white);
                 Text(new Rect(30, 52, 350, 22), game.InMission ? "COMBAT ZONE  /  SIGNAL ONLINE" : "OPERATIONS  /  SAFE ZONE", small, Art.Cyan);
                 Box(new Rect(30, 79, 180, 2), Art.Cyan);
+                if (GUI.Button(new Rect(220, 90, 160, 24), "PAUSE [ESC / START]", small)) game.Menus.Pause();
                 if (GUI.Button(new Rect(30, 90, 180, 24), game.Music.Enabled ? "MUSIC ON  [M]" : "MUSIC OFF  [M]", small)) game.Music.Toggle();
                 Panel(new Rect(944, 24, 308, 145), game.InMission ? Art.Amber : Art.Cyan);
                 Text(new Rect(964, 36, 260, 22), game.InMission ? "CONTRACT  /  DRONE SUPPRESSION" : "HOME  /  OPERATIONS", small, muted);
@@ -66,6 +67,7 @@ namespace VideoGame
                     Text(new Rect(518, 535, 310, 30), action, body, Color.white);
                     if (GUI.Button(new Rect(440, 522, 400, 57), GUIContent.none, GUIStyle.none)) game.Interact();
                 }
+                if(!string.IsNullOrEmpty(game.Menus?.Notice))Text(new Rect(30,530,350,35),game.Menus.Notice,small,Art.Cyan);
                 Text(new Rect(30, 567, 335, 26), "WASD / LS   MOVE      RMB   MOVE TO POINT", small, muted);
                 if (game.Player.IsDead)
                 {

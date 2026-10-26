@@ -81,6 +81,7 @@ namespace VideoGame
                 transform.position + direction * shape.size.y + Vector3.up * .08f, Art.Amber, false);
             for (float t = 0; t < 1; t += Time.deltaTime / .7f)
             {
+                if (Time.timeScale == 0) { yield return null; continue; }
                 transform.rotation = Quaternion.AngleAxis(Mathf.SmoothStep(0, 86, t), axis) * start;
                 Physics.SyncTransforms();
                 if (t > .35f)
