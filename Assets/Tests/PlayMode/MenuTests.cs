@@ -192,4 +192,3 @@ public sealed class MenuTests
         Assert.AreEqual(MenuPage.Options,game.Menus.Page);Assert.AreEqual(0,Time.timeScale);
     }
 }
-
