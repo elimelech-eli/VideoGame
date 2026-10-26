@@ -8,6 +8,8 @@ namespace VideoGame
     {
         public Camera View;
         public float Health = 100;
+        public bool IsDead { get; private set; }
+        public ActorAnimation Motion => GetComponentInChildren<ActorAnimation>();
         public float GrenadeRemaining => Mathf.Max(0, grenadeAt - Time.time);
         public float DashRemaining => Mathf.Max(0, dashAt - Time.time);
         CharacterController controller;
@@ -32,6 +34,7 @@ namespace VideoGame
         }
         void Update()
         {
+            if (IsDead) return;
             var keyboard = Keyboard.current;
             var mouse = Mouse.current;
             var pad = Gamepad.current;
@@ -66,6 +69,7 @@ namespace VideoGame
             {
                 dashDirection = movement.sqrMagnitude > .01f ? movement.normalized : facing;
                 dashUntil = Time.time + .16f; dashAt = Time.time + .8f; destination = null;
+                Motion.Act("Dash");
             }
             Vector3 velocity = Time.time < dashUntil ? dashDirection * 22 : movement * 7;
             // Refuse steps beyond a floor edge; the same guard applies during a dash.
@@ -77,20 +81,26 @@ namespace VideoGame
             if (fire && Time.time >= shotAt && Prototype.Instance.InMission)
             {
                 shotAt = Time.time + .14f;
-                Vector3 direction = AssistedDirection();
+                Motion.Act("Fire");
                 Vector3 start = transform.position + Vector3.up * .25f;
+                Vector3 direction = (GunAimPoint(start) - start).normalized;
                 Vector3 end = start + direction * 22;
-                if (Physics.Raycast(start + direction * .7f, direction, out var hit, 22))
+                var hits = Physics.RaycastAll(start, direction, 22, ~0, QueryTriggerInteraction.Ignore);
+                System.Array.Sort(hits, (a,b) => a.distance.CompareTo(b.distance));
+                foreach (var hit in hits)
                 {
-                    end = hit.point; CombatDamage.Apply(hit.collider, 20);
+                    if (hit.collider.GetComponentInParent<Pilot>() == this) continue;
+                    end = hit.point; CombatDamage.Apply(hit.collider, 20, start);
                     Prototype.Instance.Hit(end, Color.cyan);
+                    break;
                 }
-                Prototype.Instance.Trace(start + direction * .7f, end, Color.cyan);
+                Prototype.Instance.Trace(start, end, Color.cyan);
             }
             bool grenade = keyboard?.qKey.wasPressedThisFrame == true || pad?.rightShoulder.wasPressedThisFrame == true;
             if (grenade && Time.time >= grenadeAt && Prototype.Instance.InMission)
             {
                 grenadeAt = Time.time + 4;
+                Motion.Act("Cast");
                 Vector3 target = controllerAim ? transform.position + AssistedDirection() * 7 : MousePoint();
                 Vector3 delta = target - transform.position; delta.y = 0;
                 target = transform.position + Vector3.ClampMagnitude(delta, 10); target.y = .2f;
@@ -104,15 +114,79 @@ namespace VideoGame
             Vector3 result = facing;
             foreach (var drone in FindObjectsByType<Drone>(FindObjectsSortMode.None))
             {
+                if (drone.Health <= 0) continue;
                 Vector3 delta = drone.transform.position - transform.position; delta.y = 0;
                 float dot = Vector3.Dot(facing, delta.normalized);
                 if (delta.sqrMagnitude < 22 * 22 && dot > best) { best = dot; result = delta.normalized; }
             }
             return result;
         }
+        Vector3 GunAimPoint(Vector3 muzzle)
+        {
+            if (!controllerAim && Mouse.current != null)
+            {
+                var ray = View.ScreenPointToRay(Mouse.current.position.ReadValue());
+                var hits = Physics.RaycastAll(ray, 200, ~0, QueryTriggerInteraction.Ignore);
+                System.Array.Sort(hits, (a,b) => a.distance.CompareTo(b.distance));
+                foreach (var hit in hits)
+                {
+                    if (hit.collider.GetComponentInParent<Pilot>() == this) continue;
+                    if (hit.collider.GetComponentInParent<Drone>() != null || hit.collider.GetComponentInParent<Destructible>() != null) return hit.collider.bounds.center;
+                    if (hit.collider.gameObject.layer == 8) return GroundClickTarget(hit.point);
+                    return hit.point;
+                }
+                return MousePoint();
+            }
+            Collider target = null; float nearest = 22;
+            foreach (var collider in Physics.OverlapSphere(transform.position, 22))
+            {
+                var enemy = collider.GetComponentInParent<Drone>();
+                var prop = collider.GetComponentInParent<Destructible>();
+                if ((enemy == null || enemy.Health <= 0) && (prop == null || prop.IsDestroyed)) continue;
+                Vector3 delta = collider.bounds.center - transform.position; delta.y = 0;
+                float distance = delta.magnitude;
+                if (distance < nearest && Vector3.Dot(facing, delta.normalized) > .94f) { nearest = distance; target = collider; }
+            }
+            return target != null ? target.bounds.center : muzzle + facing * 22;
+        }
+        Vector3 GroundClickTarget(Vector3 point)
+        {
+            // Isometric players often click the feet/ground shadow rather than
+            // the raised hitbox, especially with a round ranged-enemy collider.
+            Collider target = null; float nearest = float.PositiveInfinity;
+            foreach (var collider in Physics.OverlapSphere(point + Vector3.up * .6f, 2))
+            {
+                var enemy = collider.GetComponentInParent<Drone>();
+                var prop = collider.GetComponentInParent<Destructible>();
+                if ((enemy == null || enemy.Health <= 0) && (prop == null || prop.IsDestroyed)) continue;
+                Vector3 delta = collider.bounds.center - point; delta.y = 0;
+                float radius = Mathf.Max(collider.bounds.extents.x, collider.bounds.extents.z) + .25f;
+                if (delta.sqrMagnitude < radius * radius && delta.sqrMagnitude < nearest) { nearest = delta.sqrMagnitude; target = collider; }
+            }
+            return target != null ? target.bounds.center : point;
+        }
         public void Damage(float amount)
         {
-            if (Time.time >= dashUntil) Health = Mathf.Max(0, Health - amount);
+            if (IsDead || amount <= 0 || Time.time < dashUntil) return;
+            Health = Mathf.Max(0, Health - amount);
+            if (Health > 0) Motion.Act("Hit");
+            else
+            {
+                IsDead = true; destination = null;
+                controller.enabled = false; Motion.Act("Death");
+                Prototype.Instance.BeginPlayerDeath();
+            }
+        }
+        public bool Heal(float amount)
+        {
+            if (IsDead || amount <= 0 || Health >= 100) return false;
+            Health = Mathf.Min(100, Health + amount); return true;
+        }
+        public void Revive()
+        {
+            IsDead = false; Health = 100; controller.enabled = true;
+            shotAt = grenadeAt = dashAt = dashUntil = 0; destination = null;
+            Motion.Revive();
         }
     }
 }

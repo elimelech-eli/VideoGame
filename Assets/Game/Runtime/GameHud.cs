@@ -65,6 +65,13 @@ namespace VideoGame
                     if (GUI.Button(new Rect(440, 522, 400, 57), GUIContent.none, GUIStyle.none)) game.Interact();
                 }
                 Text(new Rect(30, 567, 335, 26), "WASD / LS   MOVE      RMB   MOVE TO POINT", small, muted);
+                if (game.Player.IsDead)
+                {
+                    Box(new Rect(0, 0, 1280, 720), new Color(.12f, 0, 0, .22f));
+                    Panel(new Rect(390, 180, 500, 100), Color.red);
+                    Text(new Rect(410, 197, 460, 32), "OPERATIVE LOST", title, Color.white);
+                    Text(new Rect(410, 239, 460, 24), "EMERGENCY RECALL TO THE NEXUS", body, Art.Cyan);
+                }
             }
             finally { GUI.matrix = previous; GUI.color = Color.white; }
         }

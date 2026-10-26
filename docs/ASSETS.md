@@ -10,7 +10,7 @@ The current presentation uses PBR assets under `Resources/Detailed`. Original so
 | https://opengameart.org/content/pbr-industrial-asset-pack | a52 / rubberduck | CC0 | Textured industrial machinery, containers, tanks, vents and terminals |
 | https://ambientcg.com/view?id=MetalPlates017A | ambientCG / Lennart Demes | CC0 | PBR metal deck and bulkhead surfaces |
 
-The bulkhead mesh and rendering setup were authored for this project. FBX exports, prefabs and materials are committed, so builds do not require Blender or external downloads. The current rig motion is procedural; it is not a complete authored animation set. This is an industrial visual prototype, not a claim of Diablo IV production quality.
+The bulkhead mesh, rendering setup, and rig-specific animation keyframes were authored for this project. FBX exports, prefabs, materials, and baked Unity animation clips are committed, so builds do not require Blender or external downloads. `ActorAnimationBuilder` reproduces the clips; its menu command rebuilds them when poses change. The initial animation set covers idle, four movement directions, fire, melee, throw, dash, hit, and death, with upper-body layering for firing while moving. This is an industrial visual prototype, not a claim of Diablo IV production quality.
 
 ## Earlier low-poly pass
 

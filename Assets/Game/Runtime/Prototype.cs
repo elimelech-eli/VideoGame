@@ -73,14 +73,15 @@ namespace VideoGame
             Player = player.AddComponent<Pilot>();
             Player.View = view;
             player.GetComponent<Renderer>().enabled = false;
-            var visual = Visuals.Model("Detailed/Prefabs/Operative", player.transform, new Vector3(0, -1, 0), 2.15f, Art.Cyan, 180);
-            player.AddComponent<ActorPresentation>().Visual = visual.transform;
+            Visuals.Model("Detailed/Prefabs/Operative", player.transform, new Vector3(0, -1, 0), 2.15f, Art.Cyan);
             Visuals.PointLight(new Vector3(0, 2, 0), Art.Cyan, player.transform, 4);
             gameObject.AddComponent<GameHud>();
             BuildHub();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
             string capture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_SCREEN");
             if (!string.IsNullOrEmpty(capture)) StartCoroutine(CapturePresentation(capture));
+            string animationCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_ANIMATION");
+            if (!string.IsNullOrEmpty(animationCapture)) StartCoroutine(CaptureAnimations(animationCapture));
         }
         public GameObject Shape(string title, PrimitiveType type, Vector3 position, Vector3 scale, Color color, Transform parent)
         {
@@ -110,7 +111,7 @@ namespace VideoGame
             world = new GameObject("World").transform;
             world.SetParent(transform);
             Player.Teleport(new Vector3(0, 1, 0));
-            Player.Health = 100;
+            Player.Revive();
         }
         public void BuildHub()
         {
@@ -166,6 +167,7 @@ namespace VideoGame
         }
         public void StartMission()
         {
+            if (Player.IsDead) return;
             if (!Mission.Accept()) return;
             InMission = true;
             ResetWorld();
@@ -187,15 +189,15 @@ namespace VideoGame
                 SpawnDestructible(center + new Vector3(4, 0, -3), false);
                 SpawnDestructible(center + new Vector3(2, 0, -3), false);
                 SpawnDestructible(center + new Vector3(-5.5f, 0, 2), true);
+                SpawnMedicalCache(center + new Vector3(-3, 0, -3));
                 Physics.SyncTransforms();
                 if (i == 0) continue;
                 for (int j = 0; j < 2; j++)
                 {
                     Vector3 point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
-                    bool ranged = (i + j) % 3 == 0;
                     for (int attempt = 0; attempt < 20 && Physics.CheckSphere(point, .7f, 1 << 9); attempt++)
                         point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
-                    SpawnDrone(point, ranged);
+                    SpawnDrone(point, (EnemyKind)((i * 2 + j) % 4));
                 }
             }
             var directorObject = new GameObject("Reinforcements"); directorObject.transform.SetParent(world);
@@ -205,13 +207,37 @@ namespace VideoGame
             message = "Contract active: destroy 8 drones. Return to the green beacon to extract.";
         }
         public Drone SpawnDrone(Vector3 point, bool ranged)
+            => SpawnDrone(point, ranged ? EnemyKind.Gunner : EnemyKind.Hunter);
+        public Drone SpawnDrone(Vector3 point, EnemyKind kind)
         {
+            bool ranged = kind == EnemyKind.Gunner || kind == EnemyKind.Bombardier;
             var enemy = Shape(ranged ? "Ranged drone" : "Hunter drone", ranged ? PrimitiveType.Sphere : PrimitiveType.Capsule, point, Vector3.one, ranged ? Color.magenta : Art.Amber, world);
             enemy.GetComponent<Renderer>().enabled = false;
-            var enemyArt = Visuals.Model(ranged ? "Detailed/Prefabs/Gunner" : "Detailed/Prefabs/Hunter", enemy.transform, new Vector3(0, -1, 0), 2.05f, ranged ? new Color(1, .15f, .5f) : Art.Amber, 180);
-            var presentation = enemy.AddComponent<ActorPresentation>(); presentation.Visual = enemyArt.transform;
-            var drone = enemy.AddComponent<Drone>(); drone.Ranged = ranged;
+            var enemyArt = Visuals.Model(ranged ? "Detailed/Prefabs/Gunner" : "Detailed/Prefabs/Hunter", enemy.transform, new Vector3(0, -1, 0), 2.05f, ranged ? new Color(1, .15f, .5f) : Art.Amber);
+            var drone = enemy.AddComponent<Drone>(); drone.Kind = kind;
+            if (kind == EnemyKind.Rusher) enemyArt.transform.localScale *= .88f;
+            if (kind == EnemyKind.Bombardier) enemyArt.transform.localScale *= 1.12f;
+            Color roleColor = kind == EnemyKind.Rusher ? new Color(1, .25f, .1f) : kind == EnemyKind.Bombardier ? new Color(.75f, .3f, 1) : ranged ? Color.magenta : Art.Amber;
+            Visuals.Sign(kind.ToString().ToUpperInvariant(), point + Vector3.up * 1.65f, .27f, roleColor, enemy.transform);
             return drone;
+        }
+        public Destructible SpawnMedicalCache(Vector3 position)
+        {
+            var cache = new GameObject("Medical supply cache"); cache.transform.SetParent(world); cache.transform.position = position; cache.layer = 9;
+            var collider = cache.AddComponent<BoxCollider>(); collider.center = Vector3.up * .4f; collider.size = new Vector3(1.1f, .8f, .9f);
+            Visuals.Model("Detailed/Prefabs/container", cache.transform, Vector3.zero, 1.1f, Color.green, solid: false);
+            Visuals.Sign("+ MEDICAL", position + Vector3.up * 1.2f, .4f, Color.green, cache.transform);
+            Visuals.Strip(position + new Vector3(0, .85f, 0), new Vector3(.65f, .035f, .16f), Color.green, cache.transform);
+            Visuals.Strip(position + new Vector3(0, .86f, 0), new Vector3(.16f, .035f, .65f), Color.green, cache.transform);
+            var destructible = cache.AddComponent<Destructible>(); destructible.IsMedical = true; return destructible;
+        }
+        public HealthPickup SpawnHealthPickup(Vector3 position)
+        {
+            var pickup = new GameObject("Medkit +30"); pickup.transform.SetParent(world); pickup.transform.position = position;
+            Visuals.Model("Detailed/Prefabs/container", pickup.transform, Vector3.zero, .55f, Color.green, solid: false);
+            Visuals.Sign("+30 HEALTH", position + Vector3.up * .7f, .35f, Color.green, pickup.transform);
+            Visuals.PointLight(position + Vector3.up * .4f, Color.green, pickup.transform, 3);
+            return pickup.AddComponent<HealthPickup>();
         }
         public Destructible SpawnDestructible(Vector3 position, bool wall)
         {
@@ -220,7 +246,7 @@ namespace VideoGame
             var collider = prop.AddComponent<BoxCollider>();
             collider.center = wall ? new Vector3(0, 1.2f, 0) : new Vector3(0, .7f, 0);
             collider.size = wall ? new Vector3(2.4f, 2.4f, .3f) : new Vector3(.8f, 1.4f, .8f);
-            Visuals.Model(wall ? "Detailed/Prefabs/Bulkhead" : "Detailed/Prefabs/tank_2", prop.transform, Vector3.zero, wall ? 2.6f : 1.4f, Art.Amber);
+            Visuals.Model(wall ? "Detailed/Prefabs/Bulkhead" : "Detailed/Prefabs/tank_2", prop.transform, Vector3.zero, wall ? 2.6f : 1.4f, Art.Amber, solid: false);
             Visuals.Sign(wall ? "UNSTABLE" : "VOLATILE", position + Vector3.up * (wall ? 2.8f : 1.8f), .35f, Art.Amber, prop.transform);
             var destructible = prop.AddComponent<Destructible>(); destructible.IsWall = wall;
             return destructible;
@@ -260,16 +286,23 @@ namespace VideoGame
         }
         void Update()
         {
+            if (Player.IsDead) return;
             bool interact = Keyboard.current?.eKey.wasPressedThisFrame == true || Gamepad.current?.buttonSouth.wasPressedThisFrame == true;
             if (interact && Vector3.Distance(Player.transform.position, terminal) < 3.5f) Interact();
-            if (Player.Health <= 0)
-            {
-                Mission.Abandon(); BuildHub();
-                message = "Mission failed. Recovered at the hub. Accept a new contract to retry.";
-            }
+            if (Player.Health <= 0) Player.Damage(1);
+        }
+        public void BeginPlayerDeath() => StartCoroutine(RecoverPlayer());
+        IEnumerator RecoverPlayer()
+        {
+            message = "Operative lost. Emergency recall to the Nexus...";
+            yield return new WaitForSeconds(1.6f);
+            if (!Player.IsDead) yield break;
+            Mission.Abandon(); BuildHub();
+            message = "Recovered at the Nexus. Contract failed; accept a new contract to retry.";
         }
         public void Interact()
         {
+            if (Player.IsDead) return;
             if (InMission)
             {
                 if (Mission.Stage != MissionStage.Complete) { message = "Eliminate the contract targets before extracting."; return; }
@@ -370,6 +403,25 @@ namespace VideoGame
             closest?.Damage(20);
             yield return new WaitForSeconds(.2f);
             ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory, "field-ui.png"));
+        }
+        IEnumerator CaptureAnimations(string directory)
+        {
+            System.IO.Directory.CreateDirectory(directory);
+            yield return new WaitForSeconds(2);
+            Player.enabled = false; Player.transform.rotation = Quaternion.identity;
+            view.orthographicSize = 3.6f;
+            var motion = Player.Motion; motion.enabled = false; motion.Player.enabled = false;
+            foreach (string clip in new[] {"Idle", "RunForward", "RunLeft", "Fire", "Melee", "Dash", "Death"})
+            {
+                foreach (float phase in new[] {.15f, .65f})
+                {
+                    motion.Player.Stop(); motion.Player.Play(clip); motion.Player[clip].normalizedTime = phase; motion.Player.Sample();
+                    yield return new WaitForSeconds(.12f);
+                    ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory, clip + "-" + (int)(phase * 100) + ".png"));
+                    yield return new WaitForSeconds(.12f);
+                }
+            }
+            motion.Player.enabled = true; motion.enabled = true; Player.enabled = true; motion.Revive(); view.orthographicSize = 7.5f;
         }
         static AudioClip Tone(string name, float frequency, float duration)
         {

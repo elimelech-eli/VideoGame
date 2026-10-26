@@ -19,14 +19,14 @@ namespace VideoGame
         }
         void Update()
         {
-            if (game == null || !game.InMission || Time.time < NextSpawnAt) return;
+            if (game == null || !game.InMission || game.Player.IsDead || Time.time < NextSpawnAt) return;
             NextSpawnAt = Time.time + SpawnInterval;
             SpawnWave();
         }
         public int SpawnWave()
         {
-            if (game == null || !game.InMission || rooms == null) return 0;
-            int alive = FindObjectsByType<Drone>(FindObjectsSortMode.None).Length;
+            if (game == null || !game.InMission || game.Player.IsDead || rooms == null) return 0;
+            int alive = 0; foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None)) if (enemy.Health > 0) alive++;
             int amount = Mathf.Min(alive == 0 ? 4 : 2, PopulationCap - alive);
             int spawned = 0;
             Vector3 nearest = rooms[0];
@@ -45,7 +45,7 @@ namespace VideoGame
                 foreach (var collider in Physics.OverlapSphere(point, 1))
                     if (collider.GetComponent<Drone>() != null || collider.GetComponent<Destructible>() != null) { occupied = true; break; }
                 if (occupied) continue;
-                game.SpawnDrone(point, random.Next(3) == 0);
+                game.SpawnDrone(point, (EnemyKind)random.Next(4));
                 Physics.SyncTransforms();
                 spawned++;
             }

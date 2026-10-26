@@ -77,7 +77,8 @@ public sealed class InputTests
         yield return new WaitForSeconds(.1f);
         var enemies = Object.FindObjectsByType<Drone>(FindObjectsSortMode.None);
         foreach (var enemy in enemies) enemy.enabled = false;
-        enemies[0].transform.position = new Vector3(4, 1, 4);
+        var target = game.SpawnDrone(new Vector3(4, 1, 4), EnemyKind.Gunner); target.enabled = false;
+        Physics.SyncTransforms();
         point = game.Player.View.WorldToScreenPoint(new Vector3(4, 0, 4));
         InputSystem.QueueStateEvent(mouse, new MouseState { position = point, buttons = 1 });
         yield return WaitForKills(1);
@@ -107,5 +108,49 @@ public sealed class InputTests
         // enough Update calls for the weapon's three separate shots.
         float deadline = Time.realtimeSinceStartup + 5;
         while (game.Mission.Kills < expected && Time.realtimeSinceStartup < deadline) yield return null;
+    }
+    [UnityTest] public IEnumerator MouseGunBreaksLowMedicalCache()
+    {
+        game.StartMission(); game.Director.enabled = false;
+        foreach (var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.enabled = false;
+        var cache = game.SpawnMedicalCache(new Vector3(0, 0, 3)); Physics.SyncTransforms();
+        Vector2 cursor = game.Player.View.WorldToScreenPoint(cache.GetComponent<Collider>().bounds.center);
+        InputSystem.QueueStateEvent(mouse, new MouseState { position = cursor, buttons = 1 });
+        float deadline = Time.realtimeSinceStartup + 5;
+        while (cache != null && !cache.IsDestroyed && Time.realtimeSinceStartup < deadline) yield return null;
+        Assert.IsTrue(cache == null || cache.IsDestroyed, "Mouse shots must aim down to the low medical crate");
+        Assert.AreEqual(1, Object.FindObjectsByType<HealthPickup>(FindObjectsSortMode.None).Length);
+    }
+    [UnityTest] public IEnumerator ControllerGunBreaksLowMedicalCache()
+    {
+        game.StartMission(); game.Director.enabled = false;
+        foreach (var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.enabled = false;
+        var cache = game.SpawnMedicalCache(new Vector3(3, 0, 3)); Physics.SyncTransforms();
+        InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = Vector2.up, rightTrigger = 1 });
+        float deadline = Time.realtimeSinceStartup + 5;
+        while (cache != null && !cache.IsDestroyed && Time.realtimeSinceStartup < deadline) yield return null;
+        Assert.IsTrue(cache == null || cache.IsDestroyed, "Controller aim assist must include low health crates");
+        Assert.AreEqual(1, Object.FindObjectsByType<HealthPickup>(FindObjectsSortMode.None).Length);
+    }
+    [UnityTest] public IEnumerator SolidSceneryStopsMouseShotsAndCloseMuzzleCannotSkipCover()
+    {
+        game.StartMission(); game.Director.enabled = false;
+        foreach (var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.enabled = false;
+        var target = game.SpawnDrone(new Vector3(0, 1, 5), false); target.enabled = false;
+        var cover = game.Visuals.Model("Detailed/Prefabs/Bulkhead", game.transform, new Vector3(0, 0, .6f), 3, Color.gray);
+        Assert.IsNotNull(cover.GetComponent<BoxCollider>(), "Imported solid scenery must have collision");
+        Physics.SyncTransforms();
+        Vector2 cursor = game.Player.View.WorldToScreenPoint(target.transform.position);
+        InputSystem.QueueStateEvent(mouse, new MouseState { position = cursor, buttons = 1 });
+        yield return new WaitForSeconds(.6f);
+        Assert.AreEqual(Drone.MaxHealth, target.Health, "Gun fire must stop at solid cover even when close to the player");
+        var shot = new GameObject("Scenery test enemy shot"); shot.transform.position = new Vector3(0, 1, 3);
+        shot.AddComponent<EnemyBolt>().Direction = Vector3.back;
+        yield return new WaitForSeconds(.5f);
+        Assert.AreEqual(100, game.Player.Health, "Solid scenery must also stop enemy projectiles");
+        InputSystem.QueueStateEvent(mouse, new MouseState { position = cursor });
+        InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.W));
+        yield return new WaitForSeconds(.2f);
+        Assert.Less(game.Player.transform.position.z, .35f, "Solid cover must also stop player movement");
     }
 }
