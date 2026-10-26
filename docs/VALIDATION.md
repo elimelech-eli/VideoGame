@@ -1,0 +1,13 @@
+# Initial POC validation
+
+Validated locally on Windows with Unity 6000.3.26f1 on 2026-10-23.
+
+- Core checks: 8,011 passing assertions, including 1,000 procedural-map seeds.
+- Unity EditMode: 4 passing tests.
+- Unity PlayMode: 4 passing tests. Synthetic keyboard, mouse and gamepad events exercise movement, dash, gun and grenade damage; runtime tests exercise mission acceptance, kill tracking, extraction, reward and replay.
+- Graphics-enabled PlayMode: passing run; camera previews captured locally and visually inspected.
+- Windows executable: build succeeded; headless player launch passed an eight-second initialization/error smoke test.
+
+Input automation uses virtual devices. A physical controller and subjective combat feel have not been manually playtested. The mission terminal stands in for an NPC. Click movement is direct steering; it does not plan a path around room gaps. Maps are connected open square tiles, without interior obstacles. Rewards exist only in memory and there is no save system.
+
+Remote tests and the Windows build must be checked independently; local results are not evidence that those stages passed. A missing CI license must block merging. See the actual GitHub Actions run for the current remote verdict.

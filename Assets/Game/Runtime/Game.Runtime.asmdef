@@ -1,0 +1,1 @@
+{"name":"Game.Runtime","rootNamespace":"VideoGame","references":["Game.Core","Unity.InputSystem"]}
