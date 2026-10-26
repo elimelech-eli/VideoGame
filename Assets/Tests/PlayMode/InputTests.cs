@@ -77,7 +77,8 @@ public sealed class InputTests
         yield return new WaitForSeconds(.1f);
         var enemies = Object.FindObjectsByType<Drone>(FindObjectsSortMode.None);
         foreach (var enemy in enemies) enemy.enabled = false;
-        enemies[0].transform.position = new Vector3(4, 1, 4);
+        var target = game.SpawnDrone(new Vector3(4, 1, 4), EnemyKind.Gunner); target.enabled = false;
+        Physics.SyncTransforms();
         point = game.Player.View.WorldToScreenPoint(new Vector3(4, 0, 4));
         InputSystem.QueueStateEvent(mouse, new MouseState { position = point, buttons = 1 });
         yield return WaitForKills(1);

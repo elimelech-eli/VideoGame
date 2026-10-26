@@ -132,6 +132,7 @@ namespace VideoGame
                 {
                     if (hit.collider.GetComponentInParent<Pilot>() == this) continue;
                     if (hit.collider.GetComponentInParent<Drone>() != null || hit.collider.GetComponentInParent<Destructible>() != null) return hit.collider.bounds.center;
+                    if (hit.collider.gameObject.layer == 8) return GroundClickTarget(hit.point);
                     return hit.point;
                 }
                 return MousePoint();
@@ -147,6 +148,22 @@ namespace VideoGame
                 if (distance < nearest && Vector3.Dot(facing, delta.normalized) > .94f) { nearest = distance; target = collider; }
             }
             return target != null ? target.bounds.center : muzzle + facing * 22;
+        }
+        Vector3 GroundClickTarget(Vector3 point)
+        {
+            // Isometric players often click the feet/ground shadow rather than
+            // the raised hitbox, especially with a round ranged-enemy collider.
+            Collider target = null; float nearest = float.PositiveInfinity;
+            foreach (var collider in Physics.OverlapSphere(point + Vector3.up * .6f, 2))
+            {
+                var enemy = collider.GetComponentInParent<Drone>();
+                var prop = collider.GetComponentInParent<Destructible>();
+                if ((enemy == null || enemy.Health <= 0) && (prop == null || prop.IsDestroyed)) continue;
+                Vector3 delta = collider.bounds.center - point; delta.y = 0;
+                float radius = Mathf.Max(collider.bounds.extents.x, collider.bounds.extents.z) + .25f;
+                if (delta.sqrMagnitude < radius * radius && delta.sqrMagnitude < nearest) { nearest = delta.sqrMagnitude; target = collider; }
+            }
+            return target != null ? target.bounds.center : point;
         }
         public void Damage(float amount)
         {
