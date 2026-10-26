@@ -188,9 +188,10 @@ public sealed class MenuTests
         foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
         float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);
         Vector2 point=new Vector2((Screen.width-1280*scale)/2+280*scale,(Screen.height-720*scale)/2+615*scale);
+        int feedbackBefore=game.Feedback.EventCount;
         InputSystem.QueueStateEvent(mouse,new MouseState{position=point,buttons=1});yield return null;
         Assert.IsTrue(game.Menus.BlocksPlayerInput);
-        Assert.AreEqual(0,Object.FindObjectsByType<LineRenderer>(FindObjectsSortMode.None).Count(line=>line.gameObject.name=="Tracer"));
+        Assert.AreEqual(feedbackBefore,game.Feedback.EventCount,"Clicking pause must not generate a shot");
     }
     [UnityTest] public IEnumerator StorageFailureDoesNotTrapTheDisplayConfirmationOrDestroyTheSession()
     {

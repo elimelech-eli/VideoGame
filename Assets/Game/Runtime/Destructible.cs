@@ -51,11 +51,12 @@ namespace VideoGame
             if (IsMedical)
             {
                 Prototype.Instance.SpawnHealthPickup(transform.position + Vector3.up * .3f);
-                Prototype.Instance.Hit(transform.position + Vector3.up * .5f, Color.green, .6f);
+                Prototype.Instance.Feedback.Break(transform.position + Vector3.up * .5f, true);
                 gameObject.SetActive(false); Destroy(gameObject);
             }
             else if (IsWall)
             {
+                Prototype.Instance.Feedback.Break(transform.position + Vector3.up, false);
                 FallDirection = lastImpact.sqrMagnitude > 0 ? lastImpact : transform.forward;
                 StartCoroutine(Topple());
             }
@@ -99,7 +100,7 @@ namespace VideoGame
                 yield return null;
             }
             transform.rotation = Quaternion.AngleAxis(86, axis) * start;
-            Prototype.Instance.Hit(transform.position + direction, new Color(.55f, .45f, .3f), 1);
+            Prototype.Instance.Feedback.Collapse(transform.position + direction);
             Destroy(gameObject, 18);
         }
     }

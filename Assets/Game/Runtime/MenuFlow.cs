@@ -236,6 +236,8 @@ namespace VideoGame
                     list.Add(Setting("quality","GRAPHICS QUALITY",()=>new[]{"LOW","MEDIUM","HIGH"}[Draft.Quality],d=>Draft.Quality=Cycle(Draft.Quality,d,3)));
                     list.Add(Setting("vsync","VSYNC",()=>Draft.VSync==1?"ON":"OFF",d=>Draft.VSync=1-Draft.VSync));
                     list.Add(Setting("fps","FRAME RATE LIMIT",()=>Draft.FrameRate<0?"UNLIMITED":Draft.FrameRate.ToString(),d=>{int[] rates={60,120,144,-1};Draft.FrameRate=rates[Cycle(Array.IndexOf(rates,Draft.FrameRate),d,4)];}));
+                    list.Add(Setting("shake","SCREEN SHAKE",()=>Percent(Draft.ScreenShake),d=>Draft.ScreenShake=Mathf.Clamp01(Draft.ScreenShake+d*.1f)));
+                    list.Add(Setting("reduced","REDUCED EFFECTS",()=>Draft.ReducedEffects?"ON":"OFF",d=>Draft.ReducedEffects=!Draft.ReducedEffects));
                     list.Add(Item("back","BACK",Back));break;
                 case MenuPage.Controls:
                     list.Add(Setting("deadzone","AIM DEADZONE",()=>Percent(Draft.AimDeadzone),d=>Draft.AimDeadzone=Mathf.Clamp(Draft.AimDeadzone+d*.05f,.1f,.4f)));

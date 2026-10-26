@@ -28,9 +28,7 @@ namespace VideoGame
         public string Message => message;
         readonly List<Material> materials = new List<Material>();
         readonly Dictionary<Color, Material> surfaces = new Dictionary<Color, Material>();
-        Material traceMaterial;
-        AudioSource audioSource;
-        AudioClip shotSound, blastSound;
+        public CombatFeedback Feedback { get; private set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
@@ -39,7 +37,7 @@ namespace VideoGame
             {
                 var game = new GameObject("Prototype").AddComponent<Prototype>();
                 bool capture = false;
-                foreach(string variable in new[]{"POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS"})
+                foreach(string variable in new[]{"POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS","POC_CAPTURE_FEEDBACK"})
                     capture |= !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(variable));
                 if(!capture) game.Menus.OpenMain(false,true);
             }
@@ -54,9 +52,7 @@ namespace VideoGame
             view.gameObject.AddComponent<AudioListener>();
             view.gameObject.AddComponent<CinematicGrade>();
             view.allowHDR = true;
-            audioSource = gameObject.AddComponent<AudioSource>();
-            shotSound = Tone("Pulse", 150, .07f);
-            blastSound = Tone("Blast", 55, .3f);
+            Feedback = gameObject.AddComponent<CombatFeedback>();
             view.orthographic = true;
             view.orthographicSize = 7.5f;
             view.backgroundColor = new Color(.015f, .02f, .045f);
@@ -92,6 +88,8 @@ namespace VideoGame
             BuildHub();
             Menus = gameObject.AddComponent<MenuFlow>();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
+            string feedbackCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_FEEDBACK");
+            if (!string.IsNullOrEmpty(feedbackCapture)) StartCoroutine(CaptureFeedback(feedbackCapture));
             string capture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_SCREEN");
             if (!string.IsNullOrEmpty(capture)) StartCoroutine(CapturePresentation(capture));
             string animationCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_ANIMATION");
@@ -100,6 +98,54 @@ namespace VideoGame
             if (!string.IsNullOrEmpty(sectorsCapture)) StartCoroutine(CaptureSectors(sectorsCapture));
             string rosterCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_ROSTER");
             if (!string.IsNullOrEmpty(rosterCapture)) StartCoroutine(CaptureRoster(rosterCapture));
+        }
+        IEnumerator CaptureFeedback(string directory)
+        {
+            // Staged presentation evidence only; normal mission/gameplay tests are separate.
+            System.IO.Directory.CreateDirectory(directory);
+            Time.captureFramerate = 60;
+            yield return new WaitForSeconds(1);
+            StartMission(); Director.enabled = false; Player.enabled = false;
+            foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.enabled = false;
+            yield return new WaitForSeconds(.5f);
+            Vector3 point = Player.transform.position + new Vector3(2, 0, 2);
+            Feedback.Shot(Player.transform.position + Vector3.up * .25f, point, Art.Cyan);
+            Player.Motion.Act("Fire"); Player.Motion.Kick();
+            yield return new WaitForSeconds(.025f);
+            CaptureFeedbackFrame(System.IO.Path.Combine(directory,"gunfire.png"));
+            yield return new WaitForSeconds(.4f);
+            Explosion(point, 4);
+            yield return new WaitForSeconds(.065f);
+            CaptureFeedbackFrame(System.IO.Path.Combine(directory,"blast.png"));
+            yield return new WaitForSeconds(.25f);
+            CaptureFeedbackFrame(System.IO.Path.Combine(directory,"blast-tail.png"));
+            yield return new WaitForSeconds(1.6f);
+            var wall = SpawnDestructible(point - Vector3.up, true);
+            wall.Damage(40, point - Vector3.forward * 3, Vector3.forward);
+            yield return new WaitForSeconds(.8f);
+            CaptureFeedbackFrame(System.IO.Path.Combine(directory,"collapse.png"));
+            yield return new WaitForSeconds(.4f);
+            Debug.Log("FEEDBACK_CAPTURE_COMPLETE: staged gunfire, blast and collapse.");
+            Time.captureFramerate = 0;
+        }
+        void CaptureFeedbackFrame(string path)
+        {
+            // Render offscreen: hidden Windows players have no screenshot backbuffer.
+            var target = RenderTexture.GetTemporary(1280, 720, 24);
+            var previousTarget = view.targetTexture;
+            var previousActive = RenderTexture.active;
+            var image = new Texture2D(1280, 720, TextureFormat.RGB24, false);
+            try
+            {
+                view.targetTexture = target; view.Render(); RenderTexture.active = target;
+                image.ReadPixels(new Rect(0, 0, 1280, 720), 0, 0); image.Apply();
+                System.IO.File.WriteAllBytes(path, image.EncodeToPNG());
+            }
+            finally
+            {
+                view.targetTexture = previousTarget; RenderTexture.active = previousActive;
+                RenderTexture.ReleaseTemporary(target); Destroy(image);
+            }
         }
         public void NewSession()
         {
@@ -138,6 +184,7 @@ namespace VideoGame
         }
         void ResetWorld()
         {
+            Feedback?.ResetAll();
             Director = null;
             if (world != null) { world.gameObject.SetActive(false); Destroy(world.gameObject); }
             world = new GameObject("World").transform;
@@ -415,7 +462,6 @@ namespace VideoGame
         }
         void Update()
         {
-            audioSource.volume = (Menus?.Settings.Master ?? 1) * (Menus?.Settings.Effects ?? 1);
             if (Player.IsDead || Menus?.BlocksGameplay == true) return;
             bool interact = Keyboard.current?.eKey.wasPressedThisFrame == true || Gamepad.current?.buttonSouth.wasPressedThisFrame == true;
             if (interact && Vector3.Distance(Player.transform.position, terminal) < 3.5f) Interact();
@@ -445,39 +491,20 @@ namespace VideoGame
         void LateUpdate()
         {
             if (fixedPresentationCamera) return;
-            view.transform.position = Player.transform.position + new Vector3(-10.7f, 18, -10.7f);
+            Vector3 origin = Player.transform.position + new Vector3(-10.7f, 18, -10.7f);
+            Vector3 offset = Feedback.CameraOffset(view);
+            // Optional translation cannot move the camera through solid scenery.
+            if (offset.sqrMagnitude > 0 && Physics.SphereCast(origin, .15f, offset.normalized, out _, offset.magnitude, 1 << 9)) offset = Vector3.zero;
+            view.transform.position = origin + offset;
         }
         public void Hit(Vector3 position, Color color, float radius = .3f)
         {
-            var effect = new GameObject("Impact particles"); effect.transform.SetParent(world); effect.transform.position = position;
-            var particles = effect.AddComponent<ParticleSystem>(); particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            var main = particles.main; main.loop = false; main.duration = .2f;
-            main.startLifetime = new ParticleSystem.MinMaxCurve(.12f, .4f);
-            main.startSpeed = new ParticleSystem.MinMaxCurve(2, radius > 1 ? 9 : 4);
-            main.startSize = new ParticleSystem.MinMaxCurve(.04f, radius > 1 ? .6f : .14f);
-            main.startColor = color; main.gravityModifier = .5f; main.simulationSpace = ParticleSystemSimulationSpace.World;
-            main.stopAction = ParticleSystemStopAction.Destroy;
-            var emission = particles.emission; emission.rateOverTime = 0; emission.SetBursts(new[] {new ParticleSystem.Burst(0, (short)(radius > 1 ? 55 : 12))});
-            var shape = particles.shape; shape.shapeType = ParticleSystemShapeType.Sphere; shape.radius = .12f;
-            var fade = particles.colorOverLifetime; fade.enabled = true;
-            var gradient = new Gradient(); gradient.SetKeys(new[] {new GradientColorKey(color, 0), new GradientColorKey(color * .4f, 1)}, new[] {new GradientAlphaKey(1, 0), new GradientAlphaKey(0, 1)}); fade.color = gradient;
-            particles.GetComponent<ParticleSystemRenderer>().sharedMaterial = Resources.Load<Material>("Particle"); particles.Play();
-            for (int i = 0; i < 5; i++)
-            {
-                Vector3 delta = new Vector3(Mathf.Cos(i * 2.4f), .3f, Mathf.Sin(i * 2.4f));
-                Trace(position, position + delta * radius, color, false);
-            }
+            Feedback.Impact(position, color, radius);
         }
         public void Trace(Vector3 from, Vector3 to, Color color, bool sound = true)
         {
-            if (sound) audioSource.PlayOneShot(shotSound, .12f);
-            var trace = new GameObject("Tracer").AddComponent<LineRenderer>();
-            trace.transform.SetParent(world);
-            trace.positionCount = 2; trace.SetPosition(0, from); trace.SetPosition(1, to);
-            trace.startWidth = .06f; trace.endWidth = .015f;
-            if (traceMaterial == null) { traceMaterial = new Material(Resources.Load<Material>("PrototypeTrace")); materials.Add(traceMaterial); }
-            trace.sharedMaterial = traceMaterial; trace.startColor = color; trace.endColor = color;
-            Destroy(trace.gameObject, .07f);
+            if (sound) Feedback.Shot(from, to, color);
+            else Feedback.SilentTrace(from, to, color);
         }
         public void Grenade(Vector3 target)
         {
@@ -485,13 +512,9 @@ namespace VideoGame
         }
         public void Explosion(Vector3 position, float radius)
         {
-            audioSource.PlayOneShot(blastSound, .4f);
-            Hit(position, Art.Amber, 2);
-            var flash = new GameObject("Blast flash").AddComponent<Light>();
-            flash.transform.SetParent(world); flash.transform.position = position + Vector3.up;
-            flash.color = Art.Amber; flash.range = radius * 3; flash.intensity = 5;
-            Destroy(flash.gameObject, .16f);
+            Feedback.Blast(position, radius);
         }
+
         IEnumerator ThrowGrenade(Vector3 target)
         {
             Vector3 start = Player.transform.position;
@@ -514,8 +537,6 @@ namespace VideoGame
         void OnDestroy()
         {
             foreach (var material in materials) if (material != null) Destroy(material);
-            if (shotSound != null) Destroy(shotSound);
-            if (blastSound != null) Destroy(blastSound);
             if (Instance == this) Instance = null;
         }
         IEnumerator CapturePresentation(string directory)
@@ -607,19 +628,6 @@ namespace VideoGame
             ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"roster.png"));
             yield return new WaitForSeconds(.5f);
             Destroy(signRoot); Player.enabled=true; fixedPresentationCamera=false; view.orthographicSize=7.5f; BuildHub();
-        }
-        static AudioClip Tone(string name, float frequency, float duration)
-        {
-            int count = Mathf.CeilToInt(22050 * duration);
-            var data = new float[count];
-            for (int i = 0; i < count; i++)
-            {
-                float envelope = 1f - (float)i / count;
-                data[i] = Mathf.Sin(i * frequency * Mathf.PI * 2 / 22050) * envelope * envelope;
-            }
-            var clip = AudioClip.Create(name, count, 1, 22050, false);
-            clip.SetData(data, 0);
-            return clip;
         }
     }
 }

@@ -54,3 +54,7 @@ Saving intentionally uses Nexus checkpoints. Loading restores the hub with full 
 
 
 A pointer-visibility follow-up adds a regression for a hidden terminal prompt: the same screen location must pass gameplay input outside interaction range, intercept it while the button is visible, then pass it again after walking away. An idle cursor hovering over the toolbar must also leave controller movement available. Local coverage is now four EditMode and 44 PlayMode tests plus 12,017 core assertions; the Windows build and startup smoke test pass.
+
+## Combat feedback - 2026-10-27
+
+Complete local regression passed: 12,017 core assertions, four EditMode and 47 PlayMode tests. Focused follow-up tests cover final particle tuning and the pause-click shot-event guard. Windows build, startup smoke and staged captures were checked separately. Subjective listening, physical-controller feel and frame-time profiling remain human playtest items. See COMBAT_FEEDBACK.md.

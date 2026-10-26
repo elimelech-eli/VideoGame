@@ -1,9 +1,10 @@
 Shader "Nexus/Particle"
 {
+    Properties { _DstBlend ("Destination blend", Float) = 1 }
     SubShader
     {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" }
-        Blend SrcAlpha One
+        Blend SrcAlpha [_DstBlend]
         ZWrite Off Cull Off
         Pass
         {
