@@ -13,16 +13,32 @@ jobs:
   core:
     name: Core checks
     runs-on: ubuntu-latest
+    outputs:
+      run_unity: ${{ steps.scope.outputs.run_unity }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Select validation scope
+        id: scope
+        env:
+          CI_EVENT: ${{ github.event_name }}
+          CI_REF: ${{ github.ref }}
+          CI_BEFORE: ${{ github.event.before }}
+          CI_BASE: ${{ github.event.pull_request.base.sha }}
+        run: python3 scripts/ci_scope.py
+      - name: Check validation tooling
+        run: python3 -m unittest discover -s Tests/CI -v
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
       - run: dotnet run --project Tests/CoreChecks/CoreChecks.csproj --configuration Release
       - name: Whitespace check
-        run: git show --format= --check HEAD -- '*.cs' '*.md' '*.yml' '*.ps1' '*.json' '*.asmdef'
+        run: git show --format= --check HEAD -- '*.cs' '*.md' '*.yml' '*.ps1' '*.py' '*.json' '*.asmdef'
   unity:
     name: Unity tests
+    needs: core
+    if: needs.core.outputs.run_unity == 'true'
     permissions:
       contents: read
       checks: write
@@ -30,6 +46,13 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+      - name: Cache Unity imports
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Unity-${{ runner.os }}-Windows64-${{ hashFiles('ProjectSettings/ProjectVersion.txt', 'Packages/**') }}-${{ hashFiles('Assets/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Unity-${{ runner.os }}-Windows64-${{ hashFiles('ProjectSettings/ProjectVersion.txt', 'Packages/**') }}-
       - name: Require Unity license configuration
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -74,6 +97,7 @@ jobs:
   player-smoke:
     name: Windows player smoke test
     needs: unity
+    if: needs.unity.result == 'success'
     runs-on: windows-latest
     timeout-minutes: 5
     steps:
