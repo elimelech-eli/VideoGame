@@ -80,7 +80,7 @@ public sealed class InputTests
         enemies[0].transform.position = new Vector3(4, 1, 4);
         point = game.Player.View.WorldToScreenPoint(new Vector3(4, 0, 4));
         InputSystem.QueueStateEvent(mouse, new MouseState { position = point, buttons = 1 });
-        yield return new WaitForSeconds(.6f);
+        yield return WaitForKills(1);
         Assert.IsTrue(mouse.leftButton.isPressed, "Mouse button state reset");
         Assert.AreSame(mouse, Mouse.current, "Native mouse replaced test mouse");
         Assert.GreaterOrEqual(game.Mission.Kills, 1, "Mouse aimed shot missed; player=" + game.Player.transform.position + " forward=" + game.Player.transform.forward + " mouse=" + mouse.position.ReadValue() + " target=" + point);
@@ -93,12 +93,19 @@ public sealed class InputTests
         foreach (var enemy in enemies) enemy.enabled = false;
         enemies[0].transform.position = new Vector3(5, 1, 5);
         InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = Vector2.up, rightTrigger = 1 });
-        yield return new WaitForSeconds(.6f);
+        yield return WaitForKills(1);
         Assert.GreaterOrEqual(game.Mission.Kills, 1, "Gun did not hit the aimed-at drone");
         InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = Vector2.up }.WithButton(GamepadButton.RightShoulder));
         enemies[1].transform.position = new Vector3(5, 1, 5);
-        yield return new WaitForSeconds(.8f);
+        yield return WaitForKills(2);
         Assert.GreaterOrEqual(game.Mission.Kills, 2, "Grenade did not damage nearby drone");
         Assert.Greater(game.Player.GrenadeRemaining, 0);
+    }
+    IEnumerator WaitForKills(int expected)
+    {
+        // CI uses a software renderer: elapsed time alone doesn't guarantee
+        // enough Update calls for the weapon's three separate shots.
+        float deadline = Time.realtimeSinceStartup + 5;
+        while (game.Mission.Kills < expected && Time.realtimeSinceStartup < deadline) yield return null;
     }
 }
