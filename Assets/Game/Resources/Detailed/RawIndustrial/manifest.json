@@ -1,0 +1,32 @@
+{
+  "control_terminal": [
+    "control_terminal"
+  ],
+  "container": [
+    "container"
+  ],
+  "tank_2": [
+    "tank_2"
+  ],
+  "tank_capsule": [
+    "tank_capsule"
+  ],
+  "tank_control_panel": [
+    "tank_control_panel"
+  ],
+  "vent": [
+    "vent"
+  ],
+  "vent_2": [
+    "vent_2"
+  ],
+  "roof_thing": [
+    "roof_thing_3"
+  ],
+  "wall_thing": [
+    "wall_thing"
+  ],
+  "station": [
+    "station"
+  ]
+}

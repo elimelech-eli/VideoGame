@@ -82,7 +82,7 @@ namespace VideoGame
                 Vector3 end = start + direction * 22;
                 if (Physics.Raycast(start + direction * .7f, direction, out var hit, 22))
                 {
-                    end = hit.point; hit.collider.GetComponent<Drone>()?.Damage(20);
+                    end = hit.point; CombatDamage.Apply(hit.collider, 20);
                     Prototype.Instance.Hit(end, Color.cyan);
                 }
                 Prototype.Instance.Trace(start + direction * .7f, end, Color.cyan);

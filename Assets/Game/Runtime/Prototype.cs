@@ -15,6 +15,7 @@ namespace VideoGame
         public int Seed { get; private set; } = 104729;
         public Art Visuals { get; private set; }
         public Vector3 Terminal => terminal;
+        public EncounterDirector Director { get; private set; }
         Transform world;
         Camera view;
         Vector3 terminal;
@@ -40,14 +41,16 @@ namespace VideoGame
             view = new GameObject("Isometric Camera").AddComponent<Camera>();
             view.transform.SetParent(transform);
             view.gameObject.AddComponent<AudioListener>();
+            view.gameObject.AddComponent<CinematicGrade>();
+            view.allowHDR = true;
             audioSource = gameObject.AddComponent<AudioSource>();
             shotSound = Tone("Pulse", 150, .07f);
             blastSound = Tone("Blast", 55, .3f);
             view.orthographic = true;
-            view.orthographicSize = 10;
+            view.orthographicSize = 7.5f;
             view.backgroundColor = new Color(.015f, .02f, .045f);
             view.clearFlags = CameraClearFlags.SolidColor;
-            view.transform.rotation = Quaternion.Euler(55, 45, 0);
+            view.transform.rotation = Quaternion.Euler(50, 45, 0);
             var light = new GameObject("Key light").AddComponent<Light>();
             light.transform.SetParent(transform);
             light.type = LightType.Directional;
@@ -56,7 +59,8 @@ namespace VideoGame
             light.intensity = .9f;
             light.shadows = LightShadows.Soft;
             QualitySettings.shadowDistance = 60;
-            QualitySettings.pixelLightCount = 4;
+            QualitySettings.pixelLightCount = 6;
+            QualitySettings.antiAliasing = 4;
             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
             RenderSettings.ambientLight = new Color(.16f, .2f, .28f);
             RenderSettings.reflectionIntensity = .3f;
@@ -69,9 +73,8 @@ namespace VideoGame
             Player = player.AddComponent<Pilot>();
             Player.View = view;
             player.GetComponent<Renderer>().enabled = false;
-            var visual = Visuals.Model("Space/astronautB", player.transform, new Vector3(0, -1, 0), 1.9f, Art.Cyan, 180);
+            var visual = Visuals.Model("Detailed/Prefabs/Operative", player.transform, new Vector3(0, -1, 0), 2.15f, Art.Cyan, 180);
             player.AddComponent<ActorPresentation>().Visual = visual.transform;
-            Visuals.Model("Blaster/blaster-e", player.transform, new Vector3(.35f, -.05f, .3f), .95f, Art.Cyan, 180);
             Visuals.PointLight(new Vector3(0, 2, 0), Art.Cyan, player.transform, 4);
             gameObject.AddComponent<GameHud>();
             BuildHub();
@@ -102,6 +105,7 @@ namespace VideoGame
         }
         void ResetWorld()
         {
+            Director = null;
             if (world != null) { world.gameObject.SetActive(false); Destroy(world.gameObject); }
             world = new GameObject("World").transform;
             world.SetParent(transform);
@@ -114,24 +118,21 @@ namespace VideoGame
             ResetWorld();
             Floor(Vector3.zero, 18, new Color(.07f, .11f, .16f));
             terminal = new Vector3(0, 1, 5);
-            Visuals.Model("Station/computer-wide", world, new Vector3(0, 0, 5), 3, Art.Cyan, 180);
+            Visuals.Model("Detailed/Prefabs/control_terminal", world, new Vector3(0, 0, 5), 2.5f, Art.Cyan, 180);
             Visuals.Strip(new Vector3(0, .02f, 3), new Vector3(4, .04f, .08f), Art.Cyan, world);
             Visuals.Sign("CONTRACT UPLINK", new Vector3(0, 3.2f, 5), .65f, Art.Cyan, world);
             Visuals.Sign("NEXUS  /  OPERATIONS", new Vector3(0, .06f, -4), .9f, new Color(.4f, .62f, .7f), world);
-            Visuals.Model("Space/craft_speederA", world, new Vector3(-5.5f, .1f, -2.5f), 4.8f, Art.Cyan, -35);
-            Visuals.Model("Station/table-display", world, new Vector3(5, 0, 1), 2.8f, Art.Cyan);
+            Visuals.Model("Detailed/Prefabs/container", world, new Vector3(-5.5f, 0, -2.5f), 4.8f, Art.Cyan, -15);
+            Visuals.Model("Detailed/Prefabs/tank_control_panel", world, new Vector3(5, 0, 1), 2.8f, Art.Cyan);
             Visuals.PointLight(new Vector3(0, 3, 5), Art.Cyan, world, 12);
             Visuals.PointLight(new Vector3(-6, 2, -3), Art.Amber, world, 9);
             DressRoom(Vector3.zero, 18, 0, true);
+            StartCoroutine(RefreshReflections());
         }
         void Floor(Vector3 center, float size, Color color)
         {
             Shape("Floor", PrimitiveType.Cube, center + Vector3.down * .25f, new Vector3(size, .5f, size), color, world).layer = 8;
-            var panels = new GameObject("Deck panels"); panels.transform.SetParent(world);
-            int count = Mathf.RoundToInt(size / 2);
-            for (int x = 0; x < count; x++)
-                for (int z = 0; z < count; z++)
-                    Visuals.Model("Station/floor-detail", panels.transform, center + new Vector3(-size/2 + 1 + x*2, -.12f, -size/2 + 1 + z*2), 1.96f, Art.Cyan, ((x + z) % 2) * 90);
+            Visuals.Deck(center, size, world);
             for (int i = -1; i <= 1; i += 2)
             {
                 Visuals.Strip(center + new Vector3(i * (size / 2 - .1f), .02f, 0), new Vector3(.04f, .025f, size), new Color(.06f, .24f, .3f), world);
@@ -145,23 +146,22 @@ namespace VideoGame
             for (int side = -1; side <= 1; side += 2)
             {
                 Vector3 corner = center + new Vector3(side * edge, 0, edge);
-                Visuals.Model("Space/machine_generatorLarge", world, corner, 2.4f, accent, 90);
-                Visuals.Model("Station/container-tall", world, center + new Vector3(side * edge, 0, -edge), 1.8f, accent);
+                Visuals.Model("Detailed/Prefabs/tank_capsule", world, corner, 3, accent, 90);
+                Visuals.Model("Detailed/Prefabs/vent_2", world, center + new Vector3(side * edge, 0, -edge), 1.8f, accent);
                 Visuals.PointLight(corner + Vector3.up * 2.5f, accent, world, 7);
                 Visuals.Strip(corner + Vector3.up * 1.6f, new Vector3(.08f, 1.4f, .08f), accent, world);
                 for (int j = 0; j < 2; j++)
-                    Visuals.Model("Station/container", world, center + new Vector3(side * (edge - j * 1.35f), 0, -edge), 1.2f, accent, j * 90);
+                    Visuals.Model("Detailed/Prefabs/container", world, center + new Vector3(side * (edge - j * 1.35f), 0, -edge), 1.3f, accent, j * 90);
             }
             if (hub)
             {
                 for (int x = -6; x <= 6; x += 3)
-                    Visuals.Model("Station/wall", world, center + new Vector3(x, 0, edge + .5f), 3, accent);
+                    Visuals.Model("Detailed/Prefabs/Bulkhead", world, center + new Vector3(x, 0, edge + .5f), 3.1f, accent);
             }
             else
             {
                 Visuals.Sign("SECTOR " + index.ToString("00"), center + new Vector3(0, .06f, 4.5f), .7f, new Color(.5f, .45f, .35f), world);
-                var pipe = Visuals.Model("Station/pipe", world, center + new Vector3(edge, .3f, 1), 3, accent, 90);
-                pipe.transform.localRotation = Quaternion.Euler(90, 90, 0);
+                Visuals.Model("Detailed/Prefabs/vent", world, center + new Vector3(edge, 0, 1), 2, accent, 90);
             }
         }
         public void StartMission()
@@ -171,30 +171,92 @@ namespace VideoGame
             ResetWorld();
             Seed++;
             var rooms = MapLayout.Generate(Seed);
+            var centers = new List<Vector3>();
             var random = new System.Random(Seed);
             terminal = new Vector3(-4, .5f, -4);
             Shape("Extraction beacon", PrimitiveType.Cylinder, terminal - Vector3.up * .4f, new Vector3(2, .1f, 2), new Color(.08f, .4f, .3f), world);
-            Visuals.Model("Station/table-display", world, terminal - Vector3.up * .5f, 2, Art.Cyan);
+            Visuals.Model("Detailed/Prefabs/station", world, terminal - Vector3.up * .5f, 2, Art.Cyan);
             Visuals.Sign("EXTRACTION", terminal + Vector3.up * 2, .6f, Art.Cyan, world);
             Visuals.PointLight(terminal + Vector3.up * 2, Art.Cyan, world);
             for (int i = 0; i < rooms.Count; i++)
             {
                 Vector3 center = new Vector3(rooms[i].X * 14, 0, rooms[i].Y * 14);
+                centers.Add(center);
                 Floor(center, 14, i % 2 == 0 ? new Color(.1f, .09f, .16f) : new Color(.08f, .14f, .16f));
                 DressRoom(center, 14, i);
+                SpawnDestructible(center + new Vector3(4, 0, -3), false);
+                SpawnDestructible(center + new Vector3(2, 0, -3), false);
+                SpawnDestructible(center + new Vector3(-5.5f, 0, 2), true);
+                Physics.SyncTransforms();
                 if (i == 0) continue;
                 for (int j = 0; j < 2; j++)
                 {
                     Vector3 point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
                     bool ranged = (i + j) % 3 == 0;
-                    var enemy = Shape(ranged ? "Ranged drone" : "Hunter drone", ranged ? PrimitiveType.Sphere : PrimitiveType.Capsule, point, Vector3.one, ranged ? Color.magenta : new Color(1, .3f, .1f), world);
-                    enemy.GetComponent<Renderer>().enabled = false;
-                    var enemyArt = Visuals.Model(ranged ? "Space/turret_double" : "Space/astronautA", enemy.transform, new Vector3(0, ranged ? -.4f : -1, 0), ranged ? 1.7f : 1.85f, ranged ? new Color(1, .15f, .5f) : Art.Amber, 180);
-                    var presentation = enemy.AddComponent<ActorPresentation>(); presentation.Visual = enemyArt.transform; presentation.Hover = ranged;
-                    enemy.AddComponent<Drone>().Ranged = ranged;
+                    for (int attempt = 0; attempt < 20 && Physics.CheckSphere(point, .7f, 1 << 9); attempt++)
+                        point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
+                    SpawnDrone(point, ranged);
                 }
             }
+            var directorObject = new GameObject("Reinforcements"); directorObject.transform.SetParent(world);
+            Director = directorObject.AddComponent<EncounterDirector>(); Director.Initialize(this, centers, Seed);
+            DrawBoundaries(rooms);
+            StartCoroutine(RefreshReflections());
             message = "Contract active: destroy 8 drones. Return to the green beacon to extract.";
+        }
+        public Drone SpawnDrone(Vector3 point, bool ranged)
+        {
+            var enemy = Shape(ranged ? "Ranged drone" : "Hunter drone", ranged ? PrimitiveType.Sphere : PrimitiveType.Capsule, point, Vector3.one, ranged ? Color.magenta : Art.Amber, world);
+            enemy.GetComponent<Renderer>().enabled = false;
+            var enemyArt = Visuals.Model(ranged ? "Detailed/Prefabs/Gunner" : "Detailed/Prefabs/Hunter", enemy.transform, new Vector3(0, -1, 0), 2.05f, ranged ? new Color(1, .15f, .5f) : Art.Amber, 180);
+            var presentation = enemy.AddComponent<ActorPresentation>(); presentation.Visual = enemyArt.transform;
+            var drone = enemy.AddComponent<Drone>(); drone.Ranged = ranged;
+            return drone;
+        }
+        public Destructible SpawnDestructible(Vector3 position, bool wall)
+        {
+            var prop = new GameObject(wall ? "Unstable bulkhead" : "Volatile fuel barrel");
+            prop.transform.SetParent(world); prop.transform.position = position; prop.layer = 9;
+            var collider = prop.AddComponent<BoxCollider>();
+            collider.center = wall ? new Vector3(0, 1.2f, 0) : new Vector3(0, .7f, 0);
+            collider.size = wall ? new Vector3(2.4f, 2.4f, .3f) : new Vector3(.8f, 1.4f, .8f);
+            Visuals.Model(wall ? "Detailed/Prefabs/Bulkhead" : "Detailed/Prefabs/tank_2", prop.transform, Vector3.zero, wall ? 2.6f : 1.4f, Art.Amber);
+            Visuals.Sign(wall ? "UNSTABLE" : "VOLATILE", position + Vector3.up * (wall ? 2.8f : 1.8f), .35f, Art.Amber, prop.transform);
+            var destructible = prop.AddComponent<Destructible>(); destructible.IsWall = wall;
+            return destructible;
+        }
+        void DrawBoundaries(List<Room> rooms)
+        {
+            var cells = new HashSet<Vector2Int>(); foreach (var room in rooms) cells.Add(new Vector2Int(room.X, room.Y));
+            foreach (var cell in cells)
+            {
+                foreach (var side in new[] {Vector2Int.left, Vector2Int.right, Vector2Int.up, Vector2Int.down})
+                {
+                    if (cells.Contains(cell + side)) continue;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Vector3 point = new Vector3(cell.x * 14, 0, cell.y * 14) + new Vector3(side.x * 7, 0, side.y * 7);
+                        point += side.x != 0 ? new Vector3(0, 0, -5.25f + i * 3.5f) : new Vector3(-5.25f + i * 3.5f, 0, 0);
+                        var wall = Visuals.Model("Detailed/Prefabs/Bulkhead", world, point, 3.45f, Art.Cyan, side.x != 0 ? 90 : 0);
+                        if (side.x < 0 || side.y < 0) wall.transform.localScale = new Vector3(1, .25f, 1);
+                    }
+                }
+            }
+        }
+        IEnumerator RefreshReflections()
+        {
+            Transform targetWorld = world;
+            yield return null;
+            if (targetWorld == null || !targetWorld.gameObject.activeInHierarchy || SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null) yield break;
+            var probe = new GameObject("Local reflections").AddComponent<ReflectionProbe>();
+            probe.transform.SetParent(targetWorld); probe.transform.position = Player.transform.position + Vector3.up * 3;
+            probe.mode = UnityEngine.Rendering.ReflectionProbeMode.Realtime;
+            probe.refreshMode = UnityEngine.Rendering.ReflectionProbeRefreshMode.ViaScripting;
+            probe.size = new Vector3(200, 50, 200); probe.resolution = 128;
+            probe.boxProjection = true; probe.intensity = 1;
+            probe.clearFlags = UnityEngine.Rendering.ReflectionProbeClearFlags.SolidColor;
+            probe.backgroundColor = new Color(.17f, .2f, .26f);
+            probe.RenderProbe();
         }
         void Update()
         {
@@ -218,13 +280,23 @@ namespace VideoGame
         }
         void LateUpdate()
         {
-            view.transform.position = Player.transform.position + new Vector3(-9, 18, -9);
+            view.transform.position = Player.transform.position + new Vector3(-10.7f, 18, -10.7f);
         }
         public void Hit(Vector3 position, Color color, float radius = .3f)
         {
-            var effect = Shape("Impact", PrimitiveType.Sphere, position, Vector3.one * radius, color, world);
-            Destroy(effect.GetComponent<Collider>());
-            var burst = effect.AddComponent<Burst>(); burst.Duration = .18f; burst.Growth = 2;
+            var effect = new GameObject("Impact particles"); effect.transform.SetParent(world); effect.transform.position = position;
+            var particles = effect.AddComponent<ParticleSystem>(); particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            var main = particles.main; main.loop = false; main.duration = .2f;
+            main.startLifetime = new ParticleSystem.MinMaxCurve(.12f, .4f);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(2, radius > 1 ? 9 : 4);
+            main.startSize = new ParticleSystem.MinMaxCurve(.04f, radius > 1 ? .6f : .14f);
+            main.startColor = color; main.gravityModifier = .5f; main.simulationSpace = ParticleSystemSimulationSpace.World;
+            main.stopAction = ParticleSystemStopAction.Destroy;
+            var emission = particles.emission; emission.rateOverTime = 0; emission.SetBursts(new[] {new ParticleSystem.Burst(0, (short)(radius > 1 ? 55 : 12))});
+            var shape = particles.shape; shape.shapeType = ParticleSystemShapeType.Sphere; shape.radius = .12f;
+            var fade = particles.colorOverLifetime; fade.enabled = true;
+            var gradient = new Gradient(); gradient.SetKeys(new[] {new GradientColorKey(color, 0), new GradientColorKey(color * .4f, 1)}, new[] {new GradientAlphaKey(1, 0), new GradientAlphaKey(0, 1)}); fade.color = gradient;
+            particles.GetComponent<ParticleSystemRenderer>().sharedMaterial = Resources.Load<Material>("Particle"); particles.Play();
             for (int i = 0; i < 5; i++)
             {
                 Vector3 delta = new Vector3(Mathf.Cos(i * 2.4f), .3f, Mathf.Sin(i * 2.4f));
@@ -246,6 +318,15 @@ namespace VideoGame
         {
             StartCoroutine(ThrowGrenade(target));
         }
+        public void Explosion(Vector3 position, float radius)
+        {
+            audioSource.PlayOneShot(blastSound, .4f);
+            Hit(position, Art.Amber, 2);
+            var flash = new GameObject("Blast flash").AddComponent<Light>();
+            flash.transform.SetParent(world); flash.transform.position = position + Vector3.up;
+            flash.color = Art.Amber; flash.range = radius * 3; flash.intensity = 5;
+            Destroy(flash.gameObject, .16f);
+        }
         IEnumerator ThrowGrenade(Vector3 target)
         {
             Vector3 start = Player.transform.position;
@@ -261,10 +342,8 @@ namespace VideoGame
             }
             if (grenade == null) yield break;
             Destroy(grenade);
-            audioSource.PlayOneShot(blastSound, .3f);
-            Hit(target, Art.Amber, 2);
-            foreach (var collider in Physics.OverlapSphere(target, 4))
-                collider.GetComponent<Drone>()?.Damage(80);
+            Explosion(target, 4);
+            CombatDamage.Area(target, 4, 80);
         }
         void OnDestroy()
         {
@@ -282,8 +361,14 @@ namespace VideoGame
             StartMission();
             var rooms = MapLayout.Generate(Seed);
             Player.Teleport(new Vector3(rooms[1].X * 14, 1, rooms[1].Y * 14));
+            Director.enabled = false;
             foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.enabled = false;
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
+            Drone closest = null;
+            foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))
+                if (closest == null || (enemy.transform.position - Player.transform.position).sqrMagnitude < (closest.transform.position - Player.transform.position).sqrMagnitude) closest = enemy;
+            closest?.Damage(20);
+            yield return new WaitForSeconds(.2f);
             ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory, "field-ui.png"));
         }
         static AudioClip Tone(string name, float frequency, float duration)

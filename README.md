@@ -16,6 +16,7 @@ Approach the cyan contract terminal, accept a mission, kill eight drones in the 
 - [Development pipeline and testing](docs/DEVELOPMENT.md)
 - [Validation and current limitations](docs/VALIDATION.md)
 - [Asset sources and licenses](docs/ASSETS.md)
+- [Health bars, reinforcements and destructibles](docs/COMBAT_WORLD.md)
 
 License-free core checks: `dotnet run --project Tests/CoreChecks/CoreChecks.csproj --configuration Release`.
 

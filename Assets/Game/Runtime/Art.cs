@@ -15,7 +15,7 @@ namespace VideoGame
         {
             if (!models.TryGetValue(path, out var source))
             {
-                source = Resources.Load<GameObject>("Art/" + path);
+                source = Resources.Load<GameObject>(path.StartsWith("Detailed/") ? path : "Art/" + path);
                 if (source == null) throw new System.InvalidOperationException("Missing art asset: " + path);
                 models.Add(path, source);
             }
@@ -25,7 +25,7 @@ namespace VideoGame
             root.transform.localRotation = Quaternion.Euler(0, yaw, 0);
             var model = Instantiate(source, root.transform);
             model.transform.localPosition = Vector3.zero;
-            model.transform.localRotation = Quaternion.identity;
+            if (!path.StartsWith("Detailed/")) model.transform.localRotation = Quaternion.identity;
             var renderers = model.GetComponentsInChildren<Renderer>();
             var bounds = new Bounds(model.transform.position, Vector3.zero);
             bool first = true;
@@ -39,6 +39,7 @@ namespace VideoGame
             model.transform.position += (root.transform.position - new Vector3(bounds.center.x, bounds.min.y, bounds.center.z)) * factor;
             foreach (var renderer in renderers)
             {
+                if (path.StartsWith("Detailed/")) continue;
                 var originals = renderer.sharedMaterials;
                 var remapped = new Material[originals.Length];
                 for (int i = 0; i < originals.Length; i++)
@@ -71,7 +72,24 @@ namespace VideoGame
                 renderer.receiveShadows = true;
             }
             foreach (var collider in model.GetComponentsInChildren<Collider>()) Destroy(collider);
+            if (path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner")) model.AddComponent<SkeletalMotion>();
             return root;
+        }
+        public void Deck(Vector3 center, float size, Transform parent)
+        {
+            var deck = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            deck.name = "PBR metal deck"; deck.transform.SetParent(parent);
+            deck.transform.position = center + Vector3.up * .015f;
+            deck.transform.localScale = new Vector3(size / 10, 1, size / 10);
+            string key = "deck/" + size;
+            if (!palette.TryGetValue(key, out var material))
+            {
+                material = new Material(Resources.Load<Material>("Detailed/Materials/Deck"));
+                material.mainTextureScale = Vector2.one * (size / 4);
+                palette.Add(key, material);
+            }
+            deck.GetComponent<Renderer>().sharedMaterial = material;
+            Destroy(deck.GetComponent<Collider>());
         }
         public void Strip(Vector3 position, Vector3 scale, Color color, Transform parent)
         {
