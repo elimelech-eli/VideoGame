@@ -28,12 +28,18 @@ static class Checks
         for (int seed = 0; seed < 1000; seed++)
         {
             var rooms = MapLayout.Generate(seed);
-            Check(rooms.Count == 6, "Wrong room count");
-            Check(rooms.Select(r => (r.X, r.Y)).Distinct().Count() == 6, "Overlapping rooms");
-            Check(rooms.Select(r => (r.X, r.Y)).SequenceEqual(MapLayout.Generate(seed).Select(r => (r.X, r.Y))), "Nondeterministic seed");
+            Check(rooms.Count == 8, "Wrong room count");
+            Check(rooms.Select(r => (r.X, r.Y)).Distinct().Count() == 8, "Overlapping rooms");
+            Check(rooms.Select(r => (r.X, r.Y, r.Size, r.Theme)).SequenceEqual(MapLayout.Generate(seed).Select(r => (r.X, r.Y, r.Size, r.Theme))), "Nondeterministic seed");
+            Check(rooms.All(r => r.Size >= 12 && r.Size <= 16 && r.Size < MapLayout.Spacing && r.Theme >= 0 && r.Theme < 3), "Invalid room geometry/content");
+            Check(rooms[0].X == 0 && rooms[0].Y == 0 && rooms[0].Size == 14, "Unsafe starting room");
             for (int i = 1; i < rooms.Count; i++)
-                Check(Math.Abs(rooms[i].X - rooms[i-1].X) + Math.Abs(rooms[i].Y - rooms[i-1].Y) == 1, "Disconnected map");
+                Check(rooms.Take(i).Any(parent => MapLayout.Adjacent(parent, rooms[i])), "Disconnected map");
         }
+        foreach (int count in new[] {1,2,16,64}) Check(MapLayout.Generate(-123,count).Count == count,"Custom room count");
+        var layouts = Enumerable.Range(0,100).Select(seed => string.Join(";", MapLayout.Generate(seed).Select(r => $"{r.X},{r.Y},{r.Size},{r.Theme}"))).Distinct().Count();
+        Check(layouts > 95,"Seeds do not vary the map");
+        Check(Enumerable.Range(0,100).Any(seed => MapLayout.Generate(seed).Any(room => MapLayout.Generate(seed).Count(other => MapLayout.Adjacent(room,other)) >= 3)), "No branching layouts");
         Console.WriteLine($"PASS: {assertions} assertions; mission lifecycle, replay, failure, and 1,000 procedural seeds.");
     }
 }

@@ -35,11 +35,11 @@ public sealed class CoreTests
         for (int seed = 0; seed < 100; seed++)
         {
             var map = MapLayout.Generate(seed);
-            Assert.AreEqual(6, map.Count);
-            Assert.AreEqual(6, map.Select(r => (r.X, r.Y)).Distinct().Count());
-            CollectionAssert.AreEqual(map.Select(r => (r.X, r.Y)), MapLayout.Generate(seed).Select(r => (r.X, r.Y)));
+            Assert.AreEqual(8, map.Count);
+            Assert.AreEqual(8, map.Select(r => (r.X, r.Y)).Distinct().Count());
+            CollectionAssert.AreEqual(map.Select(r => (r.X, r.Y, r.Size, r.Theme)), MapLayout.Generate(seed).Select(r => (r.X, r.Y, r.Size, r.Theme)));
             for (int i = 1; i < map.Count; i++)
-                Assert.AreEqual(1, Math.Abs(map[i].X - map[i-1].X) + Math.Abs(map[i].Y - map[i-1].Y));
+                Assert.IsTrue(map.Take(i).Any(parent => MapLayout.Adjacent(parent, map[i])));
         }
     }
 }

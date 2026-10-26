@@ -34,7 +34,7 @@ namespace VideoGame
             for (int i = 0; i < 80 && spawned < amount; i++)
             {
                 Vector3 center = rooms[random.Next(rooms.Count)];
-                if (Mathf.Abs(center.x - nearest.x) + Mathf.Abs(center.z - nearest.z) > 14.1f) continue;
+                if (Mathf.Abs(center.x - nearest.x) + Mathf.Abs(center.z - nearest.z) > VideoGame.Core.MapLayout.Spacing + .1f) continue;
                 Vector3 point = center + new Vector3((float)random.NextDouble() * 10 - 5, 1, (float)random.NextDouble() * 10 - 5);
                 float distance = Vector3.Distance(point, game.Player.transform.position);
                 if (distance < 9 || distance > 27 || Vector3.Distance(point, game.Terminal) < 6) continue;
@@ -43,7 +43,7 @@ namespace VideoGame
                 if (!Physics.Raycast(point + Vector3.up, Vector3.down, 4, 1 << 8)) continue;
                 bool occupied = false;
                 foreach (var collider in Physics.OverlapSphere(point, 1))
-                    if (collider.GetComponent<Drone>() != null || collider.GetComponent<Destructible>() != null) { occupied = true; break; }
+                    if (collider.gameObject.layer == 9 || collider.GetComponentInParent<Drone>() != null) { occupied = true; break; }
                 if (occupied) continue;
                 game.SpawnDrone(point, (EnemyKind)random.Next(4));
                 Physics.SyncTransforms();

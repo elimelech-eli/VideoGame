@@ -13,7 +13,7 @@ The long-term loop is hub → mission → procedurally assembled combat area →
 - Small placeholder hub with a contract terminal.
 - Gun, grenade and ground dash.
 - WASD, right-click movement and controller input.
-- Six connected procedural rooms and two drone enemy behaviors.
+- Eight seeded rooms with branching connections, passages, varied sizes and industrial themes; four distinct enemy roles.
 - Kill eight drones, extract, return and claim 100 credits. Repeat with another seed.
 - Health, mission failure and retry.
 - No character upgrade step.

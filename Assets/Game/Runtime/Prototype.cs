@@ -13,6 +13,7 @@ namespace VideoGame
         public bool InMission { get; private set; }
         public Pilot Player { get; private set; }
         public int Seed { get; private set; } = 104729;
+        public List<Room> Layout { get; private set; }
         public Art Visuals { get; private set; }
         public Vector3 Terminal => terminal;
         public EncounterDirector Director { get; private set; }
@@ -87,6 +88,8 @@ namespace VideoGame
             if (!string.IsNullOrEmpty(capture)) StartCoroutine(CapturePresentation(capture));
             string animationCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_ANIMATION");
             if (!string.IsNullOrEmpty(animationCapture)) StartCoroutine(CaptureAnimations(animationCapture));
+            string sectorsCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_SECTORS");
+            if (!string.IsNullOrEmpty(sectorsCapture)) StartCoroutine(CaptureSectors(sectorsCapture));
             string rosterCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_ROSTER");
             if (!string.IsNullOrEmpty(rosterCapture)) StartCoroutine(CaptureRoster(rosterCapture));
         }
@@ -182,7 +185,7 @@ namespace VideoGame
             Music.SetBattle(true); Ambience.SetBattle(true);
             ResetWorld();
             Seed++;
-            var rooms = MapLayout.Generate(Seed);
+            var rooms = Layout = MapLayout.Generate(Seed);
             var centers = new List<Vector3>();
             var random = new System.Random(Seed);
             terminal = new Vector3(-4, .5f, -4);
@@ -192,18 +195,26 @@ namespace VideoGame
             Visuals.PointLight(terminal + Vector3.up * 2, Art.Cyan, world);
             for (int i = 0; i < rooms.Count; i++)
             {
-                Vector3 center = new Vector3(rooms[i].X * 14, 0, rooms[i].Y * 14);
+                Vector3 center = new Vector3(rooms[i].X * MapLayout.Spacing, 0, rooms[i].Y * MapLayout.Spacing);
                 centers.Add(center);
-                Floor(center, 14, i % 2 == 0 ? new Color(.1f, .09f, .16f) : new Color(.08f, .14f, .16f));
-                DressRoom(center, 14, i);
+                Floor(center, rooms[i].Size, rooms[i].Theme == 0 ? new Color(.1f, .09f, .16f) : new Color(.08f, .14f, .16f));
+                DressSector(center, rooms[i], i);
                 Ambience.Room(center, world, false);
-                SpawnDestructible(center + new Vector3(4, 0, -3), false);
-                SpawnDestructible(center + new Vector3(2, 0, -3), false);
-                SpawnDestructible(center + new Vector3(-5.5f, 0, 2), true);
-                SpawnMedicalCache(center + new Vector3(-3, 0, -3));
+                // Keep the central cross and all four door approaches clear.
+                float corner = rooms[i].Size / 2f - 2.5f;
+                int turn = random.Next(4);
+                Quaternion dressing = Quaternion.Euler(0, turn * 90, 0);
+                if (i != 0) SpawnDestructible(center + dressing * new Vector3(corner, 0, -corner), false);
+                if (i != 0 && rooms[i].Theme != 2) SpawnDestructible(center + dressing * new Vector3(corner - 1.2f, 0, -corner), false);
+                if (i != 0)
+                {
+                    var unstable = SpawnDestructible(center + dressing * new Vector3(-corner, 0, corner), true);
+                    unstable.transform.rotation = dressing;
+                    SpawnMedicalCache(center + dressing * new Vector3(-corner, 0, -corner));
+                }
                 Physics.SyncTransforms();
                 if (i == 0) continue;
-                for (int j = 0; j < 2; j++)
+                for (int j = 0; j < (i < 4 ? 2 : 1); j++)
                 {
                     Vector3 point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
                     for (int attempt = 0; attempt < 20 && Physics.CheckSphere(point, .7f, 1 << 9); attempt++)
@@ -216,6 +227,35 @@ namespace VideoGame
             DrawBoundaries(rooms);
             StartCoroutine(RefreshReflections());
             message = "Contract active: destroy 8 drones. Return to the green beacon to extract.";
+        }
+        public Vector3 PursuitTarget(Vector3 from, Vector3 target)
+        {
+            if (!InMission || Layout == null) return target;
+            Vector3 Center(int i) => new Vector3(Layout[i].X*MapLayout.Spacing,from.y,Layout[i].Y*MapLayout.Spacing);
+            int Nearest(Vector3 position)
+            {
+                int best=0;
+                for(int i=1;i<Layout.Count;i++) if((Center(i)-position).sqrMagnitude < (Center(best)-position).sqrMagnitude)best=i;
+                return best;
+            }
+            int start=Nearest(from), end=Nearest(target);
+            if(start==end)return target;
+            var previous=new int[Layout.Count]; for(int i=0;i<previous.Length;i++)previous[i]=-1;
+            var queue=new Queue<int>();queue.Enqueue(start);previous[start]=start;
+            while(queue.Count>0 && previous[end]<0)
+            {
+                int current=queue.Dequeue();
+                for(int i=0;i<Layout.Count;i++) if(previous[i]<0 && MapLayout.Adjacent(Layout[current],Layout[i])) {previous[i]=current;queue.Enqueue(i);}
+            }
+            if(previous[end]<0)return target;
+            int next=end;while(previous[next]!=start)next=previous[next];
+            Vector3 normal=(Center(next)-Center(start)).normalized;
+            Vector3 tangent=new Vector3(normal.z,0,-normal.x);
+            Vector3 offset=from-Center(start);
+            // Align with the doorway before crossing a room wall.
+            if(Mathf.Abs(Vector3.Dot(offset,tangent))>1)
+                return Center(start)+normal*Mathf.Clamp(Vector3.Dot(offset,normal),-Layout[start].Size/2f+1,Layout[start].Size/2f-1);
+            return Center(next);
         }
         public Drone SpawnDrone(Vector3 point, bool ranged)
             => SpawnDrone(point, ranged ? EnemyKind.Gunner : EnemyKind.Hunter);
@@ -260,27 +300,78 @@ namespace VideoGame
             var collider = prop.AddComponent<BoxCollider>();
             collider.center = wall ? new Vector3(0, 1.2f, 0) : new Vector3(0, .7f, 0);
             collider.size = wall ? new Vector3(2.4f, 2.4f, .3f) : new Vector3(.8f, 1.4f, .8f);
-            Visuals.Model(wall ? "Detailed/Prefabs/Bulkhead" : "Detailed/Prefabs/tank_2", prop.transform, Vector3.zero, wall ? 2.6f : 1.4f, Art.Amber, solid: false);
+            var model = Visuals.Model(wall ? "Detailed/Prefabs/Bulkhead" : "Detailed/Prefabs/tank_2", prop.transform, Vector3.zero, wall ? 2.6f : 1.4f, Art.Amber, solid: false);
+            if (wall)
+            {
+                // The mesh was only 1.83m tall inside a 2.4m damage box. Match the
+                // visible panel to the collider so falling cover hits where it appears.
+                var bounds = Art.RenderedBounds(model);
+                model.transform.localScale = Vector3.Scale(model.transform.localScale,new Vector3(2.4f/bounds.size.x,2.4f/bounds.size.y,.3f/bounds.size.z));
+                bounds = Art.RenderedBounds(model);
+                model.transform.position -= Vector3.up * (bounds.min.y-position.y);
+                bounds = Art.RenderedBounds(model);
+                collider.center = prop.transform.InverseTransformPoint(bounds.center);
+                collider.size = bounds.size;
+            }
             Visuals.Sign(wall ? "UNSTABLE" : "VOLATILE", position + Vector3.up * (wall ? 2.8f : 1.8f), .35f, Art.Amber, prop.transform);
             var destructible = prop.AddComponent<Destructible>(); destructible.IsWall = wall;
             return destructible;
         }
+        void DressSector(Vector3 center, Room room, int index)
+        {
+            string[] themes = { "REACTOR", "FREIGHT", "RELAY" };
+            Color accent = room.Theme == 0 ? Art.Amber : room.Theme == 1 ? Art.Cyan : new Color(.65f,.3f,1);
+            float edge = room.Size / 2f - 1.5f;
+            string asset = room.Theme == 0 ? "tank_capsule" : room.Theme == 1 ? "container" : "control_terminal";
+            Visuals.Model("Detailed/Prefabs/" + asset, world, center + new Vector3(edge,0,edge), 2, accent, 180);
+            Visuals.PointLight(center + new Vector3(edge,2,edge), accent, world);
+            Visuals.Sign(index == 0 ? "EXTRACTION / 00" : themes[room.Theme] + " / " + index.ToString("00"), center + new Vector3(0,.06f,-3), .5f, accent, world);
+        }
         void DrawBoundaries(List<Room> rooms)
         {
-            var cells = new HashSet<Vector2Int>(); foreach (var room in rooms) cells.Add(new Vector2Int(room.X, room.Y));
-            foreach (var cell in cells)
+            foreach (var room in rooms)
             {
-                foreach (var side in new[] {Vector2Int.left, Vector2Int.right, Vector2Int.up, Vector2Int.down})
+                Vector3 center = new Vector3(room.X * MapLayout.Spacing,0,room.Y * MapLayout.Spacing);
+                foreach (var side in new[] {Vector2Int.left,Vector2Int.right,Vector2Int.up,Vector2Int.down})
                 {
-                    if (cells.Contains(cell + side)) continue;
-                    for (int i = 0; i < 4; i++)
+                    int neighbor = rooms.FindIndex(r => r.X == room.X + side.x && r.Y == room.Y + side.y);
+                    Vector3 normal = new Vector3(side.x,0,side.y);
+                    Vector3 tangent = new Vector3(side.y,0,-side.x);
+                    float half = room.Size / 2f;
+                    if (neighbor < 0) SectorWall(center + normal * half, tangent, room.Size, side);
+                    else
                     {
-                        Vector3 point = new Vector3(cell.x * 14, 0, cell.y * 14) + new Vector3(side.x * 7, 0, side.y * 7);
-                        point += side.x != 0 ? new Vector3(0, 0, -5.25f + i * 3.5f) : new Vector3(-5.25f + i * 3.5f, 0, 0);
-                        var wall = Visuals.Model("Detailed/Prefabs/Bulkhead", world, point, 3.45f, Art.Cyan, side.x != 0 ? 90 : 0);
-                        if (side.x < 0 || side.y < 0) wall.transform.localScale = new Vector3(1, .25f, 1);
+                        float wing = (room.Size - MapLayout.PassageWidth) / 2f;
+                        foreach (float sign in new[] {-1f,1f})
+                            SectorWall(center + normal * half + tangent * sign * (MapLayout.PassageWidth / 2f + wing / 2), tangent, wing, side);
+                        // Each connection is built once; square deck tiles make seamless passages.
+                        if (side.x < 0 || side.y < 0) continue;
+                        float end = MapLayout.Spacing - rooms[neighbor].Size / 2f;
+                        float length = end - half;
+                        var corridor = Shape("Passage floor",PrimitiveType.Cube,center + normal * (half + length / 2) + Vector3.down * .25f,
+                            side.x != 0 ? new Vector3(length,.5f,MapLayout.PassageWidth) : new Vector3(MapLayout.PassageWidth,.5f,length),new Color(.08f,.12f,.16f),world);
+                        corridor.layer = 8;
+                        for (float distance = half; distance < end; distance += MapLayout.PassageWidth)
+                            Visuals.Deck(center + normal * Mathf.Min(distance + MapLayout.PassageWidth/2f,end-MapLayout.PassageWidth/2f),MapLayout.PassageWidth,world);
+                        foreach (float sign in new[] {-1f,1f})
+                        {
+                            Vector3 point = center + normal * (half + length/2) + tangent * sign * MapLayout.PassageWidth/2f;
+                            SectorWall(point,normal,length,new Vector2Int(side.y* (int)sign,-side.x*(int)sign));
+                            Visuals.Strip(point + Vector3.up*.1f,side.x != 0 ? new Vector3(length,.06f,.08f) : new Vector3(.08f,.06f,length),Art.Cyan,world);
+                        }
                     }
                 }
+            }
+        }
+        void SectorWall(Vector3 center, Vector3 tangent, float length, Vector2Int facing)
+        {
+            int pieces = Mathf.CeilToInt(length / 3.4f);
+            float width = length / pieces;
+            for (int i=0;i<pieces;i++)
+            {
+                var wall = Visuals.Model("Detailed/Prefabs/Bulkhead",world,center + tangent * (-length/2 + width*(i+.5f)),3.4f,Art.Cyan,tangent.x != 0 ? 0 : 90);
+                wall.transform.localScale = new Vector3(width/3.4f,1,1);
+                if (facing.x < 0 || facing.y < 0) wall.transform.localScale = Vector3.Scale(wall.transform.localScale,new Vector3(1,.3f,1));
             }
         }
         IEnumerator RefreshReflections()
@@ -408,7 +499,7 @@ namespace VideoGame
             yield return new WaitForSeconds(1);
             StartMission();
             var rooms = MapLayout.Generate(Seed);
-            Player.Teleport(new Vector3(rooms[1].X * 14, 1, rooms[1].Y * 14));
+            Player.Teleport(new Vector3(rooms[1].X * MapLayout.Spacing, 1, rooms[1].Y * MapLayout.Spacing));
             Director.enabled = false;
             foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.enabled = false;
             yield return new WaitForSeconds(1);
@@ -437,6 +528,38 @@ namespace VideoGame
                 }
             }
             motion.Player.enabled = true; motion.enabled = true; Player.enabled = true; motion.Revive(); view.orthographicSize = 7.5f;
+        }
+        IEnumerator CaptureSectors(string directory)
+        {
+            System.IO.Directory.CreateDirectory(directory);
+            yield return new WaitForSeconds(2);
+            StartMission(); Director.enabled=false;Player.enabled=false;
+            foreach(var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
+            fixedPresentationCamera=true;
+            var hud=GetComponent<GameHud>();hud.enabled=false;
+            Vector3 low=Vector3.zero,high=Vector3.zero;
+            foreach(var room in Layout){var point=new Vector3(room.X*MapLayout.Spacing,0,room.Y*MapLayout.Spacing);low=Vector3.Min(low,point-Vector3.one*8);high=Vector3.Max(high,point+Vector3.one*8);}
+            Vector3 midpoint=(low+high)/2;view.orthographicSize=Mathf.Max(high.z-low.z,high.x-low.x)*.6f;
+            view.transform.position=midpoint+Vector3.up*100;view.transform.rotation=Quaternion.Euler(90,0,0);
+            yield return new WaitForSeconds(1);ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"sector-overview.png"));
+            yield return new WaitForSeconds(.5f);
+            hud.enabled=true;
+            view.orthographicSize=7.5f;view.transform.rotation=Quaternion.Euler(50,45,0);
+            var room1=Layout[1];Vector3 center=new Vector3(room1.X*MapLayout.Spacing,0,room1.Y*MapLayout.Spacing);
+            Player.Teleport(center+Vector3.up);view.transform.position=Player.transform.position+new Vector3(-10.7f,18,-10.7f);
+            yield return new WaitForSeconds(.5f);ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"sector-room.png"));
+            yield return new WaitForSeconds(.5f);
+            foreach(float side in new[]{-1f,1f})
+            {
+                Player.Teleport(new Vector3(0,1,side*1.8f));Player.Health=100;
+                var wall=SpawnDestructible(Vector3.zero,true);
+                view.transform.position=new Vector3(-7,10,-7);view.transform.LookAt(Vector3.up*.5f);view.orthographicSize=4;
+                yield return new WaitForSeconds(.3f);ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"wall-"+side+"-standing.png"));
+                yield return new WaitForSeconds(.2f);wall.Damage(40,new Vector3(0,1,-side*2),Vector3.forward*side);
+                yield return new WaitForSeconds(.45f);ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"wall-"+side+"-falling.png"));
+                yield return new WaitForSeconds(.5f);ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"wall-"+side+"-fallen.png"));
+                yield return new WaitForSeconds(.3f);Destroy(wall.gameObject);
+            }
         }
         IEnumerator CaptureRoster(string directory)
         {

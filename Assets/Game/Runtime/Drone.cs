@@ -30,11 +30,17 @@ namespace VideoGame
             if (delta.sqrMagnitude > .01f) transform.rotation = Quaternion.LookRotation(delta);
             if (distance > 28) return;
             float range = Kind == EnemyKind.Bombardier ? 11 : Ranged ? 7 : 1.6f;
-            if (distance > range)
+            // Permanent room walls require a route through a doorway. Breakable
+            // cover can still be attacked, so enemy fire remains hazardous to it.
+            bool blocked = Physics.Linecast(transform.position, game.Player.transform.position, out var obstruction, 1 << 9)
+                && obstruction.collider.GetComponentInParent<Destructible>() == null;
+            if (distance > range || blocked)
             {
+                Vector3 path = game.PursuitTarget(transform.position, game.Player.transform.position) - transform.position;
+                path.y = 0;
                 foreach (float turn in SteeringAngles)
                 {
-                    Vector3 direction = Quaternion.Euler(0, turn, 0) * delta.normalized;
+                    Vector3 direction = Quaternion.Euler(0, turn, 0) * path.normalized;
                     Vector3 next = transform.position + direction * (MoveSpeed * Time.deltaTime);
                     if (Physics.CheckSphere(transform.position + direction * .8f, .5f, 1 << 9)) continue;
                     if (!Physics.Raycast(next + Vector3.up, Vector3.down, 3, 1 << 8)) continue;

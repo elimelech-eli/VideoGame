@@ -35,3 +35,12 @@ Local regression: 4 EditMode and 22 PlayMode tests passed, along with 8,011 core
 The robot FBX exporter binds migrated legacy action slots and exports units through the FBX global scale. Runtime model sizing and hitboxes use the current skinned mesh rather than imported animation envelopes. Tests caught static-pose and scale problems during conversion; the corrected exports passed. The rendered model lineup is recorded in `images/roster.png`. Nexus and combat previews were inspected for lighting, readability and shader/runtime errors. Music uses licensed recordings; track choice and loudness remain subjective playtest decisions.
 
 CI runs the complete gameplay suite with `-nographics`, matching local automation. The lighting pass made software-rendered PlayMode testing on the hosted runner prohibitively slow. Mesh deformation, collision, input, music state and mission tests still run; visual QA uses the graphics-enabled local Windows player. The Windows build and initialization smoke test remain required gates.
+
+
+## Procedural sectors and visible falling cover — 2026-10-26
+
+Local regression: 12,017 core assertions over 1,000 layout seeds, four EditMode tests and 26 PlayMode tests passed. Seed tests verify deterministic geometry/content, unique cells, connected growth, valid sizes/themes, branching diversity and custom room counts. Runtime tests sample every doorway and connecting passage over four mission seeds for floor continuity and player clearance, verify a clear extraction approach, and traverse the enemy room-graph route to the starting room without crossing solid walls. A ranged enemy blocked by permanent cover must move rather than enter its firing windup.
+
+Wall tests now measure actual mesh-tip displacement rather than only the root transform. Enemy projectiles collapse rotated walls onto a player beyond the impact from all four cardinal orientations; the player takes exactly one 35-damage hit. The visible panel matches the collision volume, eliminating the previous 1.83-metre mesh / 2.4-metre box mismatch. Rendered player captures verify opposite-side falls and damage, sector geometry, room dressing and HUD map sizing.
+
+The Windows build and eight-second initialization/error smoke test passed. Right-click movement still steers directly toward the clicked point; it does not automatically navigate multiple rooms. This remains a modular industrial-map prototype, with seeded room sizes/themes and connections rather than generated terrain or a full dungeon content system.
