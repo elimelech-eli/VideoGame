@@ -29,6 +29,9 @@ namespace VideoGame
         readonly List<Material> materials = new List<Material>();
         readonly Dictionary<Color, Material> surfaces = new Dictionary<Color, Material>();
         public CombatFeedback Feedback { get; private set; }
+        public BiomeWorld Biomes { get; private set; }
+        public Deployment ActiveDeployment { get; private set; }
+        public BiomeId ActiveBiome => ActiveDeployment.Biome;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
@@ -37,7 +40,7 @@ namespace VideoGame
             {
                 var game = new GameObject("Prototype").AddComponent<Prototype>();
                 bool capture = false;
-                foreach(string variable in new[]{"POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS","POC_CAPTURE_FEEDBACK"})
+                foreach(string variable in new[]{"POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS","POC_CAPTURE_FEEDBACK","POC_CAPTURE_BIOMES"})
                     capture |= !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(variable));
                 if(!capture) game.Menus.OpenMain(false,true);
             }
@@ -53,6 +56,7 @@ namespace VideoGame
             view.gameObject.AddComponent<CinematicGrade>();
             view.allowHDR = true;
             Feedback = gameObject.AddComponent<CombatFeedback>();
+            Biomes = gameObject.AddComponent<BiomeWorld>();
             view.orthographic = true;
             view.orthographicSize = 7.5f;
             view.backgroundColor = new Color(.015f, .02f, .045f);
@@ -88,6 +92,7 @@ namespace VideoGame
             BuildHub();
             Menus = gameObject.AddComponent<MenuFlow>();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
+            if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_CAPTURE_BIOMES")))gameObject.AddComponent<BiomeCapture>();
             string feedbackCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_FEEDBACK");
             if (!string.IsNullOrEmpty(feedbackCapture)) StartCoroutine(CaptureFeedback(feedbackCapture));
             string capture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_SCREEN");
@@ -112,23 +117,23 @@ namespace VideoGame
             Feedback.Shot(Player.transform.position + Vector3.up * .25f, point, Art.Cyan);
             Player.Motion.Act("Fire"); Player.Motion.Kick();
             yield return new WaitForSeconds(.025f);
-            CaptureFeedbackFrame(System.IO.Path.Combine(directory,"gunfire.png"));
+            CaptureFrame(System.IO.Path.Combine(directory,"gunfire.png"));
             yield return new WaitForSeconds(.4f);
             Explosion(point, 4);
             yield return new WaitForSeconds(.065f);
-            CaptureFeedbackFrame(System.IO.Path.Combine(directory,"blast.png"));
+            CaptureFrame(System.IO.Path.Combine(directory,"blast.png"));
             yield return new WaitForSeconds(.25f);
-            CaptureFeedbackFrame(System.IO.Path.Combine(directory,"blast-tail.png"));
+            CaptureFrame(System.IO.Path.Combine(directory,"blast-tail.png"));
             yield return new WaitForSeconds(1.6f);
             var wall = SpawnDestructible(point - Vector3.up, true);
             wall.Damage(40, point - Vector3.forward * 3, Vector3.forward);
             yield return new WaitForSeconds(.8f);
-            CaptureFeedbackFrame(System.IO.Path.Combine(directory,"collapse.png"));
+            CaptureFrame(System.IO.Path.Combine(directory,"collapse.png"));
             yield return new WaitForSeconds(.4f);
             Debug.Log("FEEDBACK_CAPTURE_COMPLETE: staged gunfire, blast and collapse.");
             Time.captureFramerate = 0;
         }
-        void CaptureFeedbackFrame(string path)
+        public void CaptureFrame(string path)
         {
             // Render offscreen: hidden Windows players have no screenshot backbuffer.
             var target = RenderTexture.GetTemporary(1280, 720, 24);
@@ -184,7 +189,7 @@ namespace VideoGame
         }
         void ResetWorld()
         {
-            Feedback?.ResetAll();
+            Feedback?.ResetAll();Biomes?.ResetDressing();
             Director = null;
             if (world != null) { world.gameObject.SetActive(false); Destroy(world.gameObject); }
             world = new GameObject("World").transform;
@@ -214,7 +219,7 @@ namespace VideoGame
         void Floor(Vector3 center, float size, Color color)
         {
             Shape("Floor", PrimitiveType.Cube, center + Vector3.down * .25f, new Vector3(size, .5f, size), color, world).layer = 8;
-            Visuals.Deck(center, size, world);
+            if(InMission)Biomes.Deck(ActiveBiome,center,size,size,world);else Visuals.Deck(center, size, world);
             for (int i = -1; i <= 1; i += 2)
             {
                 Visuals.Strip(center + new Vector3(i * (size / 2 - .1f), .02f, 0), new Vector3(.04f, .025f, size), new Color(.06f, .24f, .3f), world);
@@ -251,11 +256,13 @@ namespace VideoGame
             if (Player.IsDead || Menus?.BlocksGameplay == true) return;
             Menus?.AutoSave();
             if (!Mission.Accept()) return;
+            Seed++;
+            ActiveDeployment=new Deployment(Seed,Menus?.Settings.Biome??-1,Menus?.Settings.SectorSize??0);
             InMission = true;
+            Music.SetBiome(ActiveBiome);Ambience.SetBiome(ActiveBiome);
             Music.SetBattle(true); Ambience.SetBattle(true);
             ResetWorld();
-            Seed++;
-            var rooms = Layout = MapLayout.Generate(Seed);
+            var rooms = Layout = MapLayout.Generate(Seed,ActiveDeployment.Rooms);
             var centers = new List<Vector3>();
             var random = new System.Random(Seed);
             terminal = new Vector3(-4, .5f, -4);
@@ -263,17 +270,18 @@ namespace VideoGame
             Visuals.Model("Detailed/Prefabs/station", world, terminal - Vector3.up * .5f, 2, Art.Cyan);
             Visuals.Sign("EXTRACTION", terminal + Vector3.up * 2, .6f, Art.Cyan, world);
             Visuals.PointLight(terminal + Vector3.up * 2, Art.Cyan, world);
+            int initialEnemies=0;
             for (int i = 0; i < rooms.Count; i++)
             {
                 Vector3 center = new Vector3(rooms[i].X * MapLayout.Spacing, 0, rooms[i].Y * MapLayout.Spacing);
                 centers.Add(center);
                 Floor(center, rooms[i].Size, rooms[i].Theme == 0 ? new Color(.1f, .09f, .16f) : new Color(.08f, .14f, .16f));
-                DressSector(center, rooms[i], i);
                 Ambience.Room(center, world, false);
                 // Keep the central cross and all four door approaches clear.
                 float corner = rooms[i].Size / 2f - 2.5f;
                 int turn = random.Next(4);
                 Quaternion dressing = Quaternion.Euler(0, turn * 90, 0);
+                Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i != 0) SpawnDestructible(center + dressing * new Vector3(corner, 0, -corner), false);
                 if (i != 0 && rooms[i].Theme != 2) SpawnDestructible(center + dressing * new Vector3(corner - 1.2f, 0, -corner), false);
                 if (i != 0)
@@ -284,12 +292,12 @@ namespace VideoGame
                 }
                 Physics.SyncTransforms();
                 if (i == 0) continue;
-                for (int j = 0; j < (i < 4 ? 2 : 1); j++)
+                for (int j = 0; j < (i < 4 ? 2 : 1) && initialEnemies<EncounterDirector.PopulationCap; j++)
                 {
                     Vector3 point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
                     for (int attempt = 0; attempt < 20 && Physics.CheckSphere(point, .7f, 1 << 9); attempt++)
                         point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
-                    SpawnDrone(point, (EnemyKind)((i * 2 + j) % 4));
+                    SpawnDrone(point, (EnemyKind)Deployment.Enemy(ActiveBiome,i*2+j));initialEnemies++;
                 }
             }
             var directorObject = new GameObject("Reinforcements"); directorObject.transform.SetParent(world);
@@ -297,7 +305,7 @@ namespace VideoGame
             DrawBoundaries(rooms);
             StartCoroutine(RefreshReflections());
             Menus?.MissionStarted();
-            message = "Contract active: destroy 8 drones. Return to the green beacon to extract.";
+            message = Deployment.Name(ActiveBiome)+" / "+rooms.Count+" rooms. Destroy 8 drones, then return to extraction.";
         }
         public Vector3 PursuitTarget(Vector3 from, Vector3 target)
         {
@@ -422,13 +430,12 @@ namespace VideoGame
                         var corridor = Shape("Passage floor",PrimitiveType.Cube,center + normal * (half + length / 2) + Vector3.down * .25f,
                             side.x != 0 ? new Vector3(length,.5f,MapLayout.PassageWidth) : new Vector3(MapLayout.PassageWidth,.5f,length),new Color(.08f,.12f,.16f),world);
                         corridor.layer = 8;
-                        for (float distance = half; distance < end; distance += MapLayout.PassageWidth)
-                            Visuals.Deck(center + normal * Mathf.Min(distance + MapLayout.PassageWidth/2f,end-MapLayout.PassageWidth/2f),MapLayout.PassageWidth,world);
+                        Biomes.Deck(ActiveBiome,center+normal*(half+length/2),side.x!=0?length:MapLayout.PassageWidth,side.x!=0?MapLayout.PassageWidth:length,world);
                         foreach (float sign in new[] {-1f,1f})
                         {
                             Vector3 point = center + normal * (half + length/2) + tangent * sign * MapLayout.PassageWidth/2f;
                             SectorWall(point,normal,length,new Vector2Int(side.y* (int)sign,-side.x*(int)sign));
-                            Visuals.Strip(point + Vector3.up*.1f,side.x != 0 ? new Vector3(length,.06f,.08f) : new Vector3(.08f,.06f,length),Art.Cyan,world);
+                            Visuals.Strip(point + Vector3.up*.1f,side.x != 0 ? new Vector3(length,.06f,.08f) : new Vector3(.08f,.06f,length),BiomeProfile.Get(ActiveBiome).Accent,world);
                         }
                     }
                 }
@@ -436,15 +443,9 @@ namespace VideoGame
         }
         void SectorWall(Vector3 center, Vector3 tangent, float length, Vector2Int facing)
         {
-            int pieces = Mathf.CeilToInt(length / 3.4f);
-            float width = length / pieces;
-            for (int i=0;i<pieces;i++)
-            {
-                var wall = Visuals.Model("Detailed/Prefabs/Bulkhead",world,center + tangent * (-length/2 + width*(i+.5f)),3.4f,Art.Cyan,tangent.x != 0 ? 0 : 90);
-                wall.transform.localScale = new Vector3(width/3.4f,1,1);
-                if (facing.x < 0 || facing.y < 0) wall.transform.localScale = Vector3.Scale(wall.transform.localScale,new Vector3(1,.3f,1));
-            }
+            Biomes.Wall(ActiveBiome,center,tangent,length,facing,world);
         }
+
         IEnumerator RefreshReflections()
         {
             Transform targetWorld = world;

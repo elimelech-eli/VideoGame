@@ -17,11 +17,14 @@ namespace VideoGame
         public float ScreenShake = .5f;
         public bool ReducedEffects;
         public bool AimAssist = true, MusicMuted;
+        public int Biome = -1, SectorSize;
         public GameSettings Copy() => JsonUtility.FromJson<GameSettings>(JsonUtility.ToJson(this));
         public void Sanitize()
         {
             Master = SafeVolume(Master); Music = SafeVolume(Music); Effects = SafeVolume(Effects);
             ScreenShake = float.IsNaN(ScreenShake) || float.IsInfinity(ScreenShake) ? .5f : Mathf.Clamp01(ScreenShake);
+            if(Biome < -1 || Biome > 5)Biome=-1;
+            if(SectorSize!=0 && SectorSize!=6 && SectorSize!=10 && SectorSize!=20)SectorSize=0;
             Quality = Mathf.Clamp(Quality,0,2); WindowMode = Mathf.Clamp(WindowMode,0,2);
             Width = Mathf.Clamp(Width,800,7680); Height = Mathf.Clamp(Height,600,4320);
             VSync = Mathf.Clamp(VSync,0,1);

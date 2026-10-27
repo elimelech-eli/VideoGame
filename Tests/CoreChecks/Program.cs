@@ -40,6 +40,20 @@ static class Checks
         var layouts = Enumerable.Range(0,100).Select(seed => string.Join(";", MapLayout.Generate(seed).Select(r => $"{r.X},{r.Y},{r.Size},{r.Theme}"))).Distinct().Count();
         Check(layouts > 95,"Seeds do not vary the map");
         Check(Enumerable.Range(0,100).Any(seed => MapLayout.Generate(seed).Any(room => MapLayout.Generate(seed).Count(other => MapLayout.Adjacent(room,other)) >= 3)), "No branching layouts");
+        for (int seed = -50; seed < 50; seed++)
+            for (int biome = 0; biome < 6; biome++)
+                foreach (int size in new[] {6, 10, 20})
+                {
+                    var recipe = new Deployment(seed, biome, size);
+                    var map = MapLayout.Generate(recipe.Seed, recipe.Rooms);
+                    Check(map.Count == size && (int)recipe.Biome == biome, "Deployment recipe not honored");
+                    Check(map.Select(r => (r.X,r.Y)).Distinct().Count() == size, "Biome map overlaps");
+                    Check(map.Skip(1).All(r => map.Take(map.IndexOf(r)).Any(parent => MapLayout.Adjacent(parent,r))), "Biome map disconnected");
+                }
+        var randomRecipes = Enumerable.Range(0, 200).Select(seed => new Deployment(seed)).ToArray();
+        Check(randomRecipes.Select(r => r.Biome).Distinct().Count() == 6, "Random biomes missing");
+        Check(randomRecipes.Select(r => r.Rooms).Distinct().OrderBy(n => n).SequenceEqual(new[] {6,10,20}), "Random sizes missing");
+        Check(randomRecipes.All(r => new Deployment(r.Seed).Rooms == r.Rooms && new Deployment(r.Seed).Biome == r.Biome), "Recipe not reproducible");
         Console.WriteLine($"PASS: {assertions} assertions; mission lifecycle, replay, failure, and 1,000 procedural seeds.");
     }
 }

@@ -7,7 +7,7 @@ using VideoGame.Core;
 
 namespace VideoGame
 {
-    public enum MenuPage { Closed, Main, Pause, Options, Audio, Display, Controls, Difficulty, Save, Load, Confirm, KeepDisplay }
+    public enum MenuPage { Closed, Main, Pause, Options, Audio, Display, Controls, Difficulty, Save, Load, Confirm, KeepDisplay, Deployment }
     public sealed class MenuEntry
     {
         public string Id, Label, Value;
@@ -42,6 +42,7 @@ namespace VideoGame
         public bool BlocksPlayerInput => BlocksGameplay ||
             ((Mouse.current?.leftButton.isPressed==true || Mouse.current?.rightButton.isPressed==true) &&
              (new Rect(30,90,350,24).Contains(PointerPosition) ||
+              (!game.InMission && new Rect(30,130,350,46).Contains(PointerPosition)) ||
               (Vector3.Distance(game.Player.transform.position,game.Terminal)<3.5f && new Rect(440,522,400,57).Contains(PointerPosition))));
         public bool CanSave => HasSession && !game.InMission && !game.Player.IsDead;
         public float DamageMultiplier => new[]{.5f,1f,1.5f,2.5f}[(int)Difficulty];
@@ -154,6 +155,12 @@ namespace VideoGame
             return Load(latest.Index);
         }
         public void MissionStarted(){Notice="Mission active. Return to the Nexus to save.";}
+        public void OpenDeployment(){if(CanSave)Open(MenuPage.Deployment);}
+        void PersistDeployment()
+        {
+            try{Store.SaveSettings(Settings);Notice="Next deployment updated. Accept a contract at the uplink.";}
+            catch(Exception error) when(error is IOException || error is UnauthorizedAccessException){Notice="Deployment changed for this session; preferences could not be saved.";}
+        }
         public void ReturnToMain()
         {
             game.EndSession();HasSession=false;Open(MenuPage.Main);
@@ -171,6 +178,7 @@ namespace VideoGame
                 case MenuPage.Options:Draft=null;Open(optionsReturn);break;
                 case MenuPage.Audio:case MenuPage.Display:case MenuPage.Controls:Open(MenuPage.Options);break;
                 case MenuPage.Difficulty:case MenuPage.Save:Open(MenuPage.Pause);break;
+                case MenuPage.Deployment:Open(MenuPage.Pause);break;
                 case MenuPage.Load:Open(loadReturn);break;
                 case MenuPage.Confirm:confirmation=null;Open(confirmReturn);break;
                 case MenuPage.KeepDisplay:RevertDisplay();break;
@@ -215,6 +223,7 @@ namespace VideoGame
                     list.Add(Item("load","LOAD GAME",()=>{loadReturn=Page;Open(MenuPage.Load);}));
                     list.Add(Item("difficulty","DIFFICULTY",()=>Open(MenuPage.Difficulty),true,Difficulty.ToString().ToUpperInvariant()));
                     list.Add(Item("options","OPTIONS",OpenOptions));
+                    if(CanSave)list.Add(Item("deployment","NEXT DEPLOYMENT",OpenDeployment));
                     list.Add(Item("main","RETURN TO MAIN MENU",()=>Confirm("Return to the main menu? Unsaved progress will be lost.",ReturnToMain)));
                     list.Add(Item("exit","EXIT TO DESKTOP",()=>Confirm("Exit to desktop? Unsaved progress will be lost.",Quit)));break;
                 case MenuPage.Options:
@@ -229,6 +238,10 @@ namespace VideoGame
                     list.Add(Setting("music","MUSIC VOLUME",()=>Percent(Draft.Music),d=>Draft.Music=Mathf.Clamp01(Draft.Music+d*.1f)));
                     list.Add(Setting("mute","MUSIC MUTE",()=>Draft.MusicMuted?"ON":"OFF",d=>Draft.MusicMuted=!Draft.MusicMuted));
                     list.Add(Setting("effects","EFFECTS VOLUME",()=>Percent(Draft.Effects),d=>Draft.Effects=Mathf.Clamp01(Draft.Effects+d*.1f)));
+                    list.Add(Item("back","BACK",Back));break;
+                case MenuPage.Deployment:
+                    list.Add(Setting("biome","BIOME",()=>Settings.Biome<0?"RANDOM":VideoGame.Core.Deployment.Name((BiomeId)Settings.Biome),d=>{Settings.Biome=Cycle(Settings.Biome+1,d,7)-1;PersistDeployment();}));
+                    list.Add(Setting("size","MAP SIZE",()=>VideoGame.Core.Deployment.SizeName(Settings.SectorSize),d=>{int[] sizes={0,6,10,20};Settings.SectorSize=sizes[Cycle(Array.IndexOf(sizes,Settings.SectorSize),d,4)];PersistDeployment();}));
                     list.Add(Item("back","BACK",Back));break;
                 case MenuPage.Display:
                     list.Add(Setting("resolution","RESOLUTION",()=>Draft.Width+" x "+Draft.Height,ChangeResolution));

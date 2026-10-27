@@ -1,0 +1,4 @@
+Original project-authored biome meshes, floor textures and music.
+Authoring source: Tools/Art/export_biomes.py and Tools/Art/generate_biome_media.py.
+No external models, texture images or sampled recordings are included in this directory.
+Existing Nexus music and other assets retain their own provenance.

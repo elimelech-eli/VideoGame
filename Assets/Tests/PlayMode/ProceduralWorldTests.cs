@@ -21,7 +21,7 @@ public sealed class ProceduralWorldTests
             game.StartMission();game.Director.enabled=false;game.Player.enabled=false;
             foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
             Physics.SyncTransforms();
-            var rooms=game.Layout;Assert.AreEqual(8,rooms.Count);
+            var rooms=game.Layout;Assert.AreEqual(game.ActiveDeployment.Rooms,rooms.Count);
             foreach(var a in rooms)foreach(var b in rooms)
             {
                 if(!MapLayout.Adjacent(a,b))continue;

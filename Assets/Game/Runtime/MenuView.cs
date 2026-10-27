@@ -73,7 +73,7 @@ namespace VideoGame
                 Fill(new Rect(98,182,main?510:640,1),new Color(.15f,.33f,.4f));
                 var items=menu.Items();
                 float y=204,width=main?510:640;
-                float height=items.Count>6?47:52;
+                float height=items.Count>6?Mathf.Min(47,330f/items.Count):52;
                 for(int i=0;i<items.Count;i++)
                 {
                     var item=items[i];Rect area=new Rect(98,y,width,height-5);
@@ -112,7 +112,7 @@ namespace VideoGame
         }
         public void Pointer(Vector2 point,bool activate)
         {
-            var items=menu.Items();float height=items.Count>6?47:52;
+            var items=menu.Items();float height=items.Count>6?Mathf.Min(47,330f/items.Count):52;
             for(int i=0;i<items.Count;i++)
             {
                 Rect area=new Rect(98,204+i*height,menu.Page==MenuPage.Main?510:640,height-5);
@@ -150,6 +150,7 @@ namespace VideoGame
                 case MenuPage.Difficulty:return "Damage received: Story 50%, Standard 100%, Hard 150%, Nightmare 250%. Changes apply immediately; rewards stay the same.";
                 case MenuPage.Display:return "Apply changes from Options. Display mode changes require confirmation within 15 seconds. VSync takes priority over the frame-rate limit.";
                 case MenuPage.Audio:return "Volume changes take effect when you select Apply Changes.";
+                case MenuPage.Deployment:return "Applies to your next contract. Small: 6 rooms, Medium: 10, Large: 20. Corridors are additional. Random chooses a new biome and/or size from the mission seed.";
                 default:return "Adjust with ← → or the arrow buttons. Apply Changes to keep your preferences, or Cancel to discard them.";
             }
         }

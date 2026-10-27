@@ -34,8 +34,9 @@ namespace VideoGame
             try
             {
                 Text(new Rect(28, 22, 350, 28), "N E X U S", title, Color.white);
-                Text(new Rect(30, 52, 350, 22), game.InMission ? "COMBAT ZONE  /  SIGNAL ONLINE" : "OPERATIONS  /  SAFE ZONE", small, Art.Cyan);
+                Text(new Rect(30, 52, 350, 22), game.InMission ? Deployment.Name(game.ActiveBiome).ToUpperInvariant() : "OPERATIONS  /  SAFE ZONE", small, Art.Cyan);
                 Box(new Rect(30, 79, 180, 2), Art.Cyan);
+                if(!game.InMission && GUI.Button(new Rect(30,130,350,46),"NEXT DEPLOYMENT  /  BIOME & SIZE",small))game.Menus.OpenDeployment();
                 if (GUI.Button(new Rect(220, 90, 160, 24), "PAUSE [ESC / START]", small)) game.Menus.Pause();
                 if (GUI.Button(new Rect(30, 90, 180, 24), game.Music.Enabled ? "MUSIC ON  [M]" : "MUSIC OFF  [M]", small)) game.Music.Toggle();
                 Panel(new Rect(944, 24, 308, 145), game.InMission ? Art.Amber : Art.Cyan);
@@ -83,7 +84,7 @@ namespace VideoGame
         {
             var rooms = game.Layout; if (rooms == null) return;
             Panel(new Rect(30,130,180,190),Art.Cyan);
-            Text(new Rect(40,138,165,20),"SECTOR / " + game.Seed,small,muted);
+            Text(new Rect(40,138,165,20),game.Layout.Count+" ROOMS / " + game.Seed,small,muted);
             int minX=0,maxX=0,minY=0,maxY=0;
             foreach(var room in rooms) { minX=Mathf.Min(minX,room.X);maxX=Mathf.Max(maxX,room.X);minY=Mathf.Min(minY,room.Y);maxY=Mathf.Max(maxY,room.Y); }
             float unit=Mathf.Min(144f/(maxX-minX+1),140f/(maxY-minY+1));
