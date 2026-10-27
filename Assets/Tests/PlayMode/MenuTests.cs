@@ -42,6 +42,18 @@ public sealed class MenuTests
         string full=Path.GetFullPath(directory);
         if(full.StartsWith(Path.GetFullPath(Path.GetTempPath()),StringComparison.OrdinalIgnoreCase) && Directory.Exists(full))Directory.Delete(full,true);
     }
+    [UnityTest] public IEnumerator DeploymentChoicesPersistAndOnlyAffectTheNextMission()
+    {
+        game.Menus.Pause();game.Menus.Activate("deployment");
+        Assert.AreEqual(MenuPage.Deployment,game.Menus.Page);
+        game.Menus.Activate("biome");game.Menus.Activate("size");
+        var saved=game.Menus.Store.LoadSettings();Assert.AreEqual(0,saved.Biome);Assert.AreEqual(6,saved.SectorSize);
+        game.Menus.Back();game.Menus.Resume();yield return null;yield return null;yield return null;
+        game.StartMission();game.Director.enabled=false;
+        foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
+        Assert.AreEqual(6,game.Layout.Count);Assert.AreEqual(0,(int)game.ActiveBiome);
+        game.Menus.OpenDeployment();Assert.AreEqual(MenuPage.Closed,game.Menus.Page,"Deployment editing is Nexus-only");
+    }
     [UnityTest] public IEnumerator MainMenuRequiresNewGameAndControllerConfirmCannotTriggerGameplay()
     {
         game.Menus.OpenMain(false);

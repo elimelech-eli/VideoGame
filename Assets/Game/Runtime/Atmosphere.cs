@@ -1,4 +1,5 @@
 using UnityEngine;
+using VideoGame.Core;
 
 namespace VideoGame
 {
@@ -9,6 +10,8 @@ namespace VideoGame
         Mesh beam;
         Texture2D cookie;
         Material shaft;
+        BiomeId biome;
+        public void SetBiome(BiomeId value)=>biome=value;
         public void SetBattle(bool battle)
         {
             InBattle = battle;
@@ -18,12 +21,20 @@ namespace VideoGame
             RenderSettings.fog = true; RenderSettings.fogMode = FogMode.ExponentialSquared;
             RenderSettings.fogColor = battle ? new Color(.035f,.025f,.065f) : new Color(.025f,.055f,.075f);
             RenderSettings.fogDensity = battle ? .017f : .013f;
+            if(battle)
+            {
+                var profile=BiomeProfile.Get(biome);
+                KeyLight.color=profile.Key;KeyLight.intensity=profile.KeyIntensity;
+                RenderSettings.ambientLight=profile.Ambient;RenderSettings.fogColor=profile.Fog;RenderSettings.fogDensity=profile.FogDensity;
+            }
         }
         public void Room(Vector3 center, Transform parent, bool hub)
         {
             if (beam == null) BuildBeam();
-            Color cool = hub ? new Color(.18f,.7f,1) : new Color(.35f,.3f,1);
-            Color warm = hub ? new Color(1,.6f,.25f) : new Color(1,.22f,.07f);
+            var atmosphereRoot=new GameObject(hub?"Nexus ambience":"Biome ambience");atmosphereRoot.transform.SetParent(parent);atmosphereRoot.transform.position=center;
+            atmosphereRoot.AddComponent<BiomeMotion>();parent=atmosphereRoot.transform;
+            Color cool = hub ? new Color(.18f,.7f,1) : BiomeProfile.Get(biome).Accent;
+            Color warm = hub ? new Color(1,.6f,.25f) : BiomeProfile.Get(biome).Secondary;
             AddSpot(center + new Vector3(-3,6,1), center + new Vector3(0,0,2), cool, parent, hub);
             AddSpot(center + new Vector3(4,5,-3), center + new Vector3(2,0,-1), warm, parent, false);
             var dust = new GameObject("Ambient dust").AddComponent<ParticleSystem>(); dust.transform.SetParent(parent); dust.transform.position = center + Vector3.up * 2.5f;
@@ -34,6 +45,19 @@ namespace VideoGame
             var shape = dust.shape; shape.shapeType = ParticleSystemShapeType.Box; shape.scale = new Vector3(11,4,11);
             var noise = dust.noise; noise.enabled = true; noise.strength = .09f; noise.frequency = .15f; noise.scrollSpeed = .1f;
             dust.GetComponent<ParticleSystemRenderer>().sharedMaterial = Resources.Load<Material>("Particle"); dust.Play();
+            if(!hub && biome==BiomeId.NeonStreets)
+            {
+                dust.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);dust.gameObject.name="District rain";
+                main.startLifetime=1.1f;main.startSize=.025f;main.maxParticles=80;main.startColor=new Color(.45f,.6f,.8f,.3f);
+                var velocity=dust.velocityOverLifetime;velocity.enabled=true;velocity.y=-7;
+                emission.rateOverTime=55;var renderer=dust.GetComponent<ParticleSystemRenderer>();renderer.renderMode=ParticleSystemRenderMode.Stretch;renderer.lengthScale=4;renderer.velocityScale=.02f;dust.Play();
+            }
+            else if(!hub && (biome==BiomeId.RuinedFactory||biome==BiomeId.Undercity))
+            {
+                dust.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);dust.gameObject.name="Warm drifting steam";
+                main.startLifetime=4;main.startSize=new ParticleSystem.MinMaxCurve(.15f,.35f);main.maxParticles=24;main.startColor=new Color(.4f,.45f,.4f,.08f);
+                shape.scale=new Vector3(8,.5f,8);var velocity=dust.velocityOverLifetime;velocity.enabled=true;velocity.y=.12f;emission.rateOverTime=3;dust.Play();
+            }
         }
         void AddSpot(Vector3 from, Vector3 to, Color color, Transform parent, bool shadows)
         {

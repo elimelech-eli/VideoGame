@@ -58,3 +58,7 @@ A pointer-visibility follow-up adds a regression for a hidden terminal prompt: t
 ## Combat feedback - 2026-10-27
 
 Complete local regression passed: 12,017 core assertions, four EditMode and 47 PlayMode tests. Focused follow-up tests cover final particle tuning and the pause-click shot-event guard. Windows build, startup smoke and staged captures were checked separately. Subjective listening, physical-controller feel and frame-time profiling remain human playtest items. See COMBAT_FEEDBACK.md.
+
+## Six procedural biomes - 2026-10-27
+
+Six original modular kits, six original streaming ambient loops, biome lighting/weather, moving ventilation, seeded dressing and random/fixed 6/10/20-room deployment are implemented. Core checks cover 100 seeds across all 18 configurations. Runtime checks cover all 18 biome/size pairs, floor/door clearance, unit bounds, texture/normal references, dressing replay, motion pause, population cap, music and saved deployment selection. Staged Windows captures were inspected after correcting FBX placement transforms, 2D texture imports and wall facing. See BIOMES.md and images/biome-gallery.png.

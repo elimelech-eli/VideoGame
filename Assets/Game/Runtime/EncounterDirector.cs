@@ -45,7 +45,7 @@ namespace VideoGame
                 foreach (var collider in Physics.OverlapSphere(point, 1))
                     if (collider.gameObject.layer == 9 || collider.GetComponentInParent<Drone>() != null) { occupied = true; break; }
                 if (occupied) continue;
-                game.SpawnDrone(point, (EnemyKind)random.Next(4));
+                game.SpawnDrone(point, (EnemyKind)VideoGame.Core.Deployment.Enemy(game.ActiveBiome,random.Next(6)));
                 Physics.SyncTransforms();
                 spawned++;
             }
