@@ -77,9 +77,10 @@ public sealed class InputTests
         yield return new WaitForSeconds(.1f);
         var enemies = Object.FindObjectsByType<Drone>(FindObjectsSortMode.None);
         foreach (var enemy in enemies) enemy.enabled = false;
-        var target = game.SpawnDrone(new Vector3(4, 1, 4), EnemyKind.Gunner); target.enabled = false;
+        // Use a protected combat lane, not the biome's furnished corner.
+        var target = game.SpawnDrone(new Vector3(0, 1, 4), EnemyKind.Gunner); target.enabled = false;
         Physics.SyncTransforms();
-        point = game.Player.View.WorldToScreenPoint(new Vector3(4, 0, 4));
+        point = game.Player.View.WorldToScreenPoint(new Vector3(0, 0, 4));
         InputSystem.QueueStateEvent(mouse, new MouseState { position = point, buttons = 1 });
         yield return WaitForKills(1);
         Assert.IsTrue(mouse.leftButton.isPressed, "Mouse button state reset");
@@ -92,12 +93,12 @@ public sealed class InputTests
         yield return null;
         var enemies = Object.FindObjectsByType<Drone>(FindObjectsSortMode.None);
         foreach (var enemy in enemies) enemy.enabled = false;
-        enemies[0].transform.position = new Vector3(5, 1, 5);
-        InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = Vector2.up, rightTrigger = 1 });
+        enemies[0].transform.position = new Vector3(0, 1, 5);
+        InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = new Vector2(-.707f,.707f), rightTrigger = 1 });
         yield return WaitForKills(1);
         Assert.GreaterOrEqual(game.Mission.Kills, 1, "Gun did not hit the aimed-at drone");
-        InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = Vector2.up }.WithButton(GamepadButton.RightShoulder));
-        enemies[1].transform.position = new Vector3(5, 1, 5);
+        InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = new Vector2(-.707f,.707f) }.WithButton(GamepadButton.RightShoulder));
+        enemies[1].transform.position = new Vector3(0, 1, 5);
         yield return WaitForKills(2);
         Assert.GreaterOrEqual(game.Mission.Kills, 2, "Grenade did not damage nearby drone");
         Assert.Greater(game.Player.GrenadeRemaining, 0);
@@ -125,8 +126,8 @@ public sealed class InputTests
     {
         game.StartMission(); game.Director.enabled = false;
         foreach (var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.enabled = false;
-        var cache = game.SpawnMedicalCache(new Vector3(3, 0, 3)); Physics.SyncTransforms();
-        InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = Vector2.up, rightTrigger = 1 });
+        var cache = game.SpawnMedicalCache(new Vector3(0, 0, 3)); Physics.SyncTransforms();
+        InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = new Vector2(-.707f,.707f), rightTrigger = 1 });
         float deadline = Time.realtimeSinceStartup + 5;
         while (cache != null && !cache.IsDestroyed && Time.realtimeSinceStartup < deadline) yield return null;
         Assert.IsTrue(cache == null || cache.IsDestroyed, "Controller aim assist must include low health crates");

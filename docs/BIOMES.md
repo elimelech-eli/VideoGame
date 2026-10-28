@@ -1,4 +1,4 @@
-# Procedural biomes - generation recipe v2
+# Procedural biomes - generation recipe v3
 
 Six playable themes: Neon Street District, Ruined Automation Factory, Corporate Office Breach, Biotech Quarantine, Undercity Utilities and Elevated Transit Terminal.
 
@@ -6,22 +6,24 @@ Six playable themes: Neon Street District, Ruined Automation Factory, Corporate 
 
 At the Nexus, use NEXT DEPLOYMENT / BIOME & SIZE, or Pause -> Next Deployment. Choose a fixed biome or Random, and Small (6 rooms), Medium (10), Large (20), or Random. Corridors are additional and never consume room slots. Preferences persist separately from Nexus checkpoints; changing them affects the next accepted contract. Defaults randomize both from the mission seed.
 
-A recipe records seed, generator version 2, resolved biome and exact room count. Topology is the existing connected frontier room graph with 12/14/16-metre rooms, 20-metre centre spacing and four-metre passages. Room/corridor floor bounds and opposing door openings share these measurements. Door lanes, spawn and extraction are protected. Random choices use independent recipe, layout and per-room dressing streams; dressing does not consume layout RNG. Same seed/configuration reproduces topology and decoration. Combat-state persistence remains Nexus-only.
+A recipe records seed, generator version 3, resolved biome and exact room count. Topology is the existing connected frontier room graph with 12/14/16-metre rooms, 20-metre centre spacing and four-metre passages. Room/corridor floor bounds and opposing door openings share these measurements. Door lanes, spawn and extraction are protected. Random choices use independent recipe, layout and per-room dressing streams; dressing does not consume layout RNG. Same seed/configuration reproduces topology and decoration. Combat-state persistence remains Nexus-only.
 
 ## Visual kits
 
-Original Blender-authored modules: five roles per theme (wall, floor, feature prop, service prop and moving vent), 30 FBX files total. Shell/trim/glow/dark/glass material slots share biome materials. Each floor uses an original 512-pixel color/normal tile. Four-metre wall/floor modules retain the FBX importer unit/axis transform under a placement root. Placement scales only the declared module axes to fit room wings and corridor lengths. Static solids use measured render bounds as conservative box hulls. Front-facing walls are deliberately low for the isometric camera; collision scales with the visible wall.
+Original Blender-authored modules: eleven roles per theme, 66 FBX files, 94,332 source triangles across the complete library. Roles are two wall compositions, floor tile, room surface, feature, landmark, service, detail, animated object, volatile container and unstable partition. Each biome has original 512-pixel floor and wall color/normal maps. Shell/trim/glow/dark/glass materials are shared within each biome. Four-metre wall/floor sockets preserve the imported FBX axis transform. Walls have different structural geometry, rather than a shared wall box with changed accents. Back-wall height varies from three-metre office/lab partitions through tunnel shoulders to 4.2-metre storefronts, factory trusses and station beams. Front walls retain the existing camera cutaway policy, with matching collision. Deep corridor modules are offset by their measured inward extent so four metres means usable passage width, including with storefront overhangs and pipes.
 
-| Biome | Architecture / feature | Motion / atmosphere | Music direction |
-| --- | --- | --- | --- |
-| Neon streets | shop shutters, advertising, vending machine | rotating ventilation, rain, cyan/magenta practical light | gritty bass, syncopated electronic pulse |
-| Ruined factory | riveted panels, conduits, furnace vessel | rotor machinery, drifting steam, amber/cold light | slower industrial bass and metallic percussion |
-| Corporate offices | glazing, stone skirting, workstation | ventilation, cool architectural light and emergency red | restrained precise arpeggios |
-| Biotech quarantine | clean seals, observation glass, specimen pod | scanning/vent rotors, drifting dust, cyan/violet light | sparse uneasy pads and bell motifs |
-| Undercity utilities | layered pipework, pressure pump, service cabinets | ventilation, steam, orange/green utility light | low bass, sparse mechanical accents |
-| Transit terminal | station glazing, seating, ticket kiosk and route pylon | ventilation, cold dawn fill and violet light | brighter propulsive arpeggios |
+| Biome | Architecture and landmarks | Furniture / animated object |
+| --- | --- | --- |
+| Neon streets | masonry storefronts, shutter/awning or window/blade sign, asphalt/grates, street-food stall | dumpster, litter/bollard, rotating advertisement |
+| Ruined factory | steel I-beams, diagonal braces, pressure mains or damaged glazing, rail/hazard floors, hydraulic press | roller conveyor, scrap pipes, motor flywheel |
+| Corporate offices | slim glazing with privacy bands or slatted company wall, stone floors, reception island | upholstered chair, planter, kinetic sculpture |
+| Biotech quarantine | thick sealed panels, circular observation ports or wall specimens, gasket floors, isolation bed/scanner | sample trolley, contamination clusters, centrifuge |
+| Undercity utilities | tunnel shoulders, flanged pipework or maintenance hatch, drain/grate floors, twin filter tanks | electrical junction, tools/cable, extractor impeller |
+| Transit terminal | station columns, screen doors or route-map wall, tactile floor strips, parked metro section | station bench, luggage, rotating line signal |
 
-The room dressing varies quarter-turn, orientation, small prop scale/offset, optional service/vent choice and count. Destructible barrels/walls/medical caches occupy separately reserved corners. Animated rotors are presentation-only; solid hulls do not move. Nearby room lights and rotor motion activate within 30 metres; motion freezes with gameplay pause. Rain/steam/dust use bounded particle systems. These are the first modular interpretations of the approved concepts, not hand-built replicas of every concept detail.
+Room surfaces add broad pavements/crossings, assembly work cells, carpet islands, clinical bay outlines, water channels or platform/track markings instead of repeating these on every tile. These shallow overlays have no colliders; the existing floor remains authoritative. Seeded corner compositions alternate landmarks and feature props; larger rooms also receive service/detail furniture. Small rooms use compact feature props and omit side furniture to preserve clearance. The arrival room keeps its dressing opposite the extraction corner. Quarter-turn and small scale/offset variation stay independent of topology RNG. Biome-specific explosive containers and unstable partitions retain the existing damage, collapse, collision and interaction rules. Green medical caches keep their recognizable appearance. The four-metre central cross, door approaches, spawn and extraction remain protected. Nearby motion activates within 30 metres and freezes with gameplay pause; it never moves collision hulls.
+
+Room counts, topology, music, lighting and enemy weights retain the previous deployment behavior. This pass changes the architectural assets and dressing; it does not introduce new navigation or enemy systems. The shared connected-room graph remains a limitation: streets and office floors still use the same graph rules, despite their distinct kits.
 
 ## Music and roster
 
@@ -32,15 +34,18 @@ Existing enemy models and behavior are retained. Biomes bias the existing Hunter
 ## Sources, reproduction and evidence
 
 - Mesh source: Tools/Art/export_biomes.py; run with the pinned Blender 4.5.9 background executable. Models/manifest.json records triangle counts, metre bounds and moving-node identity.
+- Surface source: Tools/Art/generate_biome_surfaces.py; run after the media generator to author the current wall/floor maps.
 - Media source: Tools/Art/generate_biome_media.py; requires numpy and Pillow. media-manifest.json records duration, tempo, peak and RMS for every original loop. Texture and audio outputs are committed.
 - Unity import/material assembly: BiomeAssets.Build, also called by the Windows build. Shared meshes, materials and streaming clips are reused.
-- POC_CAPTURE_BIOMES enables an isolated staged visual capture of each theme and a 20-room overview. It bypasses normal profile loading/saving, disables enemy AI, and labels evidence as staged rather than natural mission completion.
-- Core checks exercise all biome/size pairs across 100 seeds plus random-choice coverage/determinism. Runtime tests exercise all 18 biome/size combinations, corridor/floor clearance, module dimensions, spawn cap, dressing replay, motion pause/cleanup and distinct music/mute behavior. Menu coverage checks saved deployment selection and the Nexus-only edit boundary.
+- POC_CAPTURE_BIOMES enables an isolated staged visual capture of each theme and a 20-room overview. It bypasses normal profile loading/saving, disables enemy AI, captures a second comparison under white lighting with fog off, and labels evidence as staged rather than natural mission completion.
+- Core checks exercise all biome/size pairs across 100 seeds plus random-choice coverage/determinism. Runtime tests exercise all 18 biome/size combinations, three-lane corridor/floor clearance, furniture/hazard overlap, module dimensions, spawn cap, dressing replay, motion pause/cleanup and distinct music/mute behavior. Menu coverage checks saved deployment selection and the Nexus-only edit boundary.
 
 Subjective music preference, physical-controller feel and full target-hardware frame-time profiling remain human playtest items. Environment kits are intentionally expandable; additional authored prop variants can be added through the same shared sockets and protected placement zones.
 
 ![Staged in-engine biome rooms](images/biome-gallery.png)
 
+![Same rooms under white lighting, fog disabled](images/biome-neutral-gallery.png)
+
 ![Staged 20-room map overview, fog disabled for topology inspection](images/biome-large-map.png)
 
-Final local validation: 17,420 core assertions; four EditMode and 51 PlayMode tests passed. Complete final local run: 85.5 seconds. Windows build: 19.9 seconds for the initial asset build, followed by a corrected-material build; final eight-second player smoke passed. Visual captures show staged room composition, not a natural mission clear.
+Architectural overhaul validation: 17,420 core assertions, four EditMode tests and 51 PlayMode tests passed. Final complete local suite: 97.7 seconds. Final Windows build: 11.0 seconds after a surface-art alignment correction. The eight-second player smoke passed; final captures show all six kits in biome and neutral lighting. Physical-controller and subjective art/audio acceptance remain human playtest items.

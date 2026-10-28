@@ -379,7 +379,9 @@ namespace VideoGame
             var collider = prop.AddComponent<BoxCollider>();
             collider.center = wall ? new Vector3(0, 1.2f, 0) : new Vector3(0, .7f, 0);
             collider.size = wall ? new Vector3(2.4f, 2.4f, .3f) : new Vector3(.8f, 1.4f, .8f);
-            var model = Visuals.Model(wall ? "Detailed/Prefabs/Bulkhead" : "Detailed/Prefabs/tank_2", prop.transform, Vector3.zero, wall ? 2.6f : 1.4f, Art.Amber, solid: false);
+            var model = InMission
+                ? Biomes.Place(ActiveBiome,wall?"Unstable":"Volatile",prop.transform,position,Quaternion.identity)
+                : Visuals.Model(wall ? "Detailed/Prefabs/Bulkhead" : "Detailed/Prefabs/tank_2", prop.transform, Vector3.zero, wall ? 2.6f : 1.4f, Art.Amber, solid: false);
             if (wall)
             {
                 // The mesh was only 1.83m tall inside a 2.4m damage box. Match the
@@ -434,16 +436,16 @@ namespace VideoGame
                         foreach (float sign in new[] {-1f,1f})
                         {
                             Vector3 point = center + normal * (half + length/2) + tangent * sign * MapLayout.PassageWidth/2f;
-                            SectorWall(point,normal,length,new Vector2Int(side.y* (int)sign,-side.x*(int)sign));
+                            SectorWall(point,normal,length,new Vector2Int(side.y* (int)sign,-side.x*(int)sign),true);
                             Visuals.Strip(point + Vector3.up*.1f,side.x != 0 ? new Vector3(length,.06f,.08f) : new Vector3(.08f,.06f,length),BiomeProfile.Get(ActiveBiome).Accent,world);
                         }
                     }
                 }
             }
         }
-        void SectorWall(Vector3 center, Vector3 tangent, float length, Vector2Int facing)
+        void SectorWall(Vector3 center, Vector3 tangent, float length, Vector2Int facing,bool corridor=false)
         {
-            Biomes.Wall(ActiveBiome,center,tangent,length,facing,world);
+            Biomes.Wall(ActiveBiome,center,tangent,length,facing,world,corridor);
         }
 
         IEnumerator RefreshReflections()

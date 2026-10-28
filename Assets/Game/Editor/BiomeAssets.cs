@@ -22,7 +22,7 @@ namespace VideoGame.Editor
             var importer=(TextureImporter)assetImporter;
             importer.maxTextureSize=512;importer.wrapMode=TextureWrapMode.Repeat;
             importer.textureShape=TextureImporterShape.Texture2D;
-            importer.textureType=assetPath.Contains("_Normal")?TextureImporterType.NormalMap:TextureImporterType.Default;
+            importer.textureType=assetPath.Contains("Normal")?TextureImporterType.NormalMap:TextureImporterType.Default;
         }
         void OnPreprocessAudio()
         {
@@ -37,7 +37,7 @@ namespace VideoGame.Editor
     {
         const string Root="Assets/Game/Resources/Biomes/";
         static BiomeAssets()=>EditorApplication.delayCall+=Ensure;
-        static void Ensure(){if(!File.Exists(Root+"Prefabs/5_Vent.prefab"))Build();}
+        static void Ensure(){if(!File.Exists(Root+"Prefabs/5_Room.prefab"))Build();}
         public static void Build()
         {
             if(!Directory.Exists(Root+"Models"))return;
@@ -64,9 +64,14 @@ namespace VideoGame.Editor
                         mat.SetTexture("_MainTex",Texture(id+"_Floor.png"));
                         mat.SetTexture("_BumpMap",Texture(id+"_Normal.png"));
                     }
+                    if(tag=="Shell")
+                    {
+                        mat.SetTexture("_MainTex",Texture(id+"_Shell.png"));
+                        mat.SetTexture("_BumpMap",Texture(id+"_ShellNormal.png"));
+                    }
                     EditorUtility.SetDirty(mat);
                 }
-                foreach(string role in new[]{"Wall","Floor","Feature","Service","Vent"})
+                foreach(string role in new[]{"Wall","WallB","Floor","Room","Feature","Service","Vent","Landmark","Detail","Volatile","Unstable"})
                 {
                     var source=AssetDatabase.LoadAssetAtPath<GameObject>(Root+"Models/"+id+"_"+role+".fbx");
                     if(source==null)throw new System.InvalidOperationException("Missing biome model "+id+" "+role);
@@ -93,8 +98,9 @@ namespace VideoGame.Editor
         {
             string path=Root+"Textures/"+name;
             var importer=AssetImporter.GetAtPath(path) as TextureImporter;
-            if(importer!=null&&importer.textureShape!=TextureImporterShape.Texture2D)
-            {importer.textureShape=TextureImporterShape.Texture2D;importer.SaveAndReimport();}
+            var type=name.Contains("Normal")?TextureImporterType.NormalMap:TextureImporterType.Default;
+            if(importer!=null&&(importer.textureShape!=TextureImporterShape.Texture2D||importer.textureType!=type))
+            {importer.textureShape=TextureImporterShape.Texture2D;importer.textureType=type;importer.SaveAndReimport();}
             var texture=AssetDatabase.LoadAssetAtPath<Texture2D>(path);
             if(texture==null)throw new System.InvalidOperationException("Missing biome texture "+path);
             return texture;
