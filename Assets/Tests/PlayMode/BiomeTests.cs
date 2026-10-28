@@ -34,9 +34,10 @@ public sealed class BiomeTests
             {
                 if(!MapLayout.Adjacent(a,b))continue;
                 Vector3 start=new Vector3(a.X*20,1,a.Y*20),end=new Vector3(b.X*20,1,b.Y*20);
-                for(int step=0;step<=20;step++)
+                Vector3 across=Vector3.Cross(Vector3.up,(end-start).normalized);
+                for(int step=0;step<=20;step++)foreach(float lane in new[]{-1.4f,0,1.4f})
                 {
-                    Vector3 point=Vector3.Lerp(start,end,step/20f);
+                    Vector3 point=Vector3.Lerp(start,end,step/20f)+across*lane;
                     Assert.IsTrue(Physics.Raycast(point,Vector3.down,2,1<<8),"Floor gap / biome "+biome+" "+point);
                     var blockers=Physics.OverlapCapsule(point-Vector3.up*.5f,point+Vector3.up*.5f,.42f,1<<9);
                     Assert.AreEqual(0,blockers.Length,"Door blocked / biome "+biome+" "+point+" "+string.Join(";",blockers.Select(c=>c.name+" "+c.bounds)));
@@ -49,7 +50,22 @@ public sealed class BiomeTests
             Assert.IsNotNull(material.GetTexture("_BumpMap"),"Floor material lost its normal map");
             var bounds=Art.RenderedBounds(floor);Assert.That(bounds.size.x,Is.EqualTo(4).Within(.1f));Assert.That(bounds.size.z,Is.EqualTo(4).Within(.1f));
             var wall=Resources.Load<GameObject>("Biomes/Prefabs/"+biome+"_Wall");
-            bounds=Art.RenderedBounds(wall);Assert.That(bounds.size.x,Is.EqualTo(4).Within(.1f));Assert.That(bounds.size.y,Is.EqualTo(3).Within(.1f));
+            bounds=Art.RenderedBounds(wall);Assert.That(bounds.size.x,Is.EqualTo(4).Within(.1f));
+            Assert.That(bounds.size.y,Is.EqualTo(new[]{4.2f,4.2f,3,3,3.7f,4.2f}[biome]).Within(.12f));
+            foreach(string role in new[]{"WallB","Room","Landmark","Detail","Service","Vent","Volatile","Unstable"})
+            {
+                var asset=Resources.Load<GameObject>("Biomes/Prefabs/"+biome+"_"+role);
+                Assert.IsNotNull(asset,"Incomplete biome kit: "+biome+" / "+role);
+                Assert.Greater(Art.RenderedBounds(asset).size.sqrMagnitude,.05f);
+            }
+            // Dressing must coexist with the actual hazard and wall hulls, not just
+            // leave the centre-to-centre graph clear. Ignore floor contact and self.
+            foreach(var solid in Object.FindObjectsByType<BoxCollider>(FindObjectsSortMode.None))
+            {
+                if(!solid.name.StartsWith(biome+"_")||solid.name.Contains("Wall"))continue;
+                var hit=Physics.OverlapBox(solid.bounds.center,solid.bounds.extents*.96f,Quaternion.identity,1<<9);
+                Assert.IsFalse(hit.Any(other=>other!=solid),"Dressing overlap: "+solid.name+" / "+string.Join(",",hit.Where(other=>other!=solid).Select(other=>other.name)));
+            }
             game.Mission.Abandon();game.BuildHub();yield return null;
         }
     }

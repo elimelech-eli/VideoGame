@@ -5,7 +5,7 @@ namespace VideoGame.Core
     public enum BiomeId { NeonStreets, RuinedFactory, CorporateOffice, BiotechLab, Undercity, Transit }
     public readonly struct Deployment
     {
-        public const int GeneratorVersion = 2;
+        public const int GeneratorVersion = 3;
         public readonly BiomeId Biome;
         public readonly int Rooms, Seed;
         public Deployment(int seed, int biome = -1, int size = 0)

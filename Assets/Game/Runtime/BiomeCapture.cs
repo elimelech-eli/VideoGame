@@ -21,6 +21,13 @@ namespace VideoGame
                 foreach(var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
                 yield return new WaitForSeconds(.6f);
                 game.CaptureFrame(Path.Combine(directory,biome+"-room.png"));
+                // Same camera and white lighting: architecture must read without
+                // biome fog, colored lamps or labels being the differentiator.
+                RenderSettings.fog=false;RenderSettings.ambientLight=new Color(.45f,.45f,.45f);
+                foreach(var lamp in FindObjectsByType<Light>(FindObjectsSortMode.None))
+                    if(lamp.type!=LightType.Directional)lamp.enabled=false;
+                game.Ambience.KeyLight.color=Color.white;game.Ambience.KeyLight.intensity=.8f;
+                game.CaptureFrame(Path.Combine(directory,biome+"-neutral.png"));
                 yield return new WaitForSeconds(.25f);
             }
             game.NewSession();game.Menus.Settings.Biome=0;game.Menus.Settings.SectorSize=20;

@@ -34,40 +34,60 @@ namespace VideoGame
                 tile.transform.localScale=new Vector3(x/4,1,z/4);
             }
         }
-        public void Wall(BiomeId biome,Vector3 center,Vector3 tangent,float length,Vector2Int facing,Transform parent)
+        public void Wall(BiomeId biome,Vector3 center,Vector3 tangent,float length,Vector2Int facing,Transform parent,bool corridor=false)
         {
             int pieces=Mathf.CeilToInt(length/4);float width=length/pieces;
             for(int i=0;i<pieces;i++)
             {
                 float yaw=facing.x!=0?(facing.x>0?-90:90):(facing.y>0?180:0);
-                var wall=Place(biome,"Wall",parent,center+tangent*(-length/2+width*(i+.5f)),Quaternion.Euler(0,yaw,0));
+                // Position-derived alternation is stable across room traversal order.
+                int variation=Mathf.RoundToInt(center.x+center.z)+i;
+                var wall=Place(biome,(variation&1)==0?"Wall":"WallB",parent,center+tangent*(-length/2+width*(i+.5f)),Quaternion.Euler(0,yaw,0));
                 wall.transform.localScale=new Vector3(width/4,facing.x<0||facing.y<0?.28f:1,1);
                 Solid(wall);
+                if(corridor)
+                {
+                    // The four-metre socket denotes usable passage width. Deep
+                    // storefronts/pipes sit outside it rather than stealing lanes.
+                    Vector3 normal=new Vector3(facing.x,0,facing.y);
+                    var bounds=Art.RenderedBounds(wall);
+                    float extent=Mathf.Abs(normal.x)*bounds.extents.x+Mathf.Abs(normal.z)*bounds.extents.z;
+                    float inset=Vector3.Dot(wall.transform.position-bounds.center,normal)+extent;
+                    wall.transform.position+=normal*inset;
+                }
             }
         }
         public void Dress(BiomeId biome,Room room,int index,int seed,int turn,Transform parent)
         {
+            if(index==0)turn=0; // Extraction occupies the opposite corner of the arrival room.
             var random=new System.Random(Deployment.DressingSeed(seed,index));
             Vector3 center=new Vector3(room.X*MapLayout.Spacing,0,room.Y*MapLayout.Spacing);
+            var surface=Place(biome,"Room",parent,center+Vector3.up*.045f,Quaternion.Euler(0,turn*90,0));
+            surface.transform.localScale=new Vector3(room.Size/12f,1,room.Size/12f);
             var profile=BiomeProfile.Get(biome);var motion=new GameObject("Living room / "+profile.Name).AddComponent<BiomeMotion>();
             motion.transform.SetParent(parent);motion.transform.position=center;motion.Phase=(float)random.NextDouble()*6;
-            float edge=room.Size/2f-1.65f;
+            float half=room.Size/2f;
             for(int corner=0;corner<3;corner++)
             {
-                if(corner==1&&random.Next(3)==0)continue;
-                int pick=corner==0?0:corner==1?random.Next(1,3):2;float yaw=random.Next(4)*90;
+                int pick=corner==0?(room.Size<14||index>0&&random.Next(3)==0?0:3):corner==1?(random.Next(2)==0?1:4):2;
                 // Keep spawn/extraction and the complete central cross free of decoration.
-                Vector3 local=corner==0?new Vector3(edge,0,edge):corner==1?new Vector3(edge-2.1f,0,edge):new Vector3(edge,0,edge-2.1f);
+                // Authored corner composition: a landmark backed against the wall,
+                // a small side prop and a moving prop. All stay outside the 4 m cross.
+                // Small rooms omit side furniture instead of squeezing walking lanes.
+                if(corner==1&&room.Size<14)continue;
+                Vector3 local=corner==0?new Vector3(half-2.8f,0,half-2.2f):corner==1?new Vector3(half-2.2f,0,2.7f):new Vector3(2.7f,0,2.7f);
+                if(room.Size<14)
+                    local=corner==0?new Vector3(3.2f,0,4.15f):new Vector3(4.2f,0,2.7f);
                 local+=new Vector3((float)random.NextDouble()*.14f-.07f,0,(float)random.NextDouble()*.14f-.07f);
                 Vector3 point=center+Quaternion.Euler(0,turn*90,0)*local;
-                yaw=Mathf.Atan2(center.x-point.x,center.z-point.z)*Mathf.Rad2Deg+(yaw/90-1.5f)*5;
-                string role=pick==0?"Feature":pick==1?"Service":"Vent";
+                float yaw=turn*90; // Furniture fronts face the room; no diagonal bounding-box inflation.
+                string role=pick==0?"Feature":pick==1?"Service":pick==2?"Vent":pick==3?"Landmark":"Detail";
                 var prop=Place(biome,role,parent,point,Quaternion.Euler(0,yaw,0));
                 prop.transform.localScale=Vector3.one*(.88f+(float)random.NextDouble()*.12f);
                 Solid(prop);
                 foreach(var node in prop.GetComponentsInChildren<Transform>())if(node.name=="Rotor")motion.Rotors.Add(node);
                 unchecked{DressingHash=DressingHash*31+(int)biome*59+pick*7+(int)yaw+Mathf.RoundToInt(point.x*100)+Mathf.RoundToInt(point.z*100)*13;}
-                if(pick==0)
+                if(pick==0||pick==3)
                     GetComponent<Prototype>().Visuals.Sign(biome==BiomeId.NeonStreets?"NIGHT / MARKET":biome==BiomeId.Transit?"LINE / 03":biome==BiomeId.BiotechLab?"ISOLATION":biome==BiomeId.CorporateOffice?"AUTHORIZED":biome==BiomeId.Undercity?"PRESSURE": "AUTOMATION",point+Vector3.up*2.3f,.24f,profile.Accent,parent);
             }
 
