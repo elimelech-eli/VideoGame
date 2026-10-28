@@ -1,0 +1,19 @@
+{
+  "source": "https://sketchfab.com/3d-models/free-military-soldier-rigged-e9c56308a67d4a3db62e914fafa4d198",
+  "license": "CC-BY-4.0",
+  "attribution": "BAMEN",
+  "model": "militia-bamen",
+  "mesh_count": 11,
+  "bones": [
+    79
+  ],
+  "actions": [],
+  "textures": [],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    1.1517689228057861,
+    1.6450841426849365,
+    1.304909110069275
+  ],
+  "review_scale": 1.4177232780814217
+}

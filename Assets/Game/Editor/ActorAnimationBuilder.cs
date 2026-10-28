@@ -13,15 +13,16 @@ namespace VideoGame.Editor
         [MenuItem("Nexus/Rebuild actor animation clips")]
         public static void Rebuild() => Build(true);
         public static void Build() => Build(false);
-        static void Build(bool force)
+        static void Build(bool force) => BuildFor("Assets/Game/Resources/Detailed/Prefabs/Operative.prefab", Folder, force);
+        public static void BuildFor(string sourcePath, string folder, bool force)
         {
-            Directory.CreateDirectory(Folder);
+            Directory.CreateDirectory(folder);
             AssetDatabase.Refresh();
-            var source = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Game/Resources/Detailed/Prefabs/Operative.prefab");
+            var source = AssetDatabase.LoadAssetAtPath<GameObject>(sourcePath);
             if (source == null) return;
             foreach (string name in Names)
             {
-                string path = Folder + name + ".anim";
+                string path = folder + name + ".anim";
                 if (!force && File.Exists(path)) continue;
                 var actor = new GameObject("Animation authoring rig");
                 var visual = new GameObject("Visual"); visual.transform.SetParent(actor.transform);
@@ -45,7 +46,16 @@ namespace VideoGame.Editor
                 }
                 string[] properties = {"localRotation.x","localRotation.y","localRotation.z","localRotation.w","localPosition.x","localPosition.y","localPosition.z"};
                 foreach (var pair in curves)
-                    for (int i = 0; i < 7; i++) clip.SetCurve(AnimationUtility.CalculateTransformPath(pair.Key, model.transform), typeof(Transform), properties[i], pair.Value[i]);
+                    for (int i = 0; i < 7; i++)
+                    {
+                        if (model.name.StartsWith("OperativeV03"))
+                            for (int key = 0; key < pair.Value[i].length; key++)
+                            {
+                                AnimationUtility.SetKeyLeftTangentMode(pair.Value[i], key, AnimationUtility.TangentMode.ClampedAuto);
+                                AnimationUtility.SetKeyRightTangentMode(pair.Value[i], key, AnimationUtility.TangentMode.ClampedAuto);
+                            }
+                        clip.SetCurve(AnimationUtility.CalculateTransformPath(pair.Key, model.transform), typeof(Transform), properties[i], pair.Value[i]);
+                    }
                 clip.EnsureQuaternionContinuity();
                 var existing = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
                 if (existing == null) AssetDatabase.CreateAsset(clip, path);
@@ -60,12 +70,17 @@ namespace VideoGame.Editor
             readonly Dictionary<Transform, Quaternion> rotations = new Dictionary<Transform, Quaternion>();
             readonly Dictionary<Transform, Vector3> positions = new Dictionary<Transform, Vector3>();
             float height;
+            readonly bool rifleOperator;
+            readonly Transform weaponSocket;
             public Rig(Transform model)
             {
+                rifleOperator = model.name.StartsWith("OperativeV03");
+                foreach (var node in model.GetComponentsInChildren<Transform>())
+                    if (node.name == "SOCKET_weapon_R") weaponSocket = node;
                 foreach (var bone in model.GetComponentsInChildren<Transform>())
                 {
                     string key = bone.name.Replace('.', '_');
-                    if (key == "hips" || key == "chest" || key == "spine" || key == "head" || key.StartsWith("thigh_") || key.StartsWith("shin_") || key.StartsWith("foot_") || key.StartsWith("upper_arm_") || key.StartsWith("forearm_") || key.StartsWith("hand_"))
+                    if ((rifleOperator && (key == "spine_mid" || key.StartsWith("clavicle_"))) || key == "hips" || key == "chest" || key == "spine" || key == "head" || key.StartsWith("thigh_") || key.StartsWith("shin_") || key.StartsWith("foot_") || key.StartsWith("upper_arm_") || key.StartsWith("forearm_") || key.StartsWith("hand_"))
                     { Bones[key] = bone; rotations[bone] = bone.localRotation; positions[bone] = bone.localPosition; }
                 }
                 foreach (string key in new[] {"hips","chest","thigh_L","thigh_R","shin_L","shin_R","foot_L","foot_R","upper_arm_R","forearm_R","hand_R"})
@@ -83,6 +98,81 @@ namespace VideoGame.Editor
                 bone.rotation = Quaternion.FromToRotation(child.position - bone.position, direction) * bone.rotation;
             }
             public void Pose(string name, float t)
+            {
+                LegacyPose(name, t);
+                if (rifleOperator && weaponSocket != null) RiflePose(name, t);
+            }
+            // Baked, in-place presentation. Movement/aim/hits remain owned by Pilot.
+            void RiflePose(string name, float t)
+            {
+                if (name == "Death") return;
+                float phase = t * Mathf.PI * 2;
+                bool running = name.StartsWith("Run");
+                float stride = Mathf.Sin(phase), settle = Mathf.Cos(phase * 2);
+                if (running)
+                {
+                    Turn("hips", Vector3.up, stride * 5);
+                    Turn("chest", Vector3.up, -stride * 10);
+                    float forward = name == "RunForward" ? 7 : name == "RunBack" ? -4 : 3;
+                    float side = name == "RunLeft" ? 4 : name == "RunRight" ? -4 : 0;
+                    Turn("spine", Vector3.right, forward);
+                    Turn("spine_mid", Vector3.forward, side + stride * 1.8f);
+                    Turn("chest", Vector3.forward, -stride * 1.1f);
+                    Bones["hips"].position += Vector3.right * (height * .012f * stride);
+                    Turn("clavicle_L", Vector3.forward, stride * 2.5f);
+                    Turn("clavicle_R", Vector3.forward, -stride * 2.5f);
+                    Turn("head", Vector3.up, stride * 3);
+                }
+                else if (name == "Idle")
+                {
+                    Turn("hips", Vector3.forward, stride * .7f);
+                    Turn("spine", Vector3.forward, -stride * .8f);
+                    Turn("clavicle_L", Vector3.forward, stride * .6f);
+                    Turn("clavicle_R", Vector3.forward, -stride * .6f);
+                }
+                // Weapon is the reference for both hands. It moves with the chest,
+                // with small delayed footfall absorption instead of frozen shoulders.
+                Vector3 grip = Bones["chest"].position + Vector3.right * (height * .11f)
+                    + Vector3.up * (height * -.035f) + Vector3.forward * (height * .25f);
+                grip += Vector3.up * (height * (running ? .008f * Mathf.Sin(phase * 2 - .55f) : .003f * stride));
+                float recoil = name == "Fire" ? Mathf.Sin(t * Mathf.PI) : 0;
+                grip -= Vector3.forward * (height * .035f * recoil);
+                Quaternion gunRotation = Quaternion.Euler(-recoil * 3, 0, running ? stride * 1.2f : stride * .3f);
+                Quaternion handRotation = gunRotation * Quaternion.Inverse(weaponSocket.localRotation);
+                Vector3 wrist = grip - handRotation * Vector3.Scale(weaponSocket.localPosition, Bones["hand_R"].lossyScale);
+                SolveArm("R", wrist, Vector3.right + Vector3.down * .75f);
+                Bones["hand_R"].rotation = handRotation;
+                Vector3 support = grip + gunRotation * new Vector3(-height * .035f, -height * .025f, height * .24f);
+                Vector3 leftWrist = support - gunRotation * Vector3.forward * (height * .045f);
+                float release = name == "Cast" || name == "Melee" ? Mathf.Sin(t * Mathf.PI) : 0;
+                Vector3 freeWrist = Bones["hand_L"].position;
+                Vector3 pole = Vector3.left + Vector3.down * .85f;
+                if (release > 0)
+                {
+                    leftWrist = Vector3.Lerp(leftWrist, freeWrist, release);
+                    pole = Vector3.Lerp(pole, (Bones["forearm_L"].position - Bones["upper_arm_L"].position).normalized, release);
+                }
+                SolveArm("L", leftWrist, pole);
+                // Keep a neutral wrist following the support forearm; no detached hand offset.
+                Turn("hand_L", Vector3.up, -5 * (1 - release));
+            }
+            void SolveArm(string side, Vector3 target, Vector3 pole)
+            {
+                var upper = Bones["upper_arm_" + side];
+                var lower = Bones["forearm_" + side];
+                var hand = Bones["hand_" + side];
+                Vector3 shoulder = upper.position;
+                float a = Vector3.Distance(shoulder, lower.position), b = Vector3.Distance(lower.position, hand.position);
+                Vector3 ray = target - shoulder;
+                float distance = Mathf.Clamp(ray.magnitude, Mathf.Abs(a - b) + .002f, a + b - .002f);
+                Vector3 axis = ray.normalized;
+                Vector3 bend = Vector3.ProjectOnPlane(pole, axis).normalized;
+                float along = (a * a - b * b + distance * distance) / (2 * distance);
+                Vector3 elbow = shoulder + axis * along + bend * Mathf.Sqrt(Mathf.Max(0, a * a - along * along));
+                Aim("upper_arm_" + side, "forearm_" + side, elbow - shoulder);
+                Aim("forearm_" + side, "hand_" + side, target - lower.position);
+            }
+            void LegacyPose(string name, float t)
             {
                 float phase = t * Mathf.PI * 2, breath = Mathf.Sin(phase);
                 Aim("upper_arm_R", "forearm_R", Vector3.forward * .65f - Vector3.up * .3f);

@@ -1,0 +1,136 @@
+[
+  {
+    "id": "exterior_aircon_unit",
+    "source": "https://polyhaven.com/a/exterior_aircon_unit",
+    "license": "CC0-1.0",
+    "authors": {
+      "Monsta3D": "All"
+    },
+    "gltf": "exterior_aircon_unit_1k.gltf",
+    "files": 14,
+    "bytes": 7667928
+  },
+  {
+    "id": "trashbag",
+    "source": "https://polyhaven.com/a/trashbag",
+    "license": "CC0-1.0",
+    "authors": {
+      "Benny Weimer": "All"
+    },
+    "gltf": "trashbag_1k.gltf",
+    "files": 5,
+    "bytes": 1699464
+  },
+  {
+    "id": "old_drill_press",
+    "source": "https://polyhaven.com/a/old_drill_press",
+    "license": "CC0-1.0",
+    "authors": {
+      "Harsh Vardhan Singh": "All"
+    },
+    "gltf": "old_drill_press_1k.gltf",
+    "files": 5,
+    "bytes": 2352717
+  },
+  {
+    "id": "industrial_wall_lamp",
+    "source": "https://polyhaven.com/a/industrial_wall_lamp",
+    "license": "CC0-1.0",
+    "authors": {
+      "Kuutti Siitonen": "All"
+    },
+    "gltf": "industrial_wall_lamp_1k.gltf",
+    "files": 9,
+    "bytes": 3778230
+  },
+  {
+    "id": "metal_office_desk",
+    "source": "https://polyhaven.com/a/metal_office_desk",
+    "license": "CC0-1.0",
+    "authors": {
+      "Ulan Cabanilla": "All"
+    },
+    "gltf": "metal_office_desk_1k.gltf",
+    "files": 5,
+    "bytes": 1606530
+  },
+  {
+    "id": "potted_plant_02",
+    "source": "https://polyhaven.com/a/potted_plant_02",
+    "license": "CC0-1.0",
+    "authors": {
+      "Rico Cilliers": "All"
+    },
+    "gltf": "potted_plant_02_1k.gltf",
+    "files": 8,
+    "bytes": 2634698
+  },
+  {
+    "id": "industrial_microscope",
+    "source": "https://polyhaven.com/a/industrial_microscope",
+    "license": "CC0-1.0",
+    "authors": {
+      "Lukas Walzer": "All"
+    },
+    "gltf": "industrial_microscope_1k.gltf",
+    "files": 5,
+    "bytes": 2456539
+  },
+  {
+    "id": "medical_box",
+    "source": "https://polyhaven.com/a/medical_box",
+    "license": "CC0-1.0",
+    "authors": {
+      "Ulan Cabanilla": "All"
+    },
+    "gltf": "medical_box_1k.gltf",
+    "files": 5,
+    "bytes": 1975384
+  },
+  {
+    "id": "old_military_compressor",
+    "source": "https://polyhaven.com/a/old_military_compressor",
+    "license": "CC0-1.0",
+    "authors": {
+      "Brian Speight": "All"
+    },
+    "gltf": "old_military_compressor_1k.gltf",
+    "files": 5,
+    "bytes": 4432728
+  },
+  {
+    "id": "power_box_01",
+    "source": "https://polyhaven.com/a/power_box_01",
+    "license": "CC0-1.0",
+    "authors": {
+      "Rico Cilliers": "Modeling & Texturing",
+      "Yann Kervran": "Rigging"
+    },
+    "gltf": "power_box_01_1k.gltf",
+    "files": 5,
+    "bytes": 2725643
+  },
+  {
+    "id": "security_camera_01",
+    "source": "https://polyhaven.com/a/security_camera_01",
+    "license": "CC0-1.0",
+    "authors": {
+      "Alexander Otterbeck": "Modeling & Texturing",
+      "Yann Kervran": "Rigging"
+    },
+    "gltf": "security_camera_01_1k.gltf",
+    "files": 5,
+    "bytes": 1759323
+  },
+  {
+    "id": "metal_trash_can",
+    "source": "https://polyhaven.com/a/metal_trash_can",
+    "license": "CC0-1.0",
+    "authors": {
+      "GurJas Studios": "All"
+    },
+    "gltf": "metal_trash_can_1k.gltf",
+    "files": 8,
+    "bytes": 4994983
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "source": "https://sketchfab.com/3d-models/sci-fi-soldier-futuristic-combat-trooper-de876bfdce1c47a4aa67670faee7208e",
+  "license": "CC-BY-4.0",
+  "attribution": "ART_LOLL",
+  "model": "art-loll",
+  "mesh_count": 6,
+  "bones": [],
+  "actions": [],
+  "textures": [
+    "Image_0",
+    "Image_1",
+    "Image_10",
+    "Image_11",
+    "Image_12",
+    "Image_13",
+    "Image_14",
+    "Image_15",
+    "Image_16",
+    "Image_17",
+    "Image_18",
+    "Image_19",
+    "Image_2",
+    "Image_20",
+    "Image_21",
+    "Image_22",
+    "Image_23",
+    "Image_3",
+    "Image_4",
+    "Image_5",
+    "Image_6",
+    "Image_7",
+    "Image_8",
+    "Image_9"
+  ],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    1.49112868309021,
+    0.5992323756217957,
+    1.9464577436447144
+  ],
+  "review_scale": 0.9504444707522401
+}

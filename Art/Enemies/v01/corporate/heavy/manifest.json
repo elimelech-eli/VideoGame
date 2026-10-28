@@ -1,0 +1,86 @@
+{
+  "biome": "corporate",
+  "title": "Corporate Office Breach",
+  "role": "heavy",
+  "file": "corporate\\heavy\\Enemy_review.blend",
+  "modules": [
+    "01_Jacket_sleeves",
+    "03_Gloves",
+    "05_Collar",
+    "CC0_male_worksuit01",
+    "CC0_shoes05",
+    "Ballistic_head_shell",
+    "Visor_band",
+    "Torso_carrier",
+    "Left_pauldron",
+    "Left_kneepad",
+    "Right_pauldron",
+    "Right_kneepad",
+    "Helmet_cheek_guard",
+    "Ceramic_abdominal_segment",
+    "Security_shin",
+    "Helmet_cheek_guard.001",
+    "Ceramic_abdominal_segment.001",
+    "Security_shin.001",
+    "Secure_comms_antenna",
+    "Corporate_identification",
+    "Heavy_lower_carrier",
+    "Left_heavy_shoulder",
+    "Left_armored_thigh",
+    "Right_heavy_shoulder",
+    "Right_armored_thigh",
+    "Shield_emitter",
+    "Shield_emitter.001",
+    "Shield_power_pack",
+    "Weapon_receiver",
+    "Weapon_grip",
+    "Weapon_barrel",
+    "Weapon_muzzle",
+    "Weapon_magazine"
+  ],
+  "base_triangles": 31614,
+  "bones": 52,
+  "clips": {
+    "idle": "AN_Enemy_Pistol_Idle_Loop",
+    "move": "AN_Operative_Walk_Loop",
+    "attack": "AN_Enemy_Pistol_Shoot",
+    "hit": "AN_Operative_Hit_Chest",
+    "death": "AN_Operative_Death01"
+  },
+  "validation": [
+    {
+      "clip": "idle",
+      "pose_change": 0.06979741156101227,
+      "mesh_change": 0.011336907744407654
+    },
+    {
+      "clip": "move",
+      "pose_change": 1.1657882034778595,
+      "mesh_change": 0.3678620606660843
+    },
+    {
+      "clip": "attack",
+      "pose_change": 0.26550276577472687,
+      "mesh_change": 0.040662020444869995
+    },
+    {
+      "clip": "hit",
+      "pose_change": 1.036076933145523,
+      "mesh_change": 0.1511518694460392
+    },
+    {
+      "clip": "death",
+      "pose_change": 1.753337800502777,
+      "mesh_change": 1.2575752437114716
+    }
+  ],
+  "root_motion": "in place; gameplay owns translation",
+  "status": "review only; not Unity integrated; not runtime optimized",
+  "clip_seconds": {
+    "idle": 1.6666666666666667,
+    "move": 1.3333333333333333,
+    "attack": 0.6333333333333333,
+    "hit": 0.3333333333333333,
+    "death": 2.4
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "biome": "factory",
+  "title": "Ruined Automation Factory",
+  "role": "heavy",
+  "file": "factory\\heavy\\Enemy_review.blend",
+  "modules": [
+    "Ballistic_head_shell",
+    "Visor_band",
+    "Torso_carrier",
+    "Left_pauldron",
+    "Left_kneepad",
+    "Right_pauldron",
+    "Right_kneepad",
+    "Actuator_torso",
+    "Industrial_chest_guard",
+    "Pelvis_drive",
+    "Central_spine_drive",
+    "Neck_coupling",
+    "Left_Arm_actuator",
+    "Left_Arm_joint",
+    "Left_ForeArm_actuator",
+    "Left_ForeArm_joint",
+    "Left_UpLeg_actuator",
+    "Left_UpLeg_joint",
+    "Left_Leg_actuator",
+    "Left_Leg_joint",
+    "Left_industrial_foot",
+    "Left_gripper_palm",
+    "Left_gripper_jaw",
+    "Left_gripper_jaw.001",
+    "Right_Arm_actuator",
+    "Right_Arm_joint",
+    "Right_ForeArm_actuator",
+    "Right_ForeArm_joint",
+    "Right_UpLeg_actuator",
+    "Right_UpLeg_joint",
+    "Right_Leg_actuator",
+    "Right_Leg_joint",
+    "Right_industrial_foot",
+    "Right_gripper_palm",
+    "Right_gripper_jaw",
+    "Right_gripper_jaw.001",
+    "Factory_sensor_brow",
+    "Single_optical_strip",
+    "Hydraulic_back_line",
+    "Hydraulic_back_line.001",
+    "Heavy_lower_carrier",
+    "Left_heavy_shoulder",
+    "Left_armored_thigh",
+    "Right_heavy_shoulder",
+    "Right_armored_thigh",
+    "Shield_emitter",
+    "Shield_emitter.001",
+    "Shield_power_pack",
+    "Weapon_receiver",
+    "Weapon_grip",
+    "Weapon_barrel",
+    "Weapon_muzzle",
+    "Weapon_magazine"
+  ],
+  "base_triangles": 15548,
+  "bones": 52,
+  "clips": {
+    "idle": "AN_Enemy_Pistol_Idle_Loop",
+    "move": "AN_Operative_Walk_Loop",
+    "attack": "AN_Enemy_Pistol_Shoot",
+    "hit": "AN_Operative_Hit_Chest",
+    "death": "AN_Operative_Death01"
+  },
+  "clip_seconds": {
+    "idle": 1.6666666666666667,
+    "move": 1.3333333333333333,
+    "attack": 0.6333333333333333,
+    "hit": 0.3333333333333333,
+    "death": 2.4
+  },
+  "validation": [
+    {
+      "clip": "idle",
+      "pose_change": 0.06979741156101227,
+      "mesh_change": 0.02405422553420067
+    },
+    {
+      "clip": "move",
+      "pose_change": 1.1657882034778595,
+      "mesh_change": 0.06267065554857254
+    },
+    {
+      "clip": "attack",
+      "pose_change": 0.26550276577472687,
+      "mesh_change": 0.015584137290716171
+    },
+    {
+      "clip": "hit",
+      "pose_change": 1.036076933145523,
+      "mesh_change": 0.3280179873108864
+    },
+    {
+      "clip": "death",
+      "pose_change": 1.753337800502777,
+      "mesh_change": 1.5193537482991815
+    }
+  ],
+  "root_motion": "in place; gameplay owns translation",
+  "status": "review only; not Unity integrated; not runtime optimized"
+}

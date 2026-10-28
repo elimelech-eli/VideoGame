@@ -1,0 +1,30 @@
+{
+  "source": "https://sketchfab.com/3d-models/mech-drone-8d06874aac5246c59edb4adbe3606e0e",
+  "license": "CC-BY-4.0",
+  "attribution": "Willy Decarpentrie",
+  "model": "mech-drone",
+  "mesh_count": 16,
+  "bones": [
+    14
+  ],
+  "actions": [
+    "Take 001"
+  ],
+  "textures": [
+    "Image_0",
+    "Image_1",
+    "Image_1.001",
+    "Image_2",
+    "Image_3",
+    "Image_4",
+    "Image_5",
+    "Image_6"
+  ],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    0.4581901431083679,
+    0.2501983046531677,
+    0.42896512150764465
+  ],
+  "review_scale": 4.312704961958241
+}

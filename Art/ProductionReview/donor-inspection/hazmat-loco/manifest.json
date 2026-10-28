@@ -1,0 +1,25 @@
+{
+  "source": "https://sketchfab.com/3d-models/backrooms-rigged-hazmat-64d0069ed0cc420d8b3158ab8a3e6405",
+  "license": "Creative Commons Attribution",
+  "attribution": "Loco",
+  "model": "hazmat-loco",
+  "mesh_count": 1,
+  "bones": [
+    74
+  ],
+  "actions": [
+    "mixamo.com"
+  ],
+  "textures": [
+    "Image_0",
+    "Image_1",
+    "Image_2"
+  ],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    3.0756161212921143,
+    1.0748467445373535,
+    3.2107458114624023
+  ],
+  "review_scale": 0.5761901155163006
+}

@@ -1,0 +1,26 @@
+{
+  "parts": 30,
+  "triangles": 13427,
+  "bounds_m": [
+    1.976038932800293,
+    1.0790314674377441,
+    1.850000023841858
+  ],
+  "finite_geometry": true,
+  "biome": "factory",
+  "role": "aoe",
+  "foundation": "mech-drone",
+  "source": "https://sketchfab.com/3d-models/mech-drone-8d06874aac5246c59edb4adbe3606e0e",
+  "author": "Willy Decarpentrie",
+  "license": "Creative Commons Attribution",
+  "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+  "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+  "remaining": [
+    "Resolve gun/grip orientation and hand pose",
+    "Bind equipment to appropriate original or fitted skeleton",
+    "Validate locomotion, attack, hit and death actions",
+    "LOD, collision, export/reimport and Unity performance checks"
+  ],
+  "seconds": 0.66,
+  "equipment_sources": []
+}

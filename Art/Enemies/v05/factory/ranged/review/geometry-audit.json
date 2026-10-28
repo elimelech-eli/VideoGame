@@ -1,0 +1,21 @@
+{
+  "status": "Static source-art audit; visual and runtime acceptance pending",
+  "render_parts": 558,
+  "vertices": 65636,
+  "triangles": 126604,
+  "nonfinite_vertices": 0,
+  "zero_area_triangles": 30,
+  "height_m": 1.9896999709308147,
+  "elapsed_seconds": 0.24,
+  "checks": {
+    "finite_coordinates": true,
+    "nonempty_geometry": true,
+    "plausible_source_height": true
+  },
+  "not_run": [
+    "Rig/deformation/animations",
+    "UV and baked texture validation",
+    "Unity import/performance/crowd validation",
+    "Numerical silhouette fidelity signoff against the perspective concept"
+  ]
+}

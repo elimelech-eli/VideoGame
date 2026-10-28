@@ -57,6 +57,67 @@ public sealed class ActorCombatTests
         Assert.AreEqual("RunForward", motion.CurrentState);
         game.Player.enabled = true;
     }
+    [UnityTest] public IEnumerator ApprovedOperatorKeepsWeaponAttachedAndSkinFiniteAcrossActions()
+    {
+        var motion = game.Player.Motion;
+        Assert.That(motion.name, Does.StartWith("OperativeV03"));
+        Transform hand = null, forearm = null, socket = null;
+        foreach (var bone in motion.GetComponentsInChildren<Transform>())
+        {
+            if (bone.name == "hand_R") hand = bone;
+            if (bone.name == "forearm_R") forearm = bone;
+            if (bone.name == "SOCKET_weapon_R") socket = bone;
+        }
+        Assert.IsNotNull(socket); Assert.AreSame(hand, socket.parent);
+        Assert.IsNotNull(socket.GetComponentInChildren<MeshRenderer>(), "Equipped weapon must render");
+        motion.enabled = false;
+        var skin = motion.GetComponentInChildren<SkinnedMeshRenderer>(); var baked = new Mesh();
+        foreach (string action in new[] {"Idle","RunForward","RunBack","RunLeft","RunRight","Fire","Melee","Cast","Dash","Hit","Death"})
+        {
+            foreach (float phase in new[] {.15f,.65f})
+            {
+                motion.Player.Stop(); motion.Player.Play("Idle"); motion.Player["Idle"].normalizedTime = 0; motion.Player.Sample();
+                motion.Player.Play(action); motion.Player[action].normalizedTime = phase; motion.Player.Sample();
+                Assert.Less(Vector3.Distance(hand.position, socket.position), .15f, action + " weapon detached");
+                if (action != "Death") Assert.Greater(Vector3.Dot(socket.forward, game.Player.transform.forward), .97f, action + " weapon lost its aim direction");
+                if (action != "Death" && action != "Cast" && action != "Melee")
+                {
+                    Transform support = socket.Find("SOCKET_support_L"), leftHand = null;
+                    foreach (var node in motion.GetComponentsInChildren<Transform>()) if (node.name == "hand_L") leftHand = node;
+                    Assert.IsNotNull(support);
+                    Assert.Less(Vector3.Distance(leftHand.position, support.position), .12f, action + " support hand lost rifle contact");
+                }
+                skin.BakeMesh(baked);
+                Assert.IsFalse(float.IsNaN(baked.bounds.size.sqrMagnitude), action + " produced nonfinite skin bounds");
+                Assert.Less(baked.bounds.size.magnitude, 5, action + " exploded the bound armor");
+            }
+        }
+        Object.Destroy(baked); yield return null;
+    }
+    [UnityTest] public IEnumerator RifleLocomotionMovesTorsoAgainstPelvisAndLoopsContinuously()
+    {
+        var motion = game.Player.Motion; motion.enabled = false;
+        Transform chest = null, pelvis = null;
+        foreach (var bone in motion.GetComponentsInChildren<Transform>())
+        {
+            if (bone.name == "chest") chest = bone;
+            if (bone.name == "hips") pelvis = bone;
+        }
+        foreach (string clip in new[] {"RunForward","RunBack","RunLeft","RunRight"})
+        {
+            motion.Player.Stop(); motion.Player.Play(clip);
+            motion.Player[clip].normalizedTime = .25f; motion.Player.Sample();
+            Quaternion first = Quaternion.Inverse(pelvis.rotation) * chest.rotation;
+            motion.Player[clip].normalizedTime = .75f; motion.Player.Sample();
+            Assert.Greater(Quaternion.Angle(first, Quaternion.Inverse(pelvis.rotation) * chest.rotation), 3, clip + " torso is frozen above the moving legs");
+            motion.Player[clip].normalizedTime = 0; motion.Player.Sample();
+            Vector3 start = chest.position; Quaternion rotation = chest.rotation;
+            motion.Player[clip].normalizedTime = .9999f; motion.Player.Sample();
+            Assert.Less(Vector3.Distance(start, chest.position), .002f, clip + " position pops at loop seam");
+            Assert.Less(Quaternion.Angle(rotation, chest.rotation), .2f, clip + " rotation pops at loop seam");
+        }
+        yield return null;
+    }
     [UnityTest] public IEnumerator MedicalCacheDropsOneCappedHealAndPreservesFullHealthPickup()
     {
         var cache = game.SpawnMedicalCache(new Vector3(4, 0, 0));

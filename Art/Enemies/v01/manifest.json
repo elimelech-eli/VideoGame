@@ -1,0 +1,2068 @@
+{
+  "models": [
+    {
+      "biome": "neon",
+      "title": "Neon Street District",
+      "role": "melee",
+      "file": "neon\\melee\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Left_kneepad",
+        "Right_kneepad",
+        "Street_helmet_crest_0",
+        "Street_helmet_crest_1",
+        "Street_helmet_crest_2",
+        "Street_helmet_crest_3",
+        "Street_helmet_crest_4",
+        "Scavenged_coat_panel",
+        "Scavenged_coat_panel.001",
+        "Asymmetric_scavenged_plate",
+        "Respirator",
+        "Filter",
+        "Filter.001",
+        "Left_forearm_blade",
+        "Right_forearm_blade",
+        "Light_spine_battery"
+      ],
+      "base_triangles": 28102,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Sword_Idle",
+        "move": "AN_Operative_Sprint_Loop",
+        "attack": "AN_Enemy_Sword_Attack",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.23478058725595474,
+          "mesh_change": 0.035555124282836914
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3651797473430634,
+          "mesh_change": 0.457896638661623
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.8241957426071167,
+          "mesh_change": 1.0512797236442566
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 0.6666666666666666,
+        "attack": 1.5333333333333334,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "neon",
+      "title": "Neon Street District",
+      "role": "aoe",
+      "file": "neon\\aoe\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Street_helmet_crest_0",
+        "Street_helmet_crest_1",
+        "Street_helmet_crest_2",
+        "Street_helmet_crest_3",
+        "Street_helmet_crest_4",
+        "Scavenged_coat_panel",
+        "Scavenged_coat_panel.001",
+        "Asymmetric_scavenged_plate",
+        "Respirator",
+        "Filter",
+        "Filter.001",
+        "Mortar_canister",
+        "Canister_band",
+        "Canister_band.001",
+        "Mortar_canister.001",
+        "Canister_band.002",
+        "Canister_band.003",
+        "Ballistic_computer",
+        "Grenade_feed",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 30530,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Interact",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7795205116271973,
+          "mesh_change": 0.5314110852777958
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 2.0,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "neon",
+      "title": "Neon Street District",
+      "role": "heavy",
+      "file": "neon\\heavy\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Street_helmet_crest_0",
+        "Street_helmet_crest_1",
+        "Street_helmet_crest_2",
+        "Street_helmet_crest_3",
+        "Street_helmet_crest_4",
+        "Scavenged_coat_panel",
+        "Scavenged_coat_panel.001",
+        "Asymmetric_scavenged_plate",
+        "Respirator",
+        "Filter",
+        "Filter.001",
+        "Heavy_lower_carrier",
+        "Left_heavy_shoulder",
+        "Left_armored_thigh",
+        "Right_heavy_shoulder",
+        "Right_armored_thigh",
+        "Shield_emitter",
+        "Shield_emitter.001",
+        "Shield_power_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 32050,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "neon",
+      "title": "Neon Street District",
+      "role": "ranged",
+      "file": "neon\\ranged\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Street_helmet_crest_0",
+        "Street_helmet_crest_1",
+        "Street_helmet_crest_2",
+        "Street_helmet_crest_3",
+        "Street_helmet_crest_4",
+        "Scavenged_coat_panel",
+        "Scavenged_coat_panel.001",
+        "Asymmetric_scavenged_plate",
+        "Respirator",
+        "Filter",
+        "Filter.001",
+        "Rifle_magazine_pouches",
+        "Radio_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 30298,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "factory",
+      "title": "Ruined Automation Factory",
+      "role": "melee",
+      "file": "factory\\melee\\Enemy_review.blend",
+      "modules": [
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Left_kneepad",
+        "Right_kneepad",
+        "Actuator_torso",
+        "Industrial_chest_guard",
+        "Pelvis_drive",
+        "Central_spine_drive",
+        "Neck_coupling",
+        "Left_Arm_actuator",
+        "Left_Arm_joint",
+        "Left_ForeArm_actuator",
+        "Left_ForeArm_joint",
+        "Left_UpLeg_actuator",
+        "Left_UpLeg_joint",
+        "Left_Leg_actuator",
+        "Left_Leg_joint",
+        "Left_industrial_foot",
+        "Left_gripper_palm",
+        "Left_gripper_jaw",
+        "Left_gripper_jaw.001",
+        "Right_Arm_actuator",
+        "Right_Arm_joint",
+        "Right_ForeArm_actuator",
+        "Right_ForeArm_joint",
+        "Right_UpLeg_actuator",
+        "Right_UpLeg_joint",
+        "Right_Leg_actuator",
+        "Right_Leg_joint",
+        "Right_industrial_foot",
+        "Right_gripper_palm",
+        "Right_gripper_jaw",
+        "Right_gripper_jaw.001",
+        "Factory_sensor_brow",
+        "Single_optical_strip",
+        "Hydraulic_back_line",
+        "Hydraulic_back_line.001",
+        "Left_forearm_blade",
+        "Right_forearm_blade",
+        "Light_spine_battery"
+      ],
+      "base_triangles": 11600,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Sword_Idle",
+        "move": "AN_Operative_Sprint_Loop",
+        "attack": "AN_Enemy_Sword_Attack",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 0.6666666666666666,
+        "attack": 1.5333333333333334,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.23478058725595474,
+          "mesh_change": 0.03036034107208252
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3651797473430634,
+          "mesh_change": 0.06041368655860424
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.8241957426071167,
+          "mesh_change": 0.4231615513563156
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.3280179873108864
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.5193537482991815
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized"
+    },
+    {
+      "biome": "factory",
+      "title": "Ruined Automation Factory",
+      "role": "aoe",
+      "file": "factory\\aoe\\Enemy_review.blend",
+      "modules": [
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Actuator_torso",
+        "Industrial_chest_guard",
+        "Pelvis_drive",
+        "Central_spine_drive",
+        "Neck_coupling",
+        "Left_Arm_actuator",
+        "Left_Arm_joint",
+        "Left_ForeArm_actuator",
+        "Left_ForeArm_joint",
+        "Left_UpLeg_actuator",
+        "Left_UpLeg_joint",
+        "Left_Leg_actuator",
+        "Left_Leg_joint",
+        "Left_industrial_foot",
+        "Left_gripper_palm",
+        "Left_gripper_jaw",
+        "Left_gripper_jaw.001",
+        "Right_Arm_actuator",
+        "Right_Arm_joint",
+        "Right_ForeArm_actuator",
+        "Right_ForeArm_joint",
+        "Right_UpLeg_actuator",
+        "Right_UpLeg_joint",
+        "Right_Leg_actuator",
+        "Right_Leg_joint",
+        "Right_industrial_foot",
+        "Right_gripper_palm",
+        "Right_gripper_jaw",
+        "Right_gripper_jaw.001",
+        "Factory_sensor_brow",
+        "Single_optical_strip",
+        "Hydraulic_back_line",
+        "Hydraulic_back_line.001",
+        "Mortar_canister",
+        "Canister_band",
+        "Canister_band.001",
+        "Mortar_canister.001",
+        "Canister_band.002",
+        "Canister_band.003",
+        "Ballistic_computer",
+        "Grenade_feed",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 14028,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Interact",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 2.0,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.024054203182458878
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.06267065554857254
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7795205116271973,
+          "mesh_change": 0.025612831115722656
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.32801783084869385
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.5193535089492798
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized"
+    },
+    {
+      "biome": "factory",
+      "title": "Ruined Automation Factory",
+      "role": "heavy",
+      "file": "factory\\heavy\\Enemy_review.blend",
+      "modules": [
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Actuator_torso",
+        "Industrial_chest_guard",
+        "Pelvis_drive",
+        "Central_spine_drive",
+        "Neck_coupling",
+        "Left_Arm_actuator",
+        "Left_Arm_joint",
+        "Left_ForeArm_actuator",
+        "Left_ForeArm_joint",
+        "Left_UpLeg_actuator",
+        "Left_UpLeg_joint",
+        "Left_Leg_actuator",
+        "Left_Leg_joint",
+        "Left_industrial_foot",
+        "Left_gripper_palm",
+        "Left_gripper_jaw",
+        "Left_gripper_jaw.001",
+        "Right_Arm_actuator",
+        "Right_Arm_joint",
+        "Right_ForeArm_actuator",
+        "Right_ForeArm_joint",
+        "Right_UpLeg_actuator",
+        "Right_UpLeg_joint",
+        "Right_Leg_actuator",
+        "Right_Leg_joint",
+        "Right_industrial_foot",
+        "Right_gripper_palm",
+        "Right_gripper_jaw",
+        "Right_gripper_jaw.001",
+        "Factory_sensor_brow",
+        "Single_optical_strip",
+        "Hydraulic_back_line",
+        "Hydraulic_back_line.001",
+        "Heavy_lower_carrier",
+        "Left_heavy_shoulder",
+        "Left_armored_thigh",
+        "Right_heavy_shoulder",
+        "Right_armored_thigh",
+        "Shield_emitter",
+        "Shield_emitter.001",
+        "Shield_power_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 15548,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.02405422553420067
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.06267065554857254
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.015584137290716171
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.3280179873108864
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.5193537482991815
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized"
+    },
+    {
+      "biome": "factory",
+      "title": "Ruined Automation Factory",
+      "role": "ranged",
+      "file": "factory\\ranged\\Enemy_review.blend",
+      "modules": [
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Actuator_torso",
+        "Industrial_chest_guard",
+        "Pelvis_drive",
+        "Central_spine_drive",
+        "Neck_coupling",
+        "Left_Arm_actuator",
+        "Left_Arm_joint",
+        "Left_ForeArm_actuator",
+        "Left_ForeArm_joint",
+        "Left_UpLeg_actuator",
+        "Left_UpLeg_joint",
+        "Left_Leg_actuator",
+        "Left_Leg_joint",
+        "Left_industrial_foot",
+        "Left_gripper_palm",
+        "Left_gripper_jaw",
+        "Left_gripper_jaw.001",
+        "Right_Arm_actuator",
+        "Right_Arm_joint",
+        "Right_ForeArm_actuator",
+        "Right_ForeArm_joint",
+        "Right_UpLeg_actuator",
+        "Right_UpLeg_joint",
+        "Right_Leg_actuator",
+        "Right_Leg_joint",
+        "Right_industrial_foot",
+        "Right_gripper_palm",
+        "Right_gripper_jaw",
+        "Right_gripper_jaw.001",
+        "Factory_sensor_brow",
+        "Single_optical_strip",
+        "Hydraulic_back_line",
+        "Hydraulic_back_line.001",
+        "Rifle_magazine_pouches",
+        "Radio_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 13796,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.024054203182458878
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.06267065554857254
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.01558414101600647
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.32801783084869385
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.5193535089492798
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized"
+    },
+    {
+      "biome": "corporate",
+      "title": "Corporate Office Breach",
+      "role": "melee",
+      "file": "corporate\\melee\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Left_kneepad",
+        "Right_kneepad",
+        "Helmet_cheek_guard",
+        "Ceramic_abdominal_segment",
+        "Security_shin",
+        "Helmet_cheek_guard.001",
+        "Ceramic_abdominal_segment.001",
+        "Security_shin.001",
+        "Secure_comms_antenna",
+        "Corporate_identification",
+        "Left_forearm_blade",
+        "Right_forearm_blade",
+        "Light_spine_battery"
+      ],
+      "base_triangles": 27666,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Sword_Idle",
+        "move": "AN_Operative_Sprint_Loop",
+        "attack": "AN_Enemy_Sword_Attack",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.23478058725595474,
+          "mesh_change": 0.035555124282836914
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3651797473430634,
+          "mesh_change": 0.457896638661623
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.8241957426071167,
+          "mesh_change": 1.0512797236442566
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 0.6666666666666666,
+        "attack": 1.5333333333333334,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "corporate",
+      "title": "Corporate Office Breach",
+      "role": "aoe",
+      "file": "corporate\\aoe\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Helmet_cheek_guard",
+        "Ceramic_abdominal_segment",
+        "Security_shin",
+        "Helmet_cheek_guard.001",
+        "Ceramic_abdominal_segment.001",
+        "Security_shin.001",
+        "Secure_comms_antenna",
+        "Corporate_identification",
+        "Mortar_canister",
+        "Canister_band",
+        "Canister_band.001",
+        "Mortar_canister.001",
+        "Canister_band.002",
+        "Canister_band.003",
+        "Ballistic_computer",
+        "Grenade_feed",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 30094,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Interact",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7795205116271973,
+          "mesh_change": 0.5314110852777958
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 2.0,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "corporate",
+      "title": "Corporate Office Breach",
+      "role": "heavy",
+      "file": "corporate\\heavy\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Helmet_cheek_guard",
+        "Ceramic_abdominal_segment",
+        "Security_shin",
+        "Helmet_cheek_guard.001",
+        "Ceramic_abdominal_segment.001",
+        "Security_shin.001",
+        "Secure_comms_antenna",
+        "Corporate_identification",
+        "Heavy_lower_carrier",
+        "Left_heavy_shoulder",
+        "Left_armored_thigh",
+        "Right_heavy_shoulder",
+        "Right_armored_thigh",
+        "Shield_emitter",
+        "Shield_emitter.001",
+        "Shield_power_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 31614,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "corporate",
+      "title": "Corporate Office Breach",
+      "role": "ranged",
+      "file": "corporate\\ranged\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Helmet_cheek_guard",
+        "Ceramic_abdominal_segment",
+        "Security_shin",
+        "Helmet_cheek_guard.001",
+        "Ceramic_abdominal_segment.001",
+        "Security_shin.001",
+        "Secure_comms_antenna",
+        "Corporate_identification",
+        "Rifle_magazine_pouches",
+        "Radio_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 29862,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "biotech",
+      "title": "Biotech Quarantine",
+      "role": "melee",
+      "file": "biotech\\melee\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Left_kneepad",
+        "Right_kneepad",
+        "Sealed_biotech_hood",
+        "Sealed_optical_face",
+        "Life_support_cylinder",
+        "Reagent_window",
+        "Breathing_hose",
+        "Life_support_cylinder.001",
+        "Reagent_window.001",
+        "Breathing_hose.001",
+        "Containment_sternum",
+        "Containment_sternum.001",
+        "Containment_sternum.002",
+        "Left_forearm_blade",
+        "Right_forearm_blade",
+        "Light_spine_battery"
+      ],
+      "base_triangles": 28654,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Sword_Idle",
+        "move": "AN_Operative_Sprint_Loop",
+        "attack": "AN_Enemy_Sword_Attack",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.23478058725595474,
+          "mesh_change": 0.035555124282836914
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3651797473430634,
+          "mesh_change": 0.457896638661623
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.8241957426071167,
+          "mesh_change": 1.0512797236442566
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 0.6666666666666666,
+        "attack": 1.5333333333333334,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "biotech",
+      "title": "Biotech Quarantine",
+      "role": "aoe",
+      "file": "biotech\\aoe\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Sealed_biotech_hood",
+        "Sealed_optical_face",
+        "Life_support_cylinder",
+        "Reagent_window",
+        "Breathing_hose",
+        "Life_support_cylinder.001",
+        "Reagent_window.001",
+        "Breathing_hose.001",
+        "Containment_sternum",
+        "Containment_sternum.001",
+        "Containment_sternum.002",
+        "Mortar_canister",
+        "Canister_band",
+        "Canister_band.001",
+        "Mortar_canister.001",
+        "Canister_band.002",
+        "Canister_band.003",
+        "Ballistic_computer",
+        "Grenade_feed",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 31082,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Interact",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7795205116271973,
+          "mesh_change": 0.5314110852777958
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 2.0,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "biotech",
+      "title": "Biotech Quarantine",
+      "role": "heavy",
+      "file": "biotech\\heavy\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Sealed_biotech_hood",
+        "Sealed_optical_face",
+        "Life_support_cylinder",
+        "Reagent_window",
+        "Breathing_hose",
+        "Life_support_cylinder.001",
+        "Reagent_window.001",
+        "Breathing_hose.001",
+        "Containment_sternum",
+        "Containment_sternum.001",
+        "Containment_sternum.002",
+        "Heavy_lower_carrier",
+        "Left_heavy_shoulder",
+        "Left_armored_thigh",
+        "Right_heavy_shoulder",
+        "Right_armored_thigh",
+        "Shield_emitter",
+        "Shield_emitter.001",
+        "Shield_power_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 32602,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "biotech",
+      "title": "Biotech Quarantine",
+      "role": "ranged",
+      "file": "biotech\\ranged\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Sealed_biotech_hood",
+        "Sealed_optical_face",
+        "Life_support_cylinder",
+        "Reagent_window",
+        "Breathing_hose",
+        "Life_support_cylinder.001",
+        "Reagent_window.001",
+        "Breathing_hose.001",
+        "Containment_sternum",
+        "Containment_sternum.001",
+        "Containment_sternum.002",
+        "Rifle_magazine_pouches",
+        "Radio_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 30850,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "utilities",
+      "title": "Undercity Utilities",
+      "role": "melee",
+      "file": "utilities\\melee\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Left_kneepad",
+        "Right_kneepad",
+        "Utility_hood",
+        "Respirator_face",
+        "Large_mask_filter",
+        "Orange_air_tank",
+        "Large_mask_filter.001",
+        "Orange_air_tank.001",
+        "Heavy_canvas_shoulder_cape",
+        "Head_lamp_mount",
+        "Head_lamp",
+        "Left_forearm_blade",
+        "Right_forearm_blade",
+        "Light_spine_battery"
+      ],
+      "base_triangles": 28938,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Sword_Idle",
+        "move": "AN_Operative_Sprint_Loop",
+        "attack": "AN_Enemy_Sword_Attack",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.23478058725595474,
+          "mesh_change": 0.035555124282836914
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3651797473430634,
+          "mesh_change": 0.457896638661623
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.8241957426071167,
+          "mesh_change": 1.0512797236442566
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 0.6666666666666666,
+        "attack": 1.5333333333333334,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "utilities",
+      "title": "Undercity Utilities",
+      "role": "aoe",
+      "file": "utilities\\aoe\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Utility_hood",
+        "Respirator_face",
+        "Large_mask_filter",
+        "Orange_air_tank",
+        "Large_mask_filter.001",
+        "Orange_air_tank.001",
+        "Heavy_canvas_shoulder_cape",
+        "Head_lamp_mount",
+        "Head_lamp",
+        "Mortar_canister",
+        "Canister_band",
+        "Canister_band.001",
+        "Mortar_canister.001",
+        "Canister_band.002",
+        "Canister_band.003",
+        "Ballistic_computer",
+        "Grenade_feed",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 31366,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Interact",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7795205116271973,
+          "mesh_change": 0.5314110852777958
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 2.0,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "utilities",
+      "title": "Undercity Utilities",
+      "role": "heavy",
+      "file": "utilities\\heavy\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Utility_hood",
+        "Respirator_face",
+        "Large_mask_filter",
+        "Orange_air_tank",
+        "Large_mask_filter.001",
+        "Orange_air_tank.001",
+        "Heavy_canvas_shoulder_cape",
+        "Head_lamp_mount",
+        "Head_lamp",
+        "Heavy_lower_carrier",
+        "Left_heavy_shoulder",
+        "Left_armored_thigh",
+        "Right_heavy_shoulder",
+        "Right_armored_thigh",
+        "Shield_emitter",
+        "Shield_emitter.001",
+        "Shield_power_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 32886,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "utilities",
+      "title": "Undercity Utilities",
+      "role": "ranged",
+      "file": "utilities\\ranged\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Utility_hood",
+        "Respirator_face",
+        "Large_mask_filter",
+        "Orange_air_tank",
+        "Large_mask_filter.001",
+        "Orange_air_tank.001",
+        "Heavy_canvas_shoulder_cape",
+        "Head_lamp_mount",
+        "Head_lamp",
+        "Rifle_magazine_pouches",
+        "Radio_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 31134,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "transit",
+      "title": "Elevated Transit Terminal",
+      "role": "melee",
+      "file": "transit\\melee\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Left_kneepad",
+        "Right_kneepad",
+        "Transit_helmet_crown",
+        "Helmet_receiver",
+        "Segmented_hip_guard",
+        "Transit_shoulder_fins",
+        "Helmet_receiver.001",
+        "Segmented_hip_guard.001",
+        "Transit_shoulder_fins.001",
+        "Radio_mast",
+        "Transit_signal",
+        "Left_forearm_blade",
+        "Right_forearm_blade",
+        "Light_spine_battery"
+      ],
+      "base_triangles": 27854,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Sword_Idle",
+        "move": "AN_Operative_Sprint_Loop",
+        "attack": "AN_Enemy_Sword_Attack",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.23478058725595474,
+          "mesh_change": 0.035555124282836914
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3651797473430634,
+          "mesh_change": 0.457896638661623
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.8241957426071167,
+          "mesh_change": 1.0512797236442566
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 0.6666666666666666,
+        "attack": 1.5333333333333334,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "transit",
+      "title": "Elevated Transit Terminal",
+      "role": "aoe",
+      "file": "transit\\aoe\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Transit_helmet_crown",
+        "Helmet_receiver",
+        "Segmented_hip_guard",
+        "Transit_shoulder_fins",
+        "Helmet_receiver.001",
+        "Segmented_hip_guard.001",
+        "Transit_shoulder_fins.001",
+        "Radio_mast",
+        "Transit_signal",
+        "Mortar_canister",
+        "Canister_band",
+        "Canister_band.001",
+        "Mortar_canister.001",
+        "Canister_band.002",
+        "Canister_band.003",
+        "Ballistic_computer",
+        "Grenade_feed",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 30282,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Interact",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7795205116271973,
+          "mesh_change": 0.5314110852777958
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 2.0,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "transit",
+      "title": "Elevated Transit Terminal",
+      "role": "heavy",
+      "file": "transit\\heavy\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Transit_helmet_crown",
+        "Helmet_receiver",
+        "Segmented_hip_guard",
+        "Transit_shoulder_fins",
+        "Helmet_receiver.001",
+        "Segmented_hip_guard.001",
+        "Transit_shoulder_fins.001",
+        "Radio_mast",
+        "Transit_signal",
+        "Heavy_lower_carrier",
+        "Left_heavy_shoulder",
+        "Left_armored_thigh",
+        "Right_heavy_shoulder",
+        "Right_armored_thigh",
+        "Shield_emitter",
+        "Shield_emitter.001",
+        "Shield_power_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 31802,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.1511518694460392
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752437114716
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    },
+    {
+      "biome": "transit",
+      "title": "Elevated Transit Terminal",
+      "role": "ranged",
+      "file": "transit\\ranged\\Enemy_review.blend",
+      "modules": [
+        "01_Jacket_sleeves",
+        "03_Gloves",
+        "05_Collar",
+        "CC0_male_worksuit01",
+        "CC0_shoes05",
+        "Ballistic_head_shell",
+        "Visor_band",
+        "Torso_carrier",
+        "Left_pauldron",
+        "Left_kneepad",
+        "Right_pauldron",
+        "Right_kneepad",
+        "Transit_helmet_crown",
+        "Helmet_receiver",
+        "Segmented_hip_guard",
+        "Transit_shoulder_fins",
+        "Helmet_receiver.001",
+        "Segmented_hip_guard.001",
+        "Transit_shoulder_fins.001",
+        "Radio_mast",
+        "Transit_signal",
+        "Rifle_magazine_pouches",
+        "Radio_pack",
+        "Weapon_receiver",
+        "Weapon_grip",
+        "Weapon_barrel",
+        "Weapon_muzzle",
+        "Weapon_magazine"
+      ],
+      "base_triangles": 30050,
+      "bones": 52,
+      "clips": {
+        "idle": "AN_Enemy_Pistol_Idle_Loop",
+        "move": "AN_Operative_Walk_Loop",
+        "attack": "AN_Enemy_Pistol_Shoot",
+        "hit": "AN_Operative_Hit_Chest",
+        "death": "AN_Operative_Death01"
+      },
+      "validation": [
+        {
+          "clip": "idle",
+          "pose_change": 0.06979741156101227,
+          "mesh_change": 0.011336907744407654
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.1657882034778595,
+          "mesh_change": 0.3678620606660843
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.26550276577472687,
+          "mesh_change": 0.040662020444869995
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.036076933145523,
+          "mesh_change": 0.15115181542932987
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.753337800502777,
+          "mesh_change": 1.2575752884149551
+        }
+      ],
+      "root_motion": "in place; gameplay owns translation",
+      "status": "review only; not Unity integrated; not runtime optimized",
+      "clip_seconds": {
+        "idle": 1.6666666666666667,
+        "move": 1.3333333333333333,
+        "attack": 0.6333333333333333,
+        "hit": 0.3333333333333333,
+        "death": 2.4
+      }
+    }
+  ],
+  "model_count": 24,
+  "status": "Review assets only; no Unity integration"
+}

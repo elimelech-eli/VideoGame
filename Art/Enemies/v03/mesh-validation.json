@@ -1,0 +1,32 @@
+{
+  "seconds": 0.5574031000014656,
+  "raw_bodies_checked": 5,
+  "visual_acceptance": "FAILED; batch stopped; not finished game assets",
+  "results": [
+    {
+      "path": "Art\\Enemies\\v03\\factory\\aoe\\Raw_body.glb",
+      "faces": 965718,
+      "finite": true
+    },
+    {
+      "path": "Art\\Enemies\\v03\\factory\\heavy\\Raw_body.glb",
+      "faces": 1144482,
+      "finite": true
+    },
+    {
+      "path": "Art\\Enemies\\v03\\factory\\melee\\Raw_body.glb",
+      "faces": 410628,
+      "finite": true
+    },
+    {
+      "path": "Art\\Enemies\\v03\\factory\\ranged\\Raw_body.glb",
+      "faces": 307924,
+      "finite": true
+    },
+    {
+      "path": "Art\\Enemies\\v03\\neon\\melee\\Raw_body.glb",
+      "faces": 571602,
+      "finite": true
+    }
+  ]
+}

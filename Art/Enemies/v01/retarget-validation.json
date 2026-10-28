@@ -1,0 +1,80 @@
+{
+  "seconds": 4.206906600000366,
+  "clips": [
+    {
+      "status": "passed",
+      "action": "AN_Enemy_Pistol_Idle_Loop",
+      "frames_checked": 51,
+      "keyed_channels": 211,
+      "max_rotation_error_degrees": 0.055953,
+      "max_position_error_world": 7e-07,
+      "max_root_error_world": 0.0,
+      "source_max_rotation_from_start_degrees": 5.9481,
+      "target_max_rotation_from_start_degrees": 5.948,
+      "target_max_root_displacement_world": 0.0,
+      "end_to_start_rotation_degrees": 0.0,
+      "end_to_start_root_distance_world": 0.0,
+      "visual_review_required": true
+    },
+    {
+      "status": "passed",
+      "action": "AN_Enemy_Pistol_Shoot",
+      "frames_checked": 20,
+      "keyed_channels": 211,
+      "max_rotation_error_degrees": 0.039565,
+      "max_position_error_world": 7e-07,
+      "max_root_error_world": 0.0,
+      "source_max_rotation_from_start_degrees": 17.2927,
+      "target_max_rotation_from_start_degrees": 17.2927,
+      "target_max_root_displacement_world": 0.0,
+      "end_to_start_rotation_degrees": 0.0,
+      "end_to_start_root_distance_world": 0.0,
+      "visual_review_required": true
+    },
+    {
+      "status": "passed",
+      "action": "AN_Enemy_Sword_Idle",
+      "frames_checked": 51,
+      "keyed_channels": 211,
+      "max_rotation_error_degrees": 0.055953,
+      "max_position_error_world": 5e-07,
+      "max_root_error_world": 0.0,
+      "source_max_rotation_from_start_degrees": 17.407,
+      "target_max_rotation_from_start_degrees": 17.407,
+      "target_max_root_displacement_world": 0.0259089,
+      "end_to_start_rotation_degrees": 0.0,
+      "end_to_start_root_distance_world": 0.0,
+      "visual_review_required": true
+    },
+    {
+      "status": "passed",
+      "action": "AN_Enemy_Sword_Attack",
+      "frames_checked": 47,
+      "keyed_channels": 211,
+      "max_rotation_error_degrees": 0.055953,
+      "max_position_error_world": 6e-07,
+      "max_root_error_world": 0.0,
+      "source_max_rotation_from_start_degrees": 175.204,
+      "target_max_rotation_from_start_degrees": 175.204,
+      "target_max_root_displacement_world": 0.196679,
+      "end_to_start_rotation_degrees": 0.056,
+      "end_to_start_root_distance_world": 0.0,
+      "visual_review_required": true
+    },
+    {
+      "status": "passed",
+      "action": "AN_Enemy_Interact",
+      "frames_checked": 61,
+      "keyed_channels": 211,
+      "max_rotation_error_degrees": 0.068528,
+      "max_position_error_world": 6e-07,
+      "max_root_error_world": 0.0,
+      "source_max_rotation_from_start_degrees": 179.8976,
+      "target_max_rotation_from_start_degrees": 179.8976,
+      "target_max_root_displacement_world": 0.0079976,
+      "end_to_start_rotation_degrees": 0.056,
+      "end_to_start_root_distance_world": 0.0,
+      "visual_review_required": true
+    }
+  ]
+}

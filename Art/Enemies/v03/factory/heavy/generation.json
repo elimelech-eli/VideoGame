@@ -1,0 +1,14 @@
+{
+  "biome": "factory",
+  "role": "heavy",
+  "model": "tencent/Hunyuan3D-2",
+  "source_hash": "ad10c9269e2850fa46e46579f008c5e3e93b8fd69230a202debdeb944c70e26b",
+  "seed": 2461,
+  "steps": 30,
+  "resolution": 320,
+  "seconds": 80.24429439999949,
+  "vertices": 572061,
+  "faces": 1144482,
+  "status": "AI-generated reference body reconstruction; raw/untextured/unrigged; not approved or runtime ready",
+  "license": "Tencent Hunyuan Community License; regional restrictions apply to outputs. Not CC0."
+}

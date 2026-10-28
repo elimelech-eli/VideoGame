@@ -1,0 +1,47 @@
+{
+  "biome": "corporate",
+  "modules": [
+    "Floor_4m",
+    "Wall_0_4m",
+    "Wall_1_4m",
+    "Corner_4m",
+    "Door_4m",
+    "Feature",
+    "Service",
+    "Clutter",
+    "Donor_metal_office_desk",
+    "Donor_potted_plant_02"
+  ],
+  "donors": [
+    {
+      "id": "metal_office_desk",
+      "source_bounds_m": [
+        2.000000476837158,
+        0.9472135305404663,
+        0.7875000238418579
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/metal_office_desk",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "potted_plant_02",
+      "source_bounds_m": [
+        0.7011570334434509,
+        0.6573866009712219,
+        0.8411787152290344
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/potted_plant_02",
+      "license": "CC0-1.0"
+    }
+  ],
+  "source_meshes": 126,
+  "source_curves": 0,
+  "seconds": 2.84,
+  "status": "editable environment study; review required; no Unity integration, UV bake, collision or runtime acceptance",
+  "grid_m": 4,
+  "door_clear_width_m": 2.5,
+  "layout": "two 12m rooms plus 4m corridor; review only",
+  "license": "Original authored geometry and shaders; industrial donor CC0 a52/rubberduck, see docs/ASSETS.md; additional CC0 donors Poly Haven, see donor-provenance.json"
+}

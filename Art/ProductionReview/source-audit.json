@@ -1,0 +1,66 @@
+{
+  "seconds": 0.73,
+  "kits": [
+    {
+      "biome": "biotech",
+      "finite_geometry": true,
+      "unpacked_file_images": [],
+      "door_clear_width_m": 2.499999910593033,
+      "door_2_5m_pass": true,
+      "source_triangles_without_modifiers": 48558,
+      "source_only": true,
+      "runtime": "not-run"
+    },
+    {
+      "biome": "corporate",
+      "finite_geometry": true,
+      "unpacked_file_images": [],
+      "door_clear_width_m": 2.499999910593033,
+      "door_2_5m_pass": true,
+      "source_triangles_without_modifiers": 102778,
+      "source_only": true,
+      "runtime": "not-run"
+    },
+    {
+      "biome": "factory",
+      "finite_geometry": true,
+      "unpacked_file_images": [],
+      "door_clear_width_m": 2.499999910593033,
+      "door_2_5m_pass": true,
+      "source_triangles_without_modifiers": 73904,
+      "source_only": true,
+      "runtime": "not-run"
+    },
+    {
+      "biome": "neon",
+      "finite_geometry": true,
+      "unpacked_file_images": [],
+      "door_clear_width_m": 2.499999910593033,
+      "door_2_5m_pass": true,
+      "source_triangles_without_modifiers": 51328,
+      "source_only": true,
+      "runtime": "not-run"
+    },
+    {
+      "biome": "transit",
+      "finite_geometry": true,
+      "unpacked_file_images": [],
+      "door_clear_width_m": 2.499999910593033,
+      "door_2_5m_pass": true,
+      "source_triangles_without_modifiers": 54497,
+      "source_only": true,
+      "runtime": "not-run"
+    },
+    {
+      "biome": "utilities",
+      "finite_geometry": true,
+      "unpacked_file_images": [],
+      "door_clear_width_m": 2.499999910593033,
+      "door_2_5m_pass": true,
+      "source_triangles_without_modifiers": 130272,
+      "source_only": true,
+      "runtime": "not-run"
+    }
+  ],
+  "checks": "finite source geometry/transforms, packed image dependencies, measured door width; not topology, material fidelity, collision or runtime certification"
+}

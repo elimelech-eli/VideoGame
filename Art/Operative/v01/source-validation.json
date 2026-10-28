@@ -1,0 +1,61 @@
+{
+  "clips": {
+    "Idle_Rifle": {
+      "max_joint_gap_m": 3.846260755997988e-07,
+      "lowest_skinned_vertex_m": 0.008499671705067158,
+      "stance_contact_drift_m": 0,
+      "rendered_frames": 31,
+      "loop_matrix_delta": 3.673941302218055e-18
+    },
+    "Walk_Rifle": {
+      "max_joint_gap_m": 2.874031889734553e-07,
+      "lowest_skinned_vertex_m": 0.008499560877680779,
+      "stance_contact_drift_m": 0.0018887519851708782,
+      "rendered_frames": 19,
+      "loop_matrix_delta": 3.781535993215277e-18
+    },
+    "Run_Rifle": {
+      "max_joint_gap_m": 3.125693941623424e-07,
+      "lowest_skinned_vertex_m": 0.008499687537550926,
+      "stance_contact_drift_m": 6.109476089477539e-07,
+      "rendered_frames": 13,
+      "loop_matrix_delta": 3.773287761737205e-18
+    },
+    "Fire_Rifle": {
+      "max_joint_gap_m": 2.8672637648722316e-07,
+      "lowest_skinned_vertex_m": 0.0084996921941638,
+      "stance_contact_drift_m": 0,
+      "rendered_frames": 7
+    },
+    "Grenade_Throw": {
+      "max_joint_gap_m": 4.0011768287711e-07,
+      "lowest_skinned_vertex_m": 0.008499674499034882,
+      "stance_contact_drift_m": 0,
+      "rendered_frames": 19
+    },
+    "Dash": {
+      "max_joint_gap_m": 3.9593369530398915e-07,
+      "lowest_skinned_vertex_m": 0.008499644696712494,
+      "stance_contact_drift_m": 0,
+      "rendered_frames": 13
+    },
+    "Hit": {
+      "max_joint_gap_m": 3.846260755997988e-07,
+      "lowest_skinned_vertex_m": 0.0084996921941638,
+      "stance_contact_drift_m": 0,
+      "rendered_frames": 9
+    },
+    "Death": {
+      "max_joint_gap_m": 3.656102462525754e-07,
+      "lowest_skinned_vertex_m": 0.0006068944931030273,
+      "stance_contact_drift_m": 0,
+      "rendered_frames": 25
+    }
+  },
+  "source": "Operative_review.blend",
+  "integration": "not performed",
+  "max_joint_gap_m": 4.0011768287711e-07,
+  "lowest_skinned_vertex_m": 0.0006068944931030273,
+  "max_weights": 2,
+  "unweighted_vertices": 0
+}

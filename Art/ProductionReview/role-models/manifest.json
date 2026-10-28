@@ -1,0 +1,726 @@
+{
+  "count": 24,
+  "stage": "static visual assemblies; not animation-ready or approved",
+  "models": [
+    {
+      "parts": 15,
+      "triangles": 26100,
+      "bounds_m": [
+        1.1337443590164185,
+        0.3632126450538635,
+        1.8499999046325684
+      ],
+      "finite_geometry": true,
+      "biome": "neon",
+      "role": "melee",
+      "foundation": "punk-bob",
+      "source": "https://sketchfab.com/3d-models/cyberpunk-character-019f4b3fd3c74ed0bc6c8dbe9cd50d51",
+      "author": "4d_Bob",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 7.4,
+      "equipment_sources": []
+    },
+    {
+      "parts": 11,
+      "triangles": 30542,
+      "bounds_m": [
+        1.1412713527679443,
+        0.7875474691390991,
+        1.8499999046325684
+      ],
+      "finite_geometry": true,
+      "biome": "neon",
+      "role": "ranged",
+      "foundation": "punk-bob",
+      "source": "https://sketchfab.com/3d-models/cyberpunk-character-019f4b3fd3c74ed0bc6c8dbe9cd50d51",
+      "author": "4d_Bob",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.42,
+      "equipment_sources": [
+        {
+          "id": "rifle-ulitka",
+          "author": "ul1tka",
+          "source": "https://sketchfab.com/3d-models/sci-fi-rifle-648a72a0046a4d059cd850f32f30f4ce",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 23,
+      "triangles": 28676,
+      "bounds_m": [
+        1.1814144849777222,
+        0.868182897567749,
+        1.8499999046325684
+      ],
+      "finite_geometry": true,
+      "biome": "neon",
+      "role": "aoe",
+      "foundation": "punk-bob",
+      "source": "https://sketchfab.com/3d-models/cyberpunk-character-019f4b3fd3c74ed0bc6c8dbe9cd50d51",
+      "author": "4d_Bob",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.76,
+      "equipment_sources": []
+    },
+    {
+      "parts": 33,
+      "triangles": 38435,
+      "bounds_m": [
+        1.3198978900909424,
+        1.064876675605774,
+        1.8499999046325684
+      ],
+      "finite_geometry": true,
+      "biome": "neon",
+      "role": "heavy",
+      "foundation": "punk-bob",
+      "source": "https://sketchfab.com/3d-models/cyberpunk-character-019f4b3fd3c74ed0bc6c8dbe9cd50d51",
+      "author": "4d_Bob",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 5.34,
+      "equipment_sources": [
+        {
+          "id": "minigun-tasty",
+          "author": "TastyTony",
+          "source": "https://sketchfab.com/3d-models/low-poly-m134-minigun-eed0c95de51b4895a48c5729582732cc",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 24,
+      "triangles": 14979,
+      "bounds_m": [
+        1.8772369623184204,
+        1.0250798463821411,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "factory",
+      "role": "melee",
+      "foundation": "mech-drone",
+      "source": "https://sketchfab.com/3d-models/mech-drone-8d06874aac5246c59edb4adbe3606e0e",
+      "author": "Willy Decarpentrie",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 3.47,
+      "equipment_sources": []
+    },
+    {
+      "parts": 18,
+      "triangles": 15293,
+      "bounds_m": [
+        1.976038932800293,
+        1.0790314674377441,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "factory",
+      "role": "ranged",
+      "foundation": "mech-drone",
+      "source": "https://sketchfab.com/3d-models/mech-drone-8d06874aac5246c59edb4adbe3606e0e",
+      "author": "Willy Decarpentrie",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.66,
+      "equipment_sources": [
+        {
+          "id": "rifle-ulitka",
+          "author": "ul1tka",
+          "source": "https://sketchfab.com/3d-models/sci-fi-rifle-648a72a0046a4d059cd850f32f30f4ce",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 30,
+      "triangles": 13427,
+      "bounds_m": [
+        1.976038932800293,
+        1.0790314674377441,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "factory",
+      "role": "aoe",
+      "foundation": "mech-drone",
+      "source": "https://sketchfab.com/3d-models/mech-drone-8d06874aac5246c59edb4adbe3606e0e",
+      "author": "Willy Decarpentrie",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.66,
+      "equipment_sources": []
+    },
+    {
+      "parts": 40,
+      "triangles": 23186,
+      "bounds_m": [
+        2.232923984527588,
+        1.2454140186309814,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "factory",
+      "role": "heavy",
+      "foundation": "mech-drone",
+      "source": "https://sketchfab.com/3d-models/mech-drone-8d06874aac5246c59edb4adbe3606e0e",
+      "author": "Willy Decarpentrie",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.98,
+      "equipment_sources": [
+        {
+          "id": "minigun-tasty",
+          "author": "TastyTony",
+          "source": "https://sketchfab.com/3d-models/low-poly-m134-minigun-eed0c95de51b4895a48c5729582732cc",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 12,
+      "triangles": 32357,
+      "bounds_m": [
+        1.5379951000213623,
+        0.5410602688789368,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "corporate",
+      "role": "melee",
+      "foundation": "art-loll",
+      "source": "https://sketchfab.com/3d-models/sci-fi-soldier-futuristic-combat-trooper-de876bfdce1c47a4aa67670faee7208e",
+      "author": "ART_LOLL",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.12,
+      "equipment_sources": []
+    },
+    {
+      "parts": 8,
+      "triangles": 36799,
+      "bounds_m": [
+        1.4218456745147705,
+        0.8521473407745361,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "corporate",
+      "role": "ranged",
+      "foundation": "art-loll",
+      "source": "https://sketchfab.com/3d-models/sci-fi-soldier-futuristic-combat-trooper-de876bfdce1c47a4aa67670faee7208e",
+      "author": "ART_LOLL",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.83,
+      "equipment_sources": [
+        {
+          "id": "rifle-ulitka",
+          "author": "ul1tka",
+          "source": "https://sketchfab.com/3d-models/sci-fi-rifle-648a72a0046a4d059cd850f32f30f4ce",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 20,
+      "triangles": 34933,
+      "bounds_m": [
+        1.5233323574066162,
+        0.8391786813735962,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "corporate",
+      "role": "aoe",
+      "foundation": "art-loll",
+      "source": "https://sketchfab.com/3d-models/sci-fi-soldier-futuristic-combat-trooper-de876bfdce1c47a4aa67670faee7208e",
+      "author": "ART_LOLL",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.8,
+      "equipment_sources": []
+    },
+    {
+      "parts": 29,
+      "triangles": 44612,
+      "bounds_m": [
+        1.7076256275177002,
+        1.032473087310791,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "corporate",
+      "role": "heavy",
+      "foundation": "art-loll",
+      "source": "https://sketchfab.com/3d-models/sci-fi-soldier-futuristic-combat-trooper-de876bfdce1c47a4aa67670faee7208e",
+      "author": "ART_LOLL",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.15,
+      "equipment_sources": [
+        {
+          "id": "minigun-tasty",
+          "author": "TastyTony",
+          "source": "https://sketchfab.com/3d-models/low-poly-m134-minigun-eed0c95de51b4895a48c5729582732cc",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 13,
+      "triangles": 28948,
+      "bounds_m": [
+        1.4978506565093994,
+        0.364823579788208,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "biotech",
+      "role": "melee",
+      "foundation": "soldier-lazanja",
+      "source": "https://sketchfab.com/3d-models/sci-fi-soldier-ffdbdf227ae344afa6bcf2788e3a0e13",
+      "author": "Lazanja",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.09,
+      "equipment_sources": []
+    },
+    {
+      "parts": 9,
+      "triangles": 33390,
+      "bounds_m": [
+        1.3782410621643066,
+        0.8386305570602417,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "biotech",
+      "role": "ranged",
+      "foundation": "soldier-lazanja",
+      "source": "https://sketchfab.com/3d-models/sci-fi-soldier-ffdbdf227ae344afa6bcf2788e3a0e13",
+      "author": "Lazanja",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.72,
+      "equipment_sources": [
+        {
+          "id": "rifle-ulitka",
+          "author": "ul1tka",
+          "source": "https://sketchfab.com/3d-models/sci-fi-rifle-648a72a0046a4d059cd850f32f30f4ce",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 22,
+      "triangles": 31808,
+      "bounds_m": [
+        1.479727864265442,
+        0.9544181227684021,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "biotech",
+      "role": "aoe",
+      "foundation": "soldier-lazanja",
+      "source": "https://sketchfab.com/3d-models/sci-fi-soldier-ffdbdf227ae344afa6bcf2788e3a0e13",
+      "author": "Lazanja",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.7,
+      "equipment_sources": []
+    },
+    {
+      "parts": 30,
+      "triangles": 41203,
+      "bounds_m": [
+        1.6591856479644775,
+        1.1231629848480225,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "biotech",
+      "role": "heavy",
+      "foundation": "soldier-lazanja",
+      "source": "https://sketchfab.com/3d-models/sci-fi-soldier-ffdbdf227ae344afa6bcf2788e3a0e13",
+      "author": "Lazanja",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.02,
+      "equipment_sources": [
+        {
+          "id": "minigun-tasty",
+          "author": "TastyTony",
+          "source": "https://sketchfab.com/3d-models/low-poly-m134-minigun-eed0c95de51b4895a48c5729582732cc",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 7,
+      "triangles": 28660,
+      "bounds_m": [
+        1.683532476425171,
+        0.588350236415863,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "utilities",
+      "role": "melee",
+      "foundation": "hazmat-loco",
+      "source": "https://sketchfab.com/3d-models/backrooms-rigged-hazmat-64d0069ed0cc420d8b3158ab8a3e6405",
+      "author": "Loco",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 4.06,
+      "equipment_sources": []
+    },
+    {
+      "parts": 3,
+      "triangles": 33102,
+      "bounds_m": [
+        1.772139549255371,
+        0.9475736618041992,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "utilities",
+      "role": "ranged",
+      "foundation": "hazmat-loco",
+      "source": "https://sketchfab.com/3d-models/backrooms-rigged-hazmat-64d0069ed0cc420d8b3158ab8a3e6405",
+      "author": "Loco",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.36,
+      "equipment_sources": [
+        {
+          "id": "rifle-ulitka",
+          "author": "ul1tka",
+          "source": "https://sketchfab.com/3d-models/sci-fi-rifle-648a72a0046a4d059cd850f32f30f4ce",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 15,
+      "triangles": 31236,
+      "bounds_m": [
+        1.772139549255371,
+        0.9097156524658203,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "utilities",
+      "role": "aoe",
+      "foundation": "hazmat-loco",
+      "source": "https://sketchfab.com/3d-models/backrooms-rigged-hazmat-64d0069ed0cc420d8b3158ab8a3e6405",
+      "author": "Loco",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 0.62,
+      "equipment_sources": []
+    },
+    {
+      "parts": 25,
+      "triangles": 40995,
+      "bounds_m": [
+        2.0025177001953125,
+        1.1118087768554688,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "utilities",
+      "role": "heavy",
+      "foundation": "hazmat-loco",
+      "source": "https://sketchfab.com/3d-models/backrooms-rigged-hazmat-64d0069ed0cc420d8b3158ab8a3e6405",
+      "author": "Loco",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 5.23,
+      "equipment_sources": [
+        {
+          "id": "minigun-tasty",
+          "author": "TastyTony",
+          "source": "https://sketchfab.com/3d-models/low-poly-m134-minigun-eed0c95de51b4895a48c5729582732cc",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 69,
+      "triangles": 69348,
+      "bounds_m": [
+        0.9574927687644958,
+        0.37610098719596863,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "transit",
+      "role": "melee",
+      "foundation": "dangry-robot",
+      "source": "https://sketchfab.com/3d-models/robot-c46bd21f1d284ae0b4bda7ac577448c2",
+      "author": "Daniel Gryningstjerna; textures Heroinfather; animation Linkle",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.88,
+      "equipment_sources": []
+    },
+    {
+      "parts": 65,
+      "triangles": 73790,
+      "bounds_m": [
+        0.8093806505203247,
+        0.7799999713897705,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "transit",
+      "role": "ranged",
+      "foundation": "dangry-robot",
+      "source": "https://sketchfab.com/3d-models/robot-c46bd21f1d284ae0b4bda7ac577448c2",
+      "author": "Daniel Gryningstjerna; textures Heroinfather; animation Linkle",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.45,
+      "equipment_sources": [
+        {
+          "id": "rifle-ulitka",
+          "author": "ul1tka",
+          "source": "https://sketchfab.com/3d-models/sci-fi-rifle-648a72a0046a4d059cd850f32f30f4ce",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "parts": 77,
+      "triangles": 71924,
+      "bounds_m": [
+        0.9108673334121704,
+        0.843347430229187,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "transit",
+      "role": "aoe",
+      "foundation": "dangry-robot",
+      "source": "https://sketchfab.com/3d-models/robot-c46bd21f1d284ae0b4bda7ac577448c2",
+      "author": "Daniel Gryningstjerna; textures Heroinfather; animation Linkle",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.5,
+      "equipment_sources": []
+    },
+    {
+      "parts": 87,
+      "triangles": 81683,
+      "bounds_m": [
+        1.264073133468628,
+        1.0423712730407715,
+        1.850000023841858
+      ],
+      "finite_geometry": true,
+      "biome": "transit",
+      "role": "heavy",
+      "foundation": "dangry-robot",
+      "source": "https://sketchfab.com/3d-models/robot-c46bd21f1d284ae0b4bda7ac577448c2",
+      "author": "Daniel Gryningstjerna; textures Heroinfather; animation Linkle",
+      "license": "Creative Commons Attribution",
+      "changes": "Normalized inspection scale; neon rotated to face forward; role-specific authored equipment; heavy/melee width adjustment; biotech armor desaturated and roughness raised; weapon textures desaturated/darkened for a shared gunmetal finish; source wrist used where available",
+      "status": "STATIC VISUAL ASSEMBLY FOR APPROVAL; not a finished rigged/animated game asset",
+      "remaining": [
+        "Resolve gun/grip orientation and hand pose",
+        "Bind equipment to appropriate original or fitted skeleton",
+        "Validate locomotion, attack, hit and death actions",
+        "LOD, collision, export/reimport and Unity performance checks"
+      ],
+      "seconds": 1.81,
+      "equipment_sources": [
+        {
+          "id": "minigun-tasty",
+          "author": "TastyTony",
+          "source": "https://sketchfab.com/3d-models/low-poly-m134-minigun-eed0c95de51b4895a48c5729582732cc",
+          "license": "Creative Commons Attribution",
+          "license_url": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "meshes": 13,
+  "bones": 45,
+  "triangles": 11460,
+  "actions": [
+    "Operative_Rig|Operative_Rig|Dash",
+    "Operative_Rig|Operative_Rig|Death",
+    "Operative_Rig|Operative_Rig|Fire_Rifle",
+    "Operative_Rig|Operative_Rig|Grenade_Throw",
+    "Operative_Rig|Operative_Rig|Hit",
+    "Operative_Rig|Operative_Rig|Idle_Rifle",
+    "Operative_Rig|Operative_Rig|Run_Rifle",
+    "Operative_Rig|Operative_Rig|Walk_Rifle"
+  ],
+  "animation_samples": {
+    "Idle_Rifle": {
+      "range": [
+        1.0,
+        61.0
+      ],
+      "position_delta": 0.003000974655179789
+    },
+    "Walk_Rifle": {
+      "range": [
+        1.0,
+        37.0
+      ],
+      "position_delta": 0.5500000417232513
+    },
+    "Run_Rifle": {
+      "range": [
+        1.0,
+        25.0
+      ],
+      "position_delta": 0.8399999365210533
+    },
+    "Fire_Rifle": {
+      "range": [
+        1.0,
+        13.0
+      ],
+      "position_delta": 0.008211128413677216
+    },
+    "Grenade_Throw": {
+      "range": [
+        1.0,
+        37.0
+      ],
+      "position_delta": 1.1930884867906855
+    },
+    "Dash": {
+      "range": [
+        1.0,
+        25.0
+      ],
+      "position_delta": 0.8850835951545548
+    },
+    "Hit": {
+      "range": [
+        1.0,
+        17.0
+      ],
+      "position_delta": 0.14927345341655496
+    },
+    "Death": {
+      "range": [
+        1.0,
+        49.0
+      ],
+      "position_delta": 4.008863477172582
+    }
+  },
+  "missing_textures": [],
+  "rest_bounds": [
+    [
+      -0.4529668390750885,
+      -0.618499755859375,
+      0.00849997904151678
+    ],
+    [
+      0.4529668390750885,
+      0.2935001850128174,
+      1.850000023841858
+    ]
+  ],
+  "separate_rifle": {
+    "triangles": 1444,
+    "dimensions_source_xyz_m": [
+      0.0899999774992466,
+      0.9120000898838043,
+      0.4018929451704025
+    ],
+    "grip_origin": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "source_forward": "+Y"
+  }
+}

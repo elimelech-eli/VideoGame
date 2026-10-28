@@ -1,0 +1,40 @@
+{
+  "asset": "Male operator v03",
+  "purpose": "Static visual comparison, not runtime delivery",
+  "source": {
+    "meshes": 158,
+    "vertices": 30728,
+    "triangles": 60244,
+    "degenerate_triangles": 0,
+    "nonfinite_vertices": 0,
+    "height_m": 1.8420000234618783,
+    "ground_z": 0.00800000037997961,
+    "uv_meshes": 17
+  },
+  "roundtrip": {
+    "meshes": 158,
+    "vertices": 30728,
+    "triangles": 60244,
+    "degenerate_triangles": 0,
+    "nonfinite_vertices": 0,
+    "height_m": 1.8420000365003943,
+    "ground_z": 0.007999987341463566,
+    "uv_meshes": 17
+  },
+  "checks": {
+    "mesh_count_preserved": true,
+    "triangle_count_preserved": true,
+    "height_preserved_1mm": true,
+    "finite_coordinates": true,
+    "no_zero_area_triangles": true
+  },
+  "validation_seconds": 1.43,
+  "limitations": [
+    "Unrigged static snapshot; hidden donor rig is not attached to new armor.",
+    "No animation, LOD, Unity or performance acceptance.",
+    "Color/material review only; no finished texture atlas, normal bake or packed Unity maps.",
+    "Procedural fabric micro-bump is Blender-only and not included as a baked FBX texture.",
+    "Fine seams, damage and hidden construction are inferred from the small concept.",
+    "The geometric fidelity gate has not been signed off; user visual comparison remains pending."
+  ]
+}

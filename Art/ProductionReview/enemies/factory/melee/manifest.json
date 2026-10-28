@@ -1,0 +1,17 @@
+{
+  "biome": "factory",
+  "role": "melee",
+  "parts": 81,
+  "triangles": 27280,
+  "finite": true,
+  "rig_family": "mechanical biped",
+  "status": "FORM STUDY: fidelity not approved, no final rig/animation/UV bake/LODs/Unity export",
+  "reference": "Art\\Enemies\\v03\\factory\\melee\\reference-crop.png",
+  "inferred": "all hidden sides, actual dimensions, construction and mechanisms",
+  "known_deviations": [
+    "Human faces, fabric drape and material wear require further art work",
+    "Render forms have not passed reference silhouette measurement",
+    "Humanoid anatomical foundation remains in relaxed pose; gun grip not solved"
+  ],
+  "seconds": 20.57
+}
