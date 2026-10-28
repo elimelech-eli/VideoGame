@@ -1,0 +1,34 @@
+{
+  "role": "heavy",
+  "bones": 16,
+  "mesh_modules": 194,
+  "triangles": 13980,
+  "clips": {
+    "Idle": {
+      "action": "AN_heavy_Idle",
+      "frames": 61,
+      "seconds": 2.0
+    },
+    "Move": {
+      "action": "AN_heavy_Move",
+      "frames": 33,
+      "seconds": 1.0666666666666667
+    },
+    "Attack": {
+      "action": "AN_heavy_Attack",
+      "frames": 41,
+      "seconds": 1.3333333333333333
+    },
+    "Hit": {
+      "action": "AN_heavy_Hit",
+      "frames": 17,
+      "seconds": 0.5333333333333333
+    },
+    "Death": {
+      "action": "AN_heavy_Death",
+      "frames": 61,
+      "seconds": 2.0
+    }
+  },
+  "status": "Reference reconstruction in review; animation/contact and final optimization still provisional"
+}

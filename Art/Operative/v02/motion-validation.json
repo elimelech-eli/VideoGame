@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "clips": [
+    {
+      "action": "AN_Operative_Death01",
+      "frames": 73,
+      "maximum_matrix_change": 1.9563391208648682
+    },
+    {
+      "action": "AN_Operative_Hit_Chest",
+      "frames": 11,
+      "maximum_matrix_change": 1.2108854055404663
+    },
+    {
+      "action": "AN_Operative_Idle_Loop",
+      "frames": 76,
+      "maximum_matrix_change": 0.08287212252616882
+    },
+    {
+      "action": "AN_Operative_Sprint_Loop",
+      "frames": 21,
+      "maximum_matrix_change": 1.6339644193649292
+    },
+    {
+      "action": "AN_Operative_Walk_Loop",
+      "frames": 41,
+      "maximum_matrix_change": 1.4114317893981934
+    }
+  ],
+  "frames_checked": 222,
+  "limits": "Finite pose and nonstatic animation checks; not a garment-intersection or foot-contact certification."
+}

@@ -1,0 +1,340 @@
+{
+  "source_armature": "Armature",
+  "target_armature": "Operative_Rig",
+  "source_action": "Interact",
+  "action_name": "AN_Enemy_Interact",
+  "root_source": "pelvis",
+  "root_target": "mixamorig:Hips",
+  "mapping": {
+    "mixamorig:Hips": "pelvis",
+    "mixamorig:Spine": "spine_01",
+    "mixamorig:Spine1": "spine_02",
+    "mixamorig:Spine2": "spine_03",
+    "mixamorig:Neck": "neck_01",
+    "mixamorig:Head": "Head",
+    "mixamorig:LeftShoulder": "clavicle_l",
+    "mixamorig:LeftArm": "upperarm_l",
+    "mixamorig:LeftForeArm": "lowerarm_l",
+    "mixamorig:LeftHand": "hand_l",
+    "mixamorig:LeftUpLeg": "thigh_l",
+    "mixamorig:LeftLeg": "calf_l",
+    "mixamorig:LeftFoot": "foot_l",
+    "mixamorig:LeftToeBase": "ball_l",
+    "mixamorig:LeftHandThumb1": "thumb_01_l",
+    "mixamorig:LeftHandThumb2": "thumb_02_l",
+    "mixamorig:LeftHandThumb3": "thumb_03_l",
+    "mixamorig:LeftHandIndex1": "index_01_l",
+    "mixamorig:LeftHandIndex2": "index_02_l",
+    "mixamorig:LeftHandIndex3": "index_03_l",
+    "mixamorig:LeftHandMiddle1": "middle_01_l",
+    "mixamorig:LeftHandMiddle2": "middle_02_l",
+    "mixamorig:LeftHandMiddle3": "middle_03_l",
+    "mixamorig:LeftHandRing1": "ring_01_l",
+    "mixamorig:LeftHandRing2": "ring_02_l",
+    "mixamorig:LeftHandRing3": "ring_03_l",
+    "mixamorig:LeftHandPinky1": "pinky_01_l",
+    "mixamorig:LeftHandPinky2": "pinky_02_l",
+    "mixamorig:LeftHandPinky3": "pinky_03_l",
+    "mixamorig:RightShoulder": "clavicle_r",
+    "mixamorig:RightArm": "upperarm_r",
+    "mixamorig:RightForeArm": "lowerarm_r",
+    "mixamorig:RightHand": "hand_r",
+    "mixamorig:RightUpLeg": "thigh_r",
+    "mixamorig:RightLeg": "calf_r",
+    "mixamorig:RightFoot": "foot_r",
+    "mixamorig:RightToeBase": "ball_r",
+    "mixamorig:RightHandThumb1": "thumb_01_r",
+    "mixamorig:RightHandThumb2": "thumb_02_r",
+    "mixamorig:RightHandThumb3": "thumb_03_r",
+    "mixamorig:RightHandIndex1": "index_01_r",
+    "mixamorig:RightHandIndex2": "index_02_r",
+    "mixamorig:RightHandIndex3": "index_03_r",
+    "mixamorig:RightHandMiddle1": "middle_01_r",
+    "mixamorig:RightHandMiddle2": "middle_02_r",
+    "mixamorig:RightHandMiddle3": "middle_03_r",
+    "mixamorig:RightHandRing1": "ring_01_r",
+    "mixamorig:RightHandRing2": "ring_02_r",
+    "mixamorig:RightHandRing3": "ring_03_r",
+    "mixamorig:RightHandPinky1": "pinky_01_r",
+    "mixamorig:RightHandPinky2": "pinky_02_r",
+    "mixamorig:RightHandPinky3": "pinky_03_r"
+  },
+  "segments": [
+    {
+      "target": "mixamorig:LeftShoulder",
+      "target_end": "mixamorig:LeftArm",
+      "source": "clavicle_l",
+      "source_end": "upperarm_l"
+    },
+    {
+      "target": "mixamorig:LeftArm",
+      "target_end": "mixamorig:LeftForeArm",
+      "source": "upperarm_l",
+      "source_end": "lowerarm_l"
+    },
+    {
+      "target": "mixamorig:LeftForeArm",
+      "target_end": "mixamorig:LeftHand",
+      "source": "lowerarm_l",
+      "source_end": "hand_l"
+    },
+    {
+      "target": "mixamorig:LeftUpLeg",
+      "target_end": "mixamorig:LeftLeg",
+      "source": "thigh_l",
+      "source_end": "calf_l"
+    },
+    {
+      "target": "mixamorig:LeftLeg",
+      "target_end": "mixamorig:LeftFoot",
+      "source": "calf_l",
+      "source_end": "foot_l"
+    },
+    {
+      "target": "mixamorig:LeftFoot",
+      "target_end": "mixamorig:LeftToeBase",
+      "source": "foot_l",
+      "source_end": "ball_l"
+    },
+    {
+      "target": "mixamorig:LeftHandThumb1",
+      "target_end": "mixamorig:LeftHandThumb2",
+      "source": "thumb_01_l",
+      "source_end": "thumb_02_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandThumb2",
+      "target_end": "mixamorig:LeftHandThumb3",
+      "source": "thumb_02_l",
+      "source_end": "thumb_03_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandIndex1",
+      "target_end": "mixamorig:LeftHandIndex2",
+      "source": "index_01_l",
+      "source_end": "index_02_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandIndex2",
+      "target_end": "mixamorig:LeftHandIndex3",
+      "source": "index_02_l",
+      "source_end": "index_03_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandMiddle1",
+      "target_end": "mixamorig:LeftHandMiddle2",
+      "source": "middle_01_l",
+      "source_end": "middle_02_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandMiddle2",
+      "target_end": "mixamorig:LeftHandMiddle3",
+      "source": "middle_02_l",
+      "source_end": "middle_03_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandRing1",
+      "target_end": "mixamorig:LeftHandRing2",
+      "source": "ring_01_l",
+      "source_end": "ring_02_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandRing2",
+      "target_end": "mixamorig:LeftHandRing3",
+      "source": "ring_02_l",
+      "source_end": "ring_03_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandPinky1",
+      "target_end": "mixamorig:LeftHandPinky2",
+      "source": "pinky_01_l",
+      "source_end": "pinky_02_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:LeftHandPinky2",
+      "target_end": "mixamorig:LeftHandPinky3",
+      "source": "pinky_02_l",
+      "source_end": "pinky_03_l",
+      "prior_palm": "mixamorig:LeftHand"
+    },
+    {
+      "target": "mixamorig:RightShoulder",
+      "target_end": "mixamorig:RightArm",
+      "source": "clavicle_r",
+      "source_end": "upperarm_r"
+    },
+    {
+      "target": "mixamorig:RightArm",
+      "target_end": "mixamorig:RightForeArm",
+      "source": "upperarm_r",
+      "source_end": "lowerarm_r"
+    },
+    {
+      "target": "mixamorig:RightForeArm",
+      "target_end": "mixamorig:RightHand",
+      "source": "lowerarm_r",
+      "source_end": "hand_r"
+    },
+    {
+      "target": "mixamorig:RightUpLeg",
+      "target_end": "mixamorig:RightLeg",
+      "source": "thigh_r",
+      "source_end": "calf_r"
+    },
+    {
+      "target": "mixamorig:RightLeg",
+      "target_end": "mixamorig:RightFoot",
+      "source": "calf_r",
+      "source_end": "foot_r"
+    },
+    {
+      "target": "mixamorig:RightFoot",
+      "target_end": "mixamorig:RightToeBase",
+      "source": "foot_r",
+      "source_end": "ball_r"
+    },
+    {
+      "target": "mixamorig:RightHandThumb1",
+      "target_end": "mixamorig:RightHandThumb2",
+      "source": "thumb_01_r",
+      "source_end": "thumb_02_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandThumb2",
+      "target_end": "mixamorig:RightHandThumb3",
+      "source": "thumb_02_r",
+      "source_end": "thumb_03_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandIndex1",
+      "target_end": "mixamorig:RightHandIndex2",
+      "source": "index_01_r",
+      "source_end": "index_02_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandIndex2",
+      "target_end": "mixamorig:RightHandIndex3",
+      "source": "index_02_r",
+      "source_end": "index_03_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandMiddle1",
+      "target_end": "mixamorig:RightHandMiddle2",
+      "source": "middle_01_r",
+      "source_end": "middle_02_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandMiddle2",
+      "target_end": "mixamorig:RightHandMiddle3",
+      "source": "middle_02_r",
+      "source_end": "middle_03_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandRing1",
+      "target_end": "mixamorig:RightHandRing2",
+      "source": "ring_01_r",
+      "source_end": "ring_02_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandRing2",
+      "target_end": "mixamorig:RightHandRing3",
+      "source": "ring_02_r",
+      "source_end": "ring_03_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandPinky1",
+      "target_end": "mixamorig:RightHandPinky2",
+      "source": "pinky_01_r",
+      "source_end": "pinky_02_r",
+      "prior_palm": "mixamorig:RightHand"
+    },
+    {
+      "target": "mixamorig:RightHandPinky2",
+      "target_end": "mixamorig:RightHandPinky3",
+      "source": "pinky_02_r",
+      "source_end": "pinky_03_r",
+      "prior_palm": "mixamorig:RightHand"
+    }
+  ],
+  "palms": [
+    {
+      "target": [
+        "mixamorig:LeftHand",
+        "mixamorig:LeftHandMiddle1",
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandPinky1"
+      ],
+      "source": [
+        "hand_l",
+        "middle_01_l",
+        "index_01_l",
+        "pinky_01_l"
+      ]
+    },
+    {
+      "target": [
+        "mixamorig:RightHand",
+        "mixamorig:RightHandMiddle1",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandPinky1"
+      ],
+      "source": [
+        "hand_r",
+        "middle_01_r",
+        "index_01_r",
+        "pinky_01_r"
+      ]
+    }
+  ],
+  "leg_chains": [
+    {
+      "target": [
+        "mixamorig:LeftUpLeg",
+        "mixamorig:LeftLeg",
+        "mixamorig:LeftFoot"
+      ],
+      "source": [
+        "thigh_l",
+        "calf_l",
+        "foot_l"
+      ]
+    },
+    {
+      "target": [
+        "mixamorig:RightUpLeg",
+        "mixamorig:RightLeg",
+        "mixamorig:RightFoot"
+      ],
+      "source": [
+        "thigh_r",
+        "calf_r",
+        "foot_r"
+      ]
+    }
+  ],
+  "alignment_quaternion": [
+    1,
+    0,
+    0,
+    0
+  ],
+  "root_motion": "in_place",
+  "backup_path": "D:\\VideoGame\\.tools\\gamedev\\character-sources\\enemy-before-Interact.blend"
+}

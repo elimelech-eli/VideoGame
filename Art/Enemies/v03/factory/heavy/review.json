@@ -1,0 +1,12 @@
+{
+  "biome": "factory",
+  "role": "heavy",
+  "vertices": 572061,
+  "triangles": 1144474,
+  "height": 2.15,
+  "raw_sha256": "e2831763cabf5c33b86bb8145bc700150615ba7f3259312104b4e9d14c8a5628",
+  "source_hash": "ad10c9269e2850fa46e46579f008c5e3e93b8fd69230a202debdeb944c70e26b",
+  "rigged": false,
+  "textured": false,
+  "unity_integrated": false
+}

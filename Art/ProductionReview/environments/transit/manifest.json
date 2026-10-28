@@ -1,0 +1,47 @@
+{
+  "biome": "transit",
+  "modules": [
+    "Floor_4m",
+    "Wall_0_4m",
+    "Wall_1_4m",
+    "Corner_4m",
+    "Door_4m",
+    "Feature",
+    "Service",
+    "Clutter",
+    "Donor_security_camera_01",
+    "Donor_metal_trash_can"
+  ],
+  "donors": [
+    {
+      "id": "security_camera_01",
+      "source_bounds_m": [
+        0.1695517897605896,
+        0.5536718368530273,
+        0.28604644536972046
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/security_camera_01",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "metal_trash_can",
+      "source_bounds_m": [
+        1.8469351530075073,
+        0.556289792060852,
+        0.9061697125434875
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/metal_trash_can",
+      "license": "CC0-1.0"
+    }
+  ],
+  "source_meshes": 188,
+  "source_curves": 6,
+  "seconds": 2.66,
+  "status": "editable environment study; review required; no Unity integration, UV bake, collision or runtime acceptance",
+  "grid_m": 4,
+  "door_clear_width_m": 2.5,
+  "layout": "two 12m rooms plus 4m corridor; review only",
+  "license": "Original authored geometry and shaders; industrial donor CC0 a52/rubberduck, see docs/ASSETS.md; additional CC0 donors Poly Haven, see donor-provenance.json"
+}

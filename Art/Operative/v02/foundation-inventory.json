@@ -1,0 +1,774 @@
+{
+  "target_bones": [
+    "mixamorig:Hips",
+    "mixamorig:LeftUpLeg",
+    "mixamorig:LeftLeg",
+    "mixamorig:LeftFoot",
+    "mixamorig:LeftToeBase",
+    "mixamorig:RightUpLeg",
+    "mixamorig:RightLeg",
+    "mixamorig:RightFoot",
+    "mixamorig:RightToeBase",
+    "mixamorig:Spine",
+    "mixamorig:Spine1",
+    "mixamorig:Spine2",
+    "mixamorig:LeftShoulder",
+    "mixamorig:LeftArm",
+    "mixamorig:LeftForeArm",
+    "mixamorig:LeftHand",
+    "mixamorig:LeftHandIndex1",
+    "mixamorig:LeftHandIndex2",
+    "mixamorig:LeftHandIndex3",
+    "mixamorig:LeftHandMiddle1",
+    "mixamorig:LeftHandMiddle2",
+    "mixamorig:LeftHandMiddle3",
+    "mixamorig:LeftHandPinky1",
+    "mixamorig:LeftHandPinky2",
+    "mixamorig:LeftHandPinky3",
+    "mixamorig:LeftHandRing1",
+    "mixamorig:LeftHandRing2",
+    "mixamorig:LeftHandRing3",
+    "mixamorig:LeftHandThumb1",
+    "mixamorig:LeftHandThumb2",
+    "mixamorig:LeftHandThumb3",
+    "mixamorig:Neck",
+    "mixamorig:Head",
+    "mixamorig:RightShoulder",
+    "mixamorig:RightArm",
+    "mixamorig:RightForeArm",
+    "mixamorig:RightHand",
+    "mixamorig:RightHandIndex1",
+    "mixamorig:RightHandIndex2",
+    "mixamorig:RightHandIndex3",
+    "mixamorig:RightHandMiddle1",
+    "mixamorig:RightHandMiddle2",
+    "mixamorig:RightHandMiddle3",
+    "mixamorig:RightHandPinky1",
+    "mixamorig:RightHandPinky2",
+    "mixamorig:RightHandPinky3",
+    "mixamorig:RightHandRing1",
+    "mixamorig:RightHandRing2",
+    "mixamorig:RightHandRing3",
+    "mixamorig:RightHandThumb1",
+    "mixamorig:RightHandThumb2",
+    "mixamorig:RightHandThumb3"
+  ],
+  "source_name": "Armature",
+  "source_bones": [
+    "root",
+    "pelvis",
+    "spine_01",
+    "spine_02",
+    "spine_03",
+    "neck_01",
+    "Head",
+    "clavicle_l",
+    "upperarm_l",
+    "lowerarm_l",
+    "hand_l",
+    "index_01_l",
+    "index_02_l",
+    "index_03_l",
+    "index_04_leaf_l",
+    "middle_01_l",
+    "middle_02_l",
+    "middle_03_l",
+    "middle_04_leaf_l",
+    "pinky_01_l",
+    "pinky_02_l",
+    "pinky_03_l",
+    "pinky_04_leaf_l",
+    "ring_01_l",
+    "ring_02_l",
+    "ring_03_l",
+    "ring_04_leaf_l",
+    "thumb_01_l",
+    "thumb_02_l",
+    "thumb_03_l",
+    "thumb_04_leaf_l",
+    "clavicle_r",
+    "upperarm_r",
+    "lowerarm_r",
+    "hand_r",
+    "index_01_r",
+    "index_02_r",
+    "index_03_r",
+    "index_04_leaf_r",
+    "middle_01_r",
+    "middle_02_r",
+    "middle_03_r",
+    "middle_04_leaf_r",
+    "pinky_01_r",
+    "pinky_02_r",
+    "pinky_03_r",
+    "pinky_04_leaf_r",
+    "ring_01_r",
+    "ring_02_r",
+    "ring_03_r",
+    "ring_04_leaf_r",
+    "thumb_01_r",
+    "thumb_02_r",
+    "thumb_03_r",
+    "thumb_04_leaf_r",
+    "thigh_l",
+    "calf_l",
+    "foot_l",
+    "ball_l",
+    "ball_leaf_l",
+    "thigh_r",
+    "calf_r",
+    "foot_r",
+    "ball_r",
+    "ball_leaf_r"
+  ],
+  "actions": [
+    {
+      "name": "A_TPose",
+      "range": [
+        0.0,
+        75.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Crouch_Fwd_Loop",
+      "range": [
+        0.0,
+        60.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Crouch_Idle_Loop",
+      "range": [
+        0.0,
+        88.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Dance_Loop",
+      "range": [
+        0.0,
+        30.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Death01",
+      "range": [
+        0.0,
+        72.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Driving_Loop",
+      "range": [
+        0.0,
+        50.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Fixing_Kneeling",
+      "range": [
+        0.0,
+        156.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Hit_Chest",
+      "range": [
+        0.0,
+        10.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Hit_Head",
+      "range": [
+        0.0,
+        13.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Idle_Loop",
+      "range": [
+        0.0,
+        75.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Idle_Talking_Loop",
+      "range": [
+        0.0,
+        88.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Idle_Torch_Loop",
+      "range": [
+        0.0,
+        38.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Interact",
+      "range": [
+        0.0,
+        60.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Jog_Fwd_Loop",
+      "range": [
+        0.0,
+        28.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Jump_Land",
+      "range": [
+        0.0,
+        38.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Jump_Loop",
+      "range": [
+        0.0,
+        75.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Jump_Start",
+      "range": [
+        0.0,
+        40.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "PickUp_Table",
+      "range": [
+        0.0,
+        25.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Pistol_Aim_Down",
+      "range": [
+        0.0,
+        5.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Pistol_Aim_Neutral",
+      "range": [
+        0.0,
+        5.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Pistol_Aim_Up",
+      "range": [
+        0.0,
+        5.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Pistol_Idle_Loop",
+      "range": [
+        0.0,
+        50.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Pistol_Reload",
+      "range": [
+        0.0,
+        50.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Pistol_Shoot",
+      "range": [
+        0.0,
+        19.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Punch_Cross",
+      "range": [
+        0.0,
+        30.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Punch_Jab",
+      "range": [
+        0.0,
+        26.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Push_Loop",
+      "range": [
+        0.0,
+        80.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Roll",
+      "range": [
+        0.0,
+        44.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Sitting_Enter",
+      "range": [
+        0.0,
+        39.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Sitting_Exit",
+      "range": [
+        0.0,
+        31.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Sitting_Idle_Loop",
+      "range": [
+        0.0,
+        50.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Sitting_Talking_Loop",
+      "range": [
+        0.0,
+        88.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Spell_Simple_Enter",
+      "range": [
+        0.0,
+        16.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Spell_Simple_Exit",
+      "range": [
+        0.0,
+        13.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Spell_Simple_Idle_Loop",
+      "range": [
+        0.0,
+        62.999996185302734
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Spell_Simple_Shoot",
+      "range": [
+        0.0,
+        15.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Sprint_Loop",
+      "range": [
+        0.0,
+        20.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Swim_Fwd_Loop",
+      "range": [
+        0.0,
+        40.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Swim_Idle_Loop",
+      "range": [
+        0.0,
+        100.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Sword_Attack",
+      "range": [
+        0.0,
+        46.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Sword_Idle",
+      "range": [
+        0.0,
+        50.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Walk_Formal_Loop",
+      "range": [
+        0.0,
+        40.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    },
+    {
+      "name": "Walk_Loop",
+      "range": [
+        0.0,
+        40.0
+      ],
+      "slots": [
+        "OBArmature"
+      ]
+    }
+  ],
+  "body_dimensions": [
+    1.020289659500122,
+    0.3840703070163727,
+    0.74159836769104
+  ],
+  "source_dimensions": [
+    1.9834153652191162,
+    0.3459860682487488,
+    1.680403470993042
+  ],
+  "groups": [
+    "HelperGeometry",
+    "JointCubes",
+    "Left",
+    "Mid",
+    "Right",
+    "body",
+    "helper-genital",
+    "helper-hair",
+    "helper-l-eye",
+    "helper-l-eyelashes-1",
+    "helper-l-eyelashes-2",
+    "helper-lower-teeth",
+    "helper-r-eye",
+    "helper-r-eyelashes-1",
+    "helper-r-eyelashes-2",
+    "helper-skirt",
+    "helper-tights",
+    "helper-tongue",
+    "helper-upper-teeth",
+    "joint-ground",
+    "joint-head",
+    "joint-head-2",
+    "joint-jaw",
+    "joint-l-ankle",
+    "joint-l-clavicle",
+    "joint-l-elbow",
+    "joint-l-eye",
+    "joint-l-eye-target",
+    "joint-l-finger-1-1",
+    "joint-l-finger-1-2",
+    "joint-l-finger-1-3",
+    "joint-l-finger-1-4",
+    "joint-l-finger-2-1",
+    "joint-l-finger-2-2",
+    "joint-l-finger-2-3",
+    "joint-l-finger-2-4",
+    "joint-l-finger-3-1",
+    "joint-l-finger-3-2",
+    "joint-l-finger-3-3",
+    "joint-l-finger-3-4",
+    "joint-l-finger-4-1",
+    "joint-l-finger-4-2",
+    "joint-l-finger-4-3",
+    "joint-l-finger-4-4",
+    "joint-l-finger-5-1",
+    "joint-l-finger-5-2",
+    "joint-l-finger-5-3",
+    "joint-l-finger-5-4",
+    "joint-l-foot-1",
+    "joint-l-foot-2",
+    "joint-l-hand",
+    "joint-l-hand-2",
+    "joint-l-hand-3",
+    "joint-l-knee",
+    "joint-l-lowerlid",
+    "joint-l-scapula",
+    "joint-l-shoulder",
+    "joint-l-toe-1-1",
+    "joint-l-toe-1-2",
+    "joint-l-toe-1-3",
+    "joint-l-toe-2-1",
+    "joint-l-toe-2-2",
+    "joint-l-toe-2-3",
+    "joint-l-toe-2-4",
+    "joint-l-toe-3-1",
+    "joint-l-toe-3-2",
+    "joint-l-toe-3-3",
+    "joint-l-toe-3-4",
+    "joint-l-toe-4-1",
+    "joint-l-toe-4-2",
+    "joint-l-toe-4-3",
+    "joint-l-toe-4-4",
+    "joint-l-toe-5-1",
+    "joint-l-toe-5-2",
+    "joint-l-toe-5-3",
+    "joint-l-toe-5-4",
+    "joint-l-upper-leg",
+    "joint-l-upperlid",
+    "joint-mouth",
+    "joint-neck",
+    "joint-pelvis",
+    "joint-r-ankle",
+    "joint-r-clavicle",
+    "joint-r-elbow",
+    "joint-r-eye",
+    "joint-r-eye-target",
+    "joint-r-finger-1-1",
+    "joint-r-finger-1-2",
+    "joint-r-finger-1-3",
+    "joint-r-finger-1-4",
+    "joint-r-finger-2-1",
+    "joint-r-finger-2-2",
+    "joint-r-finger-2-3",
+    "joint-r-finger-2-4",
+    "joint-r-finger-3-1",
+    "joint-r-finger-3-2",
+    "joint-r-finger-3-3",
+    "joint-r-finger-3-4",
+    "joint-r-finger-4-1",
+    "joint-r-finger-4-2",
+    "joint-r-finger-4-3",
+    "joint-r-finger-4-4",
+    "joint-r-finger-5-1",
+    "joint-r-finger-5-2",
+    "joint-r-finger-5-3",
+    "joint-r-finger-5-4",
+    "joint-r-foot-1",
+    "joint-r-foot-2",
+    "joint-r-hand",
+    "joint-r-hand-2",
+    "joint-r-hand-3",
+    "joint-r-knee",
+    "joint-r-lowerlid",
+    "joint-r-scapula",
+    "joint-r-shoulder",
+    "joint-r-toe-1-1",
+    "joint-r-toe-1-2",
+    "joint-r-toe-1-3",
+    "joint-r-toe-2-1",
+    "joint-r-toe-2-2",
+    "joint-r-toe-2-3",
+    "joint-r-toe-2-4",
+    "joint-r-toe-3-1",
+    "joint-r-toe-3-2",
+    "joint-r-toe-3-3",
+    "joint-r-toe-3-4",
+    "joint-r-toe-4-1",
+    "joint-r-toe-4-2",
+    "joint-r-toe-4-3",
+    "joint-r-toe-4-4",
+    "joint-r-toe-5-1",
+    "joint-r-toe-5-2",
+    "joint-r-toe-5-3",
+    "joint-r-toe-5-4",
+    "joint-r-upper-leg",
+    "joint-r-upperlid",
+    "joint-spine-1",
+    "joint-spine-2",
+    "joint-spine-3",
+    "joint-spine-4",
+    "joint-tongue-1",
+    "joint-tongue-2",
+    "joint-tongue-3",
+    "joint-tongue-4",
+    "nippleTip",
+    "nipple",
+    "lips",
+    "fingernails",
+    "toenails",
+    "ears",
+    "scalp",
+    "genitals",
+    "mixamorig:Hips",
+    "mixamorig:LeftUpLeg",
+    "mixamorig:LeftLeg",
+    "mixamorig:LeftFoot",
+    "mixamorig:LeftToeBase",
+    "mixamorig:RightUpLeg",
+    "mixamorig:RightLeg",
+    "mixamorig:RightFoot",
+    "mixamorig:RightToeBase",
+    "mixamorig:Spine",
+    "mixamorig:Spine1",
+    "mixamorig:Spine2",
+    "mixamorig:LeftShoulder",
+    "mixamorig:LeftArm",
+    "mixamorig:LeftForeArm",
+    "mixamorig:LeftHand",
+    "mixamorig:LeftHandIndex1",
+    "mixamorig:LeftHandIndex2",
+    "mixamorig:LeftHandIndex3",
+    "mixamorig:LeftHandMiddle1",
+    "mixamorig:LeftHandMiddle2",
+    "mixamorig:LeftHandMiddle3",
+    "mixamorig:LeftHandPinky1",
+    "mixamorig:LeftHandPinky2",
+    "mixamorig:LeftHandPinky3",
+    "mixamorig:LeftHandRing1",
+    "mixamorig:LeftHandRing2",
+    "mixamorig:LeftHandRing3",
+    "mixamorig:LeftHandThumb1",
+    "mixamorig:LeftHandThumb2",
+    "mixamorig:LeftHandThumb3",
+    "mixamorig:Neck",
+    "mixamorig:Head",
+    "mixamorig:RightShoulder",
+    "mixamorig:RightArm",
+    "mixamorig:RightForeArm",
+    "mixamorig:RightHand",
+    "mixamorig:RightHandIndex1",
+    "mixamorig:RightHandIndex2",
+    "mixamorig:RightHandIndex3",
+    "mixamorig:RightHandMiddle1",
+    "mixamorig:RightHandMiddle2",
+    "mixamorig:RightHandMiddle3",
+    "mixamorig:RightHandPinky1",
+    "mixamorig:RightHandPinky2",
+    "mixamorig:RightHandPinky3",
+    "mixamorig:RightHandRing1",
+    "mixamorig:RightHandRing2",
+    "mixamorig:RightHandRing3",
+    "mixamorig:RightHandThumb1",
+    "mixamorig:RightHandThumb2",
+    "mixamorig:RightHandThumb3",
+    "Delete.male_worksuit01",
+    "Delete.shoes05"
+  ]
+}

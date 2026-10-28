@@ -1,0 +1,51 @@
+{
+  "source": "https://sketchfab.com/3d-models/robot-c46bd21f1d284ae0b4bda7ac577448c2",
+  "license": "CC-BY-4.0",
+  "attribution": "Daniel Gryningstjerna; textures Heroinfather; animation Linkle",
+  "model": "dangry-robot",
+  "mesh_count": 63,
+  "bones": [
+    37
+  ],
+  "actions": [
+    "Take 001"
+  ],
+  "textures": [
+    "Image_0",
+    "Image_1",
+    "Image_10",
+    "Image_11",
+    "Image_12",
+    "Image_13",
+    "Image_14",
+    "Image_15",
+    "Image_16",
+    "Image_17",
+    "Image_18",
+    "Image_19",
+    "Image_2",
+    "Image_20",
+    "Image_21",
+    "Image_22",
+    "Image_23",
+    "Image_24",
+    "Image_25",
+    "Image_26",
+    "Image_27",
+    "Image_28",
+    "Image_3",
+    "Image_4",
+    "Image_5",
+    "Image_6",
+    "Image_7",
+    "Image_8",
+    "Image_9"
+  ],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    89.83381652832031,
+    44.2805290222168,
+    206.9205780029297
+  ],
+  "review_scale": 0.008940628343497186
+}

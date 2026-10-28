@@ -86,7 +86,7 @@ namespace VideoGame
             Player = player.AddComponent<Pilot>();
             Player.View = view;
             player.GetComponent<Renderer>().enabled = false;
-            Visuals.Model("Detailed/Prefabs/Operative", player.transform, new Vector3(0, -1, 0), 2.15f, Art.Cyan);
+            Visuals.Model("Detailed/Prefabs/OperativeV03", player.transform, new Vector3(0, -1, 0), 2.15f, Art.Cyan);
             Visuals.PointLight(new Vector3(0, 2, 0), Art.Cyan, player.transform, 4);
             gameObject.AddComponent<GameHud>();
             BuildHub();
@@ -565,18 +565,29 @@ namespace VideoGame
         {
             System.IO.Directory.CreateDirectory(directory);
             yield return new WaitForSeconds(2);
-            Player.enabled = false; Player.transform.rotation = Quaternion.identity;
+            CaptureFrame(System.IO.Path.Combine(directory, "nexus-game-camera.png"));
+            Player.enabled = false; Player.transform.rotation = Quaternion.LookRotation(new Vector3(-1, 0, -1)) * Quaternion.Euler(0, 25, 0);
             view.orthographicSize = 3.6f;
             var motion = Player.Motion; motion.enabled = false; motion.Player.enabled = false;
-            foreach (string clip in new[] {"Idle", "RunForward", "RunLeft", "Fire", "Melee", "Dash", "Death"})
+            foreach (string clip in new[] {"Idle", "RunForward", "RunBack", "RunLeft", "RunRight", "Fire", "Melee", "Cast", "Dash", "Hit", "Death"})
             {
                 foreach (float phase in new[] {.15f, .65f})
                 {
-                    motion.Player.Stop(); motion.Player.Play(clip); motion.Player[clip].normalizedTime = phase; motion.Player.Sample();
+                    motion.Player.Stop(); motion.Player.Play("Idle"); motion.Player["Idle"].normalizedTime = 0; motion.Player.Sample();
+                    motion.Player.Play(clip); motion.Player[clip].normalizedTime = phase; motion.Player.Sample();
                     yield return new WaitForSeconds(.12f);
-                    ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory, clip + "-" + (int)(phase * 100) + ".png"));
+                    CaptureFrame(System.IO.Path.Combine(directory, clip + "-" + (int)(phase * 100) + ".png"));
                     yield return new WaitForSeconds(.12f);
                 }
+            }
+            string cycleFolder = System.IO.Path.Combine(directory, "RunForward-cycle");
+            System.IO.Directory.CreateDirectory(cycleFolder);
+            for (int frame = 0; frame < 32; frame++)
+            {
+                motion.Player.Stop(); motion.Player.Play("RunForward");
+                motion.Player["RunForward"].normalizedTime = frame / 32f; motion.Player.Sample();
+                CaptureFrame(System.IO.Path.Combine(cycleFolder, frame.ToString("D2") + ".png"));
+                yield return null;
             }
             motion.Player.enabled = true; motion.enabled = true; Player.enabled = true; motion.Revive(); view.orthographicSize = 7.5f;
         }

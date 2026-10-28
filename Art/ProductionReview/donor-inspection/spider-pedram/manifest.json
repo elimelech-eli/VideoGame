@@ -1,0 +1,31 @@
+{
+  "source": "https://sketchfab.com/3d-models/spider-robot-fc1157e9187e4762a5fdbdfc884b3eec",
+  "license": "CC-BY-4.0",
+  "attribution": "Pedram Ashoori",
+  "model": "spider-pedram",
+  "mesh_count": 16,
+  "bones": [],
+  "actions": [],
+  "textures": [
+    "Image_0",
+    "Image_1",
+    "Image_10",
+    "Image_11",
+    "Image_12",
+    "Image_2",
+    "Image_3",
+    "Image_4",
+    "Image_5",
+    "Image_6",
+    "Image_7",
+    "Image_8",
+    "Image_9"
+  ],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    5.236941814422607,
+    5.568343162536621,
+    2.641771078109741
+  ],
+  "review_scale": 0.7002877786532985
+}

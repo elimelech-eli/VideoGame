@@ -17,3 +17,14 @@ TestResults/
 .idea/
 .DS_Store
 __pycache__/
+# Art source checkpoint policy
+*.blend1
+*.zip
+# Rejected/generated experiments and downloaded intermediates stay local.
+Art/**/*.blend
+Art/**/*.glb
+Art/**/*.fbx
+Art/**/*.png
+!Art/Operative/v03/CH_MaleOperative_master.blend
+!Art/Operative/v03/CH_MaleOperative_bound.blend
+!Art/Operative/v03/ref/*.png

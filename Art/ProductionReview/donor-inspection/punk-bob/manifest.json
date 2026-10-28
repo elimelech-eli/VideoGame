@@ -1,0 +1,29 @@
+{
+  "source": "https://sketchfab.com/3d-models/cyberpunk-character-019f4b3fd3c74ed0bc6c8dbe9cd50d51",
+  "license": "CC-BY-4.0",
+  "attribution": "4d_Bob",
+  "model": "punk-bob",
+  "mesh_count": 9,
+  "bones": [
+    56
+  ],
+  "actions": [
+    "A-pose"
+  ],
+  "textures": [
+    "Image_0",
+    "Image_1",
+    "Image_2",
+    "Image_3",
+    "Image_4",
+    "Image_5",
+    "Image_6"
+  ],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    1.8773643970489502,
+    0.6289222836494446,
+    3.043206214904785
+  ],
+  "review_scale": 0.6079114758324721
+}

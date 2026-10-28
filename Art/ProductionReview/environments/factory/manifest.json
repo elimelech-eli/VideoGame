@@ -1,0 +1,47 @@
+{
+  "biome": "factory",
+  "modules": [
+    "Floor_4m",
+    "Wall_0_4m",
+    "Wall_1_4m",
+    "Corner_4m",
+    "Door_4m",
+    "Feature",
+    "Service",
+    "Clutter",
+    "Donor_old_drill_press",
+    "Donor_industrial_wall_lamp"
+  ],
+  "donors": [
+    {
+      "id": "old_drill_press",
+      "source_bounds_m": [
+        0.5271955132484436,
+        0.6095176339149475,
+        1.0499999523162842
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/old_drill_press",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "industrial_wall_lamp",
+      "source_bounds_m": [
+        0.2734608054161072,
+        0.1403784453868866,
+        0.42990660667419434
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/industrial_wall_lamp",
+      "license": "CC0-1.0"
+    }
+  ],
+  "source_meshes": 304,
+  "source_curves": 3,
+  "seconds": 8.8,
+  "status": "editable environment study; review required; no Unity integration, UV bake, collision or runtime acceptance",
+  "grid_m": 4,
+  "door_clear_width_m": 2.5,
+  "layout": "two 12m rooms plus 4m corridor; review only",
+  "license": "Original authored geometry and shaders; industrial donor CC0 a52/rubberduck, see docs/ASSETS.md; additional CC0 donors Poly Haven, see donor-provenance.json"
+}

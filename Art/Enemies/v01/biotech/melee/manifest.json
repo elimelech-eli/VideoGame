@@ -1,0 +1,76 @@
+{
+  "biome": "biotech",
+  "title": "Biotech Quarantine",
+  "role": "melee",
+  "file": "biotech\\melee\\Enemy_review.blend",
+  "modules": [
+    "01_Jacket_sleeves",
+    "03_Gloves",
+    "05_Collar",
+    "CC0_male_worksuit01",
+    "CC0_shoes05",
+    "Ballistic_head_shell",
+    "Visor_band",
+    "Left_kneepad",
+    "Right_kneepad",
+    "Sealed_biotech_hood",
+    "Sealed_optical_face",
+    "Life_support_cylinder",
+    "Reagent_window",
+    "Breathing_hose",
+    "Life_support_cylinder.001",
+    "Reagent_window.001",
+    "Breathing_hose.001",
+    "Containment_sternum",
+    "Containment_sternum.001",
+    "Containment_sternum.002",
+    "Left_forearm_blade",
+    "Right_forearm_blade",
+    "Light_spine_battery"
+  ],
+  "base_triangles": 28654,
+  "bones": 52,
+  "clips": {
+    "idle": "AN_Enemy_Sword_Idle",
+    "move": "AN_Operative_Sprint_Loop",
+    "attack": "AN_Enemy_Sword_Attack",
+    "hit": "AN_Operative_Hit_Chest",
+    "death": "AN_Operative_Death01"
+  },
+  "validation": [
+    {
+      "clip": "idle",
+      "pose_change": 0.23478058725595474,
+      "mesh_change": 0.035555124282836914
+    },
+    {
+      "clip": "move",
+      "pose_change": 1.3651797473430634,
+      "mesh_change": 0.457896638661623
+    },
+    {
+      "clip": "attack",
+      "pose_change": 1.8241957426071167,
+      "mesh_change": 1.0512797236442566
+    },
+    {
+      "clip": "hit",
+      "pose_change": 1.036076933145523,
+      "mesh_change": 0.1511518694460392
+    },
+    {
+      "clip": "death",
+      "pose_change": 1.753337800502777,
+      "mesh_change": 1.2575752437114716
+    }
+  ],
+  "root_motion": "in place; gameplay owns translation",
+  "status": "review only; not Unity integrated; not runtime optimized",
+  "clip_seconds": {
+    "idle": 1.6666666666666667,
+    "move": 0.6666666666666666,
+    "attack": 1.5333333333333334,
+    "hit": 0.3333333333333333,
+    "death": 2.4
+  }
+}

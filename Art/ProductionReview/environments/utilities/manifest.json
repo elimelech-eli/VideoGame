@@ -1,0 +1,47 @@
+{
+  "biome": "utilities",
+  "modules": [
+    "Floor_4m",
+    "Wall_0_4m",
+    "Wall_1_4m",
+    "Corner_4m",
+    "Door_4m",
+    "Feature",
+    "Service",
+    "Clutter",
+    "Donor_old_military_compressor",
+    "Donor_power_box_01"
+  ],
+  "donors": [
+    {
+      "id": "old_military_compressor",
+      "source_bounds_m": [
+        0.5982826352119446,
+        1.675544261932373,
+        1.1790863275527954
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/old_military_compressor",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "power_box_01",
+      "source_bounds_m": [
+        0.4626038074493408,
+        0.4019509255886078,
+        0.503142774105072
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/power_box_01",
+      "license": "CC0-1.0"
+    }
+  ],
+  "source_meshes": 104,
+  "source_curves": 8,
+  "seconds": 2.34,
+  "status": "editable environment study; review required; no Unity integration, UV bake, collision or runtime acceptance",
+  "grid_m": 4,
+  "door_clear_width_m": 2.5,
+  "layout": "two 12m rooms plus 4m corridor; review only",
+  "license": "Original authored geometry and shaders; industrial donor CC0 a52/rubberduck, see docs/ASSETS.md; additional CC0 donors Poly Haven, see donor-provenance.json"
+}

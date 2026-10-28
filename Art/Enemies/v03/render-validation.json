@@ -1,0 +1,54 @@
+{
+  "seconds": 13.43349549999948,
+  "count": 4,
+  "models": [
+    {
+      "biome": "factory",
+      "role": "aoe",
+      "vertices": 482749,
+      "triangles": 965714,
+      "height": 1.65,
+      "raw_sha256": "5fb2292e6bc781bb84e22a85a6340eb8333340db1b8843d066249343cffddabe",
+      "source_hash": "ad10c9269e2850fa46e46579f008c5e3e93b8fd69230a202debdeb944c70e26b",
+      "rigged": false,
+      "textured": false,
+      "unity_integrated": false
+    },
+    {
+      "biome": "factory",
+      "role": "heavy",
+      "vertices": 572061,
+      "triangles": 1144474,
+      "height": 2.15,
+      "raw_sha256": "e2831763cabf5c33b86bb8145bc700150615ba7f3259312104b4e9d14c8a5628",
+      "source_hash": "ad10c9269e2850fa46e46579f008c5e3e93b8fd69230a202debdeb944c70e26b",
+      "rigged": false,
+      "textured": false,
+      "unity_integrated": false
+    },
+    {
+      "biome": "factory",
+      "role": "melee",
+      "vertices": 205234,
+      "triangles": 410624,
+      "height": 1.85,
+      "raw_sha256": "2bf77ff7e231cb0aa367375b82e6fd40815f19b7e5cfaa78957604e831146d27",
+      "source_hash": "ad10c9269e2850fa46e46579f008c5e3e93b8fd69230a202debdeb944c70e26b",
+      "rigged": false,
+      "textured": false,
+      "unity_integrated": false
+    },
+    {
+      "biome": "factory",
+      "role": "ranged",
+      "vertices": 153960,
+      "triangles": 307924,
+      "height": 1.85,
+      "raw_sha256": "115962979e45e815083f8a352d04be7927e1bfdabdfb7f805c50f3e381dd922a",
+      "source_hash": "ad10c9269e2850fa46e46579f008c5e3e93b8fd69230a202debdeb944c70e26b",
+      "rigged": false,
+      "textured": false,
+      "unity_integrated": false
+    }
+  ]
+}

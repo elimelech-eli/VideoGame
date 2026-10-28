@@ -1,0 +1,224 @@
+{
+  "seconds": 0.27,
+  "checked_this_run": 4,
+  "count": 24,
+  "models": [
+    {
+      "biome": "biotech",
+      "role": "aoe",
+      "visible_parts": 22,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "biotech",
+      "role": "heavy",
+      "visible_parts": 30,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "biotech",
+      "role": "melee",
+      "visible_parts": 13,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "biotech",
+      "role": "ranged",
+      "visible_parts": 9,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "corporate",
+      "role": "aoe",
+      "visible_parts": 20,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "corporate",
+      "role": "heavy",
+      "visible_parts": 29,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "corporate",
+      "role": "melee",
+      "visible_parts": 12,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "corporate",
+      "role": "ranged",
+      "visible_parts": 8,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "factory",
+      "role": "aoe",
+      "visible_parts": 30,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "factory",
+      "role": "heavy",
+      "visible_parts": 40,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "factory",
+      "role": "melee",
+      "visible_parts": 24,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "factory",
+      "role": "ranged",
+      "visible_parts": 18,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "neon",
+      "role": "aoe",
+      "visible_parts": 23,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "neon",
+      "role": "heavy",
+      "visible_parts": 33,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "neon",
+      "role": "melee",
+      "visible_parts": 15,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "neon",
+      "role": "ranged",
+      "visible_parts": 11,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "transit",
+      "role": "aoe",
+      "visible_parts": 77,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "transit",
+      "role": "heavy",
+      "visible_parts": 87,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "transit",
+      "role": "melee",
+      "visible_parts": 69,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "transit",
+      "role": "ranged",
+      "visible_parts": 65,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "utilities",
+      "role": "aoe",
+      "visible_parts": 15,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "utilities",
+      "role": "heavy",
+      "visible_parts": 25,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "utilities",
+      "role": "melee",
+      "visible_parts": 7,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    },
+    {
+      "biome": "utilities",
+      "role": "ranged",
+      "visible_parts": 3,
+      "finite": true,
+      "unpacked_images": [],
+      "animation_acceptance": "not-run; visible review geometry is static",
+      "runtime": "not-run"
+    }
+  ],
+  "scope": "finite geometry/transforms and packed image dependencies; not fidelity, grip, topology, rigging, animation or runtime certification"
+}

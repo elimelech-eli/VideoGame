@@ -1,0 +1,13 @@
+{
+  "source": "Factory approved concept, AOE panel",
+  "model": "tencent/Hunyuan3D-2",
+  "source_commit": "f8db63096c8282cb27354314d896feba5ba6ff8a",
+  "seed": 2187,
+  "steps": 30,
+  "resolution": 256,
+  "seconds": 73.55208390000007,
+  "vertices": 293512,
+  "faces": 587294,
+  "status": "AI-generated local shape probe only; not rigged, not textured, not visually approved",
+  "license": "Tencent Hunyuan community license; regional restrictions apply to outputs. Not CC0."
+}

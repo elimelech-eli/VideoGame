@@ -1,0 +1,35 @@
+{
+  "status": "Review only; no Unity integration",
+  "human_base": "MakeHuman / MPFB CC0",
+  "motion": "Quaternius Universal Animation Library Standard CC0",
+  "bones": 52,
+  "modules": [
+    "CC0_male_worksuit01",
+    "CC0_shoes05",
+    "01_Jacket_sleeves",
+    "03_Gloves",
+    "05_Collar",
+    "Helmet_shell",
+    "Optical_visor",
+    "Chest_armor",
+    "Back_armor",
+    "Left_shoulder_pad",
+    "Left_knee_guard",
+    "Left_belt_pouch",
+    "Right_shoulder_pad",
+    "Right_knee_guard",
+    "Right_belt_pouch",
+    "Rebreather",
+    "Visor_sensor",
+    "Utility_belt",
+    "Buckle"
+  ],
+  "triangles": 29734,
+  "actions": [
+    "AN_Operative_Death01",
+    "AN_Operative_Hit_Chest",
+    "AN_Operative_Idle_Loop",
+    "AN_Operative_Sprint_Loop",
+    "AN_Operative_Walk_Loop"
+  ]
+}

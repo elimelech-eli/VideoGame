@@ -1,0 +1,12 @@
+{
+  "biome": "factory",
+  "role": "melee",
+  "vertices": 205234,
+  "triangles": 410624,
+  "height": 1.85,
+  "raw_sha256": "2bf77ff7e231cb0aa367375b82e6fd40815f19b7e5cfaa78957604e831146d27",
+  "source_hash": "ad10c9269e2850fa46e46579f008c5e3e93b8fd69230a202debdeb944c70e26b",
+  "rigged": false,
+  "textured": false,
+  "unity_integrated": false
+}

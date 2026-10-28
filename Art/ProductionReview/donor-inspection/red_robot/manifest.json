@@ -1,0 +1,46 @@
+{
+  "source": "https://github.com/godotengine/tps-demo",
+  "license": "CC-BY-3.0",
+  "attribution": "Juan Linietsky and Fernando Miguel Calabr\u00f3, Godot TPS Demo, 2018",
+  "model": "red_robot",
+  "mesh_count": 4,
+  "bones": [
+    64
+  ],
+  "actions": [
+    "Cannon-D",
+    "Cannon-L",
+    "Cannon-N",
+    "Cannon-R",
+    "Cannon-U",
+    "Cannon_Fire_Recoil",
+    "Damage_heavy",
+    "Damage_take1",
+    "Damage_take2",
+    "Idle-cycle",
+    "Idle-Eyes",
+    "NOEXP-DefaultPose-noexp",
+    "NOEXP-noexp",
+    "NOEXP-TurnLeft45-noexp",
+    "NOEXP-TurnRight45-noexp",
+    "TurnLeft-cycle",
+    "TurnLeft-cycle-noexp",
+    "TurnLeft-start-cycle-noexp",
+    "TurnRight-cycle",
+    "TurnRight-start-noexp",
+    "Walk-cycle"
+  ],
+  "textures": [
+    "red_robot_albedo.png",
+    "red_robot_emission.png",
+    "red_robot_normal.png",
+    "red_robot_orm.png"
+  ],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    3.684380054473877,
+    3.0269079208374023,
+    2.5402021408081055
+  ],
+  "review_scale": 0.7282884780877785
+}

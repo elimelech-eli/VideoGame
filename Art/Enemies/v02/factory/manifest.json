@@ -1,0 +1,141 @@
+{
+  "seconds": 42.531087899998965,
+  "models": [
+    {
+      "role": "melee",
+      "bones": 17,
+      "mesh_modules": 100,
+      "triangles": 9564,
+      "clips": {
+        "Idle": {
+          "action": "AN_melee_Idle",
+          "frames": 61,
+          "seconds": 2.0
+        },
+        "Move": {
+          "action": "AN_melee_Move",
+          "frames": 33,
+          "seconds": 1.0666666666666667
+        },
+        "Attack": {
+          "action": "AN_melee_Attack",
+          "frames": 41,
+          "seconds": 1.3333333333333333
+        },
+        "Hit": {
+          "action": "AN_melee_Hit",
+          "frames": 17,
+          "seconds": 0.5333333333333333
+        },
+        "Death": {
+          "action": "AN_melee_Death",
+          "frames": 61,
+          "seconds": 2.0
+        }
+      },
+      "status": "Reference reconstruction in review; animation/contact and final optimization still provisional"
+    },
+    {
+      "role": "aoe",
+      "bones": 16,
+      "mesh_modules": 154,
+      "triangles": 12192,
+      "clips": {
+        "Idle": {
+          "action": "AN_aoe_Idle",
+          "frames": 61,
+          "seconds": 2.0
+        },
+        "Move": {
+          "action": "AN_aoe_Move",
+          "frames": 33,
+          "seconds": 1.0666666666666667
+        },
+        "Attack": {
+          "action": "AN_aoe_Attack",
+          "frames": 41,
+          "seconds": 1.3333333333333333
+        },
+        "Hit": {
+          "action": "AN_aoe_Hit",
+          "frames": 17,
+          "seconds": 0.5333333333333333
+        },
+        "Death": {
+          "action": "AN_aoe_Death",
+          "frames": 61,
+          "seconds": 2.0
+        }
+      },
+      "status": "Reference reconstruction in review; animation/contact and final optimization still provisional"
+    },
+    {
+      "role": "heavy",
+      "bones": 16,
+      "mesh_modules": 194,
+      "triangles": 13980,
+      "clips": {
+        "Idle": {
+          "action": "AN_heavy_Idle",
+          "frames": 61,
+          "seconds": 2.0
+        },
+        "Move": {
+          "action": "AN_heavy_Move",
+          "frames": 33,
+          "seconds": 1.0666666666666667
+        },
+        "Attack": {
+          "action": "AN_heavy_Attack",
+          "frames": 41,
+          "seconds": 1.3333333333333333
+        },
+        "Hit": {
+          "action": "AN_heavy_Hit",
+          "frames": 17,
+          "seconds": 0.5333333333333333
+        },
+        "Death": {
+          "action": "AN_heavy_Death",
+          "frames": 61,
+          "seconds": 2.0
+        }
+      },
+      "status": "Reference reconstruction in review; animation/contact and final optimization still provisional"
+    },
+    {
+      "role": "ranged",
+      "bones": 16,
+      "mesh_modules": 115,
+      "triangles": 9268,
+      "clips": {
+        "Idle": {
+          "action": "AN_ranged_Idle",
+          "frames": 61,
+          "seconds": 2.0
+        },
+        "Move": {
+          "action": "AN_ranged_Move",
+          "frames": 33,
+          "seconds": 1.0666666666666667
+        },
+        "Attack": {
+          "action": "AN_ranged_Attack",
+          "frames": 41,
+          "seconds": 1.3333333333333333
+        },
+        "Hit": {
+          "action": "AN_ranged_Hit",
+          "frames": 17,
+          "seconds": 0.5333333333333333
+        },
+        "Death": {
+          "action": "AN_ranged_Death",
+          "frames": 61,
+          "seconds": 2.0
+        }
+      },
+      "status": "Reference reconstruction in review; animation/contact and final optimization still provisional"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "source": "https://sketchfab.com/3d-models/sci-fi-rifle-648a72a0046a4d059cd850f32f30f4ce",
+  "license": "CC-BY-4.0",
+  "attribution": "ul1tka",
+  "model": "rifle-ulitka",
+  "mesh_count": 2,
+  "bones": [],
+  "actions": [],
+  "textures": [
+    "Image_0",
+    "Image_1",
+    "Image_2",
+    "Image_3",
+    "Image_4",
+    "Image_5",
+    "Image_6",
+    "Image_7"
+  ],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    0.45041999220848083,
+    9.488529205322266,
+    1.910944938659668
+  ],
+  "review_scale": 0.9681074636306827
+}

@@ -1,0 +1,47 @@
+{
+  "biome": "neon",
+  "modules": [
+    "Floor_4m",
+    "Wall_0_4m",
+    "Wall_1_4m",
+    "Corner_4m",
+    "Door_4m",
+    "Feature",
+    "Service",
+    "Clutter",
+    "Donor_exterior_aircon_unit",
+    "Donor_trashbag"
+  ],
+  "donors": [
+    {
+      "id": "exterior_aircon_unit",
+      "source_bounds_m": [
+        1.799971342086792,
+        0.37415921688079834,
+        0.9278970956802368
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/exterior_aircon_unit",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "trashbag",
+      "source_bounds_m": [
+        0.5280700922012329,
+        0.462893009185791,
+        0.5749993920326233
+      ],
+      "scale": 1,
+      "source": "https://polyhaven.com/a/trashbag",
+      "license": "CC0-1.0"
+    }
+  ],
+  "source_meshes": 135,
+  "source_curves": 5,
+  "seconds": 26.63,
+  "status": "editable environment study; review required; no Unity integration, UV bake, collision or runtime acceptance",
+  "grid_m": 4,
+  "door_clear_width_m": 2.5,
+  "layout": "two 12m rooms plus 4m corridor; review only",
+  "license": "Original authored geometry and shaders; industrial donor CC0 a52/rubberduck, see docs/ASSETS.md; additional CC0 donors Poly Haven, see donor-provenance.json"
+}

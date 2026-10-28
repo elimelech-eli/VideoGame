@@ -1,0 +1,19 @@
+{
+  "source": "https://sketchfab.com/3d-models/low-poly-m134-minigun-eed0c95de51b4895a48c5729582732cc",
+  "license": "CC-BY-4.0",
+  "attribution": "TastyTony",
+  "model": "minigun-tasty",
+  "mesh_count": 15,
+  "bones": [
+    31
+  ],
+  "actions": [],
+  "textures": [],
+  "status": "candidate, not approved; imported and rendered, no runtime compatibility claim",
+  "source_bounds": [
+    839.739990234375,
+    217.609375,
+    278.8060302734375
+  ],
+  "review_scale": 0.006635437722813939
+}

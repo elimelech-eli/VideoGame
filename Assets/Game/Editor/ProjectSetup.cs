@@ -38,6 +38,7 @@ namespace VideoGame.Editor
             DetailedAssets.Build();
             RobotAssets.Build();
             ActorAnimationBuilder.Build();
+            OperativeV03Assets.Build();
             BiomeAssets.Build();
             var report = BuildPipeline.BuildPlayer(new[] { "Assets/Game/Scenes/Prototype.unity" }, "Builds/Windows/VideoGame.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)

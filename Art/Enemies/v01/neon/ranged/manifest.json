@@ -1,0 +1,83 @@
+{
+  "biome": "neon",
+  "title": "Neon Street District",
+  "role": "ranged",
+  "file": "neon\\ranged\\Enemy_review.blend",
+  "modules": [
+    "01_Jacket_sleeves",
+    "03_Gloves",
+    "05_Collar",
+    "CC0_male_worksuit01",
+    "CC0_shoes05",
+    "Ballistic_head_shell",
+    "Visor_band",
+    "Torso_carrier",
+    "Left_pauldron",
+    "Left_kneepad",
+    "Right_pauldron",
+    "Right_kneepad",
+    "Street_helmet_crest_0",
+    "Street_helmet_crest_1",
+    "Street_helmet_crest_2",
+    "Street_helmet_crest_3",
+    "Street_helmet_crest_4",
+    "Scavenged_coat_panel",
+    "Scavenged_coat_panel.001",
+    "Asymmetric_scavenged_plate",
+    "Respirator",
+    "Filter",
+    "Filter.001",
+    "Rifle_magazine_pouches",
+    "Radio_pack",
+    "Weapon_receiver",
+    "Weapon_grip",
+    "Weapon_barrel",
+    "Weapon_muzzle",
+    "Weapon_magazine"
+  ],
+  "base_triangles": 30298,
+  "bones": 52,
+  "clips": {
+    "idle": "AN_Enemy_Pistol_Idle_Loop",
+    "move": "AN_Operative_Walk_Loop",
+    "attack": "AN_Enemy_Pistol_Shoot",
+    "hit": "AN_Operative_Hit_Chest",
+    "death": "AN_Operative_Death01"
+  },
+  "validation": [
+    {
+      "clip": "idle",
+      "pose_change": 0.06979741156101227,
+      "mesh_change": 0.011336907744407654
+    },
+    {
+      "clip": "move",
+      "pose_change": 1.1657882034778595,
+      "mesh_change": 0.3678620606660843
+    },
+    {
+      "clip": "attack",
+      "pose_change": 0.26550276577472687,
+      "mesh_change": 0.040662020444869995
+    },
+    {
+      "clip": "hit",
+      "pose_change": 1.036076933145523,
+      "mesh_change": 0.15115181542932987
+    },
+    {
+      "clip": "death",
+      "pose_change": 1.753337800502777,
+      "mesh_change": 1.2575752884149551
+    }
+  ],
+  "root_motion": "in place; gameplay owns translation",
+  "status": "review only; not Unity integrated; not runtime optimized",
+  "clip_seconds": {
+    "idle": 1.6666666666666667,
+    "move": 1.3333333333333333,
+    "attack": 0.6333333333333333,
+    "hit": 0.3333333333333333,
+    "death": 2.4
+  }
+}

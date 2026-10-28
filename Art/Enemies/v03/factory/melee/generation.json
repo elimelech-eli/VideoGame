@@ -1,0 +1,14 @@
+{
+  "biome": "factory",
+  "role": "melee",
+  "model": "tencent/Hunyuan3D-2",
+  "source_hash": "ad10c9269e2850fa46e46579f008c5e3e93b8fd69230a202debdeb944c70e26b",
+  "seed": 2187,
+  "steps": 30,
+  "resolution": 320,
+  "seconds": 78.10581839999941,
+  "vertices": 205234,
+  "faces": 410628,
+  "status": "AI-generated reference body reconstruction; raw/untextured/unrigged; not approved or runtime ready",
+  "license": "Tencent Hunyuan Community License; regional restrictions apply to outputs. Not CC0."
+}

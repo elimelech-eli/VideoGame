@@ -1,0 +1,87 @@
+{
+  "biome": "transit",
+  "title": "Elevated Transit Terminal",
+  "role": "aoe",
+  "file": "transit\\aoe\\Enemy_review.blend",
+  "modules": [
+    "01_Jacket_sleeves",
+    "03_Gloves",
+    "05_Collar",
+    "CC0_male_worksuit01",
+    "CC0_shoes05",
+    "Ballistic_head_shell",
+    "Visor_band",
+    "Torso_carrier",
+    "Left_pauldron",
+    "Left_kneepad",
+    "Right_pauldron",
+    "Right_kneepad",
+    "Transit_helmet_crown",
+    "Helmet_receiver",
+    "Segmented_hip_guard",
+    "Transit_shoulder_fins",
+    "Helmet_receiver.001",
+    "Segmented_hip_guard.001",
+    "Transit_shoulder_fins.001",
+    "Radio_mast",
+    "Transit_signal",
+    "Mortar_canister",
+    "Canister_band",
+    "Canister_band.001",
+    "Mortar_canister.001",
+    "Canister_band.002",
+    "Canister_band.003",
+    "Ballistic_computer",
+    "Grenade_feed",
+    "Weapon_receiver",
+    "Weapon_grip",
+    "Weapon_barrel",
+    "Weapon_muzzle",
+    "Weapon_magazine"
+  ],
+  "base_triangles": 30282,
+  "bones": 52,
+  "clips": {
+    "idle": "AN_Enemy_Pistol_Idle_Loop",
+    "move": "AN_Operative_Walk_Loop",
+    "attack": "AN_Enemy_Interact",
+    "hit": "AN_Operative_Hit_Chest",
+    "death": "AN_Operative_Death01"
+  },
+  "validation": [
+    {
+      "clip": "idle",
+      "pose_change": 0.06979741156101227,
+      "mesh_change": 0.011336907744407654
+    },
+    {
+      "clip": "move",
+      "pose_change": 1.1657882034778595,
+      "mesh_change": 0.3678620606660843
+    },
+    {
+      "clip": "attack",
+      "pose_change": 1.7795205116271973,
+      "mesh_change": 0.5314110852777958
+    },
+    {
+      "clip": "hit",
+      "pose_change": 1.036076933145523,
+      "mesh_change": 0.15115181542932987
+    },
+    {
+      "clip": "death",
+      "pose_change": 1.753337800502777,
+      "mesh_change": 1.2575752884149551
+    }
+  ],
+  "root_motion": "in place; gameplay owns translation",
+  "status": "review only; not Unity integrated; not runtime optimized",
+  "clip_seconds": {
+    "idle": 1.6666666666666667,
+    "move": 1.3333333333333333,
+    "attack": 2.0,
+    "hit": 0.3333333333333333,
+    "death": 2.4
+  }
+}

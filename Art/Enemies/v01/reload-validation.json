@@ -1,0 +1,754 @@
+{
+  "status": "passed",
+  "seconds": 9.150275599999077,
+  "models": 24,
+  "clips": 120,
+  "sampled_poses": 360,
+  "results": [
+    {
+      "biome": "biotech",
+      "role": "aoe",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7694115042686462,
+          "skin_change": 0.041778743267059326
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "biotech",
+      "role": "heavy",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.01250012218952179
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205388814210892
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.01272571086883545
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "biotech",
+      "role": "melee",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.2413678988814354,
+          "skin_change": 0.04851226508617401
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.6120168566703796,
+          "skin_change": 0.9666465818881989
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.834119200706482,
+          "skin_change": 0.6973841190338135
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "biotech",
+      "role": "ranged",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.012725651264190674
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "corporate",
+      "role": "aoe",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7694115042686462,
+          "skin_change": 0.041778743267059326
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "corporate",
+      "role": "heavy",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.01250012218952179
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205388814210892
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.01272571086883545
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "corporate",
+      "role": "melee",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.2413678988814354,
+          "skin_change": 0.04851226508617401
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.6120168566703796,
+          "skin_change": 0.9666465818881989
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.834119200706482,
+          "skin_change": 0.6973841190338135
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "corporate",
+      "role": "ranged",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.012725651264190674
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "factory",
+      "role": "aoe",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.022076908499002457
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.05933172069489956
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7694115042686462,
+          "skin_change": 0.020545750856399536
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.27865927666425705
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.5048917531967163
+        }
+      ]
+    },
+    {
+      "biome": "factory",
+      "role": "heavy",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.022076930850744247
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.05933171883225441
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.014297809451818466
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.2786594070494175
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.5048919934779406
+        }
+      ]
+    },
+    {
+      "biome": "factory",
+      "role": "melee",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.2413678988814354,
+          "skin_change": 0.029364824295043945
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.6120168566703796,
+          "skin_change": 0.06441837921738625
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.834119200706482,
+          "skin_change": 0.431503489613533
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.2786594070494175
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.5048919934779406
+        }
+      ]
+    },
+    {
+      "biome": "factory",
+      "role": "ranged",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.022076908499002457
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.05933172069489956
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.014297813177108765
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.27865927666425705
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.5048917531967163
+        }
+      ]
+    },
+    {
+      "biome": "neon",
+      "role": "aoe",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7694115042686462,
+          "skin_change": 0.041778743267059326
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "neon",
+      "role": "heavy",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.01250012218952179
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205388814210892
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.01272571086883545
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "neon",
+      "role": "melee",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.2413678988814354,
+          "skin_change": 0.04851226508617401
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.6120168566703796,
+          "skin_change": 0.9666465818881989
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.834119200706482,
+          "skin_change": 0.6973841190338135
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "neon",
+      "role": "ranged",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.012725651264190674
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "transit",
+      "role": "aoe",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7694115042686462,
+          "skin_change": 0.041778743267059326
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "transit",
+      "role": "heavy",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.01250012218952179
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205388814210892
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.01272571086883545
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "transit",
+      "role": "melee",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.2413678988814354,
+          "skin_change": 0.04851226508617401
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.6120168566703796,
+          "skin_change": 0.9666465818881989
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.834119200706482,
+          "skin_change": 0.6973841190338135
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "transit",
+      "role": "ranged",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.012725651264190674
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "utilities",
+      "role": "aoe",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.7694115042686462,
+          "skin_change": 0.041778743267059326
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    },
+    {
+      "biome": "utilities",
+      "role": "heavy",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.01250012218952179
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205388814210892
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.01272571086883545
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "utilities",
+      "role": "melee",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.2413678988814354,
+          "skin_change": 0.04851226508617401
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.6120168566703796,
+          "skin_change": 0.9666465818881989
+        },
+        {
+          "clip": "attack",
+          "pose_change": 1.834119200706482,
+          "skin_change": 0.6973841190338135
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245301462709904
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.2393105048686266
+        }
+      ]
+    },
+    {
+      "biome": "utilities",
+      "role": "ranged",
+      "clips": [
+        {
+          "clip": "idle",
+          "pose_change": 0.08055317401885986,
+          "skin_change": 0.012500092387199402
+        },
+        {
+          "clip": "move",
+          "pose_change": 1.3287784457206726,
+          "skin_change": 0.5205389261245728
+        },
+        {
+          "clip": "attack",
+          "pose_change": 0.24031079560518265,
+          "skin_change": 0.012725651264190674
+        },
+        {
+          "clip": "hit",
+          "pose_change": 1.2108854055404663,
+          "skin_change": 0.15245297737419605
+        },
+        {
+          "clip": "death",
+          "pose_change": 1.8983975052833557,
+          "skin_change": 1.239310622215271
+        }
+      ]
+    }
+  ],
+  "limits": "Sampled numerical skin/pose checks; not exhaustive intersection, contact, budget or Unity import certification."
+}
