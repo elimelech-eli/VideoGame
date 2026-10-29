@@ -12,14 +12,14 @@ namespace VideoGame.Editor
         [Serializable] class Part { public string name,role;public float[] vertices,normals;public int[] triangles; }
         public static void Build()
         {
-            if(File.Exists(Root+"Shield.prefab"))return;
+            if(File.Exists(Root+"Credits.prefab"))return;
             Rebuild();
         }
         [MenuItem("Nexus/Rebuild loadout weapons")]
         public static void Rebuild()
         {
             Directory.CreateDirectory(Root);AssetDatabase.Refresh();
-            foreach(var name in new[]{"Handgun","Rifle","Sword","Shield"})
+            foreach(var name in new[]{"Handgun","Rifle","Sword","Shield","Helmet","Armor","Backpack","Credits"})
             {
                 var source=JsonUtility.FromJson<Source>(File.ReadAllText("Art/Weapons/"+name+".json"));
                 var root=new GameObject(name);

@@ -71,8 +71,9 @@ namespace VideoGame
         {
             drops.RemoveAll(d=>d==null);
             if(drops.Count>=DropCap)return;
-            var go=game.Shape(item==null?"Credit drop":"Loot: "+item.Design.Name,PrimitiveType.Cube,new Vector3(point.x,.35f,point.z),Vector3.one*(item==null?.22f:.4f),item==null?Art.Amber:QualityColor(item.Quality),game.transform);
-            var col=go.GetComponent<Collider>();col.isTrigger=true;
+            var go=new GameObject(item==null?"Credit drop":"Loot: "+item.Design.Name);go.transform.SetParent(game.transform);go.transform.position=new Vector3(point.x,.35f,point.z);
+            var col=go.AddComponent<SphereCollider>();col.radius=.4f;col.isTrigger=true;
+            go.AddComponent<LootVisual>().Initialize(item);
             var drop=go.AddComponent<GearPickup>();drop.Initialize(this,item,credits);drops.Add(drop);
         }
         public bool TryPickup(GearPickup drop)

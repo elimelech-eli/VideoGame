@@ -115,10 +115,38 @@ def main():
     outline('Shield energy spine',[(-.025,.23),(.025,.23),(.025,-.18),(0,-.24),(-.025,-.18)],.008,.147,'Energy',.003)
     box('Rear grip',(0,0,0),(.15,.10,.065),'Grip',.01)
     export('Shield')
+    # Wearable pickup silhouettes: sealed helmet, plated vest, field backpack.
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=20,ring_count=12,location=(0,0,.04));o=bpy.context.object;o.scale=(.16,.15,.19)
+    finish(o,'Helmet shell','Shell',0)
+    box('Visor surround',(0,.127,.07),(.255,.07,.13),'Grip',.025)
+    box('Cyan visor',(0,.167,.075),(.217,.017,.085),'Energy',.008)
+    box('Chin guard',(0,.12,-.065),(.21,.09,.055),'Ivory',.012)
+    for x in [-.159,.159]:
+        cylinder('Temple coupling',(x,0,.035),.047,.05,'Ivory').rotation_euler.z=math.pi/2
+    export('Helmet')
+    outline('Ballistic vest',[(-.24,.22),(-.14,.28),(-.07,.21),(.07,.21),(.14,.28),(.24,.22),(.19,-.26),(-.19,-.26)],.16,0,'Grip',.018)
+    outline('Chest plate',[(-.22,.17),(-.12,.22),(0,.16),(.12,.22),(.22,.17),(.16,-.035),(-.16,-.035)],.065,.105,'Ivory',.012)
+    for z in [-.10,-.19]:box('Abdominal plate',(0,.115,z),(.29,.065,.065),'Shell',.009)
+    for x in [-.15,.15]:box('Shoulder strap',(x,.025,.235),(.065,.19,.09),'Shell',.012)
+    box('Armor status light',(.13,.145,.075),(.035,.014,.055),'Energy',.004)
+    export('Armor')
+    box('Pack core',(0,0,0),(.31,.21,.45),'Shell',.035)
+    box('Pack lid',(0,.065,.21),(.34,.22,.095),'Ivory',.018)
+    box('Pack front panel',(0,.12,.005),(.22,.055,.30),'Ivory',.018)
+    box('Pack power spine',(0,.153,.015),(.035,.014,.24),'Energy',.004)
+    for x in [-.19,.19]:box('Side canister',(x,0,-.045),(.095,.16,.30),'Grip',.026)
+    box('Pack lower bumper',(0,.025,-.23),(.31,.20,.055),'Grip',.012)
+    export('Backpack')
+    # Credits form a tangible three-token stack rather than a generic cube.
+    for i,(x,y,z) in enumerate([(-.065,0,-.04),(.055,.03,0),(-.015,.06,.04)]):
+        cylinder('Credit token', (x,y,z),.105,.028,'Ivory')
+        cylinder('Token inset',(x,y+.017,z),.074,.009,'Shell')
+        box('Credit mark',(x,y+.025,z),(.025,.009,.09),'Energy',.003)
+    export('Credits')
     with open(os.path.join(OUT,'audit.json'),'w') as f:json.dump(audit,f,indent=2,default=str)
     # Preserve grip origins in exports; presentation offsets below are review-only.
     for index,(name,objects,count) in enumerate(assets):
-        for o in objects:o.location.x+=(index-1.5)*1.1
+        for o in objects:o.location.x+=(index-(len(assets)-1)/2)*1.1
     bpy.context.view_layer.update()
     bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,'LoadoutWeapons.blend'))
     sheet=bx_review.review([o for _,objects,_ in assets for o in objects],os.path.join(ROOT,'.tools','delivery','weapons'),views=('threequarter','front'),modes=('matcap','silhouette'),res=600)

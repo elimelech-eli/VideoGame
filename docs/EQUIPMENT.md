@@ -48,3 +48,11 @@ The visual character screen uses a live preview of the existing fitted operative
 
 ## Acceptance evidence
 Core rules: EquipmentTests. Runtime transactions, independent weapons, directional guard, loot overflow, extraction, recall, legacy migration and save corruption: EquipmentPlayTests. InputTests verifies the intentional RMB remapping. Full test/build/smoke results are recorded in the delivery validation document.
+
+## World pickup models
+
+Enemy loot and inventory-dropped gear use the same typed presentation: handgun, rifle, sword, shield, helmet, armor or backpack. Credit drops use a token stack. The pickup interaction root has one nonblocking sphere trigger and no rendered primitive. Child meshes preserve their original materials; a separate floor ring and the existing quality/name prompt convey rarity. Model orientation shows a broad silhouette to the isometric camera, with a small bounded sway/bob that stops while menus are open.
+
+The seven equipment categories still use unique item identities, the existing 2.5-unit interaction rule, duplicate-safe collection and the 48-drop cap. Credits retain proximity collection. Models are sized once on spawn (0.58 for handgun/helmet, 0.8 for other gear, 0.38 for credits in the rotated bounds); no per-frame bounds normalization or material allocation is needed. Meshes/materials are shared resources and the complete presentation is removed with its pickup root.
+
+LootVisualTests verifies every item type and credit presentation, size/trigger/rarity contracts, pause, and duplicate-safe collection. See images/loot-drops.png for an isolated staged sample rendered by the actual gameplay camera. Standalone wearable pickup models are category representations; they do not add fitted modular wearable designs to the player mesh.
