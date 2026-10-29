@@ -53,12 +53,13 @@ namespace VideoGame
                 Text(new Rect(45, 628, 100, 40), Mathf.CeilToInt(game.Player.Health).ToString("000"), number, Color.white);
                 Text(new Rect(145, 638, 130, 22), "OPERATIVE / 01", small, Art.Cyan);
                 Box(new Rect(45, 675, 230, 4), new Color(.12f, .2f, .25f));
-                Box(new Rect(45, 675, 230 * Mathf.Clamp01(game.Player.Health / 100), 4), Art.Cyan);
-                Skill(400, "01", "PULSE CANNON", "LMB / RT", 0, Art.Cyan);
-                Skill(560, "02", "FRAG GRENADE", "Q / RB", game.Player.GrenadeRemaining, Art.Amber);
+                Box(new Rect(45, 675, 230 * Mathf.Clamp01(game.Player.Health / game.Equipment.Profile.MaxHealth), 4), Art.Cyan);
+                Skill(400, "01", game.Player.Hands.State(0), "LMB / RT", 0, Art.Cyan);
+                Skill(560, "02", game.Player.Hands.State(1), "RMB / LT", 0, Art.Amber);
                 Skill(720, "03", "GROUND DASH", "SPACE / B", game.Player.DashRemaining, Art.Cyan);
-                Text(new Rect(1030, 637, 220, 25), $"{game.Mission.Credits:000000}  CR", title, Color.white);
-                Text(new Rect(1033, 666, 200, 22), "ACCOUNT BALANCE", small, muted);
+                Text(new Rect(1030, 637, 220, 25), $"{game.Equipment.Wallet:000000}  CR", title, Color.white);
+                Text(new Rect(1033, 666, 220, 22), "FIELD +"+(game.InMission?game.Equipment.Field.Credits:0)+" / LV "+game.Equipment.Profile.Level, small, muted);
+                if(GUI.Button(new Rect(30,340,240,32),"EQUIPMENT [I / SELECT]",small))game.Equipment.Open();
 
                 if (Vector3.Distance(game.Player.transform.position, game.Terminal) < 3.5f)
                 {
@@ -69,7 +70,8 @@ namespace VideoGame
                     if (GUI.Button(new Rect(440, 522, 400, 57), GUIContent.none, GUIStyle.none)) game.Interact();
                 }
                 if(!string.IsNullOrEmpty(game.Menus?.Notice))Text(new Rect(30,530,350,35),game.Menus.Notice,small,Art.Cyan);
-                Text(new Rect(30, 567, 335, 26), "WASD / LS   MOVE      RMB   MOVE TO POINT", small, muted);
+                Text(new Rect(30, 550, 370, 40), !game.InMission && game.Equipment.Profile.Bag.Exists(i=>i.Condition<=25)?"WARNING: carried gear at 25% condition will be destroyed on your next death. Repair or stash it.":game.Equipment.Notice, small, Art.Cyan);
+                Text(new Rect(30, 590, 370, 20), "WASD / LS MOVE   E / A LOOT   Q / RB GRENADE", small, muted);
                 if (game.Player.IsDead)
                 {
                     Box(new Rect(0, 0, 1280, 720), new Color(.12f, 0, 0, .22f));
@@ -123,7 +125,7 @@ namespace VideoGame
                 float x = point.x - width / 2, y = Screen.height - point.y;
                 Box(new Rect(x - 2, y - 2, width + 4, height + 4), new Color(.015f, .02f, .03f, .95f));
                 Box(new Rect(x, y, width, height), new Color(.18f, .08f, .08f));
-                Box(new Rect(x, y, width * enemy.Health / Drone.MaxHealth, height), new Color(1, .24f, .12f));
+                Box(new Rect(x, y, width * enemy.Health / enemy.HealthMaximum, height), new Color(1, .24f, .12f));
             }
         }
         void Skill(float x, string index, string name, string key, float cooldown, Color accent)

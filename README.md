@@ -12,7 +12,7 @@ Open this directory in Unity Hub using the pinned Editor. Allow package import a
 
 Choose New Game or Continue from the opening menu. Escape / controller Start pauses; menus support mouse, keyboard and controller navigation. Saving uses Nexus checkpoints: save at the hub, and Continue returns to the latest checkpoint. Options include audio, display/graphics and controller aiming. See [menus and checkpoints](docs/MENUS.md).
 
-Use WASD or right-click to move; mouse to aim; left-click to shoot; Q for a grenade; Space to dash; E to interact. Controller: left stick moves, right stick aims, RT fires, RB throws a grenade, B dashes, A interacts.
+Use WASD to move, mouse to aim, LMB/RMB for main/off-hand actions, Q for a grenade, Space to dash, E to interact or pick up loot, and I for equipment/inventory. Controller: left stick moves, right stick aims, RT/LT use each hand, RB throws a grenade, B dashes, A interacts, and Select/View opens equipment. See [equipment, loot and progression](docs/EQUIPMENT.md).
 
 Approach the cyan contract terminal, accept a mission, kill eight drones in the procedural area, return to the green extraction beacon, then claim the reward at the hub terminal.
 

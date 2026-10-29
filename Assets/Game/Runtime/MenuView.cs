@@ -98,6 +98,9 @@ namespace VideoGame
                 Text(new Rect(98,main?510:552,main?510:640,66),hint,paragraph,muted);
                 Text(new Rect(98,main?584:615,main?510:640,38),menu.Notice,paragraph,cyan);
                 Text(new Rect(96,678,1000,24),"↑ ↓ / D-PAD   SELECT     ENTER / A   CONFIRM     ← →   ADJUST     ESC / B   BACK",subtitle,muted);
+                // Equipment owns the right-hand inspection panel. The generic
+                // checkpoint sidebar must not draw behind its item statistics.
+                if(menu.Page==MenuPage.Equipment)return;
                 Text(new Rect(848,76,340,24),"N E X U S   /   OPERATIVE 01",subtitle,cyan);
                 Text(new Rect(848,110,340,120),main?"Return to the signal.":"Simulation paused.\nYour next move can wait.",new GUIStyle(heading){fontSize=27,wordWrap=true},Color.white);
                 Fill(new Rect(848,254,330,1),new Color(.15f,.33f,.4f));
@@ -142,6 +145,7 @@ namespace VideoGame
         {
             switch(menu.Page)
             {
+                case MenuPage.Equipment:return "Select an item to inspect it. Nexus services are locked during missions. Inventory pages include a NEXT button.";
                 case MenuPage.Main:return "Start a new operation, or continue from a Nexus checkpoint.";
                 case MenuPage.Pause:case MenuPage.Save:return menu.SaveHint;
                 case MenuPage.Load:return "Load a Nexus checkpoint. You return to the hub; missions are not resumed.";

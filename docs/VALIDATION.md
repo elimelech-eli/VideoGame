@@ -37,7 +37,7 @@ The robot FBX exporter binds migrated legacy action slots and exports units thro
 CI runs the complete gameplay suite with `-nographics`, matching local automation. The lighting pass made software-rendered PlayMode testing on the hosted runner prohibitively slow. Mesh deformation, collision, input, music state and mission tests still run; visual QA uses the graphics-enabled local Windows player. The Windows build and initialization smoke test remain required gates.
 
 
-## Procedural sectors and visible falling cover — 2026-10-26
+## Procedural sectors and visible falling cover ï¿½ 2026-10-26
 
 Local regression: 12,017 core assertions over 1,000 layout seeds, four EditMode tests and 26 PlayMode tests passed. Seed tests verify deterministic geometry/content, unique cells, connected growth, valid sizes/themes, branching diversity and custom room counts. Runtime tests sample every doorway and connecting passage over four mission seeds for floor continuity and player clearance, verify a clear extraction approach, and traverse the enemy room-graph route to the starting room without crossing solid walls. A ranged enemy blocked by permanent cover must move rather than enter its firing windup.
 
@@ -62,3 +62,15 @@ Complete local regression passed: 12,017 core assertions, four EditMode and 47 P
 ## Six procedural biomes - 2026-10-27
 
 Six original modular kits, six original streaming ambient loops, biome lighting/weather, moving ventilation, seeded dressing and random/fixed 6/10/20-room deployment are implemented. Core checks cover 100 seeds across all 18 configurations. Runtime checks cover all 18 biome/size pairs, floor/door clearance, unit bounds, texture/normal references, dressing replay, motion pause, population cap, music and saved deployment selection. Staged Windows captures were inspected after correcting FBX placement transforms, 2D texture imports and wall facing. See BIOMES.md and images/biome-gallery.png.
+
+## Equipment progression â€” 2026-10-29
+
+Branch: `codex/equipment-progression`. Scope and tuning are documented in EQUIPMENT.md.
+
+Final complete local validation passed in **91.7 seconds**: 17,420 core assertions, **16 EditMode tests** and **60 PlayMode tests**. New coverage comprises 12 equipment logic tests and 7 runtime integration tests. Cases include exact inventory capacity, two-handed displacement, power/level restrictions, duplicate pickups/purchases/returns, shop transactions, conditional rarity loss and condition destruction, protected equipment/stash, shield exhaustion, simultaneous/alternating handguns, directional blocking, XP/points/resets, extraction rewards, death recall, legacy save migration and corrupt-save backup recovery. Existing mouse/controller and combat-world regressions also pass. Input tests use virtual devices, not a physical gamepad.
+
+Final Windows build passed in **9.8 seconds**, followed by the eight-second headless player initialization/error smoke. Earlier iterations found and fixed Unity's null-slot serialization behavior, a legacy-wallet migration defect and an equipment-panel text overlap. The existing close-cover test now compares against the enemy's level-scaled maximum health.
+
+Visual check: Windows player, 1280x720, temporary isolated profile under `.tools/delivery/equipment-review/preview-profile`, Standard difficulty, starter gear. The existing scripted menu-capture scenario created/entered a mission and disabled enemies; this is a **scripted-scene** inspection, not a natural mission completion. Agent-operated mouse navigation verified Pause > Equipment > Inventory > item inspection, readable loadout/XP/power values, and disabled Nexus/equip actions while in the field. Screenshot: images/equipment.png. That root-panel screenshot predates only the final clarification of base weapon damage/effective bonus labels; the root panel itself is unchanged. Automated PlayMode tests cover extraction/rewards and failure/retry separately.
+
+Wearables/weapons currently use original geometric proxies over the operative. They are not final fitted modular character art. Full animation polish, physical-controller feel, natural end-to-end human playtesting, long-session balance and external-game asset reuse remain unvalidated/deferred. Existing saves were protected by using isolated review storage. No remote CI jobs were triggered; remote durations/counts are unavailable for this local delivery.

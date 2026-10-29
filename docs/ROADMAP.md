@@ -1,6 +1,6 @@
 # Next development milestones
 
-Agreed direction: main menu, pause menu, then character progression. Main/pause menus, working options, difficulty and Nexus checkpoint persistence are the current implementation milestone; character progression remains next. See MENUS.md for the implemented scope.
+Agreed direction: main menu, pause menu, then character progression. Main/pause menus, options, difficulty, Nexus checkpoints and the initial equipment/progression system are implemented. See MENUS.md and EQUIPMENT.md for scope.
 
 ## 1. Session persistence, main menu and options
 
@@ -22,9 +22,9 @@ Difficulty should be changeable during play. Define its actual effects and apply
 
 ## 3. Character progression
 
-Add persistent experience, levels, attribute allocation, inventory/equipment and unlockable active skills. Stay classless: attributes, gear and equipped skills determine the build. Preserve the agreed six attributes (Strength, Dexterity, Constitution, Intelligence, Wisdom and Charisma), four active slots with a tentative ultimate slot, and a universal ground dash. The gun/grenade/dash remain the playable starting kit.
+Persistent experience, levels, equipment, inventory/stash and five allocatable improvements (health, inventory, speed, aim, power capacity) are implemented; these supersede the earlier six-attribute proposal. See EQUIPMENT.md. The initial weapons are rifle, handgun, one-handed sword and shield. Additional active skills, crafting, energy weapons and multiplayer remain deferred.
 
-Start with a small set of meaningful gear and skill choices, explicit stat previews and combat effects that can be tested. Do not assign placeholder narrative bonuses to attributes without the supporting interaction system. Attribute formulas, point budgets, respec policy, equipment slots, unlock requirements and the first additional skills need design decisions before implementation. Characters should not eventually unlock everything.
+Start with a small set of meaningful gear and skill choices, explicit stat previews and combat effects that can be tested. Do not assign placeholder narrative bonuses to attributes without the supporting interaction system. Current attribute formulas, point budgets, paid resets and equipment slots are documented in EQUIPMENT.md. Additional skills and their unlock requirements still need design. Characters should not eventually unlock everything.
 
 Integrate progression into the save schema before enabling rewards or purchases. Verify allocation limits, equipment-derived stats, skill requirements, reward persistence and save/load round trips.
 

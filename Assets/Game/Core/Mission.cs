@@ -10,6 +10,7 @@ namespace VideoGame.Core
         public int Kills { get; private set; }
         public int Target { get; }
         public int Credits { get; private set; }
+        public void SetCredits(int value) { if(value<0)throw new ArgumentOutOfRangeException(nameof(value)); Credits=value; }
         public Mission(int target = 8)
         {
             if (target < 1) throw new ArgumentOutOfRangeException(nameof(target));

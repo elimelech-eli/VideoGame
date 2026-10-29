@@ -20,6 +20,7 @@ namespace VideoGame
         public Soundtrack Music { get; private set; }
         public Atmosphere Ambience { get; private set; }
         public MenuFlow Menus { get; private set; }
+        public EquipmentSystem Equipment { get; private set; }
         Transform world;
         Camera view;
         Vector3 terminal;
@@ -85,12 +86,14 @@ namespace VideoGame
             controller.minMoveDistance = 0;
             Player = player.AddComponent<Pilot>();
             Player.View = view;
+            Equipment = gameObject.AddComponent<EquipmentSystem>(); Equipment.Initialize(this);
             player.GetComponent<Renderer>().enabled = false;
             Visuals.Model("Detailed/Prefabs/OperativeV03", player.transform, new Vector3(0, -1, 0), 2.15f, Art.Cyan);
             Visuals.PointLight(new Vector3(0, 2, 0), Art.Cyan, player.transform, 4);
             gameObject.AddComponent<GameHud>();
             BuildHub();
             Menus = gameObject.AddComponent<MenuFlow>();
+            Equipment.RefreshVisuals();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
             if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_CAPTURE_BIOMES")))gameObject.AddComponent<BiomeCapture>();
             string feedbackCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_FEEDBACK");
@@ -154,7 +157,7 @@ namespace VideoGame
         }
         public void NewSession()
         {
-            StopAllCoroutines();Mission=new Mission();Seed=104729;BuildHub();
+            StopAllCoroutines();Mission=new Mission();Seed=104729;Equipment.ResetProfile();BuildHub();
         }
         public void EndSession()
         {
@@ -164,7 +167,7 @@ namespace VideoGame
         {
             if(data==null || !data.Valid())throw new System.ArgumentException("Invalid Nexus checkpoint.");
             var restored=Mission.RestoreHub(data.Target,(MissionStage)data.Stage,data.Kills,data.Credits);
-            StopAllCoroutines();Mission=restored;Seed=data.Seed;BuildHub();
+            StopAllCoroutines();Mission=restored;Seed=data.Seed;Equipment.Restore(data.Version==1?null:data.Equipment,data.Credits);BuildHub();
         }
         public GameObject Shape(string title, PrimitiveType type, Vector3 position, Vector3 scale, Color color, Transform parent)
         {
@@ -199,6 +202,7 @@ namespace VideoGame
         }
         public void BuildHub()
         {
+            if(InMission && Equipment?.Field?.Active==true)Equipment.Return(false);
             InMission = false;
             Music.SetBattle(false); Ambience.SetBattle(false);
             ResetWorld();
@@ -254,9 +258,11 @@ namespace VideoGame
         public void StartMission()
         {
             if (Player.IsDead || Menus?.BlocksGameplay == true) return;
+            if (Equipment.Profile.UsedPower>Equipment.Profile.Capacity || InMission) return;
             Menus?.AutoSave();
             if (!Mission.Accept()) return;
             Seed++;
+            Equipment.Begin(Seed,(int)(Menus?.Difficulty??Difficulty.Standard));
             ActiveDeployment=new Deployment(Seed,Menus?.Settings.Biome??-1,Menus?.Settings.SectorSize??0);
             InMission = true;
             Music.SetBiome(ActiveBiome);Ambience.SetBiome(ActiveBiome);
@@ -347,6 +353,7 @@ namespace VideoGame
             float size = kind == EnemyKind.Bombardier ? 2.6f : kind == EnemyKind.Rusher ? 1.65f : kind == EnemyKind.Hunter ? 2.2f : 2.35f;
             var enemyArt = Visuals.Model("Detailed/Robots/Prefabs/" + model, enemy.transform, new Vector3(0, -1, 0), size, Art.Amber);
             var drone = enemy.AddComponent<Drone>(); drone.Kind = kind;
+            if(InMission)drone.SetLevel(Equipment.RollEnemyLevel());
             var originalCollider = enemy.GetComponent<Collider>(); originalCollider.enabled = false; Destroy(originalCollider);
             var bounds = Art.RenderedBounds(enemyArt);
             var body = enemy.AddComponent<BoxCollider>(); body.center = enemy.transform.InverseTransformPoint(bounds.center); body.size = bounds.size;
@@ -467,7 +474,7 @@ namespace VideoGame
         {
             if (Player.IsDead || Menus?.BlocksGameplay == true) return;
             bool interact = Keyboard.current?.eKey.wasPressedThisFrame == true || Gamepad.current?.buttonSouth.wasPressedThisFrame == true;
-            if (interact && Vector3.Distance(Player.transform.position, terminal) < 3.5f) Interact();
+            if (interact && !Equipment.TryNearestPickup() && Vector3.Distance(Player.transform.position, terminal) < 3.5f) Interact();
             if (Player.Health <= 0) Player.Damage(1);
         }
         public void BeginPlayerDeath() => StartCoroutine(RecoverPlayer());
@@ -477,8 +484,8 @@ namespace VideoGame
             yield return new WaitForSeconds(1.6f);
             while (Menus?.IsOpen == true) yield return null;
             if (!Player.IsDead) yield break;
-            Mission.Abandon(); BuildHub(); Menus?.AutoSave();
-            message = "Recovered at the Nexus. Contract failed; accept a new contract to retry.";
+            Equipment.Return(false); Mission.Abandon(); BuildHub(); Menus?.AutoSave();
+            message = Equipment.Notice;
         }
         public void Interact()
         {
@@ -486,9 +493,9 @@ namespace VideoGame
             if (InMission)
             {
                 if (Mission.Stage != MissionStage.Complete) { message = "Eliminate the contract targets before extracting."; return; }
-                BuildHub(); Menus?.AutoSave(); message = "Contract complete. Talk to the terminal to collect your reward.";
+                Equipment.Return(true); Equipment.CollectRewards(); BuildHub(); Menus?.AutoSave(); message = "Contract complete. Talk to the terminal to collect your reward.";
             }
-            else if (Mission.ClaimReward()) { Menus?.AutoSave(); message = "Reward received: 100 credits. Another contract is available."; }
+            else if (Mission.ClaimReward()) { Equipment.ClaimReward(); Menus?.AutoSave(); message = "Reward received: 100 credits. Another contract is available."; }
             else StartMission();
         }
         void LateUpdate()

@@ -7,7 +7,7 @@ using VideoGame.Core;
 
 namespace VideoGame
 {
-    public enum MenuPage { Closed, Main, Pause, Options, Audio, Display, Controls, Difficulty, Save, Load, Confirm, KeepDisplay, Deployment }
+    public enum MenuPage { Closed, Main, Pause, Options, Audio, Display, Controls, Difficulty, Save, Load, Confirm, KeepDisplay, Deployment, Equipment }
     public sealed class MenuEntry
     {
         public string Id, Label, Value;
@@ -42,6 +42,7 @@ namespace VideoGame
         public bool BlocksPlayerInput => BlocksGameplay ||
             ((Mouse.current?.leftButton.isPressed==true || Mouse.current?.rightButton.isPressed==true) &&
              (new Rect(30,90,350,24).Contains(PointerPosition) ||
+              new Rect(30,340,240,32).Contains(PointerPosition) ||
               (!game.InMission && new Rect(30,130,350,46).Contains(PointerPosition)) ||
               (Vector3.Distance(game.Player.transform.position,game.Terminal)<3.5f && new Rect(440,522,400,57).Contains(PointerPosition))));
         public bool CanSave => HasSession && !game.InMission && !game.Player.IsDead;
@@ -125,8 +126,8 @@ namespace VideoGame
             {
                 var mission=game.Mission;
                 Store.Save(slot,new NexusCheckpoint {
-                    Format="nexus-checkpoint",Version=1,Id=Guid.NewGuid().ToString(),SavedUtc=DateTime.UtcNow.ToString("O"),
-                    Credits=mission.Credits,Kills=mission.Kills,Target=mission.Target,Stage=(int)mission.Stage,Seed=game.Seed,Difficulty=(int)Difficulty
+                    Format="nexus-checkpoint",Version=2,Id=Guid.NewGuid().ToString(),SavedUtc=DateTime.UtcNow.ToString("O"),
+                    Credits=game.Equipment.Wallet,Equipment=game.Equipment.Profile,Kills=mission.Kills,Target=mission.Target,Stage=(int)mission.Stage,Seed=game.Seed,Difficulty=(int)Difficulty
                 });
                 RefreshSlots();
                 Notice=slot==0?"Nexus checkpoint saved.":"Saved to slot "+slot+".";return true;
@@ -156,6 +157,8 @@ namespace VideoGame
         }
         public void MissionStarted(){Notice="Mission active. Return to the Nexus to save.";}
         public void OpenDeployment(){if(CanSave)Open(MenuPage.Deployment);}
+        public void OpenEquipment(){if(HasSession && !game.Player.IsDead)Open(MenuPage.Equipment);}
+        public void ConfirmEquipment(string text,Action action){Confirm(text,()=>{action();Open(MenuPage.Equipment);});}
         void PersistDeployment()
         {
             try{Store.SaveSettings(Settings);Notice="Next deployment updated. Accept a contract at the uplink.";}
@@ -175,6 +178,7 @@ namespace VideoGame
             switch(Page)
             {
                 case MenuPage.Pause:Resume();break;
+                case MenuPage.Equipment:Resume();break;
                 case MenuPage.Options:Draft=null;Open(optionsReturn);break;
                 case MenuPage.Audio:case MenuPage.Display:case MenuPage.Controls:Open(MenuPage.Options);break;
                 case MenuPage.Difficulty:case MenuPage.Save:Open(MenuPage.Pause);break;
@@ -208,6 +212,7 @@ namespace VideoGame
             =>Item(id,label,()=>adjust(1),true,value(),adjust);
         public List<MenuEntry> Items()
         {
+            if(Page==MenuPage.Equipment)return game.Equipment.Entries();
             var list=new List<MenuEntry>();
             switch(Page)
             {
@@ -220,6 +225,7 @@ namespace VideoGame
                 case MenuPage.Pause:
                     list.Add(Item("resume","RESUME",Resume));
                     list.Add(Item("save","SAVE CHECKPOINT",()=>Open(MenuPage.Save),CanSave));
+                    list.Add(Item("equipment","EQUIPMENT / INVENTORY",()=>game.Equipment.Open()));
                     list.Add(Item("load","LOAD GAME",()=>{loadReturn=Page;Open(MenuPage.Load);}));
                     list.Add(Item("difficulty","DIFFICULTY",()=>Open(MenuPage.Difficulty),true,Difficulty.ToString().ToUpperInvariant()));
                     list.Add(Item("options","OPTIONS",OpenOptions));
@@ -341,7 +347,7 @@ namespace VideoGame
         void Update()
         {
             var keyboard=Keyboard.current;var pad=Gamepad.current;
-            if(waitingRelease && !(Mouse.current?.leftButton.isPressed==true || Mouse.current?.rightButton.isPressed==true || pad?.rightTrigger.isPressed==true || pad?.rightShoulder.isPressed==true || pad?.buttonSouth.isPressed==true || keyboard?.eKey.isPressed==true || keyboard?.qKey.isPressed==true || keyboard?.spaceKey.isPressed==true))waitingRelease=false;
+            if(waitingRelease && !(Mouse.current?.leftButton.isPressed==true || Mouse.current?.rightButton.isPressed==true || pad?.rightTrigger.isPressed==true || pad?.leftTrigger.isPressed==true || pad?.rightShoulder.isPressed==true || pad?.buttonSouth.isPressed==true || keyboard?.eKey.isPressed==true || keyboard?.qKey.isPressed==true || keyboard?.spaceKey.isPressed==true))waitingRelease=false;
             if(displayPreview && Time.realtimeSinceStartup>=displayDeadline)RevertDisplay();
             if(keyboard?.escapeKey.wasPressedThisFrame==true || pad?.startButton.wasPressedThisFrame==true)
             {if(!IsOpen)Pause();else Back();return;}

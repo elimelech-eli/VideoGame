@@ -64,13 +64,13 @@ public sealed class InputTests
         yield return new WaitForSeconds(.16f);
         Assert.Greater(game.Player.transform.position.z, beforeDash.z + 1.8f);
     }
-    [UnityTest] public IEnumerator MouseClickMovesAndMouseAimFires()
+    [UnityTest] public IEnumerator OffHandMouseDoesNotMoveAndMainHandAimFires()
     {
         Vector3 start = game.Player.transform.position;
         Vector2 point = game.Player.View.WorldToScreenPoint(new Vector3(3, 0, 3));
         InputSystem.QueueStateEvent(mouse, new MouseState { position = point, buttons = 2 });
         yield return new WaitForSeconds(.2f);
-        Assert.Greater(Vector3.Distance(start, game.Player.transform.position), .5f, "Right click did not move");
+        Assert.Less(Vector3.Distance(start, game.Player.transform.position), .25f, "Off-hand input must not initiate movement");
         InputSystem.QueueStateEvent(mouse, new MouseState { position = point });
         yield return null;
         game.StartMission();
@@ -144,7 +144,7 @@ public sealed class InputTests
         Vector2 cursor = game.Player.View.WorldToScreenPoint(target.transform.position);
         InputSystem.QueueStateEvent(mouse, new MouseState { position = cursor, buttons = 1 });
         yield return new WaitForSeconds(.6f);
-        Assert.AreEqual(Drone.MaxHealth, target.Health, "Gun fire must stop at solid cover even when close to the player");
+        Assert.AreEqual(target.HealthMaximum, target.Health, "Gun fire must stop at solid cover even when close to the player");
         var shot = new GameObject("Scenery test enemy shot"); shot.transform.position = new Vector3(0, 1, 3);
         shot.AddComponent<EnemyBolt>().Direction = Vector3.back;
         yield return new WaitForSeconds(.5f);

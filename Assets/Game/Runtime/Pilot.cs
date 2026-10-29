@@ -12,12 +12,14 @@ namespace VideoGame
         public ActorAnimation Motion => GetComponentInChildren<ActorAnimation>();
         public float GrenadeRemaining => Mathf.Max(0, grenadeAt - Time.time);
         public float DashRemaining => Mathf.Max(0, dashAt - Time.time);
+        public HandCombat Hands {get;private set;}
+        public void ResetHands() => Hands?.ResetState();
         CharacterController controller;
         Vector3? destination;
         Vector3 facing = Vector3.forward, dashDirection;
         float shotAt, grenadeAt, dashAt, dashUntil;
         bool controllerAim;
-        void Awake() => controller = GetComponent<CharacterController>();
+        void Awake() {controller = GetComponent<CharacterController>();Hands=gameObject.AddComponent<HandCombat>();}
         public void Teleport(Vector3 position)
         {
             controller.enabled = false;
@@ -42,7 +44,7 @@ namespace VideoGame
             if (keyboard != null)
                 input = new Vector2((keyboard.dKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed ? 1 : 0), (keyboard.wKey.isPressed ? 1 : 0) - (keyboard.sKey.isPressed ? 1 : 0));
             if (pad != null && pad.leftStick.ReadValue().sqrMagnitude > .04f) input = pad.leftStick.ReadValue();
-            if (mouse?.rightButton.wasPressedThisFrame == true) destination = MousePoint();
+            // Right mouse now activates the off hand; WASD/left stick own movement.
             Vector3 cameraForward = View.transform.forward; cameraForward.y = 0; cameraForward.Normalize();
             Vector3 movement = View.transform.right * input.x + cameraForward * input.y;
             if (movement.sqrMagnitude > .01f) destination = null;
@@ -71,32 +73,15 @@ namespace VideoGame
                 dashUntil = Time.time + .16f; dashAt = Time.time + .8f; destination = null;
                 Motion.Act("Dash");
             }
-            Vector3 velocity = Time.time < dashUntil ? dashDirection * 22 : movement * 7;
+            Vector3 velocity = Time.time < dashUntil ? dashDirection * 22 : movement * (7*Prototype.Instance.Equipment.Profile.Speed);
             // Refuse steps beyond a floor edge; the same guard applies during a dash.
             Vector3 next = transform.position + velocity * Time.deltaTime;
             if (!Physics.Raycast(next + Vector3.up * 2, Vector3.down, 5, 1 << 8)) velocity = Vector3.zero;
             controller.Move((velocity + Vector3.down * 3) * Time.deltaTime);
-            if (transform.position.y < -5) { Prototype.Instance.Mission.Abandon(); Prototype.Instance.BuildHub(); }
+            if (transform.position.y < -5) { Damage(100000); return; }
             bool fire = mouse?.leftButton.isPressed == true || pad?.rightTrigger.isPressed == true;
-            if (fire && Time.time >= shotAt && Prototype.Instance.InMission)
-            {
-                shotAt = Time.time + .14f;
-                Motion.Act("Fire");
-                Motion.Kick();
-                Vector3 start = transform.position + Vector3.up * .25f;
-                Vector3 direction = (GunAimPoint(start) - start).normalized;
-                Vector3 end = start + direction * 22;
-                var hits = Physics.RaycastAll(start, direction, 22, ~0, QueryTriggerInteraction.Ignore);
-                System.Array.Sort(hits, (a,b) => a.distance.CompareTo(b.distance));
-                foreach (var hit in hits)
-                {
-                    if (hit.collider.GetComponentInParent<Pilot>() == this) continue;
-                    end = hit.point; CombatDamage.Apply(hit.collider, 20, start, direction);
-                    Prototype.Instance.Feedback.Contact(end, hit.collider.GetComponentInParent<Drone>() != null);
-                    break;
-                }
-                Prototype.Instance.Trace(start, end, Color.cyan);
-            }
+            bool off = mouse?.rightButton.isPressed == true || pad?.leftTrigger.isPressed == true;
+            Hands.Tick(fire,off,Time.deltaTime);
             bool grenade = keyboard?.qKey.wasPressedThisFrame == true || pad?.rightShoulder.wasPressedThisFrame == true;
             if (grenade && Time.time >= grenadeAt && Prototype.Instance.InMission)
             {
@@ -122,7 +107,7 @@ namespace VideoGame
             }
             return result;
         }
-        Vector3 GunAimPoint(Vector3 muzzle)
+        public Vector3 GunAimPoint(Vector3 muzzle)
         {
             if (!controllerAim && Mouse.current != null)
             {
@@ -167,9 +152,12 @@ namespace VideoGame
             }
             return target != null ? target.bounds.center : point;
         }
-        public void Damage(float amount)
+        public void Damage(float amount, Vector3 source = default)
         {
             if (IsDead || amount <= 0 || Time.time < dashUntil || Prototype.Instance.Menus?.IsOpen == true) return;
+                        var profile=Prototype.Instance.Equipment.Profile;
+            amount=Hands.ReduceDamage(amount,source);
+            amount*=1-Mathf.Clamp(profile.Bonus(VideoGame.Core.BonusKind.Resistance),0,.75f);
             Health = Mathf.Max(0, Health - amount * (Prototype.Instance.Menus?.DamageMultiplier ?? 1));
             if (Health > 0) Motion.Act("Hit");
             else
@@ -181,12 +169,12 @@ namespace VideoGame
         }
         public bool Heal(float amount)
         {
-            if (IsDead || amount <= 0 || Health >= 100) return false;
-            Health = Mathf.Min(100, Health + amount); return true;
+            if (IsDead || amount <= 0 || Health >= Prototype.Instance.Equipment.Profile.MaxHealth) return false;
+            Health = Mathf.Min(Prototype.Instance.Equipment.Profile.MaxHealth, Health + amount); return true;
         }
         public void Revive()
         {
-            IsDead = false; Health = 100; controller.enabled = true;
+            IsDead = false; Health = Prototype.Instance.Equipment.Profile.MaxHealth; ResetHands(); controller.enabled = true;
             shotAt = grenadeAt = dashAt = dashUntil = 0; destination = null;
             Motion.Revive();
         }
