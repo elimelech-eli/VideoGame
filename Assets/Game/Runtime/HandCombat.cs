@@ -9,7 +9,13 @@ namespace VideoGame
         readonly float[] ready=new float[2],reload=new float[2];
         readonly int[] ammo=new int[2],reserve=new int[2];
         readonly ShieldCharge[] shields={new ShieldCharge(),new ShieldCharge()};
+        readonly bool[] meleePending=new bool[2];
+        readonly float[] meleeAt=new float[2],meleeDamage=new float[2];
         public bool Guarding => shields[0].Guarding || shields[1].Guarding;
+        public bool Bracing => Time.time<braceUntil;
+        public bool IsReloading(int hand)=>reload[hand]>Time.time;
+        public float ReloadProgress(int hand)=>IsReloading(hand)?Mathf.Clamp01(1-(reload[hand]-Time.time)/1.5f):0;
+        public bool HasPendingMelee(int hand)=>meleePending[hand];
         public int MainShots {get;private set;}
         public int OffShots {get;private set;}
         public float ShieldEnergy => Mathf.Min(shields[0].Charge,shields[1].Charge);
@@ -28,6 +34,7 @@ namespace VideoGame
                 var item=p.Equipped[h+3];ammo[h]=item?.Design.Kind==GearKind.Rifle?30:12;
                 reserve[h]=Mathf.RoundToInt((item?.Design.Kind==GearKind.Rifle?180:84)*(1+p.Bonus(BonusKind.Ammo)));
                 ready[h]=reload[h]=0;shields[h]=new ShieldCharge();
+                meleePending[h]=false;
             }
             MainShots=OffShots=0;
             braceUntil=braceReady=0;
@@ -36,8 +43,10 @@ namespace VideoGame
         {
             var game=Prototype.Instance;var p=game.Equipment.Profile;
             if(game.Menus?.IsOpen==true)return;
+            if(!game.InMission || game.Player.IsDead){meleePending[0]=meleePending[1]=false;return;}
             for(int h=0;h<2;h++)
             {
+                if(meleePending[h] && Time.time>=meleeAt[h]){meleePending[h]=false;ResolveMelee(meleeDamage[h]);}
                 var item=p.Equipped[h+3];bool held=h==0?main:off;
                 shields[h].Tick(held&&item?.Design.Kind==GearKind.Shield,delta,1+p.Bonus(BonusKind.Energy),1+p.Bonus(BonusKind.ShieldRecharge));
                 if(Time.time>=reload[h] && reload[h]>0)
@@ -55,17 +64,13 @@ namespace VideoGame
                 var pilot=game.Player;
                 if(sword)
                 {
-                    pilot.Motion.Act("Melee");
-                    foreach(var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))
-                    {
-                        Vector3 to=enemy.transform.position-transform.position;
-                        if(to.sqrMagnitude<2.8f*2.8f && Vector3.Dot(transform.forward,to.normalized)>.15f && !Physics.Linecast(transform.position,enemy.transform.position,1<<9))enemy.Damage(damage);
-                    }
-                    game.Feedback.SilentTrace(transform.position+Vector3.up*.2f,transform.position+transform.forward*2.5f,Art.Amber);
+                    meleeDamage[h]=damage;meleeAt[h]=Time.time+PlayerWeaponAnimation.SwordContactTime;meleePending[h]=true;
+                    pilot.Weapons?.Swing(h);
                 }
                 else
                 {
-                    pilot.Motion.Act("Fire");pilot.Motion.Kick();
+                    pilot.Weapons?.Shot(h);
+                    if(item.Design.Kind==GearKind.Rifle){pilot.Motion.Act("Fire");pilot.Motion.Kick();}
                     Vector3 start=transform.position+Vector3.up*.25f;
                     Vector3 direction=(pilot.GunAimPoint(start)-start).normalized;
                     float spread=(item.Design.Kind==GearKind.Handgun?1.5f:.35f)*(1-p.Accuracy);
@@ -79,7 +84,7 @@ namespace VideoGame
                         end=hit.point;CombatDamage.Apply(hit.collider,damage,start,direction);
                         game.Feedback.Contact(end,hit.collider.GetComponentInParent<Drone>()!=null);break;
                     }
-                    game.Trace(start,end,h==0?Art.Cyan:Art.Amber);
+                    game.Trace(pilot.Weapons?.Muzzle(h)??start,end,h==0?Art.Cyan:Art.Amber);
                 }
             }
             // Initial rifle secondary: a short brace, deliberately weaker than a shield.
@@ -87,6 +92,15 @@ namespace VideoGame
             {braceUntil=Time.time+.3f;braceReady=Time.time+1.5f;}
         }
         float braceUntil,braceReady;
+        void ResolveMelee(float damage)
+        {
+            var game=Prototype.Instance;
+            foreach(var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))
+            {
+                Vector3 to=enemy.transform.position-transform.position;
+                if(to.sqrMagnitude<2.8f*2.8f && Vector3.Dot(transform.forward,to.normalized)>.15f && !Physics.Linecast(transform.position,enemy.transform.position,1<<9))enemy.Damage(damage);
+            }
+        }
         public float ReduceDamage(float amount,Vector3 source)
         {
             bool front=source==Vector3.zero || Vector3.Dot(transform.forward,(source-transform.position).normalized)>.25f;
@@ -94,7 +108,7 @@ namespace VideoGame
                 for(int h=0;h<2;h++)if(shields[h].Guarding)
                 {
                     var item=Prototype.Instance.Equipment.Profile.Equipped[h+3];
-                    shields[h].Block(amount/100*(item.SignatureActive?.5f:1));return 0;
+                    shields[h].Block(amount/100*(item.SignatureActive?.5f:1));Prototype.Instance.Player.Weapons?.Block(h);return 0;
                 }
             return front&&Time.time<braceUntil?amount*.5f:amount;
         }

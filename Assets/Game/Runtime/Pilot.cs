@@ -13,7 +13,8 @@ namespace VideoGame
         public float GrenadeRemaining => Mathf.Max(0, grenadeAt - Time.time);
         public float DashRemaining => Mathf.Max(0, dashAt - Time.time);
         public HandCombat Hands {get;private set;}
-        public void ResetHands() => Hands?.ResetState();
+        public PlayerWeaponAnimation Weapons {get;internal set;}
+        public void ResetHands(){Hands?.ResetState();Weapons?.ResetActions();}
         CharacterController controller;
         Vector3? destination;
         Vector3 facing = Vector3.forward, dashDirection;

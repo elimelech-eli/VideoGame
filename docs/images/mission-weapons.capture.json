@@ -1,0 +1,28 @@
+{
+  "captureId": "mission-weapons-2026-10-29",
+  "claimType": "feature-demo",
+  "baseCommit": "c08c000",
+  "sourceState": "delivery changes identified by canonical UTF-8/LF SHA-256 below",
+  "sourceHashes": {
+    "Assets/Game/Runtime/PlayerWeaponAnimation.cs": "f2fa4c532e355230aaf72d1eaebae945f9c9a97b953c06e408523092330c5387",
+    "Assets/Game/Runtime/HandCombat.cs": "e2a6111cafa4bc901b52ce17c330e313c39da61f2aab1a8e18d3cfb319cc45c5",
+    "Assets/Game/Runtime/Pilot.cs": "ed8f342f07bd5d895ef516ee880d085e2d8f8e9f265ac1d0ce21fbcfdd0eda99",
+    "Assets/Game/Runtime/EquipmentSystem.cs": "409db919be41aa7210559e8f7930132c1bac58f79e33f0ab5ae1014af4fdf199",
+    "Assets/Tests/PlayMode/WeaponAnimationTests.cs": "2d6b78cb26cfdfa1f4cd9e0bac808b2f03fc574495cd9c27167032dbe28f58b5"
+  },
+  "target": "Unity 6000.3.26f1 Windows Editor PlayMode, Direct3D 11",
+  "validationRun": "TestResults/WeaponGraphics.xml",
+  "input": "HandCombat semantic calls from isolated WeaponAnimationTests fixture",
+  "configuration": "Standard difficulty, biome 0, isolated temporary profile; AI disabled; stationary player; level-20 target; white sword/shield then handgun/shield",
+  "sourceTakes": "TestResults/weapon-demo/000.png through 059.png, 1280x720, fixed 30 Hz simulation",
+  "edits": [
+    "loadout cut at frame 30",
+    "resize to 768x432",
+    "128-color shared GIF palette with dithering disabled",
+    "GIF loop; repeating 30/30/40ms frame delays preserve 2s duration"
+  ],
+  "overlays": "none",
+  "audio": "none recorded",
+  "export": "docs/images/mission-weapons.gif",
+  "encoder": "Pillow 12.3.0"
+}

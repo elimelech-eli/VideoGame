@@ -181,9 +181,9 @@ namespace VideoGame
             // meshes are separate art work; UI slots still show actual loadout.
             foreach(var go in wearables)if(go!=null){go.SetActive(false);Destroy(go);}wearables.Clear();
             if(game?.Player==null)return;
-            foreach(var t in game.Player.GetComponentsInChildren<Transform>())
-                if(t.name=="SOCKET_weapon_R")foreach(var renderer in t.GetComponentsInChildren<Renderer>())
-                    renderer.enabled=Profile.Equipped[3]?.Design.Kind==GearKind.Rifle;
+            var motion=game.Player.Motion;
+            game.Player.Weapons=motion.GetComponent<PlayerWeaponAnimation>()??motion.gameObject.AddComponent<PlayerWeaponAnimation>();
+            game.Player.Weapons.Refresh(Profile);
             GetComponent<CharacterScreen>()?.RefreshPreview();
         }
         void OnDestroy(){ClearDrops();}
