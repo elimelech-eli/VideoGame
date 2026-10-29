@@ -8,6 +8,7 @@ using Random = System.Random;
 
 namespace VideoGame
 {
+    [DefaultExecutionOrder(-900)] // Hotkey ownership changes before actors and spawners update.
     public sealed class EquipmentSystem : MonoBehaviour
     {
         public GearProfile Profile {get;private set;}=GearProfile.Starter();
@@ -32,7 +33,7 @@ namespace VideoGame
         public void Restore(GearProfile profile,int legacyCredits)
         {
             ClearDrops();Profile=profile??GearProfile.Starter(legacyCredits);
-            if(Profile.Shop.Count==0)Profile.Restock(17);Field=null;rewards.Clear();RefreshVisuals();
+            if(Profile.Shop.Count==0)Profile.Restock(17);Field=null;rewards.Clear();Notice="Equipment restored. Nexus services are available.";RefreshVisuals();
         }
         public bool Begin(int seed,int difficulty)
         {
@@ -102,7 +103,7 @@ namespace VideoGame
             if(game.InMission && !game.Menus.BlocksGameplay)
                 foreach(var d in drops.ToArray())if(d!=null && d.Item==null && Vector3.Distance(d.transform.position,game.Player.transform.position)<1.5f)TryPickup(d);
         }
-        public void Open(){Section="Loadout";Selected=null;page=0;game.Menus.OpenEquipment();}
+        public void Open(){Section="Loadout";Selected=null;page=0;GetComponent<CharacterScreen>()?.ResetScreen();game.Menus.OpenEquipment();}
         void Navigate(string section){Section=section;Selected=null;page=0;game.Menus.Highlight(0);}
         public void Changed()
         {
@@ -171,77 +172,17 @@ namespace VideoGame
             return entries;
         }
         public static Color QualityColor(GearQuality q)=>new[]{Color.white,new Color(.25f,1,.45f),new Color(.25f,.6f,1),new Color(.8f,.35f,1),new Color(1,.75f,.15f)}[(int)q];
-        void OnGUI()
-        {
-            if(!IsOpen)return;
-            var previous=GUI.matrix;float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);
-            GUI.depth=-101;GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1280*scale)/2,(Screen.height-720*scale)/2),Quaternion.identity,Vector3.one*scale);
-            var style=new GUIStyle(GUI.skin.label){fontSize=15,wordWrap=true,richText=false};
-            GUI.color=new Color(.018f,.035f,.055f,.96f);GUI.DrawTexture(new Rect(808,52,410,616),Texture2D.whiteTexture);GUI.color=Color.white;
-            GUILayout.BeginArea(new Rect(830,70,368,580));
-            GUILayout.Label(Section.ToUpperInvariant(),style);
-            GUILayout.Label("OPERATIVE / LEVEL "+Profile.Level,style);
-            GUILayout.Label("XP "+Profile.Experience+" / "+Profile.NextLevelXP+"    Points "+Profile.Points,style);
-            GUILayout.Label("Power "+Profile.UsedPower+" / "+Profile.Capacity+"    Credits "+Wallet,style);
-            GUILayout.Label("Health "+Profile.MaxHealth.ToString("0")+"  Speed "+Profile.Speed.ToString("0.00")+"x",style);
-            if(Selected!=null)
-            {
-                var i=Selected;GUI.contentColor=QualityColor(i.Quality);GUILayout.Label(i.Quality+" / "+i.Design.Name,style);GUI.contentColor=Color.white;
-                GUILayout.Label("Level "+i.Level+"  Power "+i.Power+"  Condition "+i.Condition+"%",style);
-                if(i.Design.Kind==GearKind.Handgun || i.Design.Kind==GearKind.Rifle || i.Design.Kind==GearKind.Sword)
-                {
-                    float hit=(i.Design.Kind==GearKind.Sword?34:20)*(i.Condition/100f)*(1+(i.Level-1)*.08f);
-                    GUILayout.Label("Base hit: "+hit.ToString("0.0")+" damage",style);
-                    GUILayout.Label(i.Design.Kind==GearKind.Sword?"Forward melee strike":i.Design.Kind==GearKind.Rifle?"30 rounds / automatic reload":"12 rounds / automatic reload",style);
-                }
-                if(i.Design.Kind==GearKind.Shield)GUILayout.Label("Hold to guard. Base duration: 3 seconds.",style);
-                if(i.Design.Value!=0)GUILayout.Label("Design: "+BonusText(i.Design.Identity,i.Design.Value*i.Scale),style);
-                foreach(var b in i.Bonuses)GUILayout.Label(BonusText(b.Kind,b.Value*i.Scale),style);
-                if(i.SignatureActive)GUILayout.Label(i.Design.Signature,style);
-                if(i.Design.Id=="heavy")GUILayout.Label("Tradeoff: -15% speed at full condition.",style);
-                if(i.Design.Id=="capacitor")GUILayout.Label("Tradeoff: -15% shield recharge.",style);
-                if(i.Fresh)GUILayout.Label("Unsecured mission loot",style);
-                GUILayout.Label("Buy "+i.Price+" / Sell "+i.Sale+" CR",style);
-            }
-            else for(int s=0;s<5;s++)GUILayout.Label(((GearSlot)s)+": "+(Profile.Equipped[s]?.Design.Name??"Empty"),style);
-            GUILayout.Space(18);GUILayout.Label(Notice,style);
-            GUILayout.Label(game.InMission?"Field inventory: pickup/drop only. E / A collects nearby loot.":"Nexus services: equip, stash, buy, sell, repair and allocate points.",style);
-            GUILayout.EndArea();GUI.matrix=previous;GUI.contentColor=Color.white;
-        }
-        static string BonusText(BonusKind kind,float value)=>kind+" +"+(kind==BonusKind.Health?value.ToString("0.0"):(value*100).ToString("0.0")+"%");
         public void RefreshVisuals()
         {
+            // The shared operative mesh already has fitted armor and a helmet.
+            // Do not place primitive equipment boxes over it. Proper modular
+            // meshes are separate art work; UI slots still show actual loadout.
             foreach(var go in wearables)if(go!=null){go.SetActive(false);Destroy(go);}wearables.Clear();
             if(game?.Player==null)return;
-            Transform mainSocket=null;
-            foreach(var t in game.Player.GetComponentsInChildren<Transform>())if(t.name=="SOCKET_weapon_R"){mainSocket=t;break;}
-            // Replace the operative prefab's fixed rifle, rather than displaying
-            // a rifle underneath every selected handgun/sword/shield.
-            if(mainSocket!=null)foreach(var renderer in mainSocket.GetComponentsInChildren<Renderer>())renderer.enabled=false;
-            // Original prototype geometry: no proprietary game assets imported.
-            for(int s=0;s<5;s++)
-            {
-                var i=Profile.Equipped[s];if(i==null)continue;
-                Vector3 position=s==0?new Vector3(0,.64f,0):s==1?new Vector3(0,.05f,0):s==2?new Vector3(0,.1f,-.38f):new Vector3(s==3?.5f:-.5f,-.05f,.4f);
-                Vector3 size=s==0?new Vector3(.48f,.28f,.45f):s==1?new Vector3(.72f,.55f,.36f):s==2?new Vector3(.48f,.6f,.25f):i.Design.Kind==GearKind.Shield?new Vector3(.45f,.7f,.12f):i.Design.Kind==GearKind.Sword?new Vector3(.09f,.09f,1.1f):new Vector3(.16f,.18f,i.Design.TwoHanded?.85f:.42f);
-                if(i.Definition=="heavy")size*=1.18f;if(i.Definition=="scout")size.x*=.85f;
-                if(i.Definition=="executioner" && s==0)size.x*=1.2f;
-                if(i.Definition=="relay" && s==2)size=new Vector3(.3f,.8f,.2f);
-                if(i.Definition=="capacitor" && s==2)size=new Vector3(.6f,.45f,.3f);
-                var go=game.Shape("Equipped "+i.Design.Name,PrimitiveType.Cube,Vector3.zero,size,QualityColor(i.Quality)*.7f,game.Player.transform);
-                go.transform.localPosition=position;go.transform.localRotation=Quaternion.identity;Destroy(go.GetComponent<Collider>());wearables.Add(go);
-                if(s>=3)
-                {
-                    Transform socket=s==3?mainSocket:null;
-                    if(s==4)foreach(var t in game.Player.GetComponentsInChildren<Transform>())if(t.name=="hand_L"){socket=t;break;}
-                    if(socket!=null)
-                    {
-                        go.transform.SetParent(socket,false);go.transform.localPosition=Vector3.forward*(i.Design.Kind==GearKind.Sword?.4f:.15f);
-                        go.transform.localRotation=Quaternion.identity;
-                        var scale=socket.lossyScale;go.transform.localScale=new Vector3(size.x/Mathf.Max(.001f,scale.x),size.y/Mathf.Max(.001f,scale.y),size.z/Mathf.Max(.001f,scale.z));
-                    }
-                }
-            }
+            foreach(var t in game.Player.GetComponentsInChildren<Transform>())
+                if(t.name=="SOCKET_weapon_R")foreach(var renderer in t.GetComponentsInChildren<Renderer>())
+                    renderer.enabled=Profile.Equipped[3]?.Design.Kind==GearKind.Rifle;
+            GetComponent<CharacterScreen>()?.RefreshPreview();
         }
         void OnDestroy(){ClearDrops();}
     }

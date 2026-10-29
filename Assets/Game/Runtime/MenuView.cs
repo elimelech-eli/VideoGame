@@ -55,7 +55,7 @@ namespace VideoGame
         static void Text(Rect area,string value,GUIStyle style,Color color){GUI.contentColor=color;GUI.Label(area,value,style);GUI.contentColor=Color.white;}
         void OnGUI()
         {
-            if(menu==null || !menu.IsOpen)return;
+            if(menu==null || !menu.IsOpen || menu.Page==MenuPage.Equipment)return;
             if(heading==null)Styles();
             GUI.depth=-100;
             var previous=GUI.matrix;

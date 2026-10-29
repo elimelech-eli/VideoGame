@@ -1,0 +1,37 @@
+{
+  "source": "Assets/Game/Resources/UI/GearIcons.png",
+  "generator": "image_gen built-in",
+  "date": "2026-10-29",
+  "size": [
+    1254,
+    1254
+  ],
+  "columns": 3,
+  "rows": 3,
+  "cellSize": [
+    418,
+    418
+  ],
+  "alpha": "opaque RGB, charcoal background",
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "rotation": false,
+  "filter": "bilinear",
+  "mipmaps": false,
+  "regions": [
+    "helmet",
+    "armor",
+    "backpack",
+    "handgun",
+    "rifle",
+    "sword",
+    "shield",
+    "credits",
+    "empty"
+  ],
+  "uvOrigin": "bottom-left; source cell order is top-left row-major",
+  "consumer": "CharacterScreen.IconUV; GUI.DrawTextureWithTexCoords",
+  "prompt": "Art/UI/gear-icons.prompt.txt"
+}

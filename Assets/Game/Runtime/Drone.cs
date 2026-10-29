@@ -27,7 +27,7 @@ namespace VideoGame
         void Update()
         {
             var game = Prototype.Instance;
-            if (Time.timeScale == 0 || Health <= 0 || game == null || !game.InMission || game.Player.IsDead || WindingUp) return;
+            if (Time.timeScale == 0 || Health <= 0 || game == null || game.Menus?.IsOpen==true || !game.InMission || game.Player.IsDead || WindingUp) return;
             Vector3 delta = game.Player.transform.position - transform.position; delta.y = 0;
             float distance = delta.magnitude;
             if (delta.sqrMagnitude > .01f) transform.rotation = Quaternion.LookRotation(delta);
@@ -111,7 +111,7 @@ namespace VideoGame
         float life;
         void Update()
         {
-            if (Time.timeScale == 0) return;
+            if (Time.timeScale == 0 || Prototype.Instance?.Menus?.IsOpen==true) return;
             life += Time.deltaTime;
             Vector3 before = transform.position;
             Vector3 step = Direction.normalized * (8 * Time.deltaTime);
@@ -155,7 +155,7 @@ namespace VideoGame
         }
         void Update()
         {
-            if (ring == null || Time.timeScale == 0) return;
+            if (ring == null || Time.timeScale == 0 || Prototype.Instance?.Menus?.IsOpen==true) return;
             float t = Mathf.Clamp01((Time.time - started) / WarningDuration);
             float pulse = .08f + .05f * Mathf.Sin(t * 40); ring.startWidth = ring.endWidth = pulse;
             Vector3 point = Vector3.Lerp(launch, Target, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * 5;

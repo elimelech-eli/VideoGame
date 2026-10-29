@@ -28,6 +28,7 @@ The player and all four enemy roles use different models. Nexus and combat zones
 
 ![Authored idle, running and death poses](docs/images/animations.png)
 
+- [Visual character screen and inventory](docs/CHARACTER_SCREEN.md)
 - [Menus, options and Nexus checkpoints](docs/MENUS.md)
 - [Game profile](docs/GAME_PROFILE.md)
 - [Development pipeline and testing](docs/DEVELOPMENT.md)

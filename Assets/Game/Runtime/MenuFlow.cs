@@ -178,7 +178,7 @@ namespace VideoGame
             switch(Page)
             {
                 case MenuPage.Pause:Resume();break;
-                case MenuPage.Equipment:Resume();break;
+                case MenuPage.Equipment:if(!GetComponent<CharacterScreen>().CloseActions())Resume();break;
                 case MenuPage.Options:Draft=null;Open(optionsReturn);break;
                 case MenuPage.Audio:case MenuPage.Display:case MenuPage.Controls:Open(MenuPage.Options);break;
                 case MenuPage.Difficulty:case MenuPage.Save:Open(MenuPage.Pause);break;
@@ -346,11 +346,15 @@ namespace VideoGame
         }
         void Update()
         {
+            // Menu ownership is authoritative, even if a retiring scene/menu
+            // restored the global clock after this screen was opened.
+            if(IsOpen){Time.timeScale=0;AudioListener.pause=true;}
             var keyboard=Keyboard.current;var pad=Gamepad.current;
             if(waitingRelease && !(Mouse.current?.leftButton.isPressed==true || Mouse.current?.rightButton.isPressed==true || pad?.rightTrigger.isPressed==true || pad?.leftTrigger.isPressed==true || pad?.rightShoulder.isPressed==true || pad?.buttonSouth.isPressed==true || keyboard?.eKey.isPressed==true || keyboard?.qKey.isPressed==true || keyboard?.spaceKey.isPressed==true))waitingRelease=false;
             if(displayPreview && Time.realtimeSinceStartup>=displayDeadline)RevertDisplay();
             if(keyboard?.escapeKey.wasPressedThisFrame==true || pad?.startButton.wasPressedThisFrame==true)
             {if(!IsOpen)Pause();else Back();return;}
+            if(Page==MenuPage.Equipment)return; // Character screen owns its pointer and focus context.
             if(!IsOpen)
             {
                 if(Mouse.current?.leftButton.wasPressedThisFrame==true && new Rect(220,90,160,24).Contains(PointerPosition))Pause();
@@ -372,7 +376,7 @@ namespace VideoGame
         void OnDestroy()
         {
             if(displayPreview && beforeDisplay!=null)ApplySettings(beforeDisplay,true);
-            Time.timeScale=1;AudioListener.pause=false;
+            if(Prototype.Instance==null || Prototype.Instance==game){Time.timeScale=1;AudioListener.pause=false;}
         }
     }
 }

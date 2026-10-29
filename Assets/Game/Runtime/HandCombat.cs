@@ -35,6 +35,7 @@ namespace VideoGame
         public void Tick(bool main,bool off,float delta)
         {
             var game=Prototype.Instance;var p=game.Equipment.Profile;
+            if(game.Menus?.IsOpen==true)return;
             for(int h=0;h<2;h++)
             {
                 var item=p.Equipped[h+3];bool held=h==0?main:off;

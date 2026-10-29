@@ -93,6 +93,7 @@ namespace VideoGame
             gameObject.AddComponent<GameHud>();
             BuildHub();
             Menus = gameObject.AddComponent<MenuFlow>();
+            gameObject.AddComponent<CharacterScreen>();
             Equipment.RefreshVisuals();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
             if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_CAPTURE_BIOMES")))gameObject.AddComponent<BiomeCapture>();

@@ -141,7 +141,7 @@ namespace VideoGame.Core
             Bag.Add(item);return true;
         }
         public bool Owns(string id) => Bag.Concat(Stash).Concat(Equipped.Where(i=>i!=null)).Any(i=>i.Id==id);
-        public string Equip(string id,GearSlot slot,bool inMission)
+        public string EquipError(string id,GearSlot slot,bool inMission)
         {
             if(inMission)return "Equipment is locked during missions.";
             int s=(int)slot;if(s<0 || s>=5)return "Unknown slot.";
@@ -157,6 +157,13 @@ namespace VideoGame.Core
             if(bagAfter>BagCapacity)return "Inventory needs room for displaced equipment.";
             int power=UsedPower-(replaced?.Power??0)-(off?.Power??0)+item.Power;
             if(power>Capacity)return "Equipment exceeds power capacity.";
+            return null;
+        }
+        public string Equip(string id,GearSlot slot,bool inMission)
+        {
+            var error=EquipError(id,slot,inMission);if(error!=null)return error;
+            int s=(int)slot;var item=Bag.Find(i=>i.Id==id);
+            var replaced=Equipped[s];var off=item.Design.TwoHanded?Equipped[4]:null;
             Bag.Remove(item);if(replaced!=null)Bag.Add(replaced);if(off!=null){Bag.Add(off);Equipped[4]=null;}
             Equipped[s]=item;return null;
         }
