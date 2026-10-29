@@ -17,6 +17,7 @@ namespace VideoGame
             game.Menus.Settings.SectorSize=6;game.StartMission();
             if(directory=="play"){Debug.Log("LAB_MISSION_READY: normal seeded BiotechLab combat, 6 rooms.");yield break;}
             Directory.CreateDirectory(directory);
+            if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_LAB_ENEMIES"))){yield return CaptureEnemies(game,directory);Application.Quit();yield break;}
             foreach(int count in new[]{6,10,20})
             {
                 if(count!=6){game.Mission.Abandon();game.BuildHub();yield return null;game.Menus.Settings.SectorSize=count;game.StartMission();}
@@ -39,5 +40,21 @@ namespace VideoGame
             Debug.Log("LAB_MISSION_CAPTURE_COMPLETE: 6/10/20-room actual mission scenes, staged views with AI disabled.");
             Application.Quit();
         }
-    }
+        IEnumerator CaptureEnemies(Prototype game,string directory)
+        {
+            game.Director.enabled=false;game.Player.enabled=false;
+            foreach(var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))Destroy(enemy.gameObject);
+            yield return null;
+            var a=game.SpawnDrone(new Vector3(-1.6f,1,0),EnemyKind.Rusher);
+            var b=game.SpawnDrone(new Vector3(1.4f,1,0),EnemyKind.Gunner);
+            foreach(var d in new[]{a,b}){d.enabled=false;d.transform.rotation=Quaternion.Euler(0,180,0);d.Motion.enabled=false;}
+            game.Player.Teleport(new Vector3(0,1,-3));yield return new WaitForSeconds(.5f);
+            var camera=game.Player.View;camera.orthographicSize=4.6f;
+            foreach(string state in new[]{"Idle","RunForward","Melee","Fire","Death"})
+            {
+                foreach(var d in new[]{a,b}){d.Motion.Player.Play(state);d.Motion.Player[state].normalizedTime=state=="Death"?.9f:.25f;d.Motion.Player.Sample();d.Motion.Player.enabled=false;}
+                yield return new WaitForEndOfFrame();game.CaptureFrame(Path.Combine(directory,state+".png"));
+            }
+            Debug.Log("LAB_ENEMY_CAPTURE_COMPLETE: staged actual game skins and sampled combat clips.");
+        }    }
 }

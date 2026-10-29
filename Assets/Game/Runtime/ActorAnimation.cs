@@ -32,8 +32,9 @@ namespace VideoGame
             Player = gameObject.AddComponent<Animation>();
             Player.cullingType = AnimationCullingType.AlwaysAnimate;
             string model = name.Replace("(Clone)", "").Trim();
-            robot = model == "Crawler" || model == "Roller" || model == "Blaster" || model == "Lobber";
-            foreach (var clip in Resources.LoadAll<AnimationClip>(robot ? "RobotAnimations/" + model : model == "OperativeV03" ? "OperatorAnimations" : "Animations")) Player.AddClip(clip, clip.name);
+            bool lab = model == "LabSpider" || model == "LabHazmat";
+            robot = lab || model == "Crawler" || model == "Roller" || model == "Blaster" || model == "Lobber";
+            foreach (var clip in Resources.LoadAll<AnimationClip>(lab ? "LabEnemyAnimations/" + model : robot ? "RobotAnimations/" + model : model == "OperativeV03" ? "OperatorAnimations" : "Animations")) Player.AddClip(clip, clip.name);
             if (Player["Idle"] == null) throw new System.InvalidOperationException("Missing baked actor animations");
             foreach (string name in new[] {"Fire", "Hit", "Cast"})
             {
