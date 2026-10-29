@@ -1,0 +1,344 @@
+{
+  "Handgun": {
+    "profile": "game",
+    "eps": 4.7e-05,
+    "tol": 0.000932,
+    "gap": 0.00466,
+    "pass": true,
+    "errors": [],
+    "warnings": [
+      "Barrel: 2 n-gons",
+      "Muzzle bore: 16 zero-area faces",
+      "Muzzle bore: 2 n-gons",
+      "Muzzle bore: not touching, 0.001 from the nearest part"
+    ],
+    "per_object": {
+      "Handgun grip": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Receiver": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Slide": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Barrel": {
+        "tris": 188,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Barrel: 2 n-gons"
+        ]
+      },
+      "Muzzle bore": {
+        "tris": 156,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Muzzle bore: 16 zero-area faces",
+          "Muzzle bore: 2 n-gons",
+          "Muzzle bore: not touching, 0.001 from the nearest part"
+        ]
+      },
+      "Trigger guard": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Front guard": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Charge strip": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Slide vent": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Slide vent.001": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Slide vent.002": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      }
+    },
+    "skipped": []
+  },
+  "Rifle": {
+    "profile": "game",
+    "eps": 0.000105,
+    "tol": 0.002097,
+    "gap": 0.010486,
+    "pass": true,
+    "errors": [],
+    "warnings": [
+      "Rifle barrel: 2 n-gons",
+      "Muzzle brake: 2 n-gons",
+      "Muzzle bore.001: 16 zero-area faces",
+      "Muzzle bore.001: 2 n-gons",
+      "Optic: 2 n-gons",
+      "Optic lens: 16 zero-area faces",
+      "Optic lens: 2 n-gons"
+    ],
+    "per_object": {
+      "Rifle grip": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Rifle receiver": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Stock neck": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Stock butt": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Handguard": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Rifle barrel": {
+        "tris": 188,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Rifle barrel: 2 n-gons"
+        ]
+      },
+      "Muzzle brake": {
+        "tris": 188,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Muzzle brake: 2 n-gons"
+        ]
+      },
+      "Muzzle bore.001": {
+        "tris": 156,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Muzzle bore.001: 16 zero-area faces",
+          "Muzzle bore.001: 2 n-gons"
+        ]
+      },
+      "Magazine": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Top rail": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Optic mount": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Optic": {
+        "tris": 188,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Optic: 2 n-gons"
+        ]
+      },
+      "Optic lens": {
+        "tris": 156,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Optic lens: 16 zero-area faces",
+          "Optic lens: 2 n-gons"
+        ]
+      },
+      "Charge strip.001": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Heat sink": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Heat sink.001": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Heat sink.002": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Heat sink.003": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      }
+    },
+    "skipped": []
+  },
+  "Sword": {
+    "profile": "game",
+    "eps": 0.000118,
+    "tol": 0.002361,
+    "gap": 0.011804,
+    "pass": true,
+    "errors": [],
+    "warnings": [
+      "Blade: 2 n-gons",
+      "Blade: no UV map (fine for flat colors; textures and lightmaps need one)",
+      "Energy fuller: 2 n-gons",
+      "Energy fuller: no UV map (fine for flat colors; textures and lightmaps need one)",
+      "Insulated hilt: not touching, 0.0025 from the nearest part",
+      "Pommel: not touching, 0.0025 from the nearest part"
+    ],
+    "per_object": {
+      "Insulated hilt": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Insulated hilt: not touching, 0.0025 from the nearest part"
+        ]
+      },
+      "Pommel": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Pommel: not touching, 0.0025 from the nearest part"
+        ]
+      },
+      "Cross guard": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      },
+      "Blade": {
+        "tris": 104,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Blade: 2 n-gons",
+          "Blade: no UV map (fine for flat colors; textures and lightmaps need one)"
+        ]
+      },
+      "Energy fuller": {
+        "tris": 104,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Energy fuller: 2 n-gons",
+          "Energy fuller: no UV map (fine for flat colors; textures and lightmaps need one)"
+        ]
+      }
+    },
+    "skipped": []
+  },
+  "Shield": {
+    "profile": "game",
+    "eps": 8.9e-05,
+    "tol": 0.001789,
+    "gap": 0.008944,
+    "pass": true,
+    "errors": [],
+    "warnings": [
+      "Shield rim: 2 n-gons",
+      "Shield rim: no UV map (fine for flat colors; textures and lightmaps need one)",
+      "Armoured face: 2 n-gons",
+      "Armoured face: no UV map (fine for flat colors; textures and lightmaps need one)",
+      "Shield energy spine: 2 n-gons",
+      "Shield energy spine: no UV map (fine for flat colors; textures and lightmaps need one)",
+      "Shield energy spine: not touching, 0.002 from the nearest part"
+    ],
+    "per_object": {
+      "Shield rim": {
+        "tris": 192,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Shield rim: 2 n-gons",
+          "Shield rim: no UV map (fine for flat colors; textures and lightmaps need one)"
+        ]
+      },
+      "Armoured face": {
+        "tris": 192,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Armoured face: 2 n-gons",
+          "Armoured face: no UV map (fine for flat colors; textures and lightmaps need one)"
+        ]
+      },
+      "Shield energy spine": {
+        "tris": 104,
+        "parts": 1,
+        "errors": [],
+        "warnings": [
+          "Shield energy spine: 2 n-gons",
+          "Shield energy spine: no UV map (fine for flat colors; textures and lightmaps need one)",
+          "Shield energy spine: not touching, 0.002 from the nearest part"
+        ]
+      },
+      "Rear grip": {
+        "tris": 108,
+        "parts": 1,
+        "errors": [],
+        "warnings": []
+      }
+    },
+    "skipped": []
+  }
+}

@@ -33,6 +33,7 @@ namespace VideoGame
         public void Restore(GearProfile profile,int legacyCredits)
         {
             ClearDrops();Profile=profile??GearProfile.Starter(legacyCredits);
+            Profile.NormalizeLegacyHandedness();
             if(Profile.Shop.Count==0)Profile.Restock(17);Field=null;rewards.Clear();Notice="Equipment restored. Nexus services are available.";RefreshVisuals();
         }
         public bool Begin(int seed,int difficulty)

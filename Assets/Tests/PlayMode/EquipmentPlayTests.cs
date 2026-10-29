@@ -45,12 +45,12 @@ public sealed class EquipmentPlayTests
         Assert.AreEqual(2,game.Player.Hands.MainShots);Assert.AreEqual(2,game.Player.Hands.OffShots);
         Assert.AreEqual("10 / 109",game.Player.Hands.State(0));Assert.AreEqual("10 / 109",game.Player.Hands.State(1));
     }
-    [UnityTest] public IEnumerator ShieldCanOccupyMainHandAndBlocksOnlyWhileHeldFromFront()
+    [UnityTest] public IEnumerator OffHandShieldBlocksOnlyWhileHeldFromFront()
     {
-        Equip("shield",GearSlot.MainHand);Equip("pistol",GearSlot.OffHand);Field();
-        game.Player.Hands.Tick(true,false,.1f);game.Player.Damage(20,game.Player.transform.position+game.Player.transform.forward*3);Assert.AreEqual(100,game.Player.Health);
+        Equip("pistol",GearSlot.MainHand);Equip("shield",GearSlot.OffHand);Field();
+        game.Player.Hands.Tick(false,true,.1f);game.Player.Damage(20,game.Player.transform.position+game.Player.transform.forward*3);Assert.AreEqual(100,game.Player.Health);
         game.Player.Hands.Tick(false,false,.02f);game.Player.Damage(20);Assert.AreEqual(80,game.Player.Health);
-        game.Player.Hands.Tick(true,false,.1f);game.Player.Damage(20,game.Player.transform.position-game.Player.transform.forward*3);Assert.AreEqual(60,game.Player.Health);
+        game.Player.Hands.Tick(false,true,.1f);game.Player.Damage(20,game.Player.transform.position-game.Player.transform.forward*3);Assert.AreEqual(60,game.Player.Health);
         yield return null;
     }
     [UnityTest] public IEnumerator PickupsRespectCapacityAndDropsCannotDuplicateOrRefillAmmo()

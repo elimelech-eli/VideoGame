@@ -11,8 +11,9 @@ namespace VideoGame
         GameObject stage,model;
         Camera cameraView;
         float yaw=15;
-        bool dirty=true;
-        public void Refresh(){dirty=true;}
+        bool dirty=true,loadoutDirty=true;
+        PreviewLoadout loadout;
+        public void Refresh(){dirty=true;loadoutDirty=true;}
         public void Rotate(float degrees){yaw+=degrees;dirty=true;}
         void Ensure()
         {
@@ -27,6 +28,7 @@ namespace VideoGame
             if(idle!=null){pose.AddClip(idle,"Idle");pose.Play("Idle");pose["Idle"].time=0;pose.Sample();pose.enabled=false;}
             var bounds=Art.RenderedBounds(model);float scale=2.2f/Mathf.Max(.01f,bounds.size.y);model.transform.localScale*=scale;
             bounds=Art.RenderedBounds(model);model.transform.position+=stage.transform.position-new Vector3(bounds.center.x,bounds.min.y,bounds.center.z);
+            loadout=new PreviewLoadout(model.transform);
             foreach(var t in model.GetComponentsInChildren<Transform>())t.gameObject.layer=30;
             var cameraObject=new GameObject("Preview camera");cameraObject.transform.SetParent(stage.transform,false);cameraView=cameraObject.AddComponent<Camera>();
             cameraView.enabled=false;cameraView.cullingMask=1<<30;cameraView.clearFlags=CameraClearFlags.SolidColor;cameraView.backgroundColor=new Color(.018f,.028f,.04f,0);
@@ -47,9 +49,8 @@ namespace VideoGame
             if(!open){if(stage!=null)stage.SetActive(false);return;}
             Ensure();if(stage==null)return;stage.SetActive(true);
             if(!dirty)return;dirty=false;
+            if(loadoutDirty){model.transform.localRotation=Quaternion.identity;loadout.Apply(Prototype.Instance.Equipment.Profile);loadoutDirty=false;}
             model.transform.localRotation=Quaternion.Euler(0,yaw,0);
-            foreach(var t in model.GetComponentsInChildren<Transform>())if(t.name=="SOCKET_weapon_R")
-                foreach(var renderer in t.GetComponentsInChildren<Renderer>())renderer.enabled=Prototype.Instance.Equipment.Profile.Equipped[3]?.Design.Kind==GearKind.Rifle;
             cameraView.Render();
         }
         void OnDestroy()

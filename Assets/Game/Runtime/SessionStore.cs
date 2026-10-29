@@ -50,6 +50,7 @@ namespace VideoGame
                 var item=Equipment.Equipped[i];
                 if(item!=null && string.IsNullOrEmpty(item.Id) && string.IsNullOrEmpty(item.Definition) && (item.Bonuses==null || item.Bonuses.Count==0))Equipment.Equipped[i]=null;
             }
+            Equipment.NormalizeLegacyHandedness();
         }
         public bool Valid()
         {

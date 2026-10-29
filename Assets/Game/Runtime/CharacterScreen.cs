@@ -61,11 +61,27 @@ namespace VideoGame
             var item=VisibleItems().Find(i=>i.Id==id);if(item==null)return false;
             SelectedItem=item;selectedEquipped=-1;MoreOpen=false;
             if(!GearCatalog.Weapon(item.Design.Kind))CompareSlot=(GearSlot)item.Design.Kind;
-            else if(item.Design.TwoHanded)CompareSlot=GearSlot.MainHand;
-            else if(CompareSlot<GearSlot.MainHand)CompareSlot=GearSlot.MainHand;
+            else CompareSlot=item.Design.Kind==GearKind.Shield?GearSlot.OffHand:GearSlot.MainHand;
             Status=game.InMission?"Field inventory: inspection and dropping only.":"Compare the changes below, then equip.";return true;
         }
-        public void ChooseHand(GearSlot hand){if(hand>=GearSlot.MainHand && hand<=GearSlot.OffHand)CompareSlot=hand;}
+        public void ChooseHand(GearSlot hand){if(SelectedItem?.Design.Kind==GearKind.Shield){CompareSlot=GearSlot.OffHand;return;}if(hand>=GearSlot.MainHand && hand<=GearSlot.OffHand)CompareSlot=hand;}
+        public bool QuickEquip(string id)
+        {
+            if(Storage!=CharacterStorage.Inventory || !SelectItem(id))return false;
+            return EquipSelected();
+        }
+        public bool UnequipSlot(GearSlot slot)
+        {
+            bool okay=Profile.Unequip(slot,game.InMission);
+            Transaction(okay,"Unequipped to inventory.");
+            if(okay)FocusId="slot-"+slot;
+            return okay;
+        }
+        public bool DropSelected()
+        {
+            if(SelectedItem==null || selectedEquipped>=0 || Storage!=CharacterStorage.Inventory)return false;
+            bool okay=game.Equipment.Drop(SelectedItem.Id);Transaction(okay,"Dropped in the world. Pick up again with E / A.");return okay;
+        }
         public bool EquipSelected()
         {
             if(SelectedItem==null || Storage!=CharacterStorage.Inventory || selectedEquipped>=0)return false;
@@ -198,6 +214,8 @@ namespace VideoGame
             var item=Profile.Equipped[(int)slot];string name=slot==GearSlot.Armor?"BODY ARMOR":slot==GearSlot.MainHand?"MAIN HAND":slot==GearSlot.OffHand?"OFF HAND":slot.ToString().ToUpperInvariant();
             Text(new Rect(r.x,r.y-25,150,24),name,small,muted);
             bool reserved=slot==GearSlot.OffHand && Profile.Equipped[3]?.Design.TwoHanded==true;
+            if(!MoreOpen && !reserved && item!=null && Event.current.type==EventType.MouseDown && Event.current.clickCount==2 && r.Contains(Event.current.mousePosition))
+            {UnequipSlot(slot);Event.current.Use();item=Profile.Equipped[(int)slot];}
             Button("slot-"+slot,r,"",()=>{if(SelectedItem!=null && selectedEquipped<0 && GearCatalog.Weapon(SelectedItem.Design.Kind)&&slot>=GearSlot.MainHand)ChooseHand(slot);else{SelectedItem=item;selectedEquipped=(int)slot;CompareSlot=slot;MoreOpen=false;}},!reserved,CompareSlot==slot&&SelectedItem!=null);
             if(item!=null){Icon(new Rect(r.x+5,r.y+5,r.width-10,r.height-10),item.Design.Kind);Outline(r,EquipmentSystem.QualityColor(item.Quality),2);}
             else Text(new Rect(r.x+10,r.y+35,r.width-15,70),reserved?"RESERVED\nBY RIFLE":"EMPTY",small,muted);
@@ -220,9 +238,11 @@ namespace VideoGame
                 bool locked=Storage==CharacterStorage.Inventory && index>=Profile.BagCapacity;
                 if(item==null){Fill(r,new Color(.018f,.031f,.045f));Outline(r,new Color(.1f,.17f,.2f));if(locked)Text(new Rect(r.x+6,r.y+24,r.width-10,45),"LOCKED",small,muted*.6f);continue;}
                 var selected=item;
+                if(!MoreOpen && Event.current.type==EventType.MouseDown && Event.current.clickCount==2 && r.Contains(Event.current.mousePosition))
+                {QuickEquip(selected.Id);Event.current.Use();}
                 Button("item-"+item.Id,r,"",()=>SelectItem(selected.Id),true,SelectedItem?.Id==item.Id);
                 Icon(new Rect(r.x+18,r.y+2,74,66),item.Design.Kind);Outline(r,EquipmentSystem.QualityColor(item.Quality),SelectedItem?.Id==item.Id?3:1);
-                Text(new Rect(r.x+80,r.y+4,30,22),item.Level.ToString(),small);
+                Text(new Rect(r.x+65,r.y+4,46,22),"Lv "+item.Level,small);
                 Bar(new Rect(r.x+7,r.yMax-7,r.width-14,3),item.Condition/100f,item.Condition<=25?Color.red:EquipmentSystem.QualityColor(item.Quality));
             }
             if(items.Count==0)Text(new Rect(1000,350,550,60),"No items match this view.",label,muted);
@@ -237,7 +257,7 @@ namespace VideoGame
             Text(new Rect(1085,579,470,32),item.Design.Name.ToUpperInvariant(),label,EquipmentSystem.QualityColor(item.Quality));
             Text(new Rect(1085,610,490,24),item.Quality.ToString().ToUpperInvariant()+" / LEVEL "+item.Level+" / CONDITION "+item.Condition+"%",small,muted);
             Bar(new Rect(1085,641,245,5),item.Condition/100f,item.Condition<=25?Color.red:cyan);
-            if(Storage==CharacterStorage.Inventory && selectedEquipped<0 && GearCatalog.Weapon(item.Design.Kind) && !item.Design.TwoHanded)
+            if(Storage==CharacterStorage.Inventory && selectedEquipped<0 && GearCatalog.Weapon(item.Design.Kind) && !item.Design.TwoHanded && item.Design.Kind!=GearKind.Shield)
             {
                 Button("choose-main",new Rect(1340,642,108,30),"MAIN HAND",()=>ChooseHand(GearSlot.MainHand),true,CompareSlot==GearSlot.MainHand);
                 Button("choose-off",new Rect(1455,642,108,30),"OFF HAND",()=>ChooseHand(GearSlot.OffHand),true,CompareSlot==GearSlot.OffHand);
@@ -256,8 +276,13 @@ namespace VideoGame
                 }
                 Text(new Rect(1290,727,280,24),"Power "+PreviewPower+" / "+Profile.Capacity,small,PreviewPower>Profile.Capacity?new Color(1,.6f,.3f):cyan);
                 string error=EquipRestriction;
-                Button("equip",new Rect(980,793,185,38),"EQUIP "+CompareSlot.ToString().ToUpperInvariant(),()=>EquipSelected(),error==null);
-                Button("stash",new Rect(1175,793,185,38),"MOVE TO STASH",()=>Transaction(Profile.Transfer(item.Id,true,game.InMission),"Stored at the Nexus."),!game.InMission);
+                if(game.InMission)
+                    Button("drop-primary",new Rect(980,793,380,38),"DROP ITEM INTO MISSION",()=>DropSelected());
+                else
+                {
+                    Button("equip",new Rect(980,793,185,38),"EQUIP "+CompareSlot.ToString().ToUpperInvariant(),()=>EquipSelected(),error==null);
+                    Button("stash",new Rect(1175,793,185,38),"MOVE TO STASH",()=>Transaction(Profile.Transfer(item.Id,true,game.InMission),"Stored at the Nexus."));
+                }
                 Text(new Rect(980,763,585,27),error??Status,small,error!=null?new Color(1,.7f,.35f):muted);
             }
             else if(Storage==CharacterStorage.Vendor)
@@ -273,7 +298,7 @@ namespace VideoGame
             else
             {
                 Text(new Rect(980,710,580,55),Describe(item),small,muted);
-                if(selectedEquipped>=3)Button("unequip",new Rect(980,793,300,38),"UNEQUIP TO INVENTORY",()=>Transaction(Profile.Unequip((GearSlot)selectedEquipped,game.InMission),"Unequipped."),!game.InMission&&Profile.Bag.Count<Profile.BagCapacity);
+                Button("unequip",new Rect(980,793,300,38),"UNEQUIP TO INVENTORY",()=>UnequipSlot((GearSlot)selectedEquipped),!game.InMission&&Profile.Bag.Count<Profile.BagCapacity);
             }
             Button("more",new Rect(1370,793,190,38),MoreOpen?"CLOSE ACTIONS":"MORE / DETAILS",()=>{MoreOpen=!MoreOpen;FocusId=MoreOpen?"close-more":"more";});
             if(MoreOpen)DrawMore(item);
@@ -294,7 +319,7 @@ namespace VideoGame
             bool bag=selectedEquipped<0&&Storage==CharacterStorage.Inventory;
             Button("repair",new Rect(995,468,180,40),"REPAIR / "+item.RepairCost+" CR",()=>Transaction(Profile.Repair(item.Id,game.InMission),"Condition restored."),bag&&!game.InMission&&item.Condition<100&&Profile.Credits>=item.RepairCost);
             Button("sell",new Rect(1185,468,180,40),"SELL / "+item.Sale+" CR",()=>game.Menus.ConfirmEquipment("Sell "+item.Design.Name+" for "+item.Sale+" credits?",()=>Transaction(Profile.Sell(item.Id,game.InMission),"Sold.")),bag&&!game.InMission);
-            Button("drop",new Rect(1375,468,180,40),"DROP ITEM",()=>Transaction(game.Equipment.Drop(item.Id),"Dropped in the world."),bag&&game.InMission);
+            Button("drop",new Rect(1375,468,180,40),"DROP ITEM",()=>DropSelected(),bag&&game.InMission);
             Text(new Rect(995,523,550,50),game.InMission?"Field gear cannot be changed or repaired. Dropped items remain in this mission.":"Repairs restore condition, never lost rarity. Equipped items must be unequipped before selling.",small,muted);
             drawingMore=false;
         }

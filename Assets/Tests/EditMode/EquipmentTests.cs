@@ -31,8 +31,9 @@ public sealed class EquipmentTests
     [Test] public void HandednessLevelPowerAndMissionRestrictionsAreEnforced()
     {
         var p=GearProfile.Starter();var shield=p.Bag.First(i=>i.Definition=="shield");
-        Assert.IsNull(p.Equip(shield.Id,GearSlot.MainHand,false));
-        Assert.IsNull(p.Equip(p.Bag.First(i=>i.Definition=="pistol").Id,GearSlot.OffHand,false));
+        Assert.IsNotNull(p.Equip(shield.Id,GearSlot.MainHand,false));
+        Assert.IsNull(p.Equip(p.Bag.First(i=>i.Definition=="pistol").Id,GearSlot.MainHand,false));
+        Assert.IsNull(p.Equip(shield.Id,GearSlot.OffHand,false));
         Assert.IsNotNull(p.Equip(p.Bag.First(i=>i.Definition=="sword").Id,GearSlot.Helmet,false));
         var high=Item("heavy",GearQuality.Gold,2);p.Bag.Add(high);
         Assert.IsNotNull(p.Equip(high.Id,GearSlot.Armor,false));
@@ -47,6 +48,25 @@ public sealed class EquipmentTests
         Assert.IsFalse(p.Transfer(item.Id,true,true));Assert.IsTrue(p.Transfer(item.Id,true,false));Assert.IsFalse(p.Transfer(item.Id,true,false));
         while(p.Bag.Count<p.BagCapacity)p.Bag.Add(Item("pistol"));
         Assert.IsFalse(p.Transfer(item.Id,false,false));Assert.IsTrue(p.Stash.Contains(item));Assert.IsFalse(p.Pickup(Item("sword")));
+    }
+    [Test] public void IdenticalWearableGearAlwaysOccupiesSeparateCapacitySlots()
+    {
+        var p=GearProfile.Starter();p.Bag.Clear();
+        var shields=Enumerable.Range(0,3).Select(_=>Item("shield",GearQuality.Purple,3)).ToArray();
+        foreach(var shield in shields)Assert.IsTrue(p.Pickup(shield));
+        Assert.AreEqual(3,p.Bag.Count);Assert.AreEqual(3,p.Bag.Select(i=>i.Id).Distinct().Count());
+        while(p.Bag.Count<p.BagCapacity)Assert.IsTrue(p.Pickup(Item("shield",GearQuality.Purple,3)));
+        Assert.IsFalse(p.Pickup(Item("shield",GearQuality.Purple,3)));Assert.AreEqual(10,p.Bag.Count);
+    }
+    [Test] public void LegacyMainHandShieldSwapsWithoutChangingOwnershipAndAllSlotsCanBeUnequipped()
+    {
+        var p=GearProfile.Starter();var shield=p.Bag.First(i=>i.Definition=="shield");var pistol=p.Bag.First(i=>i.Definition=="pistol");
+        p.Equip(pistol.Id,GearSlot.MainHand,false);p.Equip(shield.Id,GearSlot.OffHand,false);
+        p.Equipped[3]=shield;p.Equipped[4]=pistol;Assert.IsFalse(p.Valid());
+        p.NormalizeLegacyHandedness();Assert.IsTrue(p.Valid());Assert.AreSame(shield,p.Equipped[4]);Assert.AreSame(pistol,p.Equipped[3]);
+        p.Bag.Clear();
+        foreach(GearSlot slot in Enum.GetValues(typeof(GearSlot))){Assert.IsTrue(p.Unequip(slot,false));Assert.IsNull(p.Equipped[(int)slot]);}
+        Assert.AreEqual(5,p.Bag.Count);Assert.IsTrue(p.Valid());
     }
     [Test] public void DeathDegradesOnlyFreshRarityButAllCarriedConditionAndOnlyFieldCredits()
     {

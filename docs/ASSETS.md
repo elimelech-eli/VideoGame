@@ -39,3 +39,7 @@ Models decorate the existing gameplay collision shapes. Scenery is nonblocking i
 The original sci-fi item atlas at `Assets/Game/Resources/UI/GearIcons.png` was generated using the built-in OpenAI image generation tool on 2026-10-29. It contains helmet, body armor, backpack, handgun, rifle, sword, shield and credit imagery. The exact prompt is preserved in `Art/UI/gear-icons.prompt.txt`; dimensions, cell identities, UV convention and import settings are recorded in `Art/UI/gear-icons.atlas.json`. It contains no Alien Swarm or Reactive Drop assets. Item icons represent equipment categories; individual designs currently share their category image.
 
 The character screen renders the existing fitted operative prefab in an isolated live portrait. New modular helmet, armor, backpack and weapon meshes have not been authored for every item design.
+
+## Original portrait weapons
+
+Tools/Art/create_loadout_weapons.py authors the handgun (1,348 triangles), rifle (2,344), sword (532) and shield (596) in pinned Blender 4.5.9. Applied bevels, weighted normals and triangulated mesh data are exported through Art/Weapons/*.json. LoadoutWeaponAssets rebuilds committed Unity mesh assets/materials/prefabs; runtime requires no Blender. Each prop passed the game deliverable audit (Art/Weapons/audit.json), and the matcap/silhouette review was inspected. These are original project meshes with shared graphite/ivory/cyan materials; no proprietary game models were used. They currently serve the character portrait; gameplay weapon animation remains separate.

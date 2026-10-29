@@ -64,4 +64,48 @@ public sealed class CharacterScreenTests
         game.Equipment.RefreshVisuals();yield return null;
         Assert.IsFalse(game.Player.GetComponentsInChildren<Transform>().Any(t=>GearCatalog.All.Any(d=>t.name=="Equipped "+d.Name)));
     }
+    [UnityTest] public IEnumerator QuickEquipReplacesMainFirstAndShieldAutomaticallyChoosesOffHand()
+    {
+        var screen=game.GetComponent<CharacterScreen>();game.Equipment.Open();var p=game.Equipment.Profile;
+        string rifle=p.Equipped[3].Id;var pistols=p.Bag.Where(i=>i.Definition=="pistol").ToArray();
+        Assert.IsTrue(screen.QuickEquip(pistols[0].Id));Assert.AreSame(pistols[0],p.Equipped[3]);Assert.IsTrue(p.Bag.Any(i=>i.Id==rifle));
+        screen.SelectItem(pistols[1].Id);screen.ChooseHand(GearSlot.OffHand);
+        Assert.IsTrue(screen.QuickEquip(pistols[1].Id));Assert.AreSame(pistols[1],p.Equipped[3]);Assert.IsTrue(p.Bag.Contains(pistols[0]));
+        var shield=p.Bag.First(i=>i.Definition=="shield");Assert.IsTrue(screen.SelectItem(shield.Id));Assert.AreEqual(GearSlot.OffHand,screen.CompareSlot);
+        screen.ChooseHand(GearSlot.MainHand);Assert.AreEqual(GearSlot.OffHand,screen.CompareSlot);Assert.IsTrue(screen.EquipSelected());
+        Assert.IsTrue(screen.UnequipSlot(GearSlot.Helmet));Assert.IsNull(p.Equipped[0]);Assert.IsTrue(p.Valid());
+        game.Menus.Resume();yield return null;yield return null;game.StartMission();Assert.IsTrue(game.InMission);game.Equipment.Open();
+        var before=p.Bag.Select(i=>i.Id).ToArray();Assert.IsFalse(screen.QuickEquip(pistols[0].Id));Assert.IsFalse(screen.UnequipSlot(GearSlot.MainHand));CollectionAssert.AreEquivalent(before,p.Bag.Select(i=>i.Id));
+    }
+    [UnityTest] public IEnumerator VisibleMissionDropPreservesInstanceAndCanBePickedUpAgain()
+    {
+        game.StartMission();game.Equipment.Open();var screen=game.GetComponent<CharacterScreen>();var p=game.Equipment.Profile;
+        var item=p.Bag[0];int count=p.Bag.Count;screen.SelectItem(item.Id);Assert.IsTrue(screen.DropSelected());
+        Assert.AreEqual(count-1,p.Bag.Count);Assert.IsNull(screen.SelectedItem);Assert.IsFalse(screen.DropSelected());Assert.AreEqual(0,Time.timeScale);
+        var drop=Object.FindObjectsByType<GearPickup>(FindObjectsSortMode.None).Single(d=>d.Item==item);
+        Assert.IsTrue(game.Equipment.TryPickup(drop));Assert.IsFalse(game.Equipment.TryPickup(drop));Assert.AreEqual(count,p.Bag.Count);Assert.AreSame(item,p.Bag.Single(i=>i.Id==item.Id));yield return null;
+    }
+    [UnityTest] public IEnumerator EveryHandLoadoutHasFittedMeshesAndForwardFacingFirearms()
+    {
+        var root=Object.Instantiate(Resources.Load<GameObject>("Detailed/Prefabs/OperativeV03"));root.transform.position=new Vector3(1000,-1000,1000);
+        var pose=root.AddComponent<Animation>();var clip=Resources.Load<AnimationClip>("OperatorAnimations/Idle");pose.AddClip(clip,"Idle");pose.Play("Idle");pose.Sample();pose.enabled=false;
+        var loadout=new PreviewLoadout(root.transform);var p=game.Equipment.Profile;
+        foreach(var main in new[]{"rifle","pistol","sword",null})foreach(var off in new[]{"pistol","sword","shield",null})
+        {
+            if(main=="rifle"&&off!=null)continue;
+            p.Equipped[3]=main==null?null:GearCatalog.Roll(new System.Random(1),1,GearQuality.White,main);
+            p.Equipped[4]=off==null?null:GearCatalog.Roll(new System.Random(2),1,GearQuality.White,off);
+            loadout.Apply(p);yield return null;
+            var weapons=root.GetComponentsInChildren<Transform>().Where(t=>t.name.StartsWith("Preview ")).ToArray();
+            Assert.AreEqual((main==null?0:1)+(off==null?0:1),weapons.Length,main+" / "+off);
+            foreach(var weapon in weapons)
+            {
+                Assert.Greater(weapon.GetComponentsInChildren<MeshRenderer>().Length,0);
+                var hand=root.GetComponentsInChildren<Transform>().Single(t=>t.name=="hand_"+(weapon.name.Contains(" R ")?"R":"L"));
+                Assert.Less(Vector3.Distance(hand.position,weapon.position),.001f);
+                if(weapon.name.EndsWith("Rifle")||weapon.name.EndsWith("Handgun"))Assert.Greater(Vector3.Dot(weapon.forward,root.transform.forward),.8f);
+            }
+        }
+        Object.Destroy(root);
+    }
 }

@@ -150,6 +150,7 @@ namespace VideoGame.Core
             var kind=item.Design.Kind;
             if(s<3 && (int)kind!=s || s>=3 && !GearCatalog.Weapon(kind))return "Item does not fit this slot.";
             if(s==4 && item.Design.TwoHanded)return "Two-handed weapons require the main slot.";
+            if(kind==GearKind.Shield && s!=4)return "Shields require the off hand.";
             if(s==4 && Equipped[3]?.Design.TwoHanded==true)return "Main weapon reserves the off hand.";
             if(kind==GearKind.Shield && Equipped[s==3?4:3]?.Design.Kind==GearKind.Shield)return "Only one shield can be equipped.";
             var replaced=Equipped[s];var off=item.Design.TwoHanded?Equipped[4]:null;
@@ -169,7 +170,7 @@ namespace VideoGame.Core
         }
         public bool Unequip(GearSlot slot,bool inMission)
         {
-            int s=(int)slot;if(inMission || s<3 || s>4 || Equipped[s]==null || Bag.Count>=BagCapacity)return false;
+            int s=(int)slot;if(inMission || s<0 || s>4 || Equipped[s]==null || Bag.Count>=BagCapacity)return false;
             Bag.Add(Equipped[s]);Equipped[s]=null;return true;
         }
         public bool Transfer(string id,bool toStash,bool inMission)
@@ -208,9 +209,15 @@ namespace VideoGame.Core
             var all=Bag.Concat(Stash).Concat(Shop).Concat(Equipped.Where(i=>i!=null)).ToArray();
             if(all.Any(i=>i==null || !Guid.TryParse(i.Id,out _) || i.Design==null || i.Level<1 || i.Level>100 || i.Condition<1 || i.Condition>100 || (int)i.Quality<0 || (int)i.Quality>4 || i.Fresh || i.Bonuses==null || i.Bonuses.Count!=Math.Min(3,(int)i.Quality) || i.Bonuses.Any(b=>b==null || !Enum.IsDefined(typeof(BonusKind),b.Kind) || !GearCatalog.Suitable(i.Design.Kind,b.Kind) || float.IsNaN(b.Value)||float.IsInfinity(b.Value)||b.Value<0 || b.Value>100)))return false;
             if(all.Select(i=>i.Id).Distinct().Count()!=all.Length || Bag.Count>BagCapacity || UsedPower>Capacity)return false;
-            if(Equipped[0]==null || Equipped[1]==null || Equipped[2]==null)return false;
             for(int s=0;s<5;s++)if(Equipped[s]!=null && (Equipped[s].Level>Level || (s<3?(int)Equipped[s].Design.Kind!=s:!GearCatalog.Weapon(Equipped[s].Design.Kind))))return false;
-            return !(Equipped[4]?.Design.TwoHanded==true || Equipped[3]?.Design.TwoHanded==true&&Equipped[4]!=null || Equipped[3]?.Design.Kind==GearKind.Shield&&Equipped[4]?.Design.Kind==GearKind.Shield);
+            return !(Equipped[4]?.Design.TwoHanded==true || Equipped[3]?.Design.TwoHanded==true&&Equipped[4]!=null || Equipped[3]?.Design.Kind==GearKind.Shield);
+        }
+        // Older checkpoints allowed a main-hand shield. Preserve both item identities
+        // while moving it to the newly required slot, before validating the save.
+        public void NormalizeLegacyHandedness()
+        {
+            if(Equipped==null || Equipped.Length!=5 || Equipped[3]?.Design?.Kind!=GearKind.Shield || Equipped[4]?.Design?.Kind==GearKind.Shield || Equipped[4]?.Design?.TwoHanded==true)return;
+            var shield=Equipped[3];Equipped[3]=Equipped[4];Equipped[4]=shield;
         }
     }
     public sealed class GearMission
