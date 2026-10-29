@@ -15,6 +15,7 @@ namespace VideoGame
         public void SetBattle(bool battle)
         {
             InBattle = battle;
+            RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Flat;
             KeyLight.color = battle ? new Color(.49f,.61f,.88f) : new Color(.58f,.78f,.88f);
             KeyLight.intensity = battle ? .48f : .57f;
             RenderSettings.ambientLight = battle ? new Color(.075f,.065f,.12f) : new Color(.065f,.095f,.12f);
@@ -26,6 +27,13 @@ namespace VideoGame
                 var profile=BiomeProfile.Get(biome);
                 KeyLight.color=profile.Key;KeyLight.intensity=profile.KeyIntensity;
                 RenderSettings.ambientLight=profile.Ambient;RenderSettings.fogColor=profile.Fog;RenderSettings.fogDensity=profile.FogDensity;
+                if(biome==BiomeId.BiotechLab)
+                {
+                    RenderSettings.fog=false;RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;
+                    RenderSettings.ambientSkyColor=new Color(.065f,.095f,.13f);RenderSettings.ambientEquatorColor=new Color(.025f,.04f,.055f);RenderSettings.ambientGroundColor=new Color(.012f,.018f,.025f);
+                    KeyLight.color=new Color(.8f,.88f,1);KeyLight.intensity=.32f;KeyLight.shadows=LightShadows.Soft;
+                    KeyLight.shadowBias=.025f;KeyLight.shadowNormalBias=.15f;
+                }
             }
         }
         public void Room(Vector3 center, Transform parent, bool hub)

@@ -1,0 +1,642 @@
+{
+  "author": "Agata Wilczek",
+  "source": "https://sketchfab.com/3d-models/sci-fi-lab-a676e149e343403bb5e57686f3d31da5",
+  "license": "CC-BY-4.0",
+  "source_sha256": "77de92a6cb6f969eea1a3a3d96cd944e2f68338e1c7819a853d81fcf43bbfceb",
+  "modules": [
+    {
+      "name": "Floor4",
+      "singleMaterial": "",
+      "triangles": 1938,
+      "source_objects": [
+        "Object_4",
+        "Object_29"
+      ],
+      "bounds": [
+        [
+          -2.0,
+          -2.0,
+          -0.019999999552965164
+        ],
+        [
+          2.0,
+          2.0,
+          0.0902080088853836
+        ]
+      ]
+    },
+    {
+      "name": "Wall4",
+      "singleMaterial": "",
+      "triangles": 3168,
+      "source_objects": [
+        "Object_27",
+        "Object_30"
+      ],
+      "bounds": [
+        [
+          -2.0,
+          -0.0596771240234375,
+          -9.472340138927393e-07
+        ],
+        [
+          2.0,
+          0.05003166198730469,
+          3.999999523162842
+        ]
+      ]
+    },
+    {
+      "name": "Floor2",
+      "singleMaterial": "",
+      "triangles": 1005,
+      "source_objects": [
+        "Object_4",
+        "Object_29"
+      ],
+      "bounds": [
+        [
+          -1.0,
+          -1.0000001192092896,
+          -0.019999999552965164
+        ],
+        [
+          1.0,
+          1.000000238418579,
+          0.0902080088853836
+        ]
+      ]
+    },
+    {
+      "name": "Floor2x4",
+      "singleMaterial": "",
+      "triangles": 1816,
+      "source_objects": [
+        "Object_4",
+        "Object_29"
+      ],
+      "bounds": [
+        [
+          -1.0,
+          -2.0,
+          -0.019999999552965164
+        ],
+        [
+          1.0,
+          2.0,
+          0.0902080088853836
+        ]
+      ]
+    },
+    {
+      "name": "Wall1",
+      "singleMaterial": "",
+      "triangles": 819,
+      "source_objects": [
+        "Object_27",
+        "Object_30"
+      ],
+      "bounds": [
+        [
+          -0.5,
+          -0.0596766471862793,
+          -9.472340138927393e-07
+        ],
+        [
+          0.5,
+          0.05003166198730469,
+          3.999999523162842
+        ]
+      ]
+    },
+    {
+      "name": "WallLow1",
+      "singleMaterial": "sciana3",
+      "triangles": 18,
+      "source_objects": [
+        "Object_27",
+        "Object_30"
+      ],
+      "bounds": [
+        [
+          -0.5,
+          -0.0596766471862793,
+          -9.472340138927393e-07
+        ],
+        [
+          0.5,
+          0.050031185150146484,
+          0.8500000238418579
+        ]
+      ]
+    },
+    {
+      "name": "Wall2",
+      "singleMaterial": "",
+      "triangles": 1628,
+      "source_objects": [
+        "Object_27",
+        "Object_30"
+      ],
+      "bounds": [
+        [
+          -1.0,
+          -0.0596771240234375,
+          -9.472340138927393e-07
+        ],
+        [
+          1.0,
+          0.05003166198730469,
+          3.999999523162842
+        ]
+      ]
+    },
+    {
+      "name": "WallLow2",
+      "singleMaterial": "sciana3",
+      "triangles": 29,
+      "source_objects": [
+        "Object_27",
+        "Object_30"
+      ],
+      "bounds": [
+        [
+          -1.0,
+          -0.0596771240234375,
+          -9.472340138927393e-07
+        ],
+        [
+          1.0,
+          0.050031185150146484,
+          0.8500000238418579
+        ]
+      ]
+    },
+    {
+      "name": "WallLow4",
+      "singleMaterial": "sciana3",
+      "triangles": 40,
+      "source_objects": [
+        "Object_27",
+        "Object_30"
+      ],
+      "bounds": [
+        [
+          -2.0,
+          -0.0596771240234375,
+          -9.472340138927393e-07
+        ],
+        [
+          2.0,
+          0.050031185150146484,
+          0.8500000238418579
+        ]
+      ]
+    },
+    {
+      "name": "Containment",
+      "singleMaterial": "",
+      "triangles": 17630,
+      "source_objects": [
+        "Object_11",
+        "Object_13"
+      ],
+      "bounds": [
+        [
+          -1.6270924806594849,
+          -1.6229524612426758,
+          0.0
+        ],
+        [
+          1.6270923614501953,
+          1.6229519844055176,
+          3.890124797821045
+        ]
+      ]
+    },
+    {
+      "name": "Examination",
+      "singleMaterial": "",
+      "triangles": 7108,
+      "source_objects": [
+        "Object_14",
+        "Object_17"
+      ],
+      "bounds": [
+        [
+          -1.3258411884307861,
+          -0.7473450899124146,
+          0.0
+        ],
+        [
+          1.325840950012207,
+          0.7473450899124146,
+          1.2182852029800415
+        ]
+      ]
+    },
+    {
+      "name": "SpecimenRack",
+      "singleMaterial": "",
+      "triangles": 22044,
+      "source_objects": [
+        "Object_18",
+        "Object_23"
+      ],
+      "bounds": [
+        [
+          -1.0379999876022339,
+          -0.8636665344238281,
+          0.0
+        ],
+        [
+          1.0379999876022339,
+          0.8636665344238281,
+          3.9892561435699463
+        ]
+      ]
+    },
+    {
+      "name": "ControlBank",
+      "singleMaterial": "Panel_sterowania",
+      "triangles": 30957,
+      "source_objects": [
+        "Object_3"
+      ],
+      "bounds": [
+        [
+          -0.6711606979370117,
+          -2.109389066696167,
+          0.0
+        ],
+        [
+          0.6711606979370117,
+          2.109389305114746,
+          2.3739473819732666
+        ]
+      ]
+    },
+    {
+      "name": "UtilityPipe",
+      "singleMaterial": "",
+      "triangles": 26728,
+      "source_objects": [
+        "Object_10",
+        "Object_25"
+      ],
+      "bounds": [
+        [
+          -0.6581594944000244,
+          -1.4153594970703125,
+          0.0
+        ],
+        [
+          0.658159613609314,
+          1.4153599739074707,
+          2.8010106086730957
+        ]
+      ]
+    },
+    {
+      "name": "Cabinet",
+      "singleMaterial": "",
+      "triangles": 2016,
+      "source_objects": [
+        "Object_16",
+        "Object_24"
+      ],
+      "bounds": [
+        [
+          -0.4401216506958008,
+          -1.042309284210205,
+          0.0
+        ],
+        [
+          0.4401216506958008,
+          1.042309284210205,
+          2.5806806087493896
+        ]
+      ]
+    },
+    {
+      "name": "Door",
+      "singleMaterial": "drzwi",
+      "triangles": 19964,
+      "source_objects": [
+        "Object_9"
+      ],
+      "bounds": [
+        [
+          -2.361323833465576,
+          -0.24967336654663086,
+          0.0
+        ],
+        [
+          2.361323356628418,
+          0.24967288970947266,
+          3.035370349884033
+        ]
+      ]
+    },
+    {
+      "name": "Console",
+      "singleMaterial": "tablica",
+      "triangles": 4306,
+      "source_objects": [
+        "Object_22"
+      ],
+      "bounds": [
+        [
+          -0.22315311431884766,
+          -0.30643653869628906,
+          0.0
+        ],
+        [
+          0.22315263748168945,
+          0.30643653869628906,
+          1.2331701517105103
+        ]
+      ]
+    },
+    {
+      "name": "SampleJar",
+      "singleMaterial": "",
+      "triangles": 12480,
+      "source_objects": [
+        "Object_7",
+        "Object_6"
+      ],
+      "bounds": [
+        [
+          -0.16266202926635742,
+          -0.16266196966171265,
+          0.0
+        ],
+        [
+          0.16266202926635742,
+          0.16266202926635742,
+          0.4822540879249573
+        ]
+      ]
+    },
+    {
+      "name": "SampleVial",
+      "singleMaterial": "",
+      "triangles": 2560,
+      "source_objects": [
+        "Object_21",
+        "Object_20"
+      ],
+      "bounds": [
+        [
+          -0.058263540267944336,
+          -0.058263033628463745,
+          0.0
+        ],
+        [
+          0.058263540267944336,
+          0.058263033628463745,
+          0.2299390435218811
+        ]
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "Panel_sterowania",
+      "maps": {
+        "Albedo": "Panel_sterowania_Albedo.png",
+        "Normal": "Panel_sterowania_Normal.png",
+        "Metallic": "Panel_sterowania_Metallic.png",
+        "Occlusion": "Panel_sterowania_Occlusion.png",
+        "Emission": "Panel_sterowania_Emission.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "Podoga2",
+      "maps": {
+        "Albedo": "Podoga2_Albedo.png",
+        "Normal": "Podoga2_Normal.png",
+        "Emission": "Podoga2_Emission.png",
+        "Metallic": "Podoga2_Metallic.png",
+        "Occlusion": "Podoga2_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "SCIANA_DUZA",
+      "maps": {
+        "Albedo": "SCIANA_DUZA_Albedo.png",
+        "Normal": "SCIANA_DUZA_Normal.png",
+        "Emission": "SCIANA_DUZA_Emission.png",
+        "Metallic": "SCIANA_DUZA_Metallic.png",
+        "Occlusion": "SCIANA_DUZA_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "drzwi",
+      "maps": {
+        "Albedo": "drzwi_Albedo.png",
+        "Normal": "drzwi_Normal.png",
+        "Emission": "drzwi_Emission.png",
+        "Metallic": "drzwi_Metallic.png",
+        "Occlusion": "drzwi_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "duz_soik_szybka",
+      "maps": {
+        "Normal": "duz_soik_szybka_Normal.png",
+        "Metallic": "duz_soik_szybka_Metallic.png",
+        "Occlusion": "duz_soik_szybka_Occlusion.png",
+        "Albedo": "duz_soik_szybka_Albedo.png",
+        "Emission": "duz_soik_szybka_Emission.png"
+      },
+      "kind": "glass"
+    },
+    {
+      "name": "duzy_soik",
+      "maps": {
+        "Albedo": "duzy_soik_Albedo.png",
+        "Normal": "duzy_soik_Normal.png",
+        "Emission": "duzy_soik_Emission.png",
+        "Metallic": "duzy_soik_Metallic.png",
+        "Occlusion": "duzy_soik_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "panel3",
+      "maps": {
+        "Albedo": "panel3_Albedo.png",
+        "Normal": "panel3_Normal.png",
+        "Metallic": "panel3_Metallic.png",
+        "Occlusion": "panel3_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "rura_glowna_szybka",
+      "maps": {
+        "Normal": "rura_glowna_szybka_Normal.png",
+        "Metallic": "rura_glowna_szybka_Metallic.png",
+        "Occlusion": "rura_glowna_szybka_Occlusion.png",
+        "Albedo": "rura_glowna_szybka_Albedo.png",
+        "Emission": "rura_glowna_szybka_Emission.png"
+      },
+      "kind": "glass"
+    },
+    {
+      "name": "rura_gwna_baza",
+      "maps": {
+        "Albedo": "rura_gwna_baza_Albedo.png",
+        "Normal": "rura_gwna_baza_Normal.png",
+        "Emission": "rura_gwna_baza_Emission.png",
+        "Metallic": "rura_gwna_baza_Metallic.png",
+        "Occlusion": "rura_gwna_baza_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "rura_przod",
+      "maps": {
+        "Albedo": "rura_przod_Albedo.png",
+        "Normal": "rura_przod_Normal.png",
+        "Emission": "rura_przod_Emission.png",
+        "Metallic": "rura_przod_Metallic.png",
+        "Occlusion": "rura_przod_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "rura_tylna",
+      "maps": {
+        "Albedo": "rura_tylna_Albedo.png",
+        "Normal": "rura_tylna_Normal.png",
+        "Emission": "rura_tylna_Emission.png",
+        "Metallic": "rura_tylna_Metallic.png",
+        "Occlusion": "rura_tylna_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "sciana3",
+      "maps": {
+        "Albedo": "sciana3_Albedo.png",
+        "Normal": "sciana3_Normal.png",
+        "Metallic": "sciana3_Metallic.png",
+        "Occlusion": "sciana3_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "soik_may",
+      "maps": {
+        "Albedo": "soik_may_Albedo.png",
+        "Normal": "soik_may_Normal.png",
+        "Emission": "soik_may_Emission.png",
+        "Metallic": "soik_may_Metallic.png",
+        "Occlusion": "soik_may_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "soik_may_szybka",
+      "maps": {
+        "Normal": "soik_may_szybka_Normal.png",
+        "Metallic": "soik_may_szybka_Metallic.png",
+        "Occlusion": "soik_may_szybka_Occlusion.png",
+        "Albedo": "soik_may_szybka_Albedo.png",
+        "Emission": "soik_may_szybka_Emission.png"
+      },
+      "kind": "glass"
+    },
+    {
+      "name": "stolik",
+      "maps": {
+        "Albedo": "stolik_Albedo.png",
+        "Normal": "stolik_Normal.png",
+        "Emission": "stolik_Emission.png",
+        "Metallic": "stolik_Metallic.png",
+        "Occlusion": "stolik_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "stolik_szybka",
+      "maps": {
+        "Normal": "stolik_szybka_Normal.png",
+        "Metallic": "stolik_szybka_Metallic.png",
+        "Occlusion": "stolik_szybka_Occlusion.png",
+        "Albedo": "stolik_szybka_Albedo.png",
+        "Emission": "stolik_szybka_Emission.png"
+      },
+      "kind": "glass"
+    },
+    {
+      "name": "szafka",
+      "maps": {
+        "Albedo": "szafka_Albedo.png",
+        "Normal": "szafka_Normal.png",
+        "Emission": "szafka_Emission.png",
+        "Metallic": "szafka_Metallic.png",
+        "Occlusion": "szafka_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "szafka_body",
+      "maps": {
+        "Albedo": "szafka_body_Albedo.png",
+        "Normal": "szafka_body_Normal.png",
+        "Emission": "szafka_body_Emission.png",
+        "Metallic": "szafka_body_Metallic.png",
+        "Occlusion": "szafka_body_Occlusion.png"
+      },
+      "kind": "pbr"
+    },
+    {
+      "name": "szafka_szyba",
+      "maps": {
+        "Normal": "szafka_szyba_Normal.png",
+        "Metallic": "szafka_szyba_Metallic.png",
+        "Occlusion": "szafka_szyba_Occlusion.png",
+        "Albedo": "szafka_szyba_Albedo.png",
+        "Emission": "szafka_szyba_Emission.png"
+      },
+      "kind": "glass"
+    },
+    {
+      "name": "szafka_szybka",
+      "maps": {
+        "Normal": "szafka_szybka_Normal.png",
+        "Metallic": "szafka_szybka_Metallic.png",
+        "Occlusion": "szafka_szybka_Occlusion.png",
+        "Albedo": "szafka_szybka_Albedo.png",
+        "Emission": "szafka_szybka_Emission.png"
+      },
+      "kind": "glass"
+    },
+    {
+      "name": "tablica",
+      "maps": {
+        "Normal": "tablica_Normal.png",
+        "Metallic": "tablica_Metallic.png",
+        "Occlusion": "tablica_Occlusion.png",
+        "Albedo": "tablica_Albedo.png",
+        "Emission": "tablica_Emission.png"
+      },
+      "kind": "pbr"
+    }
+  ],
+  "ui_replaced": [
+    "Panel_sciana",
+    "Panel_sterowania",
+    "stolik_szybka",
+    "szafka_szyba",
+    "tablica"
+  ]
+}

@@ -1,0 +1,43 @@
+using System.Collections;
+using System.IO;
+using UnityEngine;
+using VideoGame.Core;
+
+namespace VideoGame
+{
+    // Explicit review driver. Normal launches and persistent player profiles are untouched.
+    public sealed class LabMissionCapture : MonoBehaviour
+    {
+        IEnumerator Start()
+        {
+            string directory=System.Environment.GetEnvironmentVariable("POC_LAB_MISSION");
+            if(string.IsNullOrEmpty(directory))yield break;
+            var game=GetComponent<Prototype>();yield return null;
+            game.NewSession();game.Menus.Settings.Biome=(int)BiomeId.BiotechLab;
+            game.Menus.Settings.SectorSize=6;game.StartMission();
+            if(directory=="play"){Debug.Log("LAB_MISSION_READY: normal seeded BiotechLab combat, 6 rooms.");yield break;}
+            Directory.CreateDirectory(directory);
+            foreach(int count in new[]{6,10,20})
+            {
+                if(count!=6){game.Mission.Abandon();game.BuildHub();yield return null;game.Menus.Settings.SectorSize=count;game.StartMission();}
+                game.Director.enabled=false;game.Player.enabled=false;
+                foreach(var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
+                yield return new WaitForSeconds(.7f);
+                game.CaptureFrame(Path.Combine(directory,count+"-arrival.png"));
+                var room=game.Layout[0];var next=game.Layout.Find(r=>MapLayout.Adjacent(room,r));
+                Vector3 corridor=new Vector3((room.X+next.X)*10,1,(room.Y+next.Y)*10);
+                game.Player.Teleport(corridor);yield return new WaitForSeconds(.4f);
+                game.CaptureFrame(Path.Combine(directory,count+"-corridor.png"));
+                var view=game.Player.View;var oldRotation=view.transform.rotation;float oldSize=view.orthographicSize;
+                Vector3 low=Vector3.zero,high=Vector3.zero;
+                foreach(var r in game.Layout){Vector3 p=new Vector3(r.X*20,0,r.Y*20);low=Vector3.Min(low,p-Vector3.one*8);high=Vector3.Max(high,p+Vector3.one*8);}
+                view.transform.position=(low+high)/2+Vector3.up*120;view.transform.rotation=Quaternion.Euler(90,0,0);
+                view.orthographicSize=Mathf.Max(high.z-low.z,(high.x-low.x)/view.aspect)*.55f;
+                game.CaptureFrame(Path.Combine(directory,count+"-overview.png"));
+                view.transform.rotation=oldRotation;view.orthographicSize=oldSize;
+            }
+            Debug.Log("LAB_MISSION_CAPTURE_COMPLETE: 6/10/20-room actual mission scenes, staged views with AI disabled.");
+            Application.Quit();
+        }
+    }
+}

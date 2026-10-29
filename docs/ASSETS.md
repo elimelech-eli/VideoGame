@@ -33,3 +33,7 @@ Selected original FBX models and palette textures are included under `Assets/Gam
 Downloaded 2026-10-26 from the publisher. Only selected assets are committed; no Unity Asset Store dependencies, paid content, or external runtime downloads are required. Runtime material remapping gives the models a shared graphite/cyan/amber palette. Original model geometry is retained.
 
 Models decorate the existing gameplay collision shapes. Scenery is nonblocking in this art pass; pathfinding and cover mechanics are outside its scope. Actor movement uses a small procedural presentation motion, not a full skeletal animation set.
+
+## Approved BiotechLab environment
+
+Agata Wilczek’s Sci-fi lab (CC-BY-4.0) now supplies the normal BiotechLab architecture and source furnishings. Adaptation, source hash and replacement-display notices are in `Assets/Game/Resources/LabReview/CREDITS.md` and `manifest.json`. Assembly and limitations are in `docs/LAB_BIOME_INTEGRATION.md`. Existing interactive hazard art remains in use.
