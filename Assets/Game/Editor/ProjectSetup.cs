@@ -40,6 +40,7 @@ namespace VideoGame.Editor
             ActorAnimationBuilder.Build();
             OperativeV03Assets.Build();
             BiomeAssets.Build();
+            LabReviewAssets.Rebuild();
             var report = BuildPipeline.BuildPlayer(new[] { "Assets/Game/Scenes/Prototype.unity" }, "Builds/Windows/VideoGame.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
                 throw new System.Exception("Windows build failed: " + report.summary.result);

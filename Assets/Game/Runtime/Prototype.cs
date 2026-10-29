@@ -40,7 +40,7 @@ namespace VideoGame
             {
                 var game = new GameObject("Prototype").AddComponent<Prototype>();
                 bool capture = false;
-                foreach(string variable in new[]{"POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS","POC_CAPTURE_FEEDBACK","POC_CAPTURE_BIOMES"})
+                foreach(string variable in new[]{"POC_LAB_MISSION","POC_LAB_REVIEW","POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS","POC_CAPTURE_FEEDBACK","POC_CAPTURE_BIOMES"})
                     capture |= !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(variable));
                 if(!capture) game.Menus.OpenMain(false,true);
             }
@@ -92,6 +92,7 @@ namespace VideoGame
             BuildHub();
             Menus = gameObject.AddComponent<MenuFlow>();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
+            if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_LAB_MISSION")))gameObject.AddComponent<LabMissionCapture>();
             if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_CAPTURE_BIOMES")))gameObject.AddComponent<BiomeCapture>();
             string feedbackCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_FEEDBACK");
             if (!string.IsNullOrEmpty(feedbackCapture)) StartCoroutine(CaptureFeedback(feedbackCapture));
@@ -276,12 +277,12 @@ namespace VideoGame
                 Vector3 center = new Vector3(rooms[i].X * MapLayout.Spacing, 0, rooms[i].Y * MapLayout.Spacing);
                 centers.Add(center);
                 Floor(center, rooms[i].Size, rooms[i].Theme == 0 ? new Color(.1f, .09f, .16f) : new Color(.08f, .14f, .16f));
-                Ambience.Room(center, world, false);
+                if(ActiveBiome!=BiomeId.BiotechLab)Ambience.Room(center, world, false);
                 // Keep the central cross and all four door approaches clear.
                 float corner = rooms[i].Size / 2f - 2.5f;
                 int turn = random.Next(4);
                 Quaternion dressing = Quaternion.Euler(0, turn * 90, 0);
-                Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
+                if(ActiveBiome!=BiomeId.BiotechLab)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i != 0) SpawnDestructible(center + dressing * new Vector3(corner, 0, -corner), false);
                 if (i != 0 && rooms[i].Theme != 2) SpawnDestructible(center + dressing * new Vector3(corner - 1.2f, 0, -corner), false);
                 if (i != 0)
@@ -291,6 +292,7 @@ namespace VideoGame
                     SpawnMedicalCache(center + dressing * new Vector3(-corner, 0, -corner));
                 }
                 Physics.SyncTransforms();
+                if(ActiveBiome==BiomeId.BiotechLab)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i == 0) continue;
                 for (int j = 0; j < (i < 4 ? 2 : 1) && initialEnemies<EncounterDirector.PopulationCap; j++)
                 {
@@ -460,7 +462,7 @@ namespace VideoGame
             probe.size = new Vector3(200, 50, 200); probe.resolution = 128;
             probe.boxProjection = true; probe.intensity = 1;
             probe.clearFlags = UnityEngine.Rendering.ReflectionProbeClearFlags.SolidColor;
-            probe.backgroundColor = new Color(.17f, .2f, .26f);
+            probe.backgroundColor = InMission&&ActiveBiome==BiomeId.BiotechLab?new Color(.025f,.04f,.055f):new Color(.17f, .2f, .26f);
             probe.RenderProbe();
         }
         void Update()
