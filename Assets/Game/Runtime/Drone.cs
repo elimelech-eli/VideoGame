@@ -11,6 +11,9 @@ namespace VideoGame
         public bool Ranged => Kind == EnemyKind.Gunner || Kind == EnemyKind.Bombardier;
         public float MoveSpeed => Kind == EnemyKind.Rusher ? 6.2f : Kind == EnemyKind.Bombardier ? 1.8f : Ranged ? 2 : 3.5f;
         public const float MaxHealth = 60;
+        public int Level {get;private set;}=1;
+        public float HealthMaximum {get;private set;}=MaxHealth;
+        public void SetLevel(int level){Level=Mathf.Clamp(level,1,100);HealthMaximum=MaxHealth*(1+(Level-1)*.1f);Health=HealthMaximum;}
         public float Health { get; private set; } = MaxHealth;
         public float LastHitTime { get; private set; } = float.NegativeInfinity;
         public bool HealthBarVisible => Health > 0 && Time.time - LastHitTime < 2;
@@ -24,7 +27,7 @@ namespace VideoGame
         void Update()
         {
             var game = Prototype.Instance;
-            if (Time.timeScale == 0 || Health <= 0 || game == null || !game.InMission || game.Player.IsDead || WindingUp) return;
+            if (Time.timeScale == 0 || Health <= 0 || game == null || game.Menus?.IsOpen==true || !game.InMission || game.Player.IsDead || WindingUp) return;
             Vector3 delta = game.Player.transform.position - transform.position; delta.y = 0;
             float distance = delta.magnitude;
             if (delta.sqrMagnitude > .01f) transform.rotation = Quaternion.LookRotation(delta);
@@ -76,13 +79,13 @@ namespace VideoGame
                 var trail = bolt.AddComponent<TrailRenderer>(); trail.time = .15f; trail.startWidth = .12f; trail.endWidth = .01f;
                 trail.startColor = new Color(1, .2f, .1f); trail.endColor = new Color(1, .1f, .1f, 0);
                 trail.sharedMaterial = Resources.Load<Material>("PrototypeTrace");
-                bolt.AddComponent<EnemyBolt>().Direction = delta.normalized;
+                var projectile=bolt.AddComponent<EnemyBolt>();projectile.Direction=delta.normalized;projectile.DamageScale=1+(Level-1)*.06f;
                 game.Feedback.Shot(transform.position + delta.normalized * .5f, transform.position + delta.normalized * .9f, new Color(1, .3f, .1f));
                 Motion.Kick();
             }
             else if (delta.magnitude < 2.2f)
             {
-                game.Player.Damage(Kind == EnemyKind.Rusher ? 12 : 9);
+                game.Player.Damage((Kind == EnemyKind.Rusher ? 12 : 9)*(1+(Level-1)*.06f),transform.position);
                 game.Hit(game.Player.transform.position, Color.red);
             }
         }
@@ -93,6 +96,7 @@ namespace VideoGame
             Prototype.Instance.Hit(transform.position, Color.white, .6f);
             if (Health > 0) { Motion.Act("Hit"); return; }
             Prototype.Instance.Mission.RegisterKill();
+            Prototype.Instance.Equipment.Killed(transform.position,Level);
             StopAllCoroutines(); WindingUp = false;
             foreach (var collider in GetComponentsInChildren<Collider>()) collider.enabled = false;
             foreach (var sign in GetComponentsInChildren<TextMesh>()) sign.gameObject.SetActive(false);
@@ -103,10 +107,11 @@ namespace VideoGame
     public sealed class EnemyBolt : MonoBehaviour
     {
         public Vector3 Direction;
+        public float DamageScale=1;
         float life;
         void Update()
         {
-            if (Time.timeScale == 0) return;
+            if (Time.timeScale == 0 || Prototype.Instance?.Menus?.IsOpen==true) return;
             life += Time.deltaTime;
             Vector3 before = transform.position;
             Vector3 step = Direction.normalized * (8 * Time.deltaTime);
@@ -117,7 +122,7 @@ namespace VideoGame
                 // Soldiers don't block allied fire. The first solid cover or player hit does.
                 if (hit.collider.GetComponentInParent<Drone>() != null) continue;
                 var player = hit.collider.GetComponentInParent<Pilot>();
-                if (player != null) player.Damage(12);
+                if (player != null) player.Damage(12*DamageScale,before);
                 else hit.collider.GetComponentInParent<Destructible>()?.Damage(12, before, Direction);
                 Prototype.Instance.Feedback.Contact(hit.point, player != null);
                 Destroy(gameObject); return;
@@ -150,7 +155,7 @@ namespace VideoGame
         }
         void Update()
         {
-            if (ring == null || Time.timeScale == 0) return;
+            if (ring == null || Time.timeScale == 0 || Prototype.Instance?.Menus?.IsOpen==true) return;
             float t = Mathf.Clamp01((Time.time - started) / WarningDuration);
             float pulse = .08f + .05f * Mathf.Sin(t * 40); ring.startWidth = ring.endWidth = pulse;
             Vector3 point = Vector3.Lerp(launch, Target, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * 5;

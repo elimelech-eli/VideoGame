@@ -12,7 +12,7 @@ Open this directory in Unity Hub using the pinned Editor. Allow package import a
 
 Choose New Game or Continue from the opening menu. Escape / controller Start pauses; menus support mouse, keyboard and controller navigation. Saving uses Nexus checkpoints: save at the hub, and Continue returns to the latest checkpoint. Options include audio, display/graphics and controller aiming. See [menus and checkpoints](docs/MENUS.md).
 
-Use WASD or right-click to move; mouse to aim; left-click to shoot; Q for a grenade; Space to dash; E to interact. Controller: left stick moves, right stick aims, RT fires, RB throws a grenade, B dashes, A interacts.
+Use WASD to move, mouse to aim, LMB/RMB for main/off-hand actions, Q for a grenade, Space to dash, E to interact or pick up loot, and I for equipment/inventory. Controller: left stick moves, right stick aims, RT/LT use each hand, RB throws a grenade, B dashes, A interacts, and Select/View opens equipment. See [equipment, loot and progression](docs/EQUIPMENT.md).
 
 Approach the cyan Nexus terminal and press E / controller A (or click the interaction prompt). Choose one of the six biome missions; each launch randomly generates a small (6 rooms), medium (10), or large (20) map. Kill eight enemies, return to extraction, then claim the reward at the hub terminal. Cancel / Escape / controller B closes the mission list without starting a mission.
 
@@ -28,6 +28,7 @@ The player and all four enemy roles use different models. Nexus and combat zones
 
 ![Authored idle, running and death poses](docs/images/animations.png)
 
+- [Visual character screen and inventory](docs/CHARACTER_SCREEN.md)
 - [Menus, options and Nexus checkpoints](docs/MENUS.md)
 - [Game profile](docs/GAME_PROFILE.md)
 - [Development pipeline and testing](docs/DEVELOPMENT.md)

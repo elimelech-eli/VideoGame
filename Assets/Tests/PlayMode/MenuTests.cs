@@ -265,6 +265,17 @@ public sealed class MenuTests
         Assert.IsFalse(game.InMission);Assert.AreEqual(MissionStage.Available,game.Mission.Stage);
         yield return null;
     }
+    [UnityTest] public IEnumerator InventoryHotkeyOwnsInputBeforeMovementDashAndFire()
+    {
+        game.StartMission();yield return null;
+        foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
+        var before=game.Player.transform.position;
+        InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.I,Key.D,Key.Space));
+        InputSystem.QueueStateEvent(mouse,new MouseState{buttons=1});
+        yield return null;yield return null;
+        Assert.AreEqual(MenuPage.Equipment,game.Menus.Page);Assert.AreEqual(0,Time.timeScale);
+        Assert.AreEqual(before,game.Player.transform.position);Assert.AreEqual(0,game.Player.Hands.MainShots);Assert.AreEqual(0,game.Player.DashRemaining);
+    }
     [UnityTest] public IEnumerator ControllerNavigationAndSubmenuBackPreservePause()
     {
         game.Menus.Pause();InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.DpadDown));yield return null;yield return null;

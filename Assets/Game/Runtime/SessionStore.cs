@@ -39,11 +39,25 @@ namespace VideoGame
     {
         public string Format, SavedUtc, Id;
         public int Version, Credits, Kills, Target, Stage, Seed, Difficulty;
+        public GearProfile Equipment;
+        public void NormalizeEmptySlots()
+        {
+            // JsonUtility represents null entries of inline serializable arrays as
+            // empty objects. Only an entirely empty slot is a legal placeholder.
+            if(Equipment?.Equipped==null)return;
+            for(int i=0;i<Equipment.Equipped.Length;i++)
+            {
+                var item=Equipment.Equipped[i];
+                if(item!=null && string.IsNullOrEmpty(item.Id) && string.IsNullOrEmpty(item.Definition) && (item.Bonuses==null || item.Bonuses.Count==0))Equipment.Equipped[i]=null;
+            }
+            Equipment.NormalizeLegacyHandedness();
+        }
         public bool Valid()
         {
-            if (Format != "nexus-checkpoint" || Version != 1 || !Guid.TryParse(Id,out _) ||
+            if (Format != "nexus-checkpoint" || (Version != 1 && Version != 2) || !Guid.TryParse(Id,out _) ||
                 !DateTime.TryParse(SavedUtc,null,System.Globalization.DateTimeStyles.RoundtripKind,out _) ||
                 Credits < 0 || Target != 8 || Difficulty < 0 || Difficulty > 3) return false;
+            if(Version==2 && (Equipment==null || !Equipment.Valid() || Equipment.Credits!=Credits))return false;
             return Stage == (int)MissionStage.Complete ? Kills == Target :
                 (Stage == (int)MissionStage.Available && Kills == 0) || (Stage == (int)MissionStage.Rewarded && Kills == Target);
         }
@@ -73,7 +87,10 @@ namespace VideoGame
             string temporary = path+".tmp";
             try
             {
-                File.WriteAllText(temporary,text);
+                using(var stream=new FileStream(temporary,FileMode.Create,FileAccess.Write,FileShare.None))
+                {
+                    var bytes=System.Text.Encoding.UTF8.GetBytes(text);stream.Write(bytes,0,bytes.Length);stream.Flush(true);
+                }
                 if(File.Exists(path)) File.Replace(temporary,path,path+".bak");
                 else File.Move(temporary,path);
             }
@@ -84,7 +101,10 @@ namespace VideoGame
             if(data == null || !data.Valid()) throw new InvalidDataException("Invalid Nexus checkpoint.");
             string path=PathFor(slot);
             if(Read(slot).Recovered)File.Copy(path+".bak",path,true);
-            AtomicWrite(path,JsonUtility.ToJson(data,true));
+            string json;
+            try{json=JsonUtility.ToJson(data,true);}
+            finally{data.NormalizeEmptySlots();}
+            AtomicWrite(path,json);
         }
         public CheckpointSlot Read(int slot)
         {
@@ -97,6 +117,7 @@ namespace VideoGame
                 try
                 {
                     var data=JsonUtility.FromJson<NexusCheckpoint>(File.ReadAllText(candidate));
+                    data?.NormalizeEmptySlots();
                     if(data!=null && data.Valid()) {result.Data=data;result.Recovered=candidate!=path;return result;}
                 }
                 catch(Exception error) when(error is IOException || error is ArgumentException || error is UnauthorizedAccessException) { }

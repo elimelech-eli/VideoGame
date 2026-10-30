@@ -1,0 +1,61 @@
+# Operative character screen
+
+The approved sci-fi character-screen concept is implemented on `codex/character-screen`, over the existing equipment/profile systems.
+
+## Layout and interaction
+
+- Left: level and XP, attribute points, current/maximum health, protection, movement, accuracy, critical chance, shield recharge, equipment power, and carried inventory capacity.
+- Center: isolated 3D preview of the actual operative, drag/arrow rotation, and five equipment slots (helmet, body armor, backpack, main hand, off hand). A two-handed rifle reserves the off hand.
+- Right: inventory, Nexus stash or vendor; category filters; quality/name sorting; a paged 5-by-4 grid. Locked cells indicate capacity that can be unlocked with inventory attributes. Additional pages support larger inventories and stash collections.
+- Select an item to inspect quality, level, condition, comparison deltas and resulting equipment power. Main/Off Hand selectors explicitly choose one-handed weapon placement. Equip validates the exact same rules as the transaction, without changing anything during comparison.
+- Nexus actions include equip, unequip any slot, stash/withdraw, buy, sell, repair and attribute allocation/reset. MORE / DETAILS exposes full bonus details and contextual actions; sale/reset confirmation uses the existing confirmation flow.
+- During missions, selecting a carried item exposes DROP ITEM INTO MISSION directly in the primary action row. Equipment changes and Nexus services stay locked with explanations. Empty capacity leaves loot in the field, as before.
+
+Keyboard/controller focus has a visible cyan outline. Arrows/D-pad navigate spatially, Tab cycles, Enter/A selects, E/controller X equips the selected item, and I/B/Escape closes. The mouse selects items, buttons and slots; drag the character to rotate. Escape/B first dismisses the contextual action panel. Main/off-hand game inputs are suppressed until held gameplay controls are released after closing.
+
+## Hard pause
+
+Policy: solo-menu-hard-pause v2. MenuFlow owns the active page and enforces zero world timescale plus paused gameplay audio while any menu is open. The character preview uses its own sampled pose, render target, camera and input, rather than advancing the real character or world clock. Director spawning, enemy updates, projectiles, mortar warnings and hand combat also explicitly honor menu ownership, independently of an accidentally restored timescale. Retiring menu objects cannot restore another active game's clock.
+
+The regression leaves live enemies and a projectile in a mission, opens inventory and nested navigation, waits longer than the reinforcement interval using realtime, and verifies no clock, position, damage or spawn progress. It then verifies normal movement resumes. This is automated functional evidence, not a natural mission playthrough.
+
+## Art and resource ownership
+
+`Assets/Game/Resources/UI/GearIcons.png` is the original generated 1254-square atlas. It supplies helmet, armor, backpack, handgun, rifle, sword, shield and credit icons plus one empty charcoal cell. Seven equipment categories map to stable enum-based UV thirds; no item save stores atlas indices. Icons are reused by item type; rarity frames, selection and condition are independent UI layers. Named item-specific illustrations can be added later without changing item identities.
+
+Generated with the built-in image_gen tool; exact prompt and grid/source metadata are in `Art/UI/gear-icons.prompt.txt` and `gear-icons.atlas.json`. It was inspected for the correct eight object silhouettes, cell ordering, margins and absence of cross-cell clipping. Unity's GearIconImporter disables mipmaps and compression and uses bilinear filtering with clamped wrap. No Source-game artwork is included.
+
+The preview owns one 512x768 render target, one sampled clone, one camera and three lights restricted to layer 30. It renders on open/rotation/equipment refresh, deactivates its stage when closed and releases the target and objects on destruction. It is deliberately independent of the gameplay animation clock. The original fitted operative is restored in the world; primitive wearable/weapon boxes have been removed.
+
+The operative uses the project's existing character mesh. Wearable design-specific helmet/armor/backpack meshes remain future work. Equipment slot icons and stats reflect the exact loadout; the 3D body remains the existing operative, with original per-type handgun/rifle/sword/shield meshes and loadout-specific arm poses. It is a live preview, not a static rendering of the approval concept. Production modular character art remains separate work.
+
+## Validation
+
+See the dated entry in VALIDATION.md for final counts and build evidence. CharacterScreenTests covers pause, non-mutating comparisons, hand restrictions, ownership/filter behavior, icon availability and removal of primitive overlays. Existing equipment, save, input and mission tests remain required.
+
+Double-click an inventory item at the Nexus to equip it; handguns and swords default to main hand, shields to off hand, and rifles to main hand with off-hand reservation. Double-click any equipped slot to unequip it. Replacement returns the displaced item to its own inventory slot and remains atomic at capacity. Mission equipment stays locked. Every gear instance occupies one bag slot; the icon badge is explicitly labelled Lv and is never a stack count.
+
+Portrait weapon meshes are original Blender-authored assets (LoadoutWeapons resources), using metres and a grip origin, +Z firearm muzzle / shield face and +Y sword blade. PreviewLoadout restores a sampled idle skeleton before applying two-bone arm poses for the actual main/off-hand combination. It never edits gameplay animation clips. Poses and mesh instances refresh only when equipment changes; portrait rotation reuses them.
+
+## Drag and drop — 2026-10-30
+
+Drag carried gear onto a compatible equipment slot at the Nexus, or drag equipped gear
+back into inventory. An occupied destination exchanges items when its item can legally
+replace that gear; full-bag exchanges remain atomic. Wrong types, reserved off hands,
+level/power/capacity failures and mission equipment locks reject without losing ownership.
+Inventory-to-inventory drags swap occupied cells or occupy the exact empty cell, preserving
+gaps. The default CUSTOM view shows saved per-item InventorySlot placement; old/new items
+without a valid placement receive the next available cell. Filtered/sorted views use
+stable item IDs, and a successful move returns to custom order. Category filters remain
+available; stash/vendor actions retain their existing buttons.
+
+Valid destinations highlight green; invalid ones red. A rarity-framed icon follows the
+pointer. Escape first cancels the drag, then closes the screen on a later press. Releasing
+outside a target, closing the screen, or losing application focus cancels safely. Mouse
+input uses the Input System and the exact shared slot/cell geometry used for rendering;
+keyboard/controller selection and double-click equip/unequip remain available. Mission
+inventory can be rearranged or dropped, but equipment cannot be changed.
+
+CharacterScreenTests exercises actual mouse press/move/release, specific empty-cell
+placement, Escape cancellation, saved cells, filtered ownership, full-bag exchanges and
+mission restrictions. EquipmentTests covers sparse layout and legacy/duplicate-cell repair.

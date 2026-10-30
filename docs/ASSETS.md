@@ -34,6 +34,20 @@ Downloaded 2026-10-26 from the publisher. Only selected assets are committed; no
 
 Models decorate the existing gameplay collision shapes. Scenery is nonblocking in this art pass; pathfinding and cover mechanics are outside its scope. Actor movement uses a small procedural presentation motion, not a full skeletal animation set.
 
+## Character-screen item graphics
+
+An optional locally supplied **MSGDI Free Test Character Asuna** can replace the operative, with its own native animation/grip clips and rifle/pistol models. Its licensed files are not redistributed in this public repository. See [the Asuna import instructions](../Art/Asuna/README.md). A checkout without those files uses the original operative and requires no Asset Store download to build or play.
+
+The original sci-fi item atlas at `Assets/Game/Resources/UI/GearIcons.png` was generated using the built-in OpenAI image generation tool on 2026-10-29. It contains helmet, body armor, backpack, handgun, rifle, sword, shield and credit imagery. The exact prompt is preserved in `Art/UI/gear-icons.prompt.txt`; dimensions, cell identities, UV convention and import settings are recorded in `Art/UI/gear-icons.atlas.json`. It contains no Alien Swarm or Reactive Drop assets. Item icons represent equipment categories; individual designs currently share their category image.
+
+The character screen renders the existing fitted operative prefab in an isolated live portrait. New modular helmet, armor, backpack and weapon meshes have not been authored for every item design.
+
+## Original portrait weapons
+
+Tools/Art/create_loadout_weapons.py authors the handgun (1,348 triangles), rifle (2,344), sword (532) and shield (596) in pinned Blender 4.5.9. Applied bevels, weighted normals and triangulated mesh data are exported through Art/Weapons/*.json. LoadoutWeaponAssets rebuilds committed Unity mesh assets/materials/prefabs; runtime requires no Blender. Each prop passed the game deliverable audit (Art/Weapons/audit.json), and the matcap/silhouette review was inspected. These are original project meshes with shared graphite/ivory/cyan materials; no proprietary game models were used. They are shared by the character portrait, world pickups and the animated in-mission character. PlayerWeaponAnimation attaches them to the sampled hand poses and layers per-hand actions over the existing locomotion clips.
+
+The same original asset generator also creates standalone helmet (1,140 triangles), armor (952), backpack (756) and credit-token stack (1,452) pickup meshes. These passed individual game deliverable audits in Art/Weapons/audit.json. World drops reuse the four weapon prefabs and these four pickup prefabs; they have separate rarity rings and no runtime-generated box meshes. The staged isometric review is images/loot-drops.png.
+
 ## Approved BiotechLab environment
 
 Agata Wilczek�s Sci-fi lab (CC-BY-4.0) now supplies the normal BiotechLab architecture and source furnishings. Adaptation, source hash and replacement-display notices are in `Assets/Game/Resources/LabReview/CREDITS.md` and `manifest.json`. Assembly and limitations are in `docs/LAB_BIOME_INTEGRATION.md`. Existing interactive hazard art remains in use.

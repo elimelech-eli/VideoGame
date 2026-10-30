@@ -19,13 +19,13 @@ namespace VideoGame
         }
         void Update()
         {
-            if (Time.timeScale == 0 || game == null || !game.InMission || game.Player.IsDead || Time.time < NextSpawnAt) return;
+            if (Time.timeScale == 0 || game == null || game.Menus?.IsOpen==true || !game.InMission || game.Player.IsDead || Time.time < NextSpawnAt) return;
             NextSpawnAt = Time.time + SpawnInterval;
             SpawnWave();
         }
         public int SpawnWave()
         {
-            if (Time.timeScale == 0 || game == null || !game.InMission || game.Player.IsDead || rooms == null) return 0;
+            if (Time.timeScale == 0 || game == null || game.Menus?.IsOpen==true || !game.InMission || game.Player.IsDead || rooms == null) return 0;
             int alive = 0; foreach (var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None)) if (enemy.Health > 0) alive++;
             int amount = Mathf.Min(alive == 0 ? 4 : 2, PopulationCap - alive);
             int spawned = 0;

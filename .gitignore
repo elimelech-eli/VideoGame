@@ -25,6 +25,23 @@ Art/**/*.blend
 Art/**/*.glb
 Art/**/*.fbx
 Art/**/*.png
+Art/Asuna/*.unitypackage
+Art/Asuna/package-index.json
+# Licensed character content is supplied locally, not redistributed publicly.
+Assets/FreeTestCharacterAsuna/
+Assets/FreeTestCharacterAsuna.meta
+Assets/Game/Resources/AsunaAnimations/
+Assets/Game/Resources/AsunaAnimations.meta
+Assets/Game/Resources/AsunaEquipment/
+Assets/Game/Resources/AsunaEquipment.meta
+Assets/Game/Resources/AsunaGrips/
+Assets/Game/Resources/AsunaGrips.meta
+Assets/Game/Resources/AsunaWeaponAnimations/
+Assets/Game/Resources/AsunaWeaponAnimations.meta
+Assets/Game/Resources/Detailed/Prefabs/OperativeAsuna.prefab
+Assets/Game/Resources/Detailed/Prefabs/OperativeAsuna.prefab.meta
+Assets/InitTestScene*.unity
+Assets/InitTestScene*.unity.meta
 !Art/Operative/v03/CH_MaleOperative_master.blend
 !Art/Operative/v03/CH_MaleOperative_bound.blend
 !Art/Operative/v03/ref/*.png

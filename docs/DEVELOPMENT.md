@@ -37,7 +37,7 @@ In GitHub Settings → Branches, protect `master`: require a pull request, requi
 - At the Nexus, save a manual slot, load it, and Continue after a fresh launch. During missions, verify Save is disabled with the checkpoint restriction explained.
 - Approach the cyan terminal. E / controller A opens six biome missions; mouse, arrows/Enter or controller D-pad/A selects one. Verify Cancel / Escape / B returns to the Nexus without advancing the seed.
 - Launch several missions: selected biomes must match; map sizes remain random (6/10/20), including when an old preferences file contains a fixed size. Held Confirm must be released before deployment; it must not fire, dash, or select twice.
-- Confirm WASD, right-click movement, and controller left stick each work.
+- Confirm WASD and controller left stick move; RMB / LT activates the off hand without moving.
 - Aim with mouse / right stick; fire with left mouse / RT.
 - Throw a grenade with Q / RB. Check cooldown and area damage.
 - Dash with Space / B. Confirm cooldown and floor-edge behavior.
@@ -46,4 +46,4 @@ In GitHub Settings → Branches, protect `master`: require a pull request, requi
 - Die during a contract; verify progress is discarded without granting a reward.
 - Check the Unity Console for errors. Record whether a physical controller was tested.
 
-The prototype includes Nexus checkpoint persistence, imported sci-fi models, seeded connected rooms, a styled immediate-mode HUD and licensed atmosphere tracks. Inventory, attribute effects, dialogue and base management remain future work. See ASSETS.md for provenance and presentation limitations.
+The prototype includes Nexus checkpoint persistence, imported sci-fi models, seeded connected rooms, a styled immediate-mode HUD and licensed atmosphere tracks. Equipment, inventory/stash, leveling, vendors and death penalties are implemented; see EQUIPMENT.md. Dialogue and base management remain future work. See ASSETS.md for provenance and presentation limitations.

@@ -39,6 +39,7 @@ namespace VideoGame.Editor
             RobotAssets.Build();
             ActorAnimationBuilder.Build();
             OperativeV03Assets.Build();
+            LoadoutWeaponAssets.Build();
             BiomeAssets.Build();
             LabReviewAssets.Rebuild();
             LabEnemyAssets.Build();

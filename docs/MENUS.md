@@ -28,4 +28,4 @@ Difficulty can change during play. Story/Standard/Hard/Nightmare multiply all da
 
 Pause freezes scaled simulation time, player input, enemies, reinforcements, projectiles, blast warnings, grenades, falling walls, animation and pickup collection. Combat audio pauses while the soundtrack continues. UI navigation and display rollback use real time. Closing or destroying a menu restores time/audio state, and held confirm/fire buttons must be released before gameplay input resumes.
 
-Character levels, attributes, inventory/equipment and new active skills are still the next progression milestone.
+Character levels, five allocatable attributes, inventory/equipment, stash and Nexus services are implemented; see [equipment](EQUIPMENT.md). Additional active skills remain deferred.
