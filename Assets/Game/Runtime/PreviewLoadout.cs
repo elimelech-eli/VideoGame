@@ -36,8 +36,8 @@ namespace VideoGame
             if(main?.Design.Kind!=GearKind.Sword && off?.Design.Kind!=GearKind.Sword && off?.Design.Kind==GearKind.Shield)clips.Apply("ShieldGuard",.5f,1,-1,true,true);
             Arm("R",main?.Design.Kind,main?.Design.TwoHanded==true);
             Arm("L",off?.Design.Kind,false,main?.Design.TwoHanded==true);
-            fingers.Apply(0,main?.Design.Kind,bones["hand_R"].rotation*bones["SOCKET_weapon_R"].localRotation);
-            fingers.Apply(1,off?.Design.Kind??(main?.Design.TwoHanded==true?GearKind.Rifle:(GearKind?)null),bones["hand_L"].rotation*bones["SOCKET_weapon_R"].localRotation);
+            fingers.Apply(0,main?.Design.Kind,bones["hand_R"].rotation*Basis(0,main?.Design.Kind));
+            fingers.Apply(1,off?.Design.Kind??(main?.Design.TwoHanded==true?GearKind.Rifle:(GearKind?)null),bones["hand_L"].rotation*Basis(1,off?.Design.Kind));
             foreach(var t in presentation.GetComponentsInChildren<Transform>())t.gameObject.layer=30;
         }
         void Arm(string side,GearKind? kind,bool rifle,bool support=false)
@@ -51,21 +51,24 @@ namespace VideoGame
             else if(kind==GearKind.Sword)offset=new Vector3(sign*.34f,-.40f,.12f);
             else offset=new Vector3(sign*.30f,-.61f,.02f);
             Vector3 target=chest+model.TransformDirection(offset)*height;
+            if(support)target=fingers.Center(0)+bones["hand_R"].rotation*Basis(0,GearKind.Rifle)*(new Vector3(0,.065f,.34f)*height);
             if(kind!=GearKind.Sword)SolveArm(side,target,model.TransformDirection(new Vector3(sign,-.7f,-.1f)));
+            if(support)bones["hand_L"].rotation=bones["hand_R"].rotation;
             if(kind==null)return;
             var hand=bones["hand_"+side];
             Quaternion rotation=model.rotation;
             if(kind==GearKind.Handgun)rotation*=Quaternion.Euler(-18,sign*12,0);
-            if(kind==GearKind.Sword)rotation=hand.rotation*bones["SOCKET_weapon_R"].localRotation;
+            if(kind==GearKind.Sword)rotation=hand.rotation*Basis(side=="R"?0:1,kind);
             if(kind==GearKind.Shield)rotation*=Quaternion.Euler(0,-15,0);
             // The published right-hand socket supplies the wrist-to-grip basis.
-            hand.rotation=rotation*Quaternion.Inverse(bones["SOCKET_weapon_R"].localRotation);
-            var source=Resources.Load<GameObject>("LoadoutWeapons/"+kind.Value);
+            hand.rotation=rotation*Quaternion.Inverse(Basis(side=="R"?0:1,kind));
+            var source=Resources.Load<GameObject>(PlayerRig.WeaponPath(model.gameObject,kind.Value));
             if(source==null)throw new System.InvalidOperationException("Missing loadout weapon "+kind);
             var weapon=Object.Instantiate(source,presentation);weapon.name="Preview "+side+" "+kind;
             weapon.transform.position=fingers.Center(side=="R"?0:1);weapon.transform.rotation=rotation;
             float unit=height/Mathf.Max(.001f,model.lossyScale.x);weapon.transform.localScale=Vector3.one*unit;
         }
+        Quaternion Basis(int hand,GearKind? kind)=>PlayerRig.GripBasis(model.gameObject,hand,kind,bones["SOCKET_weapon_R"].localRotation);
         void Aim(string a,string b,Vector3 direction)
         {
             var bone=bones[a];bone.rotation=Quaternion.FromToRotation(bones[b].position-bone.position,direction)*bone.rotation;

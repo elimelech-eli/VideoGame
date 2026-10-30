@@ -11,13 +11,14 @@ namespace VideoGame.Editor
     {
         [MenuItem("Nexus/Rebuild weapon combat clips")]
         public static void Build()
+            => BuildFor(OperativeV03Assets.Prefab,"OperatorAnimations", "Assets/Game/Resources/WeaponAnimations/");
+        public static void BuildFor(string prefab,string animations,string folder)
         {
-            const string folder="Assets/Game/Resources/WeaponAnimations/";
             Directory.CreateDirectory(folder);AssetDatabase.Refresh();
             foreach(string name in new[]{"SwordR","SwordL","HandgunKick","RifleKick","ShieldGuard","ShieldBlock","RifleBrace"})
             {
-                var model=Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(OperativeV03Assets.Prefab));
-                var rig=new Rig(model);
+                var model=Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(prefab));
+                var rig=new Rig(model,animations);
                 float duration=name.StartsWith("Sword")?PlayerWeaponAnimation.SwingDuration:name=="ShieldGuard"||name=="RifleBrace"?1:.22f;
                 var clip=new AnimationClip{name=name,legacy=true,frameRate=60,wrapMode=WrapMode.ClampForever};
                 var curves=new Dictionary<Transform,AnimationCurve[]>();
@@ -54,9 +55,9 @@ namespace VideoGame.Editor
             readonly AnimationClip idle;
             readonly Quaternion grip;
             readonly float height;
-            public Rig(GameObject model)
+            public Rig(GameObject model,string animations)
             {
-                this.model=model;idle=Resources.Load<AnimationClip>("OperatorAnimations/Idle");
+                this.model=model;idle=Resources.Load<AnimationClip>(animations+"/Idle");
                 foreach(var t in model.GetComponentsInChildren<Transform>())
                     if(t.name=="hips"||t.name=="spine"||t.name=="spine_mid"||t.name=="chest"||t.name=="head"||t.name.StartsWith("thigh_")||t.name.StartsWith("shin_")||t.name.StartsWith("foot_")||t.name.StartsWith("upper_arm_")||t.name.StartsWith("forearm_")||t.name.StartsWith("hand_"))Bones[t.name]=t;
                 idle.SampleAnimation(model,0);height=Vector3.Distance(Bones["hips"].position,Bones["foot_L"].position);

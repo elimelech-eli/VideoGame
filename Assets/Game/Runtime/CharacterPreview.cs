@@ -19,12 +19,12 @@ namespace VideoGame
         {
             if(stage!=null || SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)return;
             stage=new GameObject("Character preview studio");stage.transform.SetParent(transform);stage.transform.position=new Vector3(1000,-1000,1000);
-            model=Instantiate(Resources.Load<GameObject>("Detailed/Prefabs/OperativeV03"),stage.transform);
+            model=Instantiate(Resources.Load<GameObject>(PlayerRig.PrefabPath),stage.transform);
             model.name="Operative preview";
             foreach(var col in model.GetComponentsInChildren<Collider>())Destroy(col);
             foreach(var animator in model.GetComponentsInChildren<Animator>())animator.enabled=false;
             var pose=model.AddComponent<Animation>();
-            var idle=Resources.Load<AnimationClip>("OperatorAnimations/Idle");
+            var idle=Resources.Load<AnimationClip>((model.GetComponent<PlayerRig>()?.AnimationFolder??"OperatorAnimations")+"/Idle");
             if(idle!=null){pose.AddClip(idle,"Idle");pose.Play("Idle");pose["Idle"].time=0;pose.Sample();pose.enabled=false;}
             var bounds=Art.RenderedBounds(model);float scale=2.2f/Mathf.Max(.01f,bounds.size.y);model.transform.localScale*=scale;
             bounds=Art.RenderedBounds(model);model.transform.position+=stage.transform.position-new Vector3(bounds.center.x,bounds.min.y,bounds.center.z);

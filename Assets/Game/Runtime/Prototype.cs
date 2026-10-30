@@ -88,7 +88,7 @@ namespace VideoGame
             Player.View = view;
             Equipment = gameObject.AddComponent<EquipmentSystem>(); Equipment.Initialize(this);
             player.GetComponent<Renderer>().enabled = false;
-            Visuals.Model("Detailed/Prefabs/OperativeV03", player.transform, new Vector3(0, -1, 0), 2.15f, Art.Cyan);
+            Visuals.Model(PlayerRig.PrefabPath, player.transform, new Vector3(0, -1, 0), 2.15f, Art.Cyan);
             Visuals.PointLight(new Vector3(0, 2, 0), Art.Cyan, player.transform, 4);
             gameObject.AddComponent<GameHud>();
             BuildHub();

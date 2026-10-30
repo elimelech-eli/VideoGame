@@ -48,7 +48,7 @@ namespace VideoGame
                 if(weapons[h]!=null){weapons[h].gameObject.SetActive(false);Destroy(weapons[h].gameObject);}
                 kinds[h]=kind;weapons[h]=muzzles[h]=null;
                 if(kind==null)continue;
-                var source=Resources.Load<GameObject>("LoadoutWeapons/"+kind.Value);
+                var source=Resources.Load<GameObject>(PlayerRig.WeaponPath(gameObject,kind.Value));
                 if(source==null)throw new System.InvalidOperationException("Missing held weapon "+kind);
                 weapons[h]=Instantiate(source,assembly).transform;weapons[h].name="Held "+(h==0?"R ":"L ")+kind;
                 weapons[h].localScale=Vector3.one*height;muzzles[h]=weapons[h].Find("Muzzle");
@@ -100,7 +100,7 @@ namespace VideoGame
                     bool active=Time.time-fired[h]<.2f || SwingAge(h)<SwingDuration || kinds[h]==GearKind.Shield&&guardBlend>.01f || kinds[0]==GearKind.Rifle&&Time.time-fired[0]<.2f;
                     weights[h]=Mathf.MoveTowards(weights[h],casting&&!active?0:1,Time.deltaTime*12);
                     if(kinds[h]!=GearKind.Sword || casting)PoseArm(h,aim,weights[h]);
-                    fingers.Apply(h,kinds[h]??(h==1&&kinds[0]==GearKind.Rifle?GearKind.Rifle:(GearKind?)null),bones[h==0?"hand_R":"hand_L"].rotation*gripBasis);
+                    fingers.Apply(h,kinds[h]??(h==1&&kinds[0]==GearKind.Rifle?GearKind.Rifle:(GearKind?)null),bones[h==0?"hand_R":"hand_L"].rotation*Basis(h));
                 }
             }
             FollowWeapons();
@@ -170,9 +170,10 @@ namespace VideoGame
             for(int h=0;h<2;h++)if(weapons[h]!=null)
             {
                 var hand=bones[h==0?"hand_R":"hand_L"];
-                weapons[h].SetPositionAndRotation(fingers.Center(h),hand.rotation*gripBasis);
+                weapons[h].SetPositionAndRotation(fingers.Center(h),hand.rotation*Basis(h));
             }
         }
+        Quaternion Basis(int hand)=>PlayerRig.GripBasis(gameObject,hand,kinds[hand],gripBasis);
         void Aim(string a,string b,Vector3 direction){var bone=bones[a];bone.rotation=Quaternion.FromToRotation(bones[b].position-bone.position,direction)*bone.rotation;}
         void Solve(string side,Vector3 target,Vector3 pole)
         {

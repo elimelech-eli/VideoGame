@@ -158,8 +158,8 @@ public sealed class CharacterScreenTests
     }
     [UnityTest] public IEnumerator EveryHandLoadoutHasFittedMeshesAndForwardFacingFirearms()
     {
-        var root=Object.Instantiate(Resources.Load<GameObject>("Detailed/Prefabs/OperativeV03"));root.transform.position=new Vector3(1000,-1000,1000);
-        var pose=root.AddComponent<Animation>();var clip=Resources.Load<AnimationClip>("OperatorAnimations/Idle");pose.AddClip(clip,"Idle");pose.Play("Idle");pose.Sample();pose.enabled=false;
+        var root=Object.Instantiate(Resources.Load<GameObject>(PlayerRig.PrefabPath));root.transform.position=new Vector3(1000,-1000,1000);
+        var pose=root.AddComponent<Animation>();var clip=Resources.Load<AnimationClip>((root.GetComponent<PlayerRig>()?.AnimationFolder??"OperatorAnimations")+"/Idle");pose.AddClip(clip,"Idle");pose.Play("Idle");pose.Sample();pose.enabled=false;
         var loadout=new PreviewLoadout(root.transform);var p=game.Equipment.Profile;
         foreach(var main in new[]{"rifle","pistol","sword",null})foreach(var off in new[]{"pistol","sword","shield",null})
         {

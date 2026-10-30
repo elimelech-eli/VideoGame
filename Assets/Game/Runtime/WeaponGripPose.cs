@@ -11,10 +11,14 @@ namespace VideoGame
         readonly Transform[,,] joints=new Transform[2,5,3];
         readonly Quaternion[,,] rest=new Quaternion[2,5,3];
         readonly Transform[] hands=new Transform[2];
+        readonly GameObject model;
+        readonly Dictionary<string,AnimationClip> native=new Dictionary<string,AnimationClip>();
         static readonly string[] Names={"index","middle","ring","pinky","thumb"};
         static readonly float[] Fist={35,65,45},Trigger={25,45,30},Thumb={25,35,25};
         public WeaponGripPose(Transform root)
         {
+            model=root.gameObject;
+            if(root.GetComponent<PlayerRig>()!=null)foreach(var clip in Resources.LoadAll<AnimationClip>("AsunaGrips"))native[clip.name]=clip;
             var bones=new Dictionary<string,Transform>();foreach(var t in root.GetComponentsInChildren<Transform>())bones[t.name]=t;
             for(int h=0;h<2;h++)
             {
@@ -33,6 +37,8 @@ namespace VideoGame
         {
             for(int f=0;f<5;f++)for(int n=0;n<3;n++)if(joints[hand,f,n]!=null)joints[hand,f,n].localRotation=rest[hand,f,n];
             if(kind==null)return;
+            string pose=(kind==GearKind.Shield?GearKind.Sword:kind.Value).ToString()+(hand==0?"R":"L");
+            if(native.TryGetValue(pose,out var authored)){authored.SampleAnimation(model,0);return;}
             var wrist=hands[hand];Vector3 center=Center(hand)-grip*Vector3.up*.015f*wrist.lossyScale.x;
             for(int f=0;f<5;f++)
             {

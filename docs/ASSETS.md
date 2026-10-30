@@ -36,6 +36,8 @@ Models decorate the existing gameplay collision shapes. Scenery is nonblocking i
 
 ## Character-screen item graphics
 
+An optional locally supplied **MSGDI Free Test Character Asuna** can replace the operative, with its own native animation/grip clips and rifle/pistol models. Its licensed files are not redistributed in this public repository. See [the Asuna import instructions](../Art/Asuna/README.md). A checkout without those files uses the original operative and requires no Asset Store download to build or play.
+
 The original sci-fi item atlas at `Assets/Game/Resources/UI/GearIcons.png` was generated using the built-in OpenAI image generation tool on 2026-10-29. It contains helmet, body armor, backpack, handgun, rifle, sword, shield and credit imagery. The exact prompt is preserved in `Art/UI/gear-icons.prompt.txt`; dimensions, cell identities, UV convention and import settings are recorded in `Art/UI/gear-icons.atlas.json`. It contains no Alien Swarm or Reactive Drop assets. Item icons represent equipment categories; individual designs currently share their category image.
 
 The character screen renders the existing fitted operative prefab in an isolated live portrait. New modular helmet, armor, backpack and weapon meshes have not been authored for every item design.
