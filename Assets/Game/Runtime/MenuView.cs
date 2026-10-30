@@ -29,6 +29,10 @@ namespace VideoGame
             yield return new WaitForSecondsRealtime(.8f);ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"display-confirm.png"));
             yield return new WaitForSecondsRealtime(.3f);menu.Back();
             yield return new WaitForSecondsRealtime(.6f);menu.Back();menu.NewGame();
+            yield return new WaitForSecondsRealtime(.4f);
+            var terminalGame=Prototype.Instance;terminalGame.Player.Teleport(terminalGame.Terminal+Vector3.back*2);terminalGame.Interact();
+            yield return new WaitForSecondsRealtime(.4f);ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"terminal-missions.png"));
+            yield return new WaitForSecondsRealtime(.4f);menu.Back();
             yield return new WaitForSecondsRealtime(.4f);menu.Pause();
             yield return new WaitForSecondsRealtime(.3f);ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory,"pause-nexus.png"));
             yield return new WaitForSecondsRealtime(.3f);menu.Activate("save");menu.Save(1);
@@ -130,6 +134,7 @@ namespace VideoGame
         {
             switch(menu.Page)
             {
+                case MenuPage.Deployment:return "M I S S I O N S";
                 case MenuPage.Pause:return "P A U S E D";
                 case MenuPage.Save:return "S A V E";
                 case MenuPage.Load:return "L O A D";
@@ -150,7 +155,7 @@ namespace VideoGame
                 case MenuPage.Difficulty:return "Damage received: Story 50%, Standard 100%, Hard 150%, Nightmare 250%. Changes apply immediately; rewards stay the same.";
                 case MenuPage.Display:return "Apply changes from Options. Display mode changes require confirmation within 15 seconds. VSync takes priority over the frame-rate limit.";
                 case MenuPage.Audio:return "Volume changes take effect when you select Apply Changes.";
-                case MenuPage.Deployment:return "Applies to your next contract. Small: 6 rooms, Medium: 10, Large: 20. Corridors are additional. Random chooses a new biome and/or size from the mission seed.";
+                case MenuPage.Deployment:return "Choose a destination. Eliminate 8 targets, then extract. Map size is randomized for each mission: 6, 10 or 20 rooms, plus corridors.";
                 default:return "Adjust with ← → or the arrow buttons. Apply Changes to keep your preferences, or Cancel to discard them.";
             }
         }

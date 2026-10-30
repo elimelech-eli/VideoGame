@@ -253,13 +253,13 @@ namespace VideoGame
                 Visuals.Model("Detailed/Prefabs/vent", world, center + new Vector3(edge, 0, 1), 2, accent, 90);
             }
         }
-        public void StartMission()
+        public void StartMission(int? biome=null,int? size=null)
         {
             if (Player.IsDead || Menus?.BlocksGameplay == true) return;
             Menus?.AutoSave();
             if (!Mission.Accept()) return;
             Seed++;
-            ActiveDeployment=new Deployment(Seed,Menus?.Settings.Biome??-1,Menus?.Settings.SectorSize??0);
+            ActiveDeployment=new Deployment(Seed,biome??Menus?.Settings.Biome??-1,size??Menus?.Settings.SectorSize??0);
             InMission = true;
             Music.SetBiome(ActiveBiome);Ambience.SetBiome(ActiveBiome);
             Music.SetBattle(true); Ambience.SetBattle(true);
@@ -496,7 +496,7 @@ namespace VideoGame
                 BuildHub(); Menus?.AutoSave(); message = "Contract complete. Talk to the terminal to collect your reward.";
             }
             else if (Mission.ClaimReward()) { Menus?.AutoSave(); message = "Reward received: 100 credits. Another contract is available."; }
-            else StartMission();
+            else Menus?.OpenDeployment();
         }
         void LateUpdate()
         {
