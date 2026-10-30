@@ -155,3 +155,11 @@ hashes and GIF edits are recorded in images/combat-and-gear.capture.json. No aud
 poses, measured FPS claim, natural mission completion, or physical-controller certification.
 Final Windows player build: **11.8 seconds**, followed by the **eight-second** startup/error
 smoke, both passed. No remote jobs were triggered; remote durations/counts are unavailable.
+
+
+## Nexus terminal biome missions — 2026-10-30
+
+Interacting with the Nexus terminal opens six biome contracts, with Cancel returning directly to gameplay. Selecting a destination waits for confirm release, then launches exactly once in that biome with a seeded random 6/10/20-room size. Legacy fixed-size preferences cannot override this route. Rewards and extraction are unchanged. Old HUD/pause deployment-settings shortcuts are removed.
+
+Local: 38,420 core assertions; 5 EditMode + 64 PlayMode tests passed (91.2 s through editor completion). Focused menu suite passed in 44.2 s. The old PowerShell wrapper waited beyond Unity exit on its shared licensing child; changed it to wait for the editor process only, verified with the affected EditMode suite in 6.0 s and six CI-tooling tests. Final Windows build invocation 15.6 s; startup smoke 8 s; actual player terminal screenshot inspected at 1280x720, with all six choices, Cancel and size hint visible. Virtual keyboard, mouse and controller inputs tested; no physical-controller playthrough claim. Normal checkpoint/profile data was not used for capture.
+

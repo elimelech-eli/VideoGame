@@ -42,17 +42,65 @@ public sealed class MenuTests
         string full=Path.GetFullPath(directory);
         if(full.StartsWith(Path.GetFullPath(Path.GetTempPath()),StringComparison.OrdinalIgnoreCase) && Directory.Exists(full))Directory.Delete(full,true);
     }
-    [UnityTest] public IEnumerator DeploymentChoicesPersistAndOnlyAffectTheNextMission()
+    [UnityTest] public IEnumerator TerminalListsEveryBiomeAndLaunchesSelectedDestinationWithRandomSize()
     {
-        game.Menus.Pause();game.Menus.Activate("deployment");
-        Assert.AreEqual(MenuPage.Deployment,game.Menus.Page);
-        game.Menus.Activate("biome");game.Menus.Activate("size");
-        var saved=game.Menus.Store.LoadSettings();Assert.AreEqual(0,saved.Biome);Assert.AreEqual(6,saved.SectorSize);
-        game.Menus.Back();game.Menus.Resume();yield return null;yield return null;yield return null;
-        game.StartMission();game.Director.enabled=false;
-        foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
-        Assert.AreEqual(6,game.Layout.Count);Assert.AreEqual(0,(int)game.ActiveBiome);
-        game.Menus.OpenDeployment();Assert.AreEqual(MenuPage.Closed,game.Menus.Page,"Deployment editing is Nexus-only");
+        game.Menus.Settings.Biome=0;game.Menus.Settings.SectorSize=6;
+        var sizes=new System.Collections.Generic.HashSet<int>();
+        foreach(BiomeId biome in Enum.GetValues(typeof(BiomeId)))
+        {
+            game.Player.Teleport(game.Terminal+Vector3.back*2);
+            game.Interact();Assert.AreEqual(MenuPage.Deployment,game.Menus.Page);Assert.IsFalse(game.InMission);
+            Assert.AreEqual(7,game.Menus.Items().Count);Assert.AreEqual(0,Time.timeScale);
+            foreach(BiomeId destination in Enum.GetValues(typeof(BiomeId)))
+                Assert.IsTrue(game.Menus.Items().Any(i=>i.Id=="mission-"+(int)destination));
+            int seed=game.Seed;game.Menus.Activate("mission-"+(int)biome);
+            Assert.IsFalse(game.InMission,"Launch must wait for input handoff");
+            yield return null;yield return null;yield return null;
+            Assert.IsTrue(game.InMission);Assert.AreEqual(biome,game.ActiveBiome);Assert.AreEqual(seed+1,game.Seed);
+            Assert.AreEqual(new Deployment(seed+1,(int)biome,0).Rooms,game.Layout.Count);
+            sizes.Add(game.Layout.Count);game.Director.enabled=false;
+            foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.enabled=false;
+            game.Menus.OpenDeployment();Assert.AreEqual(MenuPage.Closed,game.Menus.Page);
+            game.Mission.Abandon();game.BuildHub();yield return null;
+        }
+        Assert.Greater(sizes.Count,1,"Saved fixed size leaked into terminal missions");
+        Assert.AreEqual(6,game.Menus.Settings.SectorSize,"One-off missions must not rewrite saved/debug preferences");
+    }
+    [UnityTest] public IEnumerator TerminalCancelAndRangeGuardKeepNexusAndSeedUnchanged()
+    {
+        int seed=game.Seed;game.Menus.OpenDeployment();Assert.AreEqual(MenuPage.Closed,game.Menus.Page);
+        game.Player.Teleport(game.Terminal+Vector3.back*2);
+        InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.E));yield return null;yield return null;
+        Assert.AreEqual(MenuPage.Deployment,game.Menus.Page);Assert.IsFalse(game.InMission);
+        InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;
+        InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Escape));yield return null;yield return null;
+        Assert.AreEqual(MenuPage.Closed,game.Menus.Page);Assert.IsFalse(game.InMission);Assert.AreEqual(seed,game.Seed);
+        Assert.AreEqual(1,Time.timeScale);Assert.AreEqual(MissionStage.Available,game.Mission.Stage);
+    }
+    [UnityTest] public IEnumerator ControllerChoosesBiomeAndHeldConfirmDoesNotLaunchOrFireEarly()
+    {
+        game.Player.Teleport(game.Terminal+Vector3.back*2);
+        InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.South));yield return null;yield return null;
+        Assert.AreEqual(MenuPage.Deployment,game.Menus.Page);Assert.IsFalse(game.InMission);
+        InputSystem.QueueStateEvent(pad,new GamepadState());yield return null;
+        InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.DpadDown));yield return null;
+        Assert.AreEqual(1,game.Menus.Selected);
+        InputSystem.QueueStateEvent(pad,new GamepadState());yield return null;
+        InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.South));yield return null;yield return null;
+        Assert.IsFalse(game.InMission,"Held confirm must not deploy until released");
+        InputSystem.QueueStateEvent(pad,new GamepadState());yield return null;yield return null;yield return null;
+        Assert.IsTrue(game.InMission);Assert.AreEqual(BiomeId.RuinedFactory,game.ActiveBiome);
+        game.Director.enabled=false;Assert.AreEqual(0,game.Player.DashRemaining);
+    }
+    [UnityTest] public IEnumerator MouseSelectsTerminalDestination()
+    {
+        game.Player.Teleport(game.Terminal+Vector3.back*2);game.Interact();
+        float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);
+        Vector2 point=new Vector2((Screen.width-1280*scale)/2+200*scale,(Screen.height-720*scale)/2+(720-(204+3*47+16))*scale);
+        InputSystem.QueueStateEvent(mouse,new MouseState{position=point,buttons=1});yield return null;yield return null;
+        Assert.IsFalse(game.InMission);
+        InputSystem.QueueStateEvent(mouse,new MouseState{position=point});yield return null;yield return null;yield return null;
+        Assert.IsTrue(game.InMission);Assert.AreEqual(BiomeId.BiotechLab,game.ActiveBiome);game.Director.enabled=false;
     }
     [UnityTest] public IEnumerator MainMenuRequiresNewGameAndControllerConfirmCannotTriggerGameplay()
     {

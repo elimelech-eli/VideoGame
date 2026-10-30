@@ -14,7 +14,7 @@ Choose New Game or Continue from the opening menu. Escape / controller Start pau
 
 Use WASD to move, mouse to aim, LMB/RMB for main/off-hand actions, Q for a grenade, Space to dash, E to interact or pick up loot, and I for equipment/inventory. Controller: left stick moves, right stick aims, RT/LT use each hand, RB throws a grenade, B dashes, A interacts, and Select/View opens equipment. See [equipment, loot and progression](docs/EQUIPMENT.md).
 
-Approach the cyan contract terminal, accept a mission, kill eight drones in the procedural area, return to the green extraction beacon, then claim the reward at the hub terminal.
+Approach the cyan Nexus terminal and press E / controller A (or click the interaction prompt). Choose one of the six biome missions; each launch randomly generates a small (6 rooms), medium (10), or large (20) map. Kill eight enemies, return to extraction, then claim the reward at the hub terminal. Cancel / Escape / controller B closes the mission list without starting a mission.
 
 Each contract generates eight connected rooms with varied sizes, industrial themes, branching passages and safe doorway approaches. The sector map shows your position and extraction; its displayed seed identifies the layout. Enemies route through room doorways, and reinforcements keep the field active after the objective completes.
 

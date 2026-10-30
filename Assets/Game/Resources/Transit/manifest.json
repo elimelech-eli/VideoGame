@@ -1,0 +1,1065 @@
+{
+  "version": 1,
+  "units": "metres",
+  "sourceAxes": "XY ground, Z up; FBX converted to Unity Y up",
+  "materials": [
+    {
+      "name": "SueloModular_001",
+      "maps": {
+        "Albedo": "SueloModular_001_Albedo.png",
+        "Normal": "SueloModular_001_Normal.png",
+        "Emission": null,
+        "Metallic": "SueloModular_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ParedesModulares_001",
+      "maps": {
+        "Albedo": "ParedesModulares_001_Albedo.png",
+        "Normal": "ParedesModulares_001_Normal.png",
+        "Emission": null,
+        "Metallic": "ParedesModulares_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Pilar_001",
+      "maps": {
+        "Albedo": "Pilar_001_Albedo.png",
+        "Normal": "Pilar_001_Normal.png",
+        "Emission": null,
+        "Metallic": "Pilar_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Banco_001",
+      "maps": {
+        "Albedo": "Banco_001_Albedo.png",
+        "Normal": "Banco_001_Normal.png",
+        "Emission": null,
+        "Metallic": "Banco_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Fluorescente_001",
+      "maps": {
+        "Albedo": "Fluorescente_001_Albedo.png",
+        "Normal": "Fluorescente_001_Normal.png",
+        "Emission": null,
+        "Metallic": "Fluorescente_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "FluorescenteLuz_001",
+      "maps": {
+        "Albedo": "FluorescenteLuz_001_Albedo.png",
+        "Normal": "FluorescenteLuz_001_Normal.png",
+        "Emission": "FluorescenteLuz_001_Emission.png",
+        "Metallic": "FluorescenteLuz_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.8471846580505371,
+        0.8471846580505371,
+        0.8471846580505371
+      ]
+    },
+    {
+      "name": "CableTexturePack_001",
+      "maps": {
+        "Albedo": "CableTexturePack_001_Albedo.png",
+        "Normal": null,
+        "Emission": null,
+        "Metallic": "CableTexturePack_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CajaMetalica_001",
+      "maps": {
+        "Albedo": "CajaMetalica_001_Albedo.png",
+        "Normal": "CajaMetalica_001_Normal.png",
+        "Emission": null,
+        "Metallic": "CajaMetalica_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CajaExtintor_001",
+      "maps": {
+        "Albedo": "CajaExtintor_001_Albedo.png",
+        "Normal": "CajaExtintor_001_Normal.png",
+        "Emission": null,
+        "Metallic": "CajaExtintor_001_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "DriverCabin",
+      "maps": {
+        "Albedo": "DriverCabin_Albedo.png",
+        "Normal": "DriverCabin_Normal.png",
+        "Emission": "DriverCabin_Emission.png",
+        "Metallic": "DriverCabin_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        7.891875743865967,
+        7.891875743865967,
+        7.891875743865967
+      ]
+    },
+    {
+      "name": "CabezaTren",
+      "maps": {
+        "Albedo": "CabezaTren_Albedo.png",
+        "Normal": "CabezaTren_Normal.png",
+        "Emission": "CabezaTren_Emission.png",
+        "Metallic": "CabezaTren_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        1.6366759538650513,
+        1.6366759538650513,
+        1.6366759538650513
+      ]
+    },
+    {
+      "name": "LateralTren",
+      "maps": {
+        "Albedo": "LateralTren_Albedo.png",
+        "Normal": "LateralTren_Normal.png",
+        "Emission": "LateralTren_Emission.png",
+        "Metallic": "LateralTren_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929
+      ]
+    },
+    {
+      "name": "TechoTren",
+      "maps": {
+        "Albedo": "TechoTren_Albedo.png",
+        "Normal": "TechoTren_Normal.png",
+        "Emission": null,
+        "Metallic": "TechoTren_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PuertasLaterales",
+      "maps": {
+        "Albedo": "PuertasLaterales_Albedo.png",
+        "Normal": "PuertasLaterales_Normal.png",
+        "Emission": null,
+        "Metallic": "PuertasLaterales_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "BajosExterioresTren",
+      "maps": {
+        "Albedo": "BajosExterioresTren_Albedo.png",
+        "Normal": "BajosExterioresTren_Normal.png",
+        "Emission": null,
+        "Metallic": "BajosExterioresTren_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "AsientosInteriores",
+      "maps": {
+        "Albedo": "AsientosInteriores_Albedo.png",
+        "Normal": "AsientosInteriores_Normal.png",
+        "Emission": null,
+        "Metallic": "AsientosInteriores_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "TechoInterior",
+      "maps": {
+        "Albedo": "TechoInterior_Albedo.png",
+        "Normal": "TechoInterior_Normal.png",
+        "Emission": "TechoInterior_Emission.png",
+        "Metallic": "TechoInterior_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "SueloInterior",
+      "maps": {
+        "Albedo": "SueloInterior_Albedo.png",
+        "Normal": "SueloInterior_Normal.png",
+        "Emission": null,
+        "Metallic": "SueloInterior_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "LateralesInteriores",
+      "maps": {
+        "Albedo": "LateralesInteriores_Albedo.png",
+        "Normal": "LateralesInteriores_Normal.png",
+        "Emission": null,
+        "Metallic": "LateralesInteriores_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PuertaDelantera",
+      "maps": {
+        "Albedo": "PuertaDelantera_Albedo.png",
+        "Normal": "PuertaDelantera_Normal.png",
+        "Emission": null,
+        "Metallic": "PuertaDelantera_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "material",
+      "maps": {
+        "Albedo": "material_Albedo.png",
+        "Normal": "material_Normal.png",
+        "Emission": null,
+        "Metallic": "material_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Black",
+      "maps": {
+        "Albedo": null,
+        "Normal": null,
+        "Emission": null
+      },
+      "color": [
+        0.05614612251520157,
+        0.05614612251520157,
+        0.05614612251520157,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1318632960319519,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Vias",
+      "maps": {
+        "Albedo": "Vias_Albedo.png",
+        "Normal": "Vias_Normal.png",
+        "Emission": null,
+        "Metallic": "Vias_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "SueloVias",
+      "maps": {
+        "Albedo": "SueloVias_Albedo.png",
+        "Normal": "SueloVias_Normal.png",
+        "Emission": null,
+        "Metallic": "SueloVias_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Graphite_equipment",
+      "maps": {
+        "Albedo": null,
+        "Normal": null,
+        "Emission": null
+      },
+      "color": [
+        0.02500000037252903,
+        0.03500000014901161,
+        0.04500000178813934,
+        1.0
+      ],
+      "metallic": 0.6499999761581421,
+      "smoothness": 0.5800000131130219,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Transit_warning",
+      "maps": {
+        "Albedo": null,
+        "Normal": null,
+        "Emission": null
+      },
+      "color": [
+        0.949999988079071,
+        0.1599999964237213,
+        0.014999999664723873,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5800000131130219,
+      "emission": [
+        1.899999976158142,
+        0.3199999928474426,
+        0.029999999329447746
+      ]
+    },
+    {
+      "name": "erwe35w35365yeyeyety5335_001",
+      "maps": {
+        "Albedo": "erwe35w35365yeyeyety5335_001_Albedo.png",
+        "Normal": "erwe35w35365yeyeyety5335_001_Normal.png",
+        "Emission": null
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7999999970197678,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "power_box_01",
+      "maps": {
+        "Albedo": "power_box_01_Albedo.png",
+        "Normal": "power_box_01_Normal.png",
+        "Emission": null,
+        "Metallic": "power_box_01_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "old_military_compressor",
+      "maps": {
+        "Albedo": "old_military_compressor_Albedo.png",
+        "Normal": "old_military_compressor_Normal.png",
+        "Emission": null,
+        "Metallic": "old_military_compressor_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "old_military_compressor_glass",
+      "maps": {
+        "Albedo": "old_military_compressor_glass_Albedo.png",
+        "Normal": "old_military_compressor_glass_Normal.png",
+        "Emission": null,
+        "Metallic": "old_military_compressor_glass_Metallic.png"
+      },
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "emission": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "name": "Floor1x1",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -0.5,
+        -0.5,
+        -0.004774197936058044
+      ],
+      "max": [
+        0.5,
+        0.5,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Floor1x2",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -0.5,
+        -1.0,
+        -0.004774197936058044
+      ],
+      "max": [
+        0.5,
+        1.0,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Floor1x3",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -0.5,
+        -1.5,
+        -0.004774197936058044
+      ],
+      "max": [
+        0.5,
+        1.499999761581421,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Floor2x1",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -1.0,
+        -0.5,
+        -0.004774197936058044
+      ],
+      "max": [
+        1.0,
+        0.5,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Floor2x2",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -1.0,
+        -1.0,
+        -0.004774197936058044
+      ],
+      "max": [
+        1.0,
+        1.0,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Floor2x3",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -1.0,
+        -1.5,
+        -0.004774197936058044
+      ],
+      "max": [
+        1.0,
+        1.499999761581421,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Floor4x1",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -2.0,
+        -0.5,
+        -0.004774197936058044
+      ],
+      "max": [
+        2.0,
+        0.5,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Floor4x2",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -2.0,
+        -1.0,
+        -0.004774197936058044
+      ],
+      "max": [
+        2.0,
+        1.0,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Floor4x3",
+      "singleMaterial": "SueloModular_001",
+      "min": [
+        -2.0,
+        -1.5,
+        -0.004774197936058044
+      ],
+      "max": [
+        2.0,
+        1.499999761581421,
+        -0.004772692918777466
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Wall1",
+      "singleMaterial": "ParedesModulares_001",
+      "min": [
+        -0.5,
+        0.2700166702270508,
+        -1.4901161193847656e-08
+      ],
+      "max": [
+        0.5,
+        0.2700166702270508,
+        3.00045108795166
+      ],
+      "renderers": 1,
+      "triangles": 7
+    },
+    {
+      "name": "WallLow1",
+      "singleMaterial": "ParedesModulares_001",
+      "min": [
+        -0.5,
+        0.2700166702270508,
+        -1.4901161193847656e-08
+      ],
+      "max": [
+        0.5,
+        0.2700166702270508,
+        0.7100001573562622
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Wall2",
+      "singleMaterial": "ParedesModulares_001",
+      "min": [
+        -1.0,
+        0.2700166702270508,
+        -1.4901161193847656e-08
+      ],
+      "max": [
+        1.0,
+        0.2700166702270508,
+        3.00045108795166
+      ],
+      "renderers": 1,
+      "triangles": 7
+    },
+    {
+      "name": "WallLow2",
+      "singleMaterial": "ParedesModulares_001",
+      "min": [
+        -1.0,
+        0.2700166702270508,
+        -1.4901161193847656e-08
+      ],
+      "max": [
+        1.0,
+        0.2700166702270508,
+        0.7100001573562622
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Wall4",
+      "singleMaterial": "ParedesModulares_001",
+      "min": [
+        -2.0,
+        0.2700166702270508,
+        0.0
+      ],
+      "max": [
+        2.0,
+        0.2700166702270508,
+        3.00045108795166
+      ],
+      "renderers": 1,
+      "triangles": 7
+    },
+    {
+      "name": "WallLow4",
+      "singleMaterial": "ParedesModulares_001",
+      "min": [
+        -2.0,
+        0.2700166702270508,
+        0.0
+      ],
+      "max": [
+        2.0,
+        0.2700166702270508,
+        0.7100001573562622
+      ],
+      "renderers": 1,
+      "triangles": 6
+    },
+    {
+      "name": "Column",
+      "singleMaterial": "Pilar_001",
+      "min": [
+        -0.2343130111694336,
+        -0.2461411952972412,
+        -0.005729585886001587
+      ],
+      "max": [
+        0.3002634048461914,
+        0.1925499439239502,
+        2.552845001220703
+      ],
+      "renderers": 1,
+      "triangles": 98
+    },
+    {
+      "name": "Bench",
+      "singleMaterial": "Banco_001",
+      "min": [
+        -0.807499885559082,
+        -0.2899312973022461,
+        -0.0062233805656433105
+      ],
+      "max": [
+        1.5928945541381836,
+        0.22298240661621094,
+        0.7807542085647583
+      ],
+      "renderers": 1,
+      "triangles": 162
+    },
+    {
+      "name": "Fixture",
+      "singleMaterial": null,
+      "min": [
+        -1.399999976158142,
+        -0.10750913619995117,
+        2.8974361419677734
+      ],
+      "max": [
+        1.399999976158142,
+        0.5400195121765137,
+        3.231069564819336
+      ],
+      "renderers": 3,
+      "triangles": 2056
+    },
+    {
+      "name": "Electrical",
+      "singleMaterial": "CajaMetalica_001",
+      "min": [
+        -0.20976829528808594,
+        -0.12671232223510742,
+        1.3346893787384033
+      ],
+      "max": [
+        0.19272518157958984,
+        0.06489276885986328,
+        1.9726288318634033
+      ],
+      "renderers": 1,
+      "triangles": 210
+    },
+    {
+      "name": "FireCabinet",
+      "singleMaterial": "CajaExtintor_001",
+      "min": [
+        -0.24006319046020508,
+        -0.1261582374572754,
+        1.1181294918060303
+      ],
+      "max": [
+        0.25658750534057617,
+        0.2333221435546875,
+        2.026987314224243
+      ],
+      "renderers": 1,
+      "triangles": 198
+    },
+    {
+      "name": "Train",
+      "singleMaterial": null,
+      "min": [
+        -12.498112678527832,
+        -2.00443959236145,
+        -1.0224186182022095
+      ],
+      "max": [
+        12.48453140258789,
+        2.00443959236145,
+        3.3205249309539795
+      ],
+      "renderers": 13,
+      "triangles": 195747
+    },
+    {
+      "name": "Track",
+      "singleMaterial": null,
+      "min": [
+        -16.0,
+        -2.5561587810516357,
+        -1.462404727935791
+      ],
+      "max": [
+        16.0,
+        2.5561587810516357,
+        -0.0262453556060791
+      ],
+      "renderers": 4,
+      "triangles": 3570
+    },
+    {
+      "name": "Kiosk",
+      "singleMaterial": "erwe35w35365yeyeyety5335_001",
+      "min": [
+        -0.3673515319824219,
+        -0.2681264877319336,
+        0.0
+      ],
+      "max": [
+        0.3673515319824219,
+        0.2681264877319336,
+        1.850000023841858
+      ],
+      "renderers": 1,
+      "triangles": 88
+    },
+    {
+      "name": "PowerCabinet",
+      "singleMaterial": "power_box_01",
+      "min": [
+        -0.8710403442382812,
+        -0.7533369064331055,
+        0.0
+      ],
+      "max": [
+        0.8710422515869141,
+        0.7533369064331055,
+        1.9000000953674316
+      ],
+      "renderers": 1,
+      "triangles": 21272
+    },
+    {
+      "name": "Compressor",
+      "singleMaterial": null,
+      "min": [
+        -0.3298187255859375,
+        -0.9236850738525391,
+        0.0
+      ],
+      "max": [
+        0.3298187255859375,
+        0.9236850738525391,
+        1.2999999523162842
+      ],
+      "renderers": 2,
+      "triangles": 79042
+    }
+  ]
+}

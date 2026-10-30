@@ -22,7 +22,9 @@ try {
             if ($TestFilter.Contains('"')) { throw 'TestFilter cannot contain double quotes' }
             $arguments += @('-testFilter', ('"' + $TestFilter + '"'))
         }
-        $process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -Wait -WindowStyle Hidden
+        $process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -WindowStyle Hidden
+        # Wait for this editor, not a shared licensing child used by another session.
+        $process.WaitForExit()
         if ($process.ExitCode -ne 0 -or -not (Test-Path -LiteralPath $result)) { throw "$mode did not complete successfully. Read TestResults/$mode.log." }
         [xml]$report = Get-Content -LiteralPath $result
         if ($report.'test-run'.result -ne 'Passed' -or [int]$report.'test-run'.total -eq 0) { throw "$mode tests failed or no tests ran" }

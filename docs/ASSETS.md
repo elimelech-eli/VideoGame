@@ -47,3 +47,14 @@ The character screen renders the existing fitted operative prefab in an isolated
 Tools/Art/create_loadout_weapons.py authors the handgun (1,348 triangles), rifle (2,344), sword (532) and shield (596) in pinned Blender 4.5.9. Applied bevels, weighted normals and triangulated mesh data are exported through Art/Weapons/*.json. LoadoutWeaponAssets rebuilds committed Unity mesh assets/materials/prefabs; runtime requires no Blender. Each prop passed the game deliverable audit (Art/Weapons/audit.json), and the matcap/silhouette review was inspected. These are original project meshes with shared graphite/ivory/cyan materials; no proprietary game models were used. They are shared by the character portrait, world pickups and the animated in-mission character. PlayerWeaponAnimation attaches them to the sampled hand poses and layers per-hand actions over the existing locomotion clips.
 
 The same original asset generator also creates standalone helmet (1,140 triangles), armor (952), backpack (756) and credit-token stack (1,452) pickup meshes. These passed individual game deliverable audits in Art/Weapons/audit.json. World drops reuse the four weapon prefabs and these four pickup prefabs; they have separate rarity rings and no runtime-generated box meshes. The staged isometric review is images/loot-drops.png.
+
+## Approved BiotechLab environment
+
+Agata Wilczek�s Sci-fi lab (CC-BY-4.0) now supplies the normal BiotechLab architecture and source furnishings. Adaptation, source hash and replacement-display notices are in `Assets/Game/Resources/LabReview/CREDITS.md` and `manifest.json`. Assembly and limitations are in `docs/LAB_BIOME_INTEGRATION.md`. Existing interactive hazard art remains in use.
+
+Lab biome melee and regular ranged replacements: see [Lab enemy sources and attribution](LAB_ENEMIES.md).
+
+## Transit station
+
+Credited source architecture, train and equipment: [Transit credits](../Assets/Game/Resources/Transit/CREDITS.md). Integration contract: [Transit biome](TRANSIT_BIOME.md).
+

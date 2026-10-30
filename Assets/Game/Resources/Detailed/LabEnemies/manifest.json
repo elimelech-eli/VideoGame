@@ -1,0 +1,207 @@
+{
+  "LabSpider": {
+    "materials": [
+      {
+        "name": "spidey_Baked",
+        "id": "m00",
+        "glass": false,
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Roughness": "m00_Roughness.png",
+          "Metallic": "m00_Metallic.png",
+          "Normal": "m00_Normal.png"
+        }
+      },
+      {
+        "name": "weapon_Baked_Baked",
+        "id": "m01",
+        "glass": false,
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Roughness": "m01_Roughness.png",
+          "Metallic": "m01_Metallic.png",
+          "Normal": "m01_Normal.png"
+        }
+      },
+      {
+        "name": "Medical red enamel",
+        "id": "m02",
+        "glass": false,
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Roughness": "m02_Roughness.png",
+          "Metallic": "m02_Metallic.png"
+        }
+      }
+    ],
+    "bones": 13,
+    "triangles": 18754
+  },
+  "LabHazmat": {
+    "materials": [
+      {
+        "name": "Color.001",
+        "id": "m00",
+        "glass": false,
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Roughness": "m00_Roughness.png",
+          "Metallic": "m00_Metallic.png",
+          "Normal": "m00_Normal.png"
+        }
+      },
+      {
+        "name": "H_BROW",
+        "id": "m01",
+        "glass": false,
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Roughness": "m01_Roughness.png",
+          "Metallic": "m01_Metallic.png"
+        }
+      },
+      {
+        "name": "H_SHIRT",
+        "id": "m02",
+        "glass": false,
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Roughness": "m02_Roughness.png",
+          "Metallic": "m02_Metallic.png",
+          "Normal": "m02_Normal.png"
+        }
+      },
+      {
+        "name": "H_GLOVE",
+        "id": "m03",
+        "glass": false,
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Roughness": "m03_Roughness.png",
+          "Metallic": "m03_Metallic.png",
+          "Normal": "m03_Normal.png"
+        }
+      },
+      {
+        "name": "H_BOOT",
+        "id": "m04",
+        "glass": false,
+        "maps": {
+          "Albedo": "m04_Albedo.png",
+          "Roughness": "m04_Roughness.png",
+          "Metallic": "m04_Metallic.png",
+          "Normal": "m04_Normal.png"
+        }
+      },
+      {
+        "name": "H_VISOR",
+        "id": "m05",
+        "glass": true,
+        "maps": {
+          "Albedo": "m05_Albedo.png",
+          "Roughness": "m05_Roughness.png",
+          "Metallic": "m05_Metallic.png",
+          "Normal": "m05_Normal.png"
+        }
+      },
+      {
+        "name": "H_MASK",
+        "id": "m06",
+        "glass": false,
+        "maps": {
+          "Albedo": "m06_Albedo.png",
+          "Roughness": "m06_Roughness.png",
+          "Metallic": "m06_Metallic.png",
+          "Normal": "m06_Normal.png"
+        }
+      },
+      {
+        "name": "Metal.001",
+        "id": "m07",
+        "glass": false,
+        "maps": {
+          "Albedo": "m07_Albedo.png",
+          "Roughness": "m07_Roughness.png",
+          "Metallic": "m07_Metallic.png",
+          "Normal": "m07_Normal.png"
+        }
+      },
+      {
+        "name": "H_Tube",
+        "id": "m08",
+        "glass": false,
+        "maps": {
+          "Albedo": "m08_Albedo.png",
+          "Roughness": "m08_Roughness.png",
+          "Metallic": "m08_Metallic.png"
+        }
+      },
+      {
+        "name": "H_EYE",
+        "id": "m09",
+        "glass": false,
+        "maps": {
+          "Albedo": "m09_Albedo.png",
+          "Roughness": "m09_Roughness.png",
+          "Metallic": "m09_Metallic.png"
+        }
+      },
+      {
+        "name": "H_FACE",
+        "id": "m10",
+        "glass": false,
+        "maps": {
+          "Albedo": "m10_Albedo.png",
+          "Roughness": "m10_Roughness.png",
+          "Metallic": "m10_Metallic.png"
+        }
+      },
+      {
+        "name": "H_HARDHAT",
+        "id": "m11",
+        "glass": false,
+        "maps": {
+          "Albedo": "m11_Albedo.png",
+          "Roughness": "m11_Roughness.png",
+          "Metallic": "m11_Metallic.png",
+          "Normal": "m11_Normal.png"
+        }
+      },
+      {
+        "name": "H_SUIT",
+        "id": "m12",
+        "glass": false,
+        "maps": {
+          "Albedo": "m12_Albedo.png",
+          "Roughness": "m12_Roughness.png",
+          "Metallic": "m12_Metallic.png",
+          "Normal": "m12_Normal.png"
+        }
+      },
+      {
+        "name": "H_VISOR2",
+        "id": "m13",
+        "glass": true,
+        "maps": {
+          "Albedo": "m13_Albedo.png",
+          "Roughness": "m13_Roughness.png",
+          "Metallic": "m13_Metallic.png",
+          "Normal": "m13_Normal.png"
+        }
+      },
+      {
+        "name": "H_VALVE",
+        "id": "m14",
+        "glass": false,
+        "maps": {
+          "Albedo": "m14_Albedo.png",
+          "Roughness": "m14_Roughness.png",
+          "Metallic": "m14_Metallic.png",
+          "Normal": "m14_Normal.png"
+        }
+      }
+    ],
+    "bones": 67,
+    "triangles": 61192
+  }
+}
