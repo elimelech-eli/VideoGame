@@ -39,3 +39,7 @@ Models decorate the existing gameplay collision shapes. Scenery is nonblocking i
 Agata Wilczek�s Sci-fi lab (CC-BY-4.0) now supplies the normal BiotechLab architecture and source furnishings. Adaptation, source hash and replacement-display notices are in `Assets/Game/Resources/LabReview/CREDITS.md` and `manifest.json`. Assembly and limitations are in `docs/LAB_BIOME_INTEGRATION.md`. Existing interactive hazard art remains in use.
 
 Lab biome melee and regular ranged replacements: see [Lab enemy sources and attribution](LAB_ENEMIES.md).
+
+## Transit station
+
+Credited source architecture, train and equipment: [Transit credits](../Assets/Game/Resources/Transit/CREDITS.md). Integration contract: [Transit biome](TRANSIT_BIOME.md).

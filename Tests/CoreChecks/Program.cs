@@ -54,6 +54,18 @@ static class Checks
         Check(randomRecipes.Select(r => r.Biome).Distinct().Count() == 6, "Random biomes missing");
         Check(randomRecipes.Select(r => r.Rooms).Distinct().OrderBy(n => n).SequenceEqual(new[] {6,10,20}), "Random sizes missing");
         Check(randomRecipes.All(r => new Deployment(r.Seed).Rooms == r.Rooms && new Deployment(r.Seed).Biome == r.Biome), "Recipe not reproducible");
+        for(int seed=-500;seed<500;seed++)foreach(int count in new[]{6,10,20})
+        {
+            var station=MapLayout.Generate(seed,count);var rail=TransitLayout.Reserve(station);
+            var same=TransitLayout.Reserve(MapLayout.Generate(seed,count));
+            Check(rail.X==same.X&&rail.Z==same.Z&&rail.RoomIndex==same.RoomIndex,"Unstable railway reservation");
+            Check(rail.RoomIndex>=0&&rail.RoomIndex<count,"Missing platform room");
+            Check(station.All(r=>r.Y*20+r.Size/2f<rail.Z-Railway.Depth/2),"Railway intersects room envelope");
+            Check(station.All(r=>r.Y*20<=rail.Z-14),"Railway is not exterior");
+            Check(TransitLayout.Role(0,seed,rail)==StationRole.TicketHall,"Arrival lacks ticket hall");
+            Check(station.Select((r,i)=>TransitLayout.Role(i,seed,rail)).Distinct().Count()>=3,"Station room roles lack variety");
+            Check(Railway.Width>24.983f&&Railway.Depth>4.01f,"Train does not fit reserved feature");
+        }
         Console.WriteLine($"PASS: {assertions} assertions; mission lifecycle, replay, failure, and 1,000 procedural seeds.");
     }
 }
