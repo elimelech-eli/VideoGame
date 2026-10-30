@@ -52,6 +52,10 @@ namespace VideoGame
         }
         public void Act(string state)
         {
+            if (state == "Dash" && GetComponentInParent<Pilot>() != null)
+            {
+                Dash(actor.forward); return;
+            }
             if (Dead || Player[state] == null) return;
             if (Player[state].layer == 1)
             {
@@ -64,8 +68,21 @@ namespace VideoGame
             Player.CrossFade(state, state == "Death" ? .08f : .045f);
             Player[state].time = 0;
         }
+        public void Dash(Vector3 direction)
+        {
+            if (Dead) return;
+            Vector3 local = actor.InverseTransformDirection(direction);
+            string stride = Mathf.Abs(local.x) > Mathf.Abs(local.z) ? local.x > 0 ? "RunRight" : "RunLeft" : local.z > 0 ? "RunForward" : "RunBack";
+            CurrentState = "Dash";
+            actionUntil = Time.time + DodgeVisual.Duration;
+            Player[stride].speed = Player[stride].length / DodgeVisual.Duration;
+            Player.CrossFade(stride, .025f); Player[stride].time = 0;
+            var visual = GetComponent<DodgeVisual>() ?? gameObject.AddComponent<DodgeVisual>();
+            visual.Begin(direction);
+        }
         public void Revive()
         {
+            GetComponent<DodgeVisual>()?.Cancel();
             if (recoil > 0) transform.localPosition = recoilRest;
             recoil = 0;
             Dead = false; actionUntil = 0; previous = actor.position;
