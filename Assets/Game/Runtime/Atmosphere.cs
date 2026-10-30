@@ -27,7 +27,7 @@ namespace VideoGame
                 var profile=BiomeProfile.Get(biome);
                 KeyLight.color=profile.Key;KeyLight.intensity=profile.KeyIntensity;
                 RenderSettings.ambientLight=profile.Ambient;RenderSettings.fogColor=profile.Fog;RenderSettings.fogDensity=profile.FogDensity;
-                if(biome==BiomeId.BiotechLab)
+                if(biome==BiomeId.BiotechLab||biome==BiomeId.Transit)
                 {
                     RenderSettings.fog=false;RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;
                     RenderSettings.ambientSkyColor=new Color(.065f,.095f,.13f);RenderSettings.ambientEquatorColor=new Color(.025f,.04f,.055f);RenderSettings.ambientGroundColor=new Color(.012f,.018f,.025f);

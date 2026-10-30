@@ -40,7 +40,7 @@ namespace VideoGame
             {
                 var game = new GameObject("Prototype").AddComponent<Prototype>();
                 bool capture = false;
-                foreach(string variable in new[]{"POC_LAB_MISSION","POC_LAB_REVIEW","POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS","POC_CAPTURE_FEEDBACK","POC_CAPTURE_BIOMES"})
+                foreach(string variable in new[]{"POC_TRANSIT_MISSION","POC_LAB_MISSION","POC_LAB_REVIEW","POC_CAPTURE_SCREEN","POC_CAPTURE_ANIMATION","POC_CAPTURE_SECTORS","POC_CAPTURE_ROSTER","POC_CAPTURE_MENUS","POC_CAPTURE_FEEDBACK","POC_CAPTURE_BIOMES"})
                     capture |= !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(variable));
                 if(!capture) game.Menus.OpenMain(false,true);
             }
@@ -92,6 +92,7 @@ namespace VideoGame
             BuildHub();
             Menus = gameObject.AddComponent<MenuFlow>();
             Debug.Log("POC_READY: hub, player and mission terminal initialized.");
+            if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_TRANSIT_MISSION")))gameObject.AddComponent<TransitMissionCapture>();
             if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_LAB_MISSION")))gameObject.AddComponent<LabMissionCapture>();
             if(!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("POC_CAPTURE_BIOMES")))gameObject.AddComponent<BiomeCapture>();
             string feedbackCapture = System.Environment.GetEnvironmentVariable("POC_CAPTURE_FEEDBACK");
@@ -264,6 +265,8 @@ namespace VideoGame
             Music.SetBattle(true); Ambience.SetBattle(true);
             ResetWorld();
             var rooms = Layout = MapLayout.Generate(Seed,ActiveDeployment.Rooms);
+            if(ActiveBiome==BiomeId.Transit)
+            {var transit=GetComponent<TransitBiome>()??gameObject.AddComponent<TransitBiome>();transit.Begin(rooms,world);}
             var centers = new List<Vector3>();
             var random = new System.Random(Seed);
             terminal = new Vector3(-4, .5f, -4);
@@ -282,7 +285,7 @@ namespace VideoGame
                 float corner = rooms[i].Size / 2f - 2.5f;
                 int turn = random.Next(4);
                 Quaternion dressing = Quaternion.Euler(0, turn * 90, 0);
-                if(ActiveBiome!=BiomeId.BiotechLab)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
+                if(ActiveBiome!=BiomeId.BiotechLab&&ActiveBiome!=BiomeId.Transit)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i != 0) SpawnDestructible(center + dressing * new Vector3(corner, 0, -corner), false);
                 if (i != 0 && rooms[i].Theme != 2) SpawnDestructible(center + dressing * new Vector3(corner - 1.2f, 0, -corner), false);
                 if (i != 0)
@@ -292,7 +295,7 @@ namespace VideoGame
                     SpawnMedicalCache(center + dressing * new Vector3(-corner, 0, -corner));
                 }
                 Physics.SyncTransforms();
-                if(ActiveBiome==BiomeId.BiotechLab)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
+                if(ActiveBiome==BiomeId.BiotechLab||ActiveBiome==BiomeId.Transit)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i == 0) continue;
                 for (int j = 0; j < (i < 4 ? 2 : 1) && initialEnemies<EncounterDirector.PopulationCap; j++)
                 {
