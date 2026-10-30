@@ -71,7 +71,7 @@ namespace VideoGame
             {
                 guardBlend=Mathf.MoveTowards(guardBlend,pilot.Hands.Guarding?1:0,Time.deltaTime*10);
                 braceBlend=Mathf.MoveTowards(braceBlend,pilot.Hands.Bracing?1:0,Time.deltaTime*14);
-                bool casting=motion.Player.IsPlaying("Cast") || motion.CurrentState=="Dash";
+                bool casting=motion.Player.IsPlaying("Cast");
                 Vector3 aim=pilot.transform.position+pilot.transform.forward*22;
                 if(kinds[0]==GearKind.Handgun || kinds[0]==GearKind.Rifle || kinds[1]==GearKind.Handgun)
                     aim=pilot.GunAimPoint(pilot.transform.position+Vector3.up*.25f);
@@ -99,7 +99,8 @@ namespace VideoGame
                 {
                     bool active=Time.time-fired[h]<.2f || SwingAge(h)<SwingDuration || kinds[h]==GearKind.Shield&&guardBlend>.01f || kinds[0]==GearKind.Rifle&&Time.time-fired[0]<.2f;
                     weights[h]=Mathf.MoveTowards(weights[h],casting&&!active?0:1,Time.deltaTime*12);
-                    if(kinds[h]!=GearKind.Sword || casting)PoseArm(h,aim,weights[h]);
+                    float evade=GetComponent<DodgeVisual>()?.Weight??0;
+                    if(kinds[h]!=GearKind.Sword || casting || evade>0)PoseArm(h,aim,kinds[h]==GearKind.Sword&&!casting?evade:weights[h]);
                     fingers.Apply(h,kinds[h]??(h==1&&kinds[0]==GearKind.Rifle?GearKind.Rifle:(GearKind?)null),bones[h==0?"hand_R":"hand_L"].rotation*Basis(h));
                 }
             }
@@ -122,6 +123,16 @@ namespace VideoGame
                 offset.z-=block*.08f;local=Quaternion.Euler(Mathf.Lerp(20,-10,guardBlend)+block*12,-10,Mathf.Lerp(-15,5,guardBlend));
             }
             else offset=new Vector3(sign*.30f,-.61f,.02f);
+            // Keep the actual equipped silhouette through the evade, including
+            // the rifle support hand and the shield, rather than dropping both arms.
+            float evade=GetComponent<DodgeVisual>()?.Weight??0;
+            if(!support)
+            {
+                offset.z-=evade*(IsGun(kind) ? .12f : .06f);
+                offset.y-=evade*.07f;
+                if(kind==GearKind.Shield)offset=Vector3.Lerp(offset,new Vector3(-.36f,-.10f,.29f),evade);
+                if(kind==GearKind.Sword)local*=Quaternion.Euler(-evade*30,0,0);
+            }
             bool gun=kind==GearKind.Handgun || kind==GearKind.Rifle;
             if(gun || support)
             {
@@ -162,6 +173,7 @@ namespace VideoGame
             else if(support)wrist.rotation=rifleRotation*Quaternion.Inverse(gripBasis);
             upper.localRotation=Quaternion.Slerp(a,upper.localRotation,weight);lower.localRotation=Quaternion.Slerp(b,lower.localRotation,weight);wrist.localRotation=Quaternion.Slerp(c,wrist.localRotation,weight);
         }
+        static bool IsGun(GearKind? kind)=>kind==GearKind.Rifle||kind==GearKind.Handgun;
         float AttackWeight(int hand)=>Ease(SwingAge(hand)/.06f)*Ease((SwingDuration-SwingAge(hand))/.12f);
         static float Ease(float t)=>Mathf.SmoothStep(0,1,Mathf.Clamp01(t));
         static float Pulse(float age,float duration)=>age>=0&&age<duration?Mathf.Pow(1-age/duration,2):0;

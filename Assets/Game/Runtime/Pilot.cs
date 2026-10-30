@@ -28,6 +28,7 @@ namespace VideoGame
             controller.enabled = true;
             destination = null;
             dashUntil = 0;
+            Motion?.GetComponent<DodgeVisual>()?.Cancel();
         }
         Vector3 MousePoint()
         {
@@ -72,7 +73,7 @@ namespace VideoGame
             {
                 dashDirection = movement.sqrMagnitude > .01f ? movement.normalized : facing;
                 dashUntil = Time.time + .16f; dashAt = Time.time + .8f; destination = null;
-                Motion.Act("Dash");
+                Motion.Dash(dashDirection);
             }
             Vector3 velocity = Time.time < dashUntil ? dashDirection * 22 : movement * (7*Prototype.Instance.Equipment.Profile.Speed);
             // Refuse steps beyond a floor edge; the same guard applies during a dash.
