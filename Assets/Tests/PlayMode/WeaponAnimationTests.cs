@@ -58,7 +58,7 @@ public sealed class WeaponAnimationTests
                     if(definition==null){Assert.IsNull(weapon);continue;}
                     Assert.IsNotNull(weapon);Assert.Greater(weapon.GetComponentsInChildren<MeshRenderer>().Count(r=>r.enabled),0);
                     var hand=game.Player.Motion.GetComponentsInChildren<Transform>().Single(t=>t.name==(h==0?"hand_R":"hand_L"));
-                    Assert.Less(Vector3.Distance(hand.position,weapon.position),.001f);Assert.IsFalse(float.IsNaN(weapon.rotation.x));
+                    Assert.Less(Vector3.Distance(game.Player.Weapons.Grip(h),weapon.position),.001f);Assert.Less(Vector3.Distance(hand.position,weapon.position),.16f);Assert.IsFalse(float.IsNaN(weapon.rotation.x));
                 }
             }
         }
@@ -86,11 +86,11 @@ public sealed class WeaponAnimationTests
     [UnityTest] public IEnumerator SwordContactHasWindupHitsOnceAndPausesWithItsAnimation()
     {
         Loadout("sword","shield");yield return null;
-        var enemy=game.SpawnDrone(game.Player.transform.position+game.Player.transform.forward*2,false);enemy.enabled=false;Physics.SyncTransforms();
+        var enemy=game.SpawnDrone(game.Player.transform.position+game.Player.transform.forward*1.6f,false);enemy.enabled=false;Physics.SyncTransforms();
         float health=enemy.Health;game.Player.Hands.Tick(true,false,.01f);Assert.AreEqual(health,enemy.Health);Assert.IsTrue(game.Player.Hands.HasPendingMelee(0));
         yield return new WaitForSeconds(.07f);Capture("sword-windup");game.Equipment.Open();Quaternion pose=game.Player.Weapons.Weapon(0).rotation;
         yield return new WaitForSecondsRealtime(.2f);Assert.AreEqual(health,enemy.Health);Assert.AreEqual(pose,game.Player.Weapons.Weapon(0).rotation);
-        game.Menus.Resume();yield return new WaitForSeconds(.1f);game.Player.Hands.Tick(false,false,.01f);yield return null;Capture("sword-contact");
+        game.Menus.Resume();yield return new WaitForSeconds(PlayerWeaponAnimation.SwordContactTime);game.Player.Hands.Tick(false,false,.01f);yield return null;Capture("sword-contact");
         Assert.Less(enemy.Health,health);float after=enemy.Health;game.Player.Hands.Tick(false,false,.01f);Assert.AreEqual(after,enemy.Health);Assert.IsFalse(game.Player.Hands.HasPendingMelee(0));
         yield return new WaitForSeconds(.6f);game.Player.Hands.Tick(true,false,.01f);Assert.IsTrue(game.Player.Hands.HasPendingMelee(0));
         game.Player.Damage(10000);game.Player.Hands.Tick(false,false,.01f);Assert.IsFalse(game.Player.Hands.HasPendingMelee(0));Assert.AreEqual(after,enemy.Health);
@@ -98,9 +98,23 @@ public sealed class WeaponAnimationTests
     [UnityTest] public IEnumerator DisablingPresentationDoesNotDisableAuthoritativeAttacks()
     {
         Loadout("sword",null);game.Player.Weapons.enabled=false;
-        var enemy=game.SpawnDrone(game.Player.transform.position+game.Player.transform.forward*2,false);enemy.enabled=false;Physics.SyncTransforms();
-        float health=enemy.Health;game.Player.Hands.Tick(true,false,.01f);yield return new WaitForSeconds(.18f);game.Player.Hands.Tick(false,false,.01f);
+        var enemy=game.SpawnDrone(game.Player.transform.position+game.Player.transform.forward*1.6f,false);enemy.enabled=false;Physics.SyncTransforms();
+        float health=enemy.Health;game.Player.Hands.Tick(true,false,.01f);yield return new WaitForSeconds(PlayerWeaponAnimation.SwordContactTime+.03f);game.Player.Hands.Tick(false,false,.01f);
         Assert.Less(enemy.Health,health);
+    }
+    [UnityTest] public IEnumerator AcceptedSwordTurnsTheLiveTorsoAndShiftsWeight()
+    {
+        Loadout("sword","shield");yield return null;yield return null;
+        var bones=game.Player.Motion.GetComponentsInChildren<Transform>();var chest=bones.Single(t=>t.name=="chest");var hips=bones.Single(t=>t.name=="hips");
+        Quaternion ready=chest.rotation;Vector3 pelvis=hips.position;
+        game.Player.Hands.Tick(true,false,.01f);yield return new WaitForSeconds(PlayerWeaponAnimation.SwordContactTime);yield return null;
+        Assert.Greater(Quaternion.Angle(ready,chest.rotation),25,"The rendered runtime must preserve the authored body turn.");Assert.Greater(Vector3.Distance(pelvis,hips.position),.03f);
+    }
+    [UnityTest] public IEnumerator SwordDoesNotDamageEnemiesBeyondVisibleReach()
+    {
+        Loadout("sword",null);var enemy=game.SpawnDrone(game.Player.transform.position+game.Player.transform.forward*2.6f,false);enemy.enabled=false;
+        float health=enemy.Health;game.Player.Hands.Tick(true,false,.01f);yield return new WaitForSeconds(PlayerWeaponAnimation.SwordContactTime+.03f);game.Player.Hands.Tick(false,false,.01f);
+        Assert.AreEqual(health,enemy.Health,"The old broad 2.8m query granted phantom sword hits.");
     }
     [UnityTest] public IEnumerator ReloadAnimatesOneHandWithoutPreventingTheOtherGunFromFiring()
     {
@@ -119,7 +133,7 @@ public sealed class WeaponAnimationTests
         Assert.Greater(Quaternion.Angle(before,rig.Weapon(1).rotation),5);game.Player.Hands.Tick(true,false,.01f);yield return null;Capture("mixed-attack");
         Assert.AreEqual(1,game.Player.Hands.MainShots);Assert.AreEqual(1,game.Player.Hands.OffShots);Assert.Less(rig.SwingAge(1),PlayerWeaponAnimation.SwingDuration);
         Loadout("sword","sword");yield return null;game.Player.Hands.Tick(true,true,.01f);
-        Assert.IsTrue(game.Player.Hands.HasPendingMelee(0));Assert.IsTrue(game.Player.Hands.HasPendingMelee(1));yield return new WaitForSeconds(.18f);
+        Assert.IsTrue(game.Player.Hands.HasPendingMelee(0));Assert.IsTrue(game.Player.Hands.HasPendingMelee(1));yield return new WaitForSeconds(PlayerWeaponAnimation.SwordContactTime+.03f);
         game.Player.Hands.Tick(false,false,.01f);yield return null;Capture("dual-sword-contact");
         Assert.IsFalse(game.Player.Hands.HasPendingMelee(0));Assert.IsFalse(game.Player.Hands.HasPendingMelee(1));
         Assert.AreEqual(1,game.Player.Hands.MainShots);Assert.AreEqual(1,game.Player.Hands.OffShots);
@@ -130,23 +144,45 @@ public sealed class WeaponAnimationTests
         // Feature-demo capture only: isolated profile, explicit loadout changes,
         // disabled AI, fixed 30 Hz capture clock, zoomed real gameplay camera.
         string frames="TestResults/weapon-demo";Directory.CreateDirectory(frames);
+        var capture=game.gameObject.AddComponent<CombatReviewFrame>();
+        var pad=InputSystem.AddDevice<Gamepad>();
         int previous=Time.captureFramerate;float size=game.Player.View.orthographicSize;
         try
         {
             Time.captureFramerate=30;game.Player.View.orthographicSize=3;
-            var enemy=game.SpawnDrone(game.Player.transform.position+game.Player.transform.forward*2,false);enemy.SetLevel(20);enemy.enabled=false;
+            game.Menus.Settings.AimAssist=false;
+            // Stage a real controller aim before freezing player movement. Mouse
+            // rays in this room hit foreground scenery, which is misleading in a
+            // close-up intended to inspect the weapon animation itself.
+            InputSystem.QueueStateEvent(pad,new GamepadState{rightStick=Vector2.down});game.Player.enabled=true;yield return null;game.Player.enabled=false;
+            var enemy=game.SpawnDrone(game.Player.transform.position+game.Player.transform.forward*1.6f,false);enemy.SetLevel(20);enemy.enabled=false;
             int frame=0;
-            foreach(var main in new[]{"sword","pistol"})
+            foreach(var main in new[]{"sword","pistol","rifle","dual"})
             {
-                Loadout(main,"shield");yield return null;
+                Loadout(main=="dual"?"sword":main,main=="rifle"?null:main=="dual"?"sword":"shield");yield return null;
+                Vector3 aim=game.Player.GunAimPoint(game.Player.transform.position+Vector3.up*.25f)-game.Player.transform.position;aim.y=0;
+                Assert.Greater(Vector3.Dot(aim.normalized,game.Player.transform.forward),.98f);
                 for(int n=0;n<30;n++,frame++)
                 {
-                    game.Player.Hands.Tick(main=="pistol" || n==2 || n==20,true,1/30f);
-                    yield return null;game.CaptureFrame(frames+"/"+frame.ToString("D3")+".png");
+                    game.Player.Hands.Tick(main=="pistol" || main=="rifle" || n==2,main!="dual"||n==2,1/30f);
+                    capture.Pending=()=>CaptureReviewFrame(frame);
+                    yield return null;
                 }
             }
         }
-        finally{Time.captureFramerate=previous;game.Player.View.orthographicSize=size;}
+        finally{Time.captureFramerate=previous;game.Player.View.orthographicSize=size;Object.Destroy(capture);InputSystem.RemoveDevice(pad);}
+    }
+    void CaptureReviewFrame(int frame)
+    {
+        string frames="TestResults/weapon-demo";
+            game.CaptureFrame(frames+"/"+frame.ToString("D3")+".png");
+                    var cameraObject=new GameObject("Combat review front camera");var camera=cameraObject.AddComponent<Camera>();camera.CopyFrom(game.Player.View);camera.enabled=false;camera.orthographicSize=1.6f;camera.cullingMask=1<<29;camera.backgroundColor=new Color(.035f,.05f,.07f);
+                    var rendered=game.Player.GetComponentsInChildren<Renderer>().Concat(game.Player.Weapons.Weapon(0)?.GetComponentsInChildren<Renderer>()??new Renderer[0]).Concat(game.Player.Weapons.Weapon(1)?.GetComponentsInChildren<Renderer>()??new Renderer[0]).Select(r=>r.gameObject).Distinct().ToArray();var layers=rendered.Select(o=>o.layer).ToArray();for(int i=0;i<rendered.Length;i++)rendered[i].layer=29;
+                    camera.transform.position=game.Player.transform.position+game.Player.transform.forward*4+Vector3.up*.8f;camera.transform.LookAt(game.Player.transform.position);
+                    var target=new RenderTexture(640,640,24);camera.targetTexture=target;camera.Render();var old=RenderTexture.active;RenderTexture.active=target;
+                    var image=new Texture2D(640,640,TextureFormat.RGB24,false);image.ReadPixels(new Rect(0,0,640,640),0,0);image.Apply();Directory.CreateDirectory("TestResults/combat-front");File.WriteAllBytes("TestResults/combat-front/"+frame.ToString("D3")+".png",image.EncodeToPNG());
+                    for(int i=0;i<rendered.Length;i++)rendered[i].layer=layers[i];
+                    RenderTexture.active=old;camera.targetTexture=null;target.Release();Object.Destroy(target);Object.Destroy(image);Object.Destroy(cameraObject);
     }
     [UnityTest] public IEnumerator StationaryArmCorrectionDoesNotAccumulateDriftOrJitter()
     {
@@ -166,4 +202,13 @@ public sealed class WeaponAnimationTests
             if(pass==0)baseline=reversals;else Assert.LessOrEqual(reversals,baseline+1,"Correction added alternating acceleration jitter.");
         }
     }
+}
+
+// Test-only capture runs after the actual pose and effects updates. It does not
+// step animation or manufacture poses, and does not claim a real-time FPS rate.
+[DefaultExecutionOrder(1000)]
+public sealed class CombatReviewFrame : MonoBehaviour
+{
+    public System.Action Pending;
+    void LateUpdate(){var action=Pending;Pending=null;action?.Invoke();}
 }

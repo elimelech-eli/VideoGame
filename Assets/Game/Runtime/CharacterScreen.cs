@@ -35,26 +35,132 @@ namespace VideoGame
         readonly Color cyan=new Color(.15f,.88f,.95f),ink=new Color(.025f,.04f,.055f),muted=new Color(.57f,.65f,.7f);
         readonly List<Control> controls=new List<Control>();
         sealed class Control {public string Id;public Rect Rect;public Action Action;public bool Enabled;}
-        bool descending=true;
+        int sortMode; // 0: saved manual order, 1: quality, 2: name
+        readonly List<DropTarget> dropTargets=new List<DropTarget>();
+        sealed class DropTarget {public Rect Rect;public string Item;public int Slot=-1;public bool Bag;public int Cell=-1;}
+        GearItem dragItem;
+        int dragSlot=-1;
+        bool dragging;
+        Vector2 dragStart;
+        public bool IsDragging => dragging;
+        void OnApplicationFocus(bool focus){if(!focus)CancelDrag();}
+        void OnDisable()=>CancelDrag();
+        public void CancelDrag(){dragItem=null;dragSlot=-1;dragging=false;}
+        // Both pointer and test drivers use these transactions. Identity, power,
+        // capacity and mission restrictions stay owned by GearProfile.
+        public bool DropOnGear(string id,GearSlot slot)
+        {
+            if(Storage!=CharacterStorage.Inventory)return false;
+            string error=Profile.Equip(id,slot,game.InMission);
+            Status=error??"Equipment updated.";
+            if(error!=null)return false;
+            SelectedItem=null;selectedEquipped=-1;game.Equipment.Changed();return true;
+        }
+        public bool DropOnInventory(string id,int sourceSlot,string targetId=null,int emptyCell=-1)
+        {
+            if(Storage!=CharacterStorage.Inventory)return false;
+            Profile.NormalizeBagLayout();
+            int destination=targetId==null?emptyCell:Profile.Bag.Find(i=>i.Id==targetId)?.InventorySlot??-1;
+            if(targetId!=null && destination<0 || destination>=Profile.BagCapacity)return false;
+            if(targetId==null && destination>=0 && Profile.Bag.Any(i=>i.InventorySlot==destination))return false;
+            if(sourceSlot>=0)
+            {
+                if(sourceSlot>4 || Profile.Equipped[sourceSlot]?.Id!=id)return false;
+                if(targetId!=null)
+                {
+                    // Exchange with an occupied cell atomically; a full bag is
+                    // legal when the target can replace the equipped item.
+                    string error=Profile.Equip(targetId,(GearSlot)sourceSlot,game.InMission);
+                    if(error!=null){Status=error;return false;}
+                }
+                else if(!Profile.Unequip((GearSlot)sourceSlot,game.InMission))
+                {Status="Cannot unequip: check inventory space and mission restrictions.";return false;}
+            }
+            var item=Profile.Bag.Find(i=>i.Id==id);if(item==null)return false;
+            Profile.NormalizeBagLayout();
+            if(destination<0){destination=0;while(Profile.Bag.Any(i=>i.InventorySlot==destination && i.Id!=id))destination++;}
+            if(!Profile.MoveInBag(id,destination))return false;
+            sortMode=0;SelectedItem=item;selectedEquipped=-1;Status="Inventory arranged. Order is saved.";
+            game.Equipment.Changed();return true;
+        }
+        static Rect SlotRect(GearSlot slot)
+        {
+            switch(slot){case GearSlot.Helmet:return new Rect(815,110,120,120);case GearSlot.Armor:return new Rect(326,265,120,120);case GearSlot.Backpack:return new Rect(815,330,120,120);case GearSlot.MainHand:return new Rect(326,650,120,120);default:return new Rect(815,650,120,120);}
+        }
+        static Rect CellRect(int n)=>new Rect(975+(n%5)*120,225+(n/5)*81,111,74);
+        bool CustomGrid=>Storage==CharacterStorage.Inventory && Filter==CharacterFilter.All && sortMode==0;
+        GearItem ItemAt(List<GearItem> items,int index)=>CustomGrid?items.Find(i=>i.InventorySlot==index):index<items.Count?items[index]:null;
+        void BuildDropTargets()
+        {
+            dropTargets.Clear();
+            foreach(GearSlot slot in Enum.GetValues(typeof(GearSlot)))
+                if(slot!=GearSlot.OffHand || Profile.Equipped[3]?.Design.TwoHanded!=true)
+                    dropTargets.Add(new DropTarget{Rect=SlotRect(slot),Item=Profile.Equipped[(int)slot]?.Id,Slot=(int)slot});
+            if(Storage!=CharacterStorage.Inventory)return;
+            var items=VisibleItems();Page=Math.Min(Page,Math.Max(0,((CustomGrid?Profile.BagCapacity:items.Count)-1)/20));
+            for(int n=0;n<20;n++)
+            {
+                int index=Page*20+n;if(index>=Profile.BagCapacity)continue;
+                dropTargets.Add(new DropTarget{Rect=CellRect(n),Item=ItemAt(items,index)?.Id,Bag=true,Cell=CustomGrid?index:-1});
+            }
+        }
+        void PointerDrag()
+        {
+            var mouse=Mouse.current;if(mouse==null || MoreOpen)return;
+            float scale=Mathf.Min(Screen.width/1600f,Screen.height/900f);
+            Vector2 point=mouse.position.ReadValue();point.y=Screen.height-point.y;
+            point=(point-new Vector2((Screen.width-1600*scale)/2,(Screen.height-900*scale)/2))/scale;
+            if(mouse.leftButton.wasPressedThisFrame)
+            {
+                var hit=dropTargets.LastOrDefault(t=>t.Rect.Contains(point));
+                if(hit==null)return;
+                if(hit.Item==null){if(hit.Slot>=3 && SelectedItem!=null && selectedEquipped<0)ChooseHand((GearSlot)hit.Slot);return;}
+                if(mouse.clickCount.ReadValue()>=2)
+                {if(hit.Slot>=0)UnequipSlot((GearSlot)hit.Slot);else QuickEquip(hit.Item);CancelDrag();return;}
+                if(hit.Slot>=0){SelectedItem=Profile.Equipped[hit.Slot];selectedEquipped=hit.Slot;CompareSlot=(GearSlot)hit.Slot;}
+                else SelectItem(hit.Item);
+                dragItem=SelectedItem;dragSlot=hit.Slot;dragStart=point;
+            }
+            if(mouse.leftButton.isPressed && dragItem!=null && Vector2.Distance(dragStart,point)>6)dragging=true;
+            if(mouse.leftButton.wasReleasedThisFrame && dragItem!=null)
+            {
+                if(dragging)
+                {
+                    var hit=dropTargets.LastOrDefault(t=>t.Rect.Contains(point));
+                    if(hit?.Bag==true)DropOnInventory(dragItem.Id,dragSlot,hit.Item,hit.Cell);
+                    else if(hit!=null && hit.Slot>=0 && dragSlot<0)DropOnGear(dragItem.Id,(GearSlot)hit.Slot);
+                    else Status="Drop cancelled. Items unchanged.";
+                }
+                CancelDrag();
+            }
+        }
+        void Target(Rect rect,string id,int slot=-1,bool bag=false)
+        {
+            if(!dragging)return;
+            bool valid=bag?(dragSlot<0 || !game.InMission && (id!=null?Profile.EquipError(id,(GearSlot)dragSlot,false)==null:Profile.Bag.Count<Profile.BagCapacity)):
+                dragSlot<0 && Profile.EquipError(dragItem.Id,(GearSlot)slot,game.InMission)==null;
+            Outline(rect,valid?new Color(.3f,1,.6f):new Color(.55f,.2f,.2f),rect.Contains(Event.current.mousePosition)?3:1);
+        }
         bool drawingMore;
         float repeatAt;
         int selectedEquipped=-1;
         void Awake(){game=GetComponent<Prototype>();Preview=gameObject.AddComponent<CharacterPreview>();}
         public void RefreshPreview()=>Preview?.Refresh();
-        public bool CloseActions(){if(!MoreOpen)return false;MoreOpen=false;FocusId="more";return true;}
-        public void ResetScreen(){Storage=CharacterStorage.Inventory;Filter=CharacterFilter.All;SelectedItem=null;selectedEquipped=-1;MoreOpen=false;Page=0;FocusId="tab-character";Status="Select an item to inspect and compare it.";RefreshPreview();}
+        public bool CloseActions(){if(dragItem!=null){CancelDrag();return true;}if(!MoreOpen)return false;MoreOpen=false;FocusId="more";return true;}
+        public void ResetScreen(){CancelDrag();Storage=CharacterStorage.Inventory;Filter=CharacterFilter.All;SelectedItem=null;selectedEquipped=-1;MoreOpen=false;Page=0;FocusId="tab-character";Status="Select an item to inspect and compare it.";RefreshPreview();}
         public void SetStorage(CharacterStorage storage)
         {
             if(game.InMission && (storage==CharacterStorage.Stash || storage==CharacterStorage.Vendor)){Status="Stash and vendor services are available at the Nexus.";return;}
-            Storage=storage;Page=0;SelectedItem=null;selectedEquipped=-1;MoreOpen=false;
+            CancelDrag();Storage=storage;Page=0;SelectedItem=null;selectedEquipped=-1;MoreOpen=false;
             FocusId=storage==CharacterStorage.Attributes?"tab-attributes":storage==CharacterStorage.Stash?"storage-stash":storage==CharacterStorage.Vendor?"storage-vendor":"storage-bag";
         }
-        public void SetFilter(CharacterFilter filter){Filter=filter;Page=0;}
+        public void SetFilter(CharacterFilter filter){CancelDrag();Filter=filter;Page=0;}
         public List<GearItem> VisibleItems()
         {
+            Profile.NormalizeBagLayout();
             var list=Storage==CharacterStorage.Stash?Profile.Stash:Storage==CharacterStorage.Vendor?Profile.Shop:Profile.Bag;
             var query=list.Where(i=>Filter==CharacterFilter.All || (Filter==CharacterFilter.Weapons)==GearCatalog.Weapon(i.Design.Kind));
-            return (descending?query.OrderByDescending(i=>i.Quality).ThenByDescending(i=>i.Level).ThenBy(i=>i.Design.Name):query.OrderBy(i=>i.Design.Name)).ThenBy(i=>i.Id).ToList();
+            return sortMode==1?query.OrderByDescending(i=>i.Quality).ThenByDescending(i=>i.Level).ThenBy(i=>i.Design.Name).ToList():sortMode==2?query.OrderBy(i=>i.Design.Name).ToList():query.ToList();
         }
         public bool SelectItem(string id)
         {
@@ -101,7 +207,8 @@ namespace VideoGame
         }
         void Update()
         {
-            if(!Open)return;
+            if(!Open){if(dragItem!=null)CancelDrag();return;}
+            BuildDropTargets();PointerDrag();
             var k=Keyboard.current;var p=Gamepad.current;
             int x=k?.rightArrowKey.isPressed==true || p?.dpad.right.isPressed==true?1:k?.leftArrowKey.isPressed==true || p?.dpad.left.isPressed==true?-1:0;
             int y=k?.downArrowKey.isPressed==true || p?.dpad.down.isPressed==true?1:k?.upArrowKey.isPressed==true || p?.dpad.up.isPressed==true?-1:0;
@@ -133,7 +240,7 @@ namespace VideoGame
         static void Fill(Rect r,Color color){GUI.color=color;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=Color.white;}
         void Outline(Rect r,Color c,float width=1){Fill(new Rect(r.x,r.y,r.width,width),c);Fill(new Rect(r.x,r.yMax-width,r.width,width),c);Fill(new Rect(r.x,r.y,width,r.height),c);Fill(new Rect(r.xMax-width,r.y,width,r.height),c);}
         void Text(Rect r,string text,GUIStyle style,Color? color=null){GUI.contentColor=color??Color.white;GUI.Label(r,text,style);GUI.contentColor=Color.white;}
-        bool Button(string id,Rect rect,string text,Action action,bool enabled=true,bool active=false)
+        bool Button(string id,Rect rect,string text,Action action,bool enabled=true,bool active=false,bool pointer=true)
         {
             enabled=enabled&&(!MoreOpen||drawingMore||id=="more"||id=="close");
             controls.Add(new Control{Id=id,Rect=rect,Action=action,Enabled=enabled});
@@ -142,7 +249,7 @@ namespace VideoGame
             Text(new Rect(rect.x+10,rect.y+8,rect.width-18,rect.height-8),text,label,enabled?Color.white:muted*.65f);
             if(enabled && Event.current.type==EventType.MouseDown && rect.Contains(Event.current.mousePosition))FocusId=id;
             if(!enabled)return false;
-            if(GUI.Button(rect,GUIContent.none,GUIStyle.none)){FocusId=id;action?.Invoke();return true;}return false;
+            if(pointer && GUI.Button(rect,GUIContent.none,GUIStyle.none)){FocusId=id;action?.Invoke();return true;}return false;
         }
         void Bar(Rect r,float fraction,Color c){Fill(r,new Color(.1f,.15f,.18f));Fill(new Rect(r.x,r.y,r.width*Mathf.Clamp01(fraction),r.height),c);}
         void Icon(Rect r,GearKind kind)
@@ -175,7 +282,8 @@ namespace VideoGame
                 Button("close",new Rect(1540,10,42,43),"X",game.Menus.Resume);
                 DrawStats();DrawCharacter();
                 if(Storage==CharacterStorage.Attributes)DrawAttributes();else{DrawInventory();DrawDetails();}
-                Text(new Rect(30,865,1540,28),"ARROWS / D-PAD  NAVIGATE     ENTER / A  SELECT     E / X  EQUIP     I / B / ESC  CLOSE     DRAG CHARACTER TO ROTATE",small,muted);
+                Text(new Rect(30,865,1540,28),"ARROWS / D-PAD  NAVIGATE     ENTER / A  SELECT     E / X  EQUIP     I / B / ESC  CLOSE     DRAG ITEMS TO EQUIP / MOVE",small,muted);
+                if(dragging && dragItem!=null){var r=new Rect(Event.current.mousePosition.x+12,Event.current.mousePosition.y+12,80,80);Fill(r,ink);Icon(r,dragItem.Design.Kind);Outline(r,EquipmentSystem.QualityColor(dragItem.Quality),2);}
             }
             finally{GUI.matrix=matrix;GUI.depth=oldDepth;GUI.color=GUI.contentColor=Color.white;}
         }
@@ -205,21 +313,19 @@ namespace VideoGame
             if(Preview.Texture!=null)GUI.DrawTexture(rect,Preview.Texture,ScaleMode.ScaleToFit,true);
             Text(new Rect(452,809,360,27),"CHARACTER PREVIEW / DRAG TO ROTATE",small,muted);
             Button("rotate-left",new Rect(404,807,40,35),"<",()=>Preview.Rotate(-25));Button("rotate-right",new Rect(850,807,40,35),">",()=>Preview.Rotate(25));
-            if(Event.current.type==EventType.MouseDrag && rect.Contains(Event.current.mousePosition)){Preview.Rotate(-Event.current.delta.x*.7f);Event.current.Use();}
-            Slot(GearSlot.Helmet,new Rect(815,110,120,120));Slot(GearSlot.Armor,new Rect(326,265,120,120));Slot(GearSlot.Backpack,new Rect(815,330,120,120));
-            Slot(GearSlot.MainHand,new Rect(326,650,120,120));Slot(GearSlot.OffHand,new Rect(815,650,120,120));
+            if(dragItem==null && Event.current.type==EventType.MouseDrag && rect.Contains(Event.current.mousePosition)){Preview.Rotate(-Event.current.delta.x*.7f);Event.current.Use();}
+            foreach(GearSlot slot in Enum.GetValues(typeof(GearSlot)))Slot(slot,SlotRect(slot));
         }
         void Slot(GearSlot slot,Rect r)
         {
             var item=Profile.Equipped[(int)slot];string name=slot==GearSlot.Armor?"BODY ARMOR":slot==GearSlot.MainHand?"MAIN HAND":slot==GearSlot.OffHand?"OFF HAND":slot.ToString().ToUpperInvariant();
             Text(new Rect(r.x,r.y-25,150,24),name,small,muted);
             bool reserved=slot==GearSlot.OffHand && Profile.Equipped[3]?.Design.TwoHanded==true;
-            if(!MoreOpen && !reserved && item!=null && Event.current.type==EventType.MouseDown && Event.current.clickCount==2 && r.Contains(Event.current.mousePosition))
-            {UnequipSlot(slot);Event.current.Use();item=Profile.Equipped[(int)slot];}
-            Button("slot-"+slot,r,"",()=>{if(SelectedItem!=null && selectedEquipped<0 && GearCatalog.Weapon(SelectedItem.Design.Kind)&&slot>=GearSlot.MainHand)ChooseHand(slot);else{SelectedItem=item;selectedEquipped=(int)slot;CompareSlot=slot;MoreOpen=false;}},!reserved,CompareSlot==slot&&SelectedItem!=null);
+            Button("slot-"+slot,r,"",()=>{if(SelectedItem!=null && selectedEquipped<0 && GearCatalog.Weapon(SelectedItem.Design.Kind)&&slot>=GearSlot.MainHand)ChooseHand(slot);else{SelectedItem=item;selectedEquipped=(int)slot;CompareSlot=slot;MoreOpen=false;}},!reserved,CompareSlot==slot&&SelectedItem!=null,false);
             if(item!=null){Icon(new Rect(r.x+5,r.y+5,r.width-10,r.height-10),item.Design.Kind);Outline(r,EquipmentSystem.QualityColor(item.Quality),2);}
             else Text(new Rect(r.x+10,r.y+35,r.width-15,70),reserved?"RESERVED\nBY RIFLE":"EMPTY",small,muted);
             Text(new Rect(r.x,r.yMax+5,145,42),item?.Design.Name??"",small);
+            if(!reserved)Target(r,item?.Id,(int)slot);
         }
         void DrawInventory()
         {
@@ -228,22 +334,21 @@ namespace VideoGame
             Button("storage-bag",new Rect(975,135,155,36),"INVENTORY",()=>SetStorage(CharacterStorage.Inventory),true,Storage==CharacterStorage.Inventory);
             Button("storage-stash",new Rect(1140,135,135,36),"STASH",()=>SetStorage(CharacterStorage.Stash),!game.InMission,Storage==CharacterStorage.Stash);
             Button("storage-vendor",new Rect(1285,135,135,36),"VENDOR",()=>SetStorage(CharacterStorage.Vendor),!game.InMission,Storage==CharacterStorage.Vendor);
-            Button("sort",new Rect(1430,135,145,36),descending?"SORT: QUALITY":"SORT: NAME",()=>{descending=!descending;Page=0;});
+            Button("sort",new Rect(1430,135,145,36),sortMode==0?"ORDER: CUSTOM":sortMode==1?"SORT: QUALITY":"SORT: NAME",()=>{CancelDrag();sortMode=(sortMode+1)%3;Page=0;});
             int filter=0;foreach(CharacterFilter f in Enum.GetValues(typeof(CharacterFilter))){var selected=f;Button("filter-"+f,new Rect(975+filter*135,180,125,35),f.ToString().ToUpperInvariant(),()=>SetFilter(selected),true,Filter==f);filter++;}
-            var items=VisibleItems();int pages=Math.Max(1,(items.Count+19)/20);Page=Math.Min(Page,pages-1);
+            var items=VisibleItems();int pages=Math.Max(1,((CustomGrid?Profile.BagCapacity:items.Count)+19)/20);Page=Math.Min(Page,pages-1);
             for(int n=0;n<20;n++)
             {
-                int index=Page*20+n;var r=new Rect(975+(n%5)*120,225+(n/5)*81,111,74);
-                var item=index<items.Count?items[index]:null;
+                int index=Page*20+n;var r=CellRect(n);
+                var item=ItemAt(items,index);
                 bool locked=Storage==CharacterStorage.Inventory && index>=Profile.BagCapacity;
-                if(item==null){Fill(r,new Color(.018f,.031f,.045f));Outline(r,new Color(.1f,.17f,.2f));if(locked)Text(new Rect(r.x+6,r.y+24,r.width-10,45),"LOCKED",small,muted*.6f);continue;}
+                if(item==null){Fill(r,new Color(.018f,.031f,.045f));Outline(r,new Color(.1f,.17f,.2f));if(locked)Text(new Rect(r.x+6,r.y+24,r.width-10,45),"LOCKED",small,muted*.6f);else if(Storage==CharacterStorage.Inventory)Target(r,null,bag:true);continue;}
                 var selected=item;
-                if(!MoreOpen && Event.current.type==EventType.MouseDown && Event.current.clickCount==2 && r.Contains(Event.current.mousePosition))
-                {QuickEquip(selected.Id);Event.current.Use();}
-                Button("item-"+item.Id,r,"",()=>SelectItem(selected.Id),true,SelectedItem?.Id==item.Id);
+                Button("item-"+item.Id,r,"",()=>SelectItem(selected.Id),true,SelectedItem?.Id==item.Id,Storage!=CharacterStorage.Inventory);
                 Icon(new Rect(r.x+18,r.y+2,74,66),item.Design.Kind);Outline(r,EquipmentSystem.QualityColor(item.Quality),SelectedItem?.Id==item.Id?3:1);
                 Text(new Rect(r.x+65,r.y+4,46,22),"Lv "+item.Level,small);
                 Bar(new Rect(r.x+7,r.yMax-7,r.width-14,3),item.Condition/100f,item.Condition<=25?Color.red:EquipmentSystem.QualityColor(item.Quality));
+                if(Storage==CharacterStorage.Inventory)Target(r,item.Id,bag:true);
             }
             if(items.Count==0)Text(new Rect(1000,350,550,60),"No items match this view.",label,muted);
             if(pages>1){Button("prev",new Rect(975,552,70,30),"<",()=>Page=(Page+pages-1)%pages);Text(new Rect(1060,558,280,25),"PAGE "+(Page+1)+" / "+pages,small,muted);Button("next",new Rect(1505,552,70,30),">",()=>Page=(Page+1)%pages);}

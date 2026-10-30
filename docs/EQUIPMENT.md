@@ -59,12 +59,37 @@ LootVisualTests verifies every item type and credit presentation, size/trigger/r
 
 ## In-mission weapon animation
 
-PlayerWeaponAnimation runs after the sampled legacy body animation and recoil update. The existing eleven clips own lower-body movement, dash/cast/hit/death presentation; Pilot and CharacterController alone own displacement and facing. A late two-bone arm layer supplies handgun/rifle aiming and recoil, independent sword swings, shield raise/release/block reactions, reload poses and rifle bracing. Death disables arm correction; dash/cast can fade the arms back to the source pose unless an accepted hand action or guard needs that hand. Requests are evaluated per hand with source-clip/guard/action weights, never from renderer order. Both guns can recoil/reload independently; mixed and dual swords retain separate action clocks. The original prefab rifle renderer is hidden to avoid duplicate weapons.
+The operative now uses seven baked, anatomy-keyed WeaponAnimations clips: mirrored
+sword strikes, handgun/rifle body kick, shield guard/block and rifle brace. These are
+project-authored clips, not motion capture. CombatAnimationBuilder is the reproducible
+editor authoring source. See combat-animation-standard.md and images/combat-and-gear.gif.
 
-Meshes are created on loadout-kind changes, share the existing asset materials and follow each hand's world grip transform after pose composition. Their neutral metre scale stays independent of the capsule's non-uniform scale. No per-frame mesh/material instantiation is needed. Rifle support placement follows the actual right-hand weapon orientation and shifts to its magazine during reload. Source-body sampling and equipment pose controls remain separate from the portrait studio.
+PlayerWeaponAnimation composes these over the eleven existing locomotion/reaction clips.
+Stationary attacks use baked pelvis, spine, legs and planted feet; movement retains the
+source lower body. Pilot/CharacterController alone move and face the actor. WeaponClipLayer
+masks body/arms explicitly; an independent off-hand clip retains its actor-space arm
+directions when the main hand owns torso rotation. Death/dash/cast retain existing ownership.
 
-HandCombat owns the scaled Time.time gameplay clock and consumes inputs once per Update. A sword acceptance records one pending contact at +0.14 seconds, then resolves the existing area/cover query exactly once on the next eligible update. Its 0.50-second visual curve has startup (0..0.12), strike (0.12..0.25) and recovery (0.25..0.50); a tip trail emits only during strike. Damage/cadence are unchanged. Release does not cancel an accepted swing; death, reset and mission return cancel pending contacts. Pausing holds both the pending contact and the pose. No new attack buffer, movement lock or root motion is introduced.
+Sword phases: chamber through 0.12 s, contact at 0.22 s, low follow-through through 0.34 s,
+recovery to 0.68 s; next attack at 0.72 s. Gameplay resolves one pending 1.9 m frontal,
+cover-aware query per hand, independently of rendering. Release does not cancel an accepted
+swing; death/reset/return cancel it and pause freezes it. The old 2.8 m phantom reach and
+thin blade-tip trail are removed. No root motion or new attack buffer is introduced.
 
-Firearm damage still uses the existing authoritative aim query from the pilot anchor, preserving close-cover behavior. Only the tracer/muzzle flash starts at the rendered gun muzzle; disabling presentation does not disable or reposition damage queries. Shield blocking and rifle brace eligibility remain owned by HandCombat; pose blending cannot extend either window. Shield raise/release takes about 0.10 seconds, block recoil lasts 0.22 seconds, and the rifle brace pose follows its existing 0.30-second defense window.
+Firearms retain independent aim/recoil/reload and authoritative pilot-anchor damage
+queries for close-cover safety. Rifle bracing keeps its barrel on the aim line. Shield
+raise/release and impact compression follow actual hold/energy/defense state; presentation
+cannot extend blocking. Weapons share existing meshes/materials and follow palm-centered
+grips after pose composition. WeaponGripPose curls imported finger joints toward each
+handle, with firearm trigger-finger poses; rifle support also grips. Empty hands restore.
+The portrait uses the same sword-ready clips and palm/finger attachment contract.
 
-WeaponAnimationTests covers held meshes across all supported combinations while moving, independent recoil/reload, shield block/release/depletion, rifle bracing, single-hit sword windup/pause/death interruption, mixed/dual-hand action phases, presentation-independent damage, and stationary arm drift/acceleration reversals with correction on/off. The feature-demo capture is images/mission-weapons.gif; its exact source/state/edit record is images/mission-weapons.capture.json. It is a staged isolated-profile graphics test with disabled AI and a zoomed gameplay camera, not a natural mission-completion recording.
+WeaponAnimationTests and CombatClipTests cover all loadouts, independent actions,
+recoil/reload, pause/death, real torso rotation, planted baked feet, unchanged limb lengths,
+bent elbows, grip restore, contact timing/range and rendering-independent damage.
+The recorded demo has disabled AI, isolated storage, a fixed 30 Hz simulation, a zoomed
+real gameplay camera and an isolated front camera. A real virtual-controller aim input
+stages the player before movement is disabled; no skeletal poses are injected. It is not
+a natural mission playthrough or a measured FPS result. Exact staging/edit/source hashes:
+images/combat-and-gear.capture.json. Body weight transfer and crossed-hand readability
+still need polish; the independent final lower review score is 6/10 on both surfaces.

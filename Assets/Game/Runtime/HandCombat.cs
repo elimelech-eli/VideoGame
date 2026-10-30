@@ -56,7 +56,7 @@ namespace VideoGame
                 if(!game.InMission || !held || item==null || item.Design.Kind==GearKind.Shield || Time.time<ready[h] || Time.time<reload[h])continue;
                 bool sword=item.Design.Kind==GearKind.Sword;
                 if(!sword && ammo[h]<=0){if(reserve[h]>0)reload[h]=Time.time+1.5f;continue;}
-                ready[h]=Time.time+(sword?.55f:item.Design.Kind==GearKind.Rifle?.14f:.28f);
+                ready[h]=Time.time+(sword?.72f:item.Design.Kind==GearKind.Rifle?.14f:.28f);
                 if(!sword)ammo[h]--;
                 if(h==0)MainShots++;else OffShots++;
                 float damage=(sword?34:20)*(item.Condition/100f)*(1+(item.Level-1)*.08f)*(1+p.Bonus(BonusKind.Damage));
@@ -98,7 +98,7 @@ namespace VideoGame
             foreach(var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))
             {
                 Vector3 to=enemy.transform.position-transform.position;
-                if(to.sqrMagnitude<2.8f*2.8f && Vector3.Dot(transform.forward,to.normalized)>.15f && !Physics.Linecast(transform.position,enemy.transform.position,1<<9))enemy.Damage(damage);
+                if(to.sqrMagnitude<1.9f*1.9f && Vector3.Dot(transform.forward,to.normalized)>.15f && !Physics.Linecast(transform.position,enemy.transform.position,1<<9))enemy.Damage(damage);
             }
         }
         public float ReduceDamage(float amount,Vector3 source)

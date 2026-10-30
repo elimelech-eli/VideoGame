@@ -120,6 +120,15 @@ public sealed class EquipmentTests
         shield.Tick(true,3);Assert.Greater(shield.Charge,0);Assert.IsFalse(shield.Guarding);
         shield.Tick(false,.01f);shield.Tick(true,.01f);Assert.IsTrue(shield.Guarding);
     }
+    [Test] public void InventoryPlacementPreservesHolesAndRepairsLegacyOrDuplicateCells()
+    {
+        var p=GearProfile.Starter();p.NormalizeBagLayout();var first=p.Bag[0];var second=p.Bag[1];
+        Assert.IsTrue(p.MoveInBag(first.Id,9));Assert.AreEqual(9,first.InventorySlot);Assert.IsFalse(p.Bag.Any(i=>i.InventorySlot==0));
+        Assert.IsTrue(p.MoveInBag(second.Id,9));Assert.AreEqual(9,second.InventorySlot);Assert.AreEqual(1,first.InventorySlot);
+        var before=p.Bag.Select(i=>i.InventorySlot).ToArray();Assert.IsFalse(p.MoveInBag(first.Id,p.BagCapacity));CollectionAssert.AreEqual(before,p.Bag.Select(i=>i.InventorySlot));
+        first.InventorySlot=second.InventorySlot;p.NormalizeBagLayout();Assert.AreEqual(p.Bag.Count,p.Bag.Select(i=>i.InventorySlot).Distinct().Count());Assert.IsTrue(p.Valid());
+        Assert.IsNull(p.Equip(first.Id,GearSlot.MainHand,false));Assert.AreEqual(1,p.Bag.Count(i=>i.Definition=="rifle"));Assert.IsTrue(p.Valid());
+    }
     [Test] public void CorruptGearAndImpossibleLoadoutsAreRejected()
     {
         var p=GearProfile.Starter();p.Bag[0].Id=p.Equipped[0].Id;Assert.IsFalse(p.Valid());

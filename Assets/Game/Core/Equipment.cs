@@ -69,6 +69,7 @@ namespace VideoGame.Core
     {
         public string Id,Definition;
         public int Level=1,Condition=100;
+        public int InventorySlot=-1; // Presentation placement; -1 migrates legacy/new items.
         public GearQuality Quality;
         public bool Fresh;
         public List<GearBonus> Bonuses=new List<GearBonus>();
@@ -140,6 +141,22 @@ namespace VideoGame.Core
             if(item==null || Bag.Count>=BagCapacity || Owns(item.Id))return false;
             Bag.Add(item);return true;
         }
+        public void NormalizeBagLayout()
+        {
+            var occupied=new HashSet<int>();
+            foreach(var item in Bag)
+                if(item.InventorySlot<0 || item.InventorySlot>=BagCapacity || !occupied.Add(item.InventorySlot))item.InventorySlot=-1;
+            foreach(var item in Bag)if(item.InventorySlot<0)
+            {int slot=0;while(occupied.Contains(slot))slot++;item.InventorySlot=slot;occupied.Add(slot);}
+        }
+        public bool MoveInBag(string id,int destination)
+        {
+            if(destination<0 || destination>=BagCapacity)return false;
+            var item=Bag.Find(i=>i.Id==id);if(item==null)return false;
+            NormalizeBagLayout();var target=Bag.Find(i=>i.InventorySlot==destination);
+            if(target!=null)target.InventorySlot=item.InventorySlot;
+            item.InventorySlot=destination;Bag.Sort((a,b)=>a.InventorySlot.CompareTo(b.InventorySlot));return true;
+        }
         public bool Owns(string id) => Bag.Concat(Stash).Concat(Equipped.Where(i=>i!=null)).Any(i=>i.Id==id);
         public string EquipError(string id,GearSlot slot,bool inMission)
         {
@@ -165,7 +182,9 @@ namespace VideoGame.Core
             var error=EquipError(id,slot,inMission);if(error!=null)return error;
             int s=(int)slot;var item=Bag.Find(i=>i.Id==id);
             var replaced=Equipped[s];var off=item.Design.TwoHanded?Equipped[4]:null;
-            Bag.Remove(item);if(replaced!=null)Bag.Add(replaced);if(off!=null){Bag.Add(off);Equipped[4]=null;}
+            NormalizeBagLayout();
+            int vacated=item.InventorySlot;item.InventorySlot=-1;
+            Bag.Remove(item);if(replaced!=null){replaced.InventorySlot=vacated;Bag.Add(replaced);}if(off!=null){Bag.Add(off);Equipped[4]=null;}
             Equipped[s]=item;return null;
         }
         public bool Unequip(GearSlot slot,bool inMission)

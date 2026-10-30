@@ -114,3 +114,44 @@ Final complete local suite passed in **107.7 seconds**: **17,420 core assertions
 Final graphics-enabled Direct3D 11 run passed **7/7 tests** (14.84 seconds of test execution). Real renderer captures were reviewed for held mesh fit, sword startup/contact, shield lowered/guard/block states, rifle ready/brace, dual-handgun firing, mixed attacks, dual swords and reload. The fixed-30-Hz feature-demo capture uses isolated test storage, disabled AI, a stationary player and a zoomed gameplay camera; it is not natural mission-completion evidence. Export: images/mission-weapons.gif, with exact source hashes, state and resize/palette/loadout-cut record in images/mission-weapons.capture.json. Additional captures: images/mission-shield-guard.png, images/mission-dual-handguns.png and images/mission-rifle-brace.png. No synthetic animation frames or overlays were added; the GIF has no audio.
 
 Final Windows build passed in **11.8 seconds**, followed by the eight-second startup/error smoke. Physical-controller feel, natural play and long-session performance remain human playtest items. No remote CI jobs were triggered; remote timings/counts are unavailable. The eleven source clips are retained; new per-hand actions are procedural authored curves and IK layers, not a new mocap library.
+
+## Weapon combat and inventory dragging — 2026-10-30
+
+Acceptance: per-type combat presentation with independent hands, coherent contacts,
+palm/finger grips, valid inventory/gear drag transactions, specific empty-cell placement,
+saved gaps/order, cancel/focus safety, and unchanged mission equipment restrictions.
+
+Final complete local suite: **17,420 core assertions, 19 EditMode tests, 85 PlayMode tests**,
+all passed in **108.1 seconds** (PlayMode execution 96.12 s). New checks cover sparse layout
+and legacy-cell repair, actual mouse press/move/release, full-bag exchanges, specific cell
+save/reload, cancellation, mission locks, baked limb lengths/elbows/planted feet, finger
+pose restore, live torso/weight motion and rejection of out-of-range sword hits.
+
+Final graphics weapon run: **9/9** passed. A later graphics evidence run passed **2/2**,
+with actual mouse drag and all four weapon-type sequences captured after LateUpdate.
+The latter changes only capture staging: virtual controller aim avoids scenery redirecting
+mouse rays, and one complete dual strike replaces an accidental second off-hand trigger.
+It adds no gameplay behavior. Batch-editor ScreenCapture did not produce a usable inventory
+UI image; input assertions passed, but this is not a claimed visual UI screenshot review.
+
+Independent visual rubric (five 0–2 criteria: timing, body, weapon path, readability,
+finish): baseline gameplay **3/10** lower score; final gameplay **6/10**, isolated front
+**6/10** lower scores. Reviewers agree the cut/recovery, shield separation, rifle aim and
+dual-hand separation improved. Remaining limitations: modest-looking weight transfer,
+central blade/guard crowding, limited settling, and imperfect stock/eye alignment. These
+are rough playable animations, not a claim of polished AAA motion. Blind A/B preferred
+the new version overall for body, preparation, arc and finish; the earlier version retained
+cleaner arm silhouettes. Sampled stills cannot prove continuous motion quality or input feel.
+
+Seven new baked clips total 3,644,867 bytes before whitespace normalization. Source is
+CombatAnimationBuilder; these are authored anatomy keys, not mocap. The installed
+[MengTo combat animation](https://github.com/MengTo/Skills/tree/main/agent-skills/game-combat/game-dev-combat-animation)
+and [combat polish](https://github.com/MengTo/Skills/tree/main/agent-skills/game-combat/game-dev-combat-skill-polish)
+workflows guided the work; their original project's web tooling and provider constraints
+were not adopted. Existing Unity animation-blend, inventory-economy and rig contracts apply.
+
+Preview: images/combat-and-gear.gif. Staging, both cameras, simulated clock, source/clip
+hashes and GIF edits are recorded in images/combat-and-gear.capture.json. No audio, injected
+poses, measured FPS claim, natural mission completion, or physical-controller certification.
+Final Windows player build: **11.8 seconds**, followed by the **eight-second** startup/error
+smoke, both passed. No remote jobs were triggered; remote durations/counts are unavailable.

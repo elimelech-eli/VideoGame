@@ -36,3 +36,26 @@ See the dated entry in VALIDATION.md for final counts and build evidence. Charac
 Double-click an inventory item at the Nexus to equip it; handguns and swords default to main hand, shields to off hand, and rifles to main hand with off-hand reservation. Double-click any equipped slot to unequip it. Replacement returns the displaced item to its own inventory slot and remains atomic at capacity. Mission equipment stays locked. Every gear instance occupies one bag slot; the icon badge is explicitly labelled Lv and is never a stack count.
 
 Portrait weapon meshes are original Blender-authored assets (LoadoutWeapons resources), using metres and a grip origin, +Z firearm muzzle / shield face and +Y sword blade. PreviewLoadout restores a sampled idle skeleton before applying two-bone arm poses for the actual main/off-hand combination. It never edits gameplay animation clips. Poses and mesh instances refresh only when equipment changes; portrait rotation reuses them.
+
+## Drag and drop — 2026-10-30
+
+Drag carried gear onto a compatible equipment slot at the Nexus, or drag equipped gear
+back into inventory. An occupied destination exchanges items when its item can legally
+replace that gear; full-bag exchanges remain atomic. Wrong types, reserved off hands,
+level/power/capacity failures and mission equipment locks reject without losing ownership.
+Inventory-to-inventory drags swap occupied cells or occupy the exact empty cell, preserving
+gaps. The default CUSTOM view shows saved per-item InventorySlot placement; old/new items
+without a valid placement receive the next available cell. Filtered/sorted views use
+stable item IDs, and a successful move returns to custom order. Category filters remain
+available; stash/vendor actions retain their existing buttons.
+
+Valid destinations highlight green; invalid ones red. A rarity-framed icon follows the
+pointer. Escape first cancels the drag, then closes the screen on a later press. Releasing
+outside a target, closing the screen, or losing application focus cancels safely. Mouse
+input uses the Input System and the exact shared slot/cell geometry used for rendering;
+keyboard/controller selection and double-click equip/unequip remain available. Mission
+inventory can be rearranged or dropped, but equipment cannot be changed.
+
+CharacterScreenTests exercises actual mouse press/move/release, specific empty-cell
+placement, Escape cancellation, saved cells, filtered ownership, full-bag exchanges and
+mission restrictions. EquipmentTests covers sparse layout and legacy/duplicate-cell repair.

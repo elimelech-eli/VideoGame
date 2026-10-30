@@ -3,18 +3,35 @@ using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using VideoGame;
 using VideoGame.Core;
 
 public sealed class CharacterScreenTests
 {
     Prototype game;
+    string directory;
+    Mouse mouse;
+    InputSettings.BackgroundBehavior background;
+#if UNITY_EDITOR
+    InputSettings.EditorInputBehaviorInPlayMode editorInput;
+#endif
     [UnitySetUp] public IEnumerator Setup()
     {
         var old=Object.FindFirstObjectByType<Prototype>();if(old!=null)Object.Destroy(old.gameObject);yield return null;
-        game=new GameObject("Character screen test").AddComponent<Prototype>();yield return null;
+        background=InputSystem.settings.backgroundBehavior;InputSystem.settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
+#if UNITY_EDITOR
+        editorInput=InputSystem.settings.editorInputBehaviorInPlayMode;InputSystem.settings.editorInputBehaviorInPlayMode=InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+#endif
+        mouse=InputSystem.AddDevice<Mouse>();
+        game=new GameObject("Character screen test").AddComponent<Prototype>();directory=System.IO.Path.Combine(System.IO.Path.GetTempPath(),"CharacterTests-"+System.Guid.NewGuid());game.Menus.UseStorage(directory);yield return null;
     }
-    [UnityTearDown] public IEnumerator Cleanup(){if(game!=null)Object.Destroy(game.gameObject);yield return null;}
+    [UnityTearDown] public IEnumerator Cleanup(){InputSystem.settings.backgroundBehavior=background;
+#if UNITY_EDITOR
+        InputSystem.settings.editorInputBehaviorInPlayMode=editorInput;
+#endif
+        if(mouse!=null)InputSystem.RemoveDevice(mouse);if(game!=null)Object.Destroy(game.gameObject);yield return null;if(System.IO.Directory.Exists(directory))System.IO.Directory.Delete(directory,true);}
     [UnityTest] public IEnumerator InventoryHardPauseStopsWorldAndReinforcementsAcrossNestedMenus()
     {
         game.StartMission();yield return null;
@@ -85,6 +102,60 @@ public sealed class CharacterScreenTests
         var drop=Object.FindObjectsByType<GearPickup>(FindObjectsSortMode.None).Single(d=>d.Item==item);
         Assert.IsTrue(game.Equipment.TryPickup(drop));Assert.IsFalse(game.Equipment.TryPickup(drop));Assert.AreEqual(count,p.Bag.Count);Assert.AreSame(item,p.Bag.Single(i=>i.Id==item.Id));yield return null;
     }
+    void Pointer(Vector2 gui,bool down)
+    {
+        float scale=Mathf.Min(Screen.width/1600f,Screen.height/900f);
+        Vector2 point=gui*scale+new Vector2((Screen.width-1600*scale)/2,(Screen.height-900*scale)/2);point.y=Screen.height-point.y;
+        InputSystem.QueueStateEvent(mouse,new MouseState{position=point,buttons=down?(ushort)1:(ushort)0,clickCount=1});
+    }
+    [UnityTest] public IEnumerator RealPointerDragEquipsReordersAndCancelsWithoutInputLeaking()
+    {
+        game.Equipment.Open();var screen=game.GetComponent<CharacterScreen>();var p=game.Equipment.Profile;
+        yield return null;yield return null;
+        string pistol=p.Bag[0].Id;
+        Pointer(new Vector2(1030,262),true);yield return null;
+        Pointer(new Vector2(386,710),true);yield return null;Assert.IsTrue(screen.IsDragging);
+        if(SystemInfo.graphicsDeviceType!=UnityEngine.Rendering.GraphicsDeviceType.Null){ScreenCapture.CaptureScreenshot("TestResults/inventory-drag.png");yield return null;}
+        Pointer(new Vector2(386,710),false);yield return null;
+        Assert.AreEqual(pistol,p.Equipped[3].Id);Assert.AreEqual(0,Time.timeScale);
+        string first=p.Bag.Single(i=>i.InventorySlot==0).Id,second=p.Bag.Single(i=>i.InventorySlot==1).Id;
+        Pointer(new Vector2(1030,262),true);yield return null;Pointer(new Vector2(1150,262),true);yield return null;Pointer(new Vector2(1150,262),false);yield return null;
+        Assert.AreEqual(1,p.Bag.Single(i=>i.Id==first).InventorySlot);Assert.AreEqual(0,p.Bag.Single(i=>i.Id==second).InventorySlot);
+        Pointer(new Vector2(386,710),true);yield return null;Pointer(new Vector2(1390,505),true);yield return null;
+        game.Menus.Back();Assert.IsFalse(screen.IsDragging);Assert.AreEqual(MenuPage.Equipment,game.Menus.Page);
+        Pointer(new Vector2(1390,505),false);yield return null;Assert.AreEqual(pistol,p.Equipped[3].Id);
+        Pointer(new Vector2(386,710),true);yield return null;Pointer(new Vector2(1510,343),true);yield return null;Pointer(new Vector2(1510,343),false);yield return null;
+        Assert.IsNull(p.Equipped[3]);Assert.AreEqual(9,p.Bag.Single(i=>i.Id==pistol).InventorySlot,"Dropping into an empty cell preserves that exact cell, including gaps.");Assert.IsTrue(p.Valid());
+        var checkpoint=game.Menus.Store.Read(0).Data;Assert.IsNotNull(checkpoint);Assert.AreEqual(9,checkpoint.Equipment.Bag.Single(i=>i.Id==pistol).InventorySlot);
+    }
+    [UnityTest] public IEnumerator DragTransactionsReorderExchangeAndRejectWithoutLosingItems()
+    {
+        game.Equipment.Open();var screen=game.GetComponent<CharacterScreen>();var p=game.Equipment.Profile;
+        var ids=p.Bag.Select(i=>i.Id).Concat(p.Equipped.Where(i=>i!=null).Select(i=>i.Id)).ToArray();
+        var pistol=p.Bag.First(i=>i.Definition=="pistol");var sword=p.Bag.First(i=>i.Definition=="sword");
+        int slot=p.Bag.IndexOf(sword);Assert.IsTrue(screen.DropOnInventory(pistol.Id,-1,sword.Id));Assert.AreSame(pistol,p.Bag[slot]);
+        Assert.IsTrue(screen.DropOnGear(pistol.Id,GearSlot.MainHand));Assert.AreSame(pistol,p.Equipped[3]);
+        var shield=p.Bag.First(i=>i.Definition=="shield");
+        var before=p.Bag.Select(i=>i.Id).ToArray();Assert.IsFalse(screen.DropOnGear(shield.Id,GearSlot.MainHand));CollectionAssert.AreEqual(before,p.Bag.Select(i=>i.Id));
+        Assert.IsTrue(screen.DropOnInventory(pistol.Id,3,sword.Id));Assert.AreSame(sword,p.Equipped[3]);Assert.IsTrue(p.Bag.Contains(pistol));
+        Assert.IsTrue(screen.DropOnInventory(sword.Id,3));Assert.IsNull(p.Equipped[3]);
+        CollectionAssert.AreEquivalent(ids,p.Bag.Select(i=>i.Id).Concat(p.Equipped.Where(i=>i!=null).Select(i=>i.Id)));
+        Assert.IsTrue(p.Valid());yield return null;
+    }
+    [UnityTest] public IEnumerator DragFullBagSwapsAndMissionRestrictionsRemainAtomic()
+    {
+        game.Equipment.Open();var screen=game.GetComponent<CharacterScreen>();var p=game.Equipment.Profile;
+        var pistol=p.Bag.First(i=>i.Definition=="pistol");
+        while(p.Bag.Count<p.BagCapacity)p.Pickup(GearCatalog.Roll(new System.Random(p.Bag.Count),1,GearQuality.White,"sword"));
+        string rifle=p.Equipped[3].Id;
+        Assert.IsFalse(screen.DropOnInventory(rifle,3));Assert.AreEqual(rifle,p.Equipped[3].Id);
+        Assert.IsTrue(screen.DropOnInventory(rifle,3,pistol.Id));Assert.AreSame(pistol,p.Equipped[3]);Assert.AreEqual(p.BagCapacity,p.Bag.Count);
+        var order=screen.VisibleItems().Select(i=>i.Id).ToArray();CollectionAssert.AreEqual(p.Bag.Select(i=>i.Id),order);
+        var serialized=UnityEngine.JsonUtility.ToJson(p);var restored=UnityEngine.JsonUtility.FromJson<GearProfile>(serialized);new NexusCheckpoint{Equipment=p}.NormalizeEmptySlots();new NexusCheckpoint{Equipment=restored}.NormalizeEmptySlots();CollectionAssert.AreEqual(order,restored.Bag.Select(i=>i.Id));
+        game.Menus.Resume();yield return null;yield return null;game.StartMission();game.Equipment.Open();
+        Assert.IsFalse(screen.DropOnGear(rifle,GearSlot.MainHand));Assert.IsFalse(screen.DropOnInventory(pistol.Id,3));
+        string first=p.Bag[0].Id,last=p.Bag[p.Bag.Count-1].Id;Assert.IsTrue(screen.DropOnInventory(first,-1,last));Assert.AreEqual(first,p.Bag[p.Bag.Count-1].Id);Assert.IsTrue(p.Valid());
+    }
     [UnityTest] public IEnumerator EveryHandLoadoutHasFittedMeshesAndForwardFacingFirearms()
     {
         var root=Object.Instantiate(Resources.Load<GameObject>("Detailed/Prefabs/OperativeV03"));root.transform.position=new Vector3(1000,-1000,1000);
@@ -102,7 +173,8 @@ public sealed class CharacterScreenTests
             {
                 Assert.Greater(weapon.GetComponentsInChildren<MeshRenderer>().Length,0);
                 var hand=root.GetComponentsInChildren<Transform>().Single(t=>t.name=="hand_"+(weapon.name.Contains(" R ")?"R":"L"));
-                Assert.Less(Vector3.Distance(hand.position,weapon.position),.001f);
+                Assert.Less(Vector3.Distance(hand.position,weapon.position),.16f);
+                Assert.Less(Vector3.Distance(new WeaponGripPose(root.transform).Center(weapon.name.Contains(" R ")?0:1),weapon.position),.001f);
                 if(weapon.name.EndsWith("Rifle")||weapon.name.EndsWith("Handgun"))Assert.Greater(Vector3.Dot(weapon.forward,root.transform.forward),.8f);
             }
         }
