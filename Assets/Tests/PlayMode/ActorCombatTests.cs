@@ -81,7 +81,7 @@ public sealed class ActorCombatTests
                 Assert.Less(Vector3.Distance(hand.position, socket.position), .15f, action + " weapon detached");
                 // Native clips may lower the gun. The runtime aim layer owns
                 // aim and support-hand contact rather than the raw clip pose.
-                yield return null;
+                game.Player.Weapons.Refresh(game.Equipment.Profile);
                 Assert.Less(Vector3.Distance(game.Player.Weapons.Weapon(0).position,game.Player.Weapons.Grip(0)),.01f,action+" weapon lost its palm attachment");
                 skin.BakeMesh(baked);
                 Assert.IsFalse(float.IsNaN(baked.bounds.size.sqrMagnitude), action + " produced nonfinite skin bounds");

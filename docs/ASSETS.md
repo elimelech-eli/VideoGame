@@ -57,4 +57,3 @@ Lab biome melee and regular ranged replacements: see [Lab enemy sources and attr
 ## Transit station
 
 Credited source architecture, train and equipment: [Transit credits](../Assets/Game/Resources/Transit/CREDITS.md). Integration contract: [Transit biome](TRANSIT_BIOME.md).
-

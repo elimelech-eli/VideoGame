@@ -9,7 +9,7 @@ Source: MSGDI / Markus Schüler, **Free Test Character Asuna**, version 2.2.
 
 ## Integration
 
-The downloaded package, `Assets/FreeTestCharacterAsuna/`, and generated Asuna meshes/clips/prefabs are ignored by Git because this repository is public. A clean checkout uses the original operative. Importing the licensed content activates Asuna locally in both the player and character screen; it does not change saves, collision, or equipment stats. The Asuna-specific test reports an explicit skip when this optional content is absent; the regular gameplay tests still run against the original operative.
+The downloaded package, `Assets/FreeTestCharacterAsuna/`, and generated Asuna meshes/clips/prefabs are ignored by Git because this repository is public. A clean checkout uses the original operative. Importing the licensed content activates Asuna locally in both the player and character screen; it does not change saves, collision, or equipment stats. The shared rig test verifies the selected model, skeleton, mesh, movement and independent hand layers in either configuration. It records whether Asuna or the original operative was validated; native Asuna content is only validated when imported locally.
 
 To reproduce the local trial, obtain the package from the creator, close Unity, and run from the project directory:
 
