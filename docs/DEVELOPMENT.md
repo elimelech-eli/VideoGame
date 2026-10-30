@@ -35,7 +35,8 @@ In GitHub Settings → Branches, protect `master`: require a pull request, requi
 - Start at the main menu. Check disabled Continue on a fresh profile, New Game, and mouse/keyboard/controller navigation.
 - Pause with Escape / controller Start. Verify Resume, Options, Difficulty, safe return/exit confirmation and no gameplay input leaking through the UI.
 - At the Nexus, save a manual slot, load it, and Continue after a fresh launch. During missions, verify Save is disabled with the checkpoint restriction explained.
-- Approach the cyan terminal. E / controller A accepts.
+- Approach the cyan terminal. E / controller A opens six biome missions; mouse, arrows/Enter or controller D-pad/A selects one. Verify Cancel / Escape / B returns to the Nexus without advancing the seed.
+- Launch several missions: selected biomes must match; map sizes remain random (6/10/20), including when an old preferences file contains a fixed size. Held Confirm must be released before deployment; it must not fire, dash, or select twice.
 - Confirm WASD, right-click movement, and controller left stick each work.
 - Aim with mouse / right stick; fire with left mouse / RT.
 - Throw a grenade with Q / RB. Check cooldown and area damage.

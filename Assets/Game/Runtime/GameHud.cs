@@ -36,7 +36,6 @@ namespace VideoGame
                 Text(new Rect(28, 22, 350, 28), "N E X U S", title, Color.white);
                 Text(new Rect(30, 52, 350, 22), game.InMission ? Deployment.Name(game.ActiveBiome).ToUpperInvariant() : "OPERATIONS  /  SAFE ZONE", small, Art.Cyan);
                 Box(new Rect(30, 79, 180, 2), Art.Cyan);
-                if(!game.InMission && GUI.Button(new Rect(30,130,350,46),"NEXT DEPLOYMENT  /  BIOME & SIZE",small))game.Menus.OpenDeployment();
                 if (GUI.Button(new Rect(220, 90, 160, 24), "PAUSE [ESC / START]", small)) game.Menus.Pause();
                 if (GUI.Button(new Rect(30, 90, 180, 24), game.Music.Enabled ? "MUSIC ON  [M]" : "MUSIC OFF  [M]", small)) game.Music.Toggle();
                 Panel(new Rect(944, 24, 308, 145), game.InMission ? Art.Amber : Art.Cyan);
@@ -62,7 +61,7 @@ namespace VideoGame
 
                 if (Vector3.Distance(game.Player.transform.position, game.Terminal) < 3.5f)
                 {
-                    string action = game.InMission ? game.Mission.Stage == MissionStage.Complete ? "EXTRACT TO OPERATIONS" : "OBJECTIVE INCOMPLETE" : game.Mission.Stage == MissionStage.Complete ? "CLAIM 100 CR REWARD" : "ACCEPT CONTRACT";
+                    string action = game.InMission ? game.Mission.Stage == MissionStage.Complete ? "EXTRACT TO OPERATIONS" : "OBJECTIVE INCOMPLETE" : game.Mission.Stage == MissionStage.Complete ? "CLAIM 100 CR REWARD" : "CHOOSE MISSION";
                     Panel(new Rect(440, 522, 400, 57), Art.Cyan);
                     Text(new Rect(458, 535, 54, 30), "E / A", body, Art.Cyan);
                     Text(new Rect(518, 535, 310, 30), action, body, Color.white);

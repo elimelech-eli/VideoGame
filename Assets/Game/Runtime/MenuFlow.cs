@@ -42,7 +42,6 @@ namespace VideoGame
         public bool BlocksPlayerInput => BlocksGameplay ||
             ((Mouse.current?.leftButton.isPressed==true || Mouse.current?.rightButton.isPressed==true) &&
              (new Rect(30,90,350,24).Contains(PointerPosition) ||
-              (!game.InMission && new Rect(30,130,350,46).Contains(PointerPosition)) ||
               (Vector3.Distance(game.Player.transform.position,game.Terminal)<3.5f && new Rect(440,522,400,57).Contains(PointerPosition))));
         public bool CanSave => HasSession && !game.InMission && !game.Player.IsDead;
         public float DamageMultiplier => new[]{.5f,1f,1.5f,2.5f}[(int)Difficulty];
@@ -53,6 +52,7 @@ namespace VideoGame
         string question;
         int resumeFrame=-1;
         bool waitingRelease, displayPreview, autosaveEnabled;
+        BiomeId? queuedMission;
         CheckpointSlot[] slots;
         CheckpointSlot LatestListed()
         {
@@ -86,7 +86,7 @@ namespace VideoGame
         public void Pause() { if(HasSession && !IsOpen)Open(MenuPage.Pause); }
         void Open(MenuPage page)
         {
-            Page=page;Selected=0;repeatAt=0;
+            queuedMission=null;Page=page;Selected=0;repeatAt=0;
             if(page==MenuPage.Main || page==MenuPage.Save || page==MenuPage.Load)RefreshSlots();
             Time.timeScale=page==MenuPage.Closed?1:0;
             AudioListener.pause=page!=MenuPage.Closed;
@@ -101,7 +101,7 @@ namespace VideoGame
         public void Resume()
         {
             if(!HasSession)return;
-            Open(MenuPage.Closed);resumeFrame=Time.frameCount+1;waitingRelease=true;
+            queuedMission=null;Open(MenuPage.Closed);resumeFrame=Time.frameCount+1;waitingRelease=true;
         }
         public void NewGame()
         {
@@ -155,11 +155,14 @@ namespace VideoGame
             return Load(latest.Index);
         }
         public void MissionStarted(){Notice="Mission active. Return to the Nexus to save.";}
-        public void OpenDeployment(){if(CanSave)Open(MenuPage.Deployment);}
-        void PersistDeployment()
+        public void OpenDeployment()
         {
-            try{Store.SaveSettings(Settings);Notice="Next deployment updated. Accept a contract at the uplink.";}
-            catch(Exception error) when(error is IOException || error is UnauthorizedAccessException){Notice="Deployment changed for this session; preferences could not be saved.";}
+            if(CanSave && Vector3.Distance(game.Player.transform.position,game.Terminal)<3.5f &&
+                (game.Mission.Stage==MissionStage.Available||game.Mission.Stage==MissionStage.Rewarded))Open(MenuPage.Deployment);
+        }
+        void ChooseMission(BiomeId biome)
+        {
+            Resume();queuedMission=biome;
         }
         public void ReturnToMain()
         {
@@ -178,7 +181,7 @@ namespace VideoGame
                 case MenuPage.Options:Draft=null;Open(optionsReturn);break;
                 case MenuPage.Audio:case MenuPage.Display:case MenuPage.Controls:Open(MenuPage.Options);break;
                 case MenuPage.Difficulty:case MenuPage.Save:Open(MenuPage.Pause);break;
-                case MenuPage.Deployment:Open(MenuPage.Pause);break;
+                case MenuPage.Deployment:Resume();break;
                 case MenuPage.Load:Open(loadReturn);break;
                 case MenuPage.Confirm:confirmation=null;Open(confirmReturn);break;
                 case MenuPage.KeepDisplay:RevertDisplay();break;
@@ -223,7 +226,6 @@ namespace VideoGame
                     list.Add(Item("load","LOAD GAME",()=>{loadReturn=Page;Open(MenuPage.Load);}));
                     list.Add(Item("difficulty","DIFFICULTY",()=>Open(MenuPage.Difficulty),true,Difficulty.ToString().ToUpperInvariant()));
                     list.Add(Item("options","OPTIONS",OpenOptions));
-                    if(CanSave)list.Add(Item("deployment","NEXT DEPLOYMENT",OpenDeployment));
                     list.Add(Item("main","RETURN TO MAIN MENU",()=>Confirm("Return to the main menu? Unsaved progress will be lost.",ReturnToMain)));
                     list.Add(Item("exit","EXIT TO DESKTOP",()=>Confirm("Exit to desktop? Unsaved progress will be lost.",Quit)));break;
                 case MenuPage.Options:
@@ -240,9 +242,12 @@ namespace VideoGame
                     list.Add(Setting("effects","EFFECTS VOLUME",()=>Percent(Draft.Effects),d=>Draft.Effects=Mathf.Clamp01(Draft.Effects+d*.1f)));
                     list.Add(Item("back","BACK",Back));break;
                 case MenuPage.Deployment:
-                    list.Add(Setting("biome","BIOME",()=>Settings.Biome<0?"RANDOM":VideoGame.Core.Deployment.Name((BiomeId)Settings.Biome),d=>{Settings.Biome=Cycle(Settings.Biome+1,d,7)-1;PersistDeployment();}));
-                    list.Add(Setting("size","MAP SIZE",()=>VideoGame.Core.Deployment.SizeName(Settings.SectorSize),d=>{int[] sizes={0,6,10,20};Settings.SectorSize=sizes[Cycle(Array.IndexOf(sizes,Settings.SectorSize),d,4)];PersistDeployment();}));
-                    list.Add(Item("back","BACK",Back));break;
+                    foreach(BiomeId biome in Enum.GetValues(typeof(BiomeId)))
+                    {
+                        var destination=biome;
+                        list.Add(Item("mission-"+(int)destination,VideoGame.Core.Deployment.Name(destination).ToUpperInvariant(),()=>ChooseMission(destination)));
+                    }
+                    list.Add(Item("back","CANCEL",Back));break;
                 case MenuPage.Display:
                     list.Add(Setting("resolution","RESOLUTION",()=>Draft.Width+" x "+Draft.Height,ChangeResolution));
                     list.Add(Setting("window","WINDOW MODE",()=>new[]{"WINDOWED","BORDERLESS","FULLSCREEN"}[Draft.WindowMode],d=>Draft.WindowMode=Cycle(Draft.WindowMode,d,3)));
@@ -347,6 +352,12 @@ namespace VideoGame
             {if(!IsOpen)Pause();else Back();return;}
             if(!IsOpen)
             {
+                if(queuedMission.HasValue && !BlocksGameplay)
+                {
+                    var destination=queuedMission.Value;queuedMission=null;
+                    if(CanSave && Vector3.Distance(game.Player.transform.position,game.Terminal)<3.5f)game.StartMission((int)destination,0);
+                    return;
+                }
                 if(Mouse.current?.leftButton.wasPressedThisFrame==true && new Rect(220,90,160,24).Contains(PointerPosition))Pause();
                 return;
             }
