@@ -21,7 +21,7 @@ public sealed class LoopTests
         game.Player.Teleport(enemies[0].transform.position + new Vector3(0, 0, -4));
         yield return null;
         Capture(game, "field");
-        for (int i = 0; i < game.Mission.Target; i++) enemies[i].Damage(100);
+        for (int i = 0; i < game.Mission.Target; i++) enemies[i].Damage(enemies[i].HealthMaximum+enemies[i].Shield);
         Assert.AreEqual(MissionStage.Complete, game.Mission.Stage);
         game.Interact();
         Assert.IsFalse(game.InMission);

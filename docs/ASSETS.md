@@ -57,3 +57,7 @@ Lab biome melee and regular ranged replacements: see [Lab enemy sources and attr
 ## Transit station
 
 Credited source architecture, train and equipment: [Transit credits](../Assets/Game/Resources/Transit/CREDITS.md). Integration contract: [Transit biome](TRANSIT_BIOME.md).
+
+## Completed BiotechLab enemy roster
+
+The Lab has five distinct imported models, including a newly rigged Medical Android and shielded Megabot plus the Medical Assistance Bot boss. See [Lab enemy integration](LAB_ENEMIES.md) for role mapping, authored animation, combat rules, provenance and verification. Generic robots remain on biomes without integrated dedicated models.

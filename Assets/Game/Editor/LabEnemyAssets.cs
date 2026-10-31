@@ -13,12 +13,12 @@ public static class LabEnemyAssets {
  [Serializable] class Maps {public string Albedo,Normal,Metallic,Roughness;}
  [Serializable] class Surface {public string name,id;public bool glass;public Maps maps;}
  [Serializable] class Model {public Surface[] materials;public int bones,triangles;}
- [Serializable] class Manifest {public Model LabSpider,LabHazmat;}
+ [Serializable] class Manifest {public Model LabSpider,LabHazmat,LabAoe,LabHeavy,LabBoss;}
  [MenuItem("Nexus/Rebuild Lab enemies")] public static void Build(){
  var data=JsonUtility.FromJson<Manifest>(File.ReadAllText(Root+"manifest.json"));
  Directory.CreateDirectory(Root+"Materials");Directory.CreateDirectory(Root+"Prefabs");AssetDatabase.Refresh();
- foreach(var id in new[]{"LabSpider","LabHazmat"}){
- var info=id=="LabSpider"?data.LabSpider:data.LabHazmat;var model=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(Root+"Models/"+id+".fbx"));model.name=id;
+ foreach(var id in new[]{"LabSpider","LabHazmat","LabAoe","LabHeavy","LabBoss"}){
+ var info=id=="LabSpider"?data.LabSpider:id=="LabHazmat"?data.LabHazmat:id=="LabAoe"?data.LabAoe:id=="LabHeavy"?data.LabHeavy:data.LabBoss;var model=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(Root+"Models/"+id+".fbx"));model.name=id;
  foreach(var a in model.GetComponentsInChildren<Animator>())UnityEngine.Object.DestroyImmediate(a);
  foreach(var a in model.GetComponentsInChildren<Animation>())UnityEngine.Object.DestroyImmediate(a);
  // FBX keeps source material-slot names even when material import is disabled.
@@ -40,11 +40,13 @@ public static class LabEnemyAssets {
  }
  renderer.sharedMaterials=mats;
  }
+ if(id!="LabSpider"&&id!="LabHazmat")LabCombatClips.Prepare(model,id);
  PrefabUtility.SaveAsPrefabAsset(model,Root+"Prefabs/"+id+".prefab");BakeClips(model,id);UnityEngine.Object.DestroyImmediate(model);
  }AssetDatabase.SaveAssets();
  }
  static Texture2D Tex(string id,string file)=>AssetDatabase.LoadAssetAtPath<Texture2D>(Root+"Textures/"+id+"/"+file);
  static void BakeClips(GameObject model,string id){
+ if(id!="LabSpider"&&id!="LabHazmat"){LabCombatClips.Bake(model,id);return;}
  string folder="Assets/Game/Resources/LabEnemyAnimations/"+id+"/";Directory.CreateDirectory(folder);AssetDatabase.Refresh();
  var bones=model.GetComponentsInChildren<Transform>().Where(t=>id=="LabSpider"?(t.name=="body"||t.name.StartsWith("leg_")||t.name.StartsWith("foot_")):new[]{"Hips","Spine","Spine1","Spine2","Head","L_up_leg","R_up_leg","L_knee","R_knee","L_foot","R_foot","L_shoulder","R_shoulder"}.Contains(t.name)).ToArray();
  foreach(string state in ActorAnimationBuilder.Names){

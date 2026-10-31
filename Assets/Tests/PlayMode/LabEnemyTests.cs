@@ -37,14 +37,14 @@ public sealed class LabEnemyTests {
  game.NewSession();game.StartMission((int)biome,6);game.Director.enabled=false;game.Player.enabled=false;
  foreach(var d in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None)){
  d.enabled=false;
- if(biome==BiomeId.BiotechLab)Assert.That(d.Motion.name.Replace("(Clone)",""),Is.EqualTo(d.Ranged?"LabHazmat":"LabSpider"),"Initial Lab population must not contain generic bodies");
+ if(biome==BiomeId.BiotechLab)Assert.That(d.Motion.name.Replace("(Clone)",""),Is.EqualTo(d.IsLabBoss?"LabBoss":d.Kind==EnemyKind.Hunter?"LabHeavy":d.Kind==EnemyKind.Bombardier?"LabAoe":d.Kind==EnemyKind.Gunner?"LabHazmat":"LabSpider"),"Initial Lab population must not contain generic bodies");
  }
  foreach(EnemyKind kind in System.Enum.GetValues(typeof(EnemyKind))){
  var d=game.SpawnDrone(new Vector3(0,1,0),kind);d.enabled=false;
- string expected=biome==BiomeId.BiotechLab?(d.Ranged?"LabHazmat":"LabSpider"):kind==EnemyKind.Hunter?"Crawler":kind==EnemyKind.Rusher?"Roller":kind==EnemyKind.Gunner?"Blaster":"Lobber";
+ string expected=biome==BiomeId.BiotechLab?(kind==EnemyKind.Hunter?"LabHeavy":kind==EnemyKind.Bombardier?"LabAoe":kind==EnemyKind.Gunner?"LabHazmat":"LabSpider"):kind==EnemyKind.Hunter?"Crawler":kind==EnemyKind.Rusher?"Roller":kind==EnemyKind.Gunner?"Blaster":"Lobber";
  Assert.AreEqual(expected,d.Motion.name.Replace("(Clone)",""),biome+" / "+kind);
  Assert.AreEqual(kind,d.Kind,"A temporary shared skin must not replace the combat role");
- Assert.AreEqual(kind==EnemyKind.Gunner||kind==EnemyKind.Bombardier,d.Ranged);
+ Assert.AreEqual(kind==EnemyKind.Gunner||kind==EnemyKind.Bombardier||(biome==BiomeId.BiotechLab&&kind==EnemyKind.Hunter),d.Ranged);
  Assert.IsNotNull(d.Motion.Player[kind==EnemyKind.Bombardier?"Cast":d.Ranged?"Fire":"Melee"]);
  Object.Destroy(d.gameObject);
  }

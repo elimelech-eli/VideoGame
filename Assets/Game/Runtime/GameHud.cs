@@ -125,6 +125,7 @@ namespace VideoGame
                 Box(new Rect(x - 2, y - 2, width + 4, height + 4), new Color(.015f, .02f, .03f, .95f));
                 Box(new Rect(x, y, width, height), new Color(.18f, .08f, .08f));
                 Box(new Rect(x, y, width * enemy.Health / enemy.HealthMaximum, height), new Color(1, .24f, .12f));
+                if(enemy.ShieldMaximum>0){Box(new Rect(x,y-5,width,3),ink);Box(new Rect(x,y-5,width*enemy.Shield/enemy.ShieldMaximum,3),Art.Cyan);}
             }
         }
         void Skill(float x, string index, string name, string key, float cooldown, Color accent)

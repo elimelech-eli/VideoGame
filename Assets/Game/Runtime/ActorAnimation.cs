@@ -12,6 +12,7 @@ namespace VideoGame
         float actionUntil;
         bool robot;
         float recoil;
+        float locomotionReference=4.5f;
         Vector3 recoilRest;
         public void Kick()
         {
@@ -32,7 +33,8 @@ namespace VideoGame
             Player = gameObject.AddComponent<Animation>();
             Player.cullingType = AnimationCullingType.AlwaysAnimate;
             string model = name.Replace("(Clone)", "").Trim();
-            bool lab = model == "LabSpider" || model == "LabHazmat";
+            if(model=="LabHeavy"||model=="LabBoss"||model=="LabAoe")locomotionReference=1.8f;
+            bool lab = model.StartsWith("Lab", System.StringComparison.Ordinal);
             robot = lab || model == "Crawler" || model == "Roller" || model == "Blaster" || model == "Lobber";
             string folder = GetComponent<PlayerRig>()?.AnimationFolder;
             foreach (var clip in Resources.LoadAll<AnimationClip>(folder ?? (lab ? "LabEnemyAnimations/" + model : robot ? "RobotAnimations/" + model : model == "OperativeV03" ? "OperatorAnimations" : "Animations"))) Player.AddClip(clip, clip.name);
@@ -82,7 +84,7 @@ namespace VideoGame
             {
                 Vector3 local = actor.InverseTransformDirection(velocity);
                 state = Mathf.Abs(local.x) > Mathf.Abs(local.z) ? local.x > 0 ? "RunRight" : "RunLeft" : local.z > 0 ? "RunForward" : "RunBack";
-                Player[state].speed = Mathf.Clamp(velocity.magnitude / 4.5f, .6f, 1.8f);
+                Player[state].speed = Mathf.Clamp(velocity.magnitude / locomotionReference, .6f, 1.8f);
             }
             if (CurrentState == state) return;
             CurrentState = state; Player.CrossFade(state, .1f);
