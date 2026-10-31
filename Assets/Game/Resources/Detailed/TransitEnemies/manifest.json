@@ -1,0 +1,314 @@
+{
+  "TransitMelee": {
+    "materials": [
+      {
+        "name": "Fin",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Metallic": "m00_Metallic.png",
+          "Roughness": "m00_Roughness.png",
+          "Emission": "m00_Emission.png",
+          "Normal": "m00_Normal.png"
+        },
+        "emissionStrength": 5.0
+      },
+      {
+        "name": "Glow",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Metallic": "m01_Metallic.png",
+          "Roughness": "m01_Roughness.png",
+          "Emission": "m01_Emission.png",
+          "Normal": "m01_Normal.png"
+        },
+        "emissionStrength": 2.0
+      },
+      {
+        "name": "Metal Full Weathered",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Metallic": "m02_Metallic.png",
+          "Roughness": "m02_Roughness.png",
+          "Emission": "m02_Emission.png",
+          "Normal": "m02_Normal.png"
+        },
+        "emissionStrength": 10.0
+      }
+    ],
+    "bones": 220,
+    "triangles": 52358,
+    "unweighted": 0,
+    "bounds": [
+      [
+        -0.39723047614097595,
+        -0.40457335114479065,
+        -2.85628609653088e-09
+      ],
+      [
+        0.39723050594329834,
+        0.40457332134246826,
+        1.2999999523162842
+      ]
+    ]
+  },
+  "TransitGunner": {
+    "materials": [
+      {
+        "name": "Body",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Metallic": "m00_Metallic.png",
+          "Roughness": "m00_Roughness.png",
+          "Normal": "m00_Normal.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "GUN",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Metallic": "m01_Metallic.png",
+          "Roughness": "m01_Roughness.png",
+          "Normal": "m01_Normal.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Glow",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Metallic": "m02_Metallic.png",
+          "Roughness": "m02_Roughness.png",
+          "Normal": "m02_Normal.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Head",
+        "id": "m03",
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Metallic": "m03_Metallic.png",
+          "Roughness": "m03_Roughness.png",
+          "Normal": "m03_Normal.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Secondary",
+        "id": "m04",
+        "maps": {
+          "Albedo": "m04_Albedo.png",
+          "Metallic": "m04_Metallic.png",
+          "Roughness": "m04_Roughness.png",
+          "Normal": "m04_Normal.png"
+        },
+        "emissionStrength": 0.0
+      }
+    ],
+    "bones": 52,
+    "triangles": 29927,
+    "unweighted": 0,
+    "bounds": [
+      [
+        -0.4712146520614624,
+        -0.35862821340560913,
+        -0.013039208017289639
+      ],
+      [
+        0.2853032946586609,
+        0.47700825333595276,
+        1.9499999284744263
+      ]
+    ]
+  },
+  "TransitAoe": {
+    "materials": [
+      {
+        "name": "M_drone01",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Metallic": "m00_Metallic.png",
+          "Roughness": "m00_Roughness.png",
+          "Emission": "m00_Emission.png",
+          "Normal": "m00_Normal.png"
+        },
+        "emissionStrength": 1.5
+      },
+      {
+        "name": "M_drone02",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Metallic": "m01_Metallic.png",
+          "Roughness": "m01_Roughness.png",
+          "Emission": "m01_Emission.png",
+          "Normal": "m01_Normal.png"
+        },
+        "emissionStrength": 1.5
+      },
+      {
+        "name": "Transit graphite",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Metallic": "m02_Metallic.png",
+          "Roughness": "m02_Roughness.png",
+          "Normal": "m02_Normal.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Transit lettering",
+        "id": "m03",
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Metallic": "m03_Metallic.png",
+          "Roughness": "m03_Roughness.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Transit safety yellow",
+        "id": "m04",
+        "maps": {
+          "Albedo": "m04_Albedo.png",
+          "Metallic": "m04_Metallic.png",
+          "Roughness": "m04_Roughness.png",
+          "Normal": "m04_Normal.png"
+        },
+        "emissionStrength": 0.0
+      }
+    ],
+    "bones": 2,
+    "triangles": 16938,
+    "unweighted": 0,
+    "bounds": [
+      [
+        -0.899999737739563,
+        -1.1125692129135132,
+        0.5799999833106995
+      ],
+      [
+        0.899999737739563,
+        1.1125693321228027,
+        1.4285742044448853
+      ]
+    ]
+  },
+  "TransitHeavy": {
+    "materials": [
+      {
+        "name": "Color.002",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Metallic": "m00_Metallic.png",
+          "Roughness": "m00_Roughness.png",
+          "Emission": "m00_Emission.png",
+          "Normal": "m00_Normal.png"
+        },
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Metal.002",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Metallic": "m01_Metallic.png",
+          "Roughness": "m01_Roughness.png",
+          "Emission": "m01_Emission.png",
+          "Normal": "m01_Normal.png"
+        },
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Shield blue",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Metallic": "m02_Metallic.png",
+          "Roughness": "m02_Roughness.png",
+          "Normal": "m02_Normal.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Status cyan",
+        "id": "m03",
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Metallic": "m03_Metallic.png",
+          "Roughness": "m03_Roughness.png",
+          "Emission": "m03_Emission.png"
+        },
+        "emissionStrength": 3.0
+      },
+      {
+        "name": "Transit graphite",
+        "id": "m04",
+        "maps": {
+          "Albedo": "m04_Albedo.png",
+          "Metallic": "m04_Metallic.png",
+          "Roughness": "m04_Roughness.png",
+          "Normal": "m04_Normal.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Transit lettering",
+        "id": "m05",
+        "maps": {
+          "Albedo": "m05_Albedo.png",
+          "Metallic": "m05_Metallic.png",
+          "Roughness": "m05_Roughness.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Transit safety yellow",
+        "id": "m06",
+        "maps": {
+          "Albedo": "m06_Albedo.png",
+          "Metallic": "m06_Metallic.png",
+          "Roughness": "m06_Roughness.png",
+          "Normal": "m06_Normal.png"
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "tripo_node_e0d7fd6a_gameasset_Mat_1",
+        "id": "m07",
+        "maps": {
+          "Albedo": "m07_Albedo.png",
+          "Metallic": "m07_Metallic.png",
+          "Roughness": "m07_Roughness.png",
+          "Normal": "m07_Normal.png"
+        },
+        "emissionStrength": 0.0
+      }
+    ],
+    "bones": 101,
+    "triangles": 29251,
+    "unweighted": 0,
+    "bounds": [
+      [
+        -0.7032982110977173,
+        -1.2670000791549683,
+        -0.11341258883476257
+      ],
+      [
+        0.9135274887084961,
+        0.3816327154636383,
+        2.249999761581421
+      ]
+    ]
+  }
+}

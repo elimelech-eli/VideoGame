@@ -182,7 +182,7 @@ public sealed class MenuTests
     [UnityTest] public IEnumerator ManualCheckpointRestoresSeedDifficultyAndPendingRewardWithoutDuplicatingIt()
     {
         game.StartMission();game.Director.enabled=false;
-        foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.Damage(100);
+        foreach(var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None))enemy.Damage(enemy.HealthMaximum+enemy.Shield);
         game.Interact();Assert.IsFalse(game.InMission);Assert.AreEqual(MissionStage.Complete,game.Mission.Stage);
         game.Menus.SetDifficulty(Difficulty.Hard);int seed=game.Seed;Assert.IsTrue(game.Menus.Save(1));
         game.Interact();Assert.AreEqual(100,game.Mission.Credits);

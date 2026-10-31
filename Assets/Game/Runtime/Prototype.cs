@@ -351,12 +351,13 @@ namespace VideoGame
             return Center(next);
         }
         public Drone SpawnDrone(Vector3 point, bool ranged)
-            => SpawnDrone(point, ranged ? EnemyKind.Gunner : ActiveBiome==BiomeId.BiotechLab ? EnemyKind.Rusher : EnemyKind.Hunter);
+            => SpawnDrone(point, ranged ? EnemyKind.Gunner : (ActiveBiome==BiomeId.BiotechLab||ActiveBiome==BiomeId.Transit) ? EnemyKind.Rusher : EnemyKind.Hunter);
         public Drone SpawnDrone(Vector3 point, EnemyKind kind, bool labBoss = false)
         {
             bool lab = ActiveBiome == BiomeId.BiotechLab;
             if (labBoss && !lab) throw new System.ArgumentException("The medical boss belongs to the Lab roster.");
-            bool heavy = lab && kind == EnemyKind.Hunter && !labBoss;
+            bool transit=ActiveBiome==BiomeId.Transit;
+            bool heavy = (lab||transit) && kind == EnemyKind.Hunter && !labBoss;
             bool ranged = kind == EnemyKind.Gunner || kind == EnemyKind.Bombardier || heavy || labBoss;
             var enemy = Shape(ranged ? "Ranged drone" : "Hunter drone", ranged ? PrimitiveType.Sphere : PrimitiveType.Capsule, point, Vector3.one, ranged ? Color.magenta : Art.Amber, world);
             enemy.GetComponent<Renderer>().enabled = false;
@@ -364,8 +365,9 @@ namespace VideoGame
             float size = kind == EnemyKind.Bombardier ? 2.6f : kind == EnemyKind.Rusher ? 1.65f : kind == EnemyKind.Hunter ? 2.2f : 2.35f;
             bool labEnemy = ActiveBiome == VideoGame.Core.BiomeId.BiotechLab;
             if (labEnemy) { model = labBoss ? "LabBoss" : heavy ? "LabHeavy" : kind == EnemyKind.Bombardier ? "LabAoe" : kind == EnemyKind.Gunner ? "LabHazmat" : "LabSpider"; size = labBoss ? 3f : heavy ? 2.9f : kind == EnemyKind.Bombardier ? 2.2f : kind == EnemyKind.Gunner ? 2.15f : 1.65f; }
-            var enemyArt = Visuals.Model((labEnemy ? "Detailed/LabEnemies/Prefabs/" : "Detailed/Robots/Prefabs/") + model, enemy.transform, new Vector3(0, -1, 0), size, Art.Amber);
-            var drone = enemy.AddComponent<Drone>(); drone.Kind = kind; drone.ConfigureLab(heavy, labBoss);
+            if(transit){model=kind==EnemyKind.Hunter?"TransitHeavy":kind==EnemyKind.Bombardier?"TransitAoe":kind==EnemyKind.Gunner?"TransitGunner":"TransitMelee";size=kind==EnemyKind.Hunter?2.25f:kind==EnemyKind.Gunner?1.95f:kind==EnemyKind.Bombardier?2.1f:1.45f;}
+            var enemyArt = Visuals.Model((transit?"Detailed/TransitEnemies/Prefabs/":labEnemy ? "Detailed/LabEnemies/Prefabs/" : "Detailed/Robots/Prefabs/") + model, enemy.transform, new Vector3(0, transit&&kind==EnemyKind.Bombardier?-.1f:-1, 0), size, Art.Amber);
+            var drone = enemy.AddComponent<Drone>(); drone.Kind = kind; drone.ConfigureLab(lab&&heavy, labBoss);if(transit&&heavy)drone.ConfigureTransitHeavy();
             if(InMission)drone.SetLevel(Equipment.RollEnemyLevel());
             var originalCollider = enemy.GetComponent<Collider>(); originalCollider.enabled = false; Destroy(originalCollider);
             var bounds = Art.RenderedBounds(enemyArt);

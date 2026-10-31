@@ -38,7 +38,7 @@ public sealed class CombatWorldTests
     [UnityTest] public IEnumerator ReinforcementsContinueAfterObjectiveAndRespectCap()
     {
         game.StartMission(); yield return null;
-        foreach (var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.Damage(100);
+        foreach (var enemy in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None)) enemy.Damage(enemy.HealthMaximum+enemy.Shield);
         Assert.AreEqual(MissionStage.Complete, game.Mission.Stage);
         yield return new WaitForSeconds(EncounterDirector.SpawnInterval + .15f);
         Assert.Greater(Object.FindObjectsByType<Drone>(FindObjectsSortMode.None).Length, 0, "Completed contract must still get reinforcements");
