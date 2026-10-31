@@ -357,8 +357,10 @@ namespace VideoGame
             enemy.GetComponent<Renderer>().enabled = false;
             string model = kind == EnemyKind.Hunter ? "Crawler" : kind == EnemyKind.Rusher ? "Roller" : kind == EnemyKind.Gunner ? "Blaster" : "Lobber";
             float size = kind == EnemyKind.Bombardier ? 2.6f : kind == EnemyKind.Rusher ? 1.65f : kind == EnemyKind.Hunter ? 2.2f : 2.35f;
-            bool labEnemy = ActiveBiome == VideoGame.Core.BiomeId.BiotechLab && (kind == EnemyKind.Rusher || kind == EnemyKind.Gunner);
-            if (labEnemy) { model = kind == EnemyKind.Rusher ? "LabSpider" : "LabHazmat"; size = kind == EnemyKind.Rusher ? 1.65f : 2.15f; }
+            bool labEnemy = ActiveBiome == VideoGame.Core.BiomeId.BiotechLab;
+            // A dedicated biome roster replaces the entire generic roster. Until
+            // the remaining Lab bodies arrive, reuse its approved skins by role.
+            if (labEnemy) { model = ranged ? "LabHazmat" : "LabSpider"; size = ranged ? 2.15f : kind == EnemyKind.Rusher ? 1.65f : 2.2f; }
             var enemyArt = Visuals.Model((labEnemy ? "Detailed/LabEnemies/Prefabs/" : "Detailed/Robots/Prefabs/") + model, enemy.transform, new Vector3(0, -1, 0), size, Art.Amber);
             var drone = enemy.AddComponent<Drone>(); drone.Kind = kind;
             if(InMission)drone.SetLevel(Equipment.RollEnemyLevel());

@@ -1,6 +1,6 @@
 # Lab enemies: approved white/red models
 
-Scope: BiotechLab Rusher uses PAndras Robot spider; BiotechLab Gunner uses 07productionz Hazmat Suit 3 with ul1tka Sci-Fi Rifle. Other biomes and Hunter/Bombardier remain on existing models. The chosen heavy-shielded and medical AOE assets are a later integration; boss remains deferred.
+Scope: every BiotechLab melee role (Rusher and Hunter) uses the approved PAndras Robot spider; every BiotechLab ranged role (Gunner and Bombardier) uses the approved 07productionz Hazmat Suit 3 with ul1tka Sci-Fi Rifle. This temporary reuse replaces all generic Lab bodies while preserving each role, movement speed and attack behavior. Initial populations and reinforcements share the same selection path. Other biomes retain generic models until their dedicated rosters are imported; Transit models are currently review assets. The previously chosen heavy-shielded and medical AOE assets still need integration; the medical boss remains deferred. The current Hunter is melee, so a heavy shielded ranged combat class is separate future work.
 
 Source attribution (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/):
 - Robot spider by PAndras: https://sketchfab.com/3d-models/robot-spider-c9c7188c7f9e4504b8499f1131693b72
