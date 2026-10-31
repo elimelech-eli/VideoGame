@@ -29,4 +29,26 @@ public sealed class LabEnemyTests {
  var d=game.SpawnDrone(game.Player.transform.position+Vector3.forward*1.3f,EnemyKind.Rusher);
  var before=game.Player.Health;d.enabled=true;yield return new WaitForSeconds(.65f);Assert.Less(game.Player.Health,before,"Rig replacement must not interrupt melee damage");
  d.Damage(Drone.MaxHealth);Assert.AreEqual(0,d.Health);Assert.IsTrue(d.Motion.Dead);Assert.IsFalse(d.GetComponentsInChildren<Collider>().Any(c=>c.enabled));
- }}
+ }
+ [UnityTest] public IEnumerator DedicatedRosterReplacesEveryRoleWithoutLeakingAcrossBiomes(){
+ // Exercise the actual mission spawn path and the same SpawnDrone entry used
+ // by reinforcements, including a return to the Lab after generic-biome loads.
+ foreach(var biome in new[]{BiomeId.BiotechLab,BiomeId.Transit,BiomeId.NeonStreets,BiomeId.RuinedFactory,BiomeId.CorporateOffice,BiomeId.Undercity,BiomeId.BiotechLab}){
+ game.NewSession();game.StartMission((int)biome,6);game.Director.enabled=false;game.Player.enabled=false;
+ foreach(var d in Object.FindObjectsByType<Drone>(FindObjectsSortMode.None)){
+ d.enabled=false;
+ if(biome==BiomeId.BiotechLab)Assert.That(d.Motion.name.Replace("(Clone)",""),Is.EqualTo(d.Ranged?"LabHazmat":"LabSpider"),"Initial Lab population must not contain generic bodies");
+ }
+ foreach(EnemyKind kind in System.Enum.GetValues(typeof(EnemyKind))){
+ var d=game.SpawnDrone(new Vector3(0,1,0),kind);d.enabled=false;
+ string expected=biome==BiomeId.BiotechLab?(d.Ranged?"LabHazmat":"LabSpider"):kind==EnemyKind.Hunter?"Crawler":kind==EnemyKind.Rusher?"Roller":kind==EnemyKind.Gunner?"Blaster":"Lobber";
+ Assert.AreEqual(expected,d.Motion.name.Replace("(Clone)",""),biome+" / "+kind);
+ Assert.AreEqual(kind,d.Kind,"A temporary shared skin must not replace the combat role");
+ Assert.AreEqual(kind==EnemyKind.Gunner||kind==EnemyKind.Bombardier,d.Ranged);
+ Assert.IsNotNull(d.Motion.Player[kind==EnemyKind.Bombardier?"Cast":d.Ranged?"Fire":"Melee"]);
+ Object.Destroy(d.gameObject);
+ }
+ yield return null;
+ }
+ }
+}
