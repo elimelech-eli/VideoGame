@@ -26,7 +26,7 @@ namespace VideoGame
             var model = Instantiate(source, root.transform);
             model.transform.localPosition = Vector3.zero;
             if (!path.StartsWith("Detailed/")) model.transform.localRotation = Quaternion.identity;
-            bool robot = (path.Contains("/Robots/Prefabs/") || path.Contains("/LabEnemies/Prefabs/"));
+            bool robot = (path.Contains("/Robots/Prefabs/") || path.Contains("/LabEnemies/Prefabs/") || path.Contains("/TransitEnemies/Prefabs/"));
             if (robot) { var animation = model.AddComponent<ActorAnimation>(); animation.Player.Sample(); }
             var renderers = model.GetComponentsInChildren<Renderer>();
             var bounds = RenderedBounds(model, robot);
@@ -69,7 +69,7 @@ namespace VideoGame
                 renderer.receiveShadows = true;
             }
             foreach (var collider in model.GetComponentsInChildren<Collider>()) Destroy(collider);
-            bool actor = path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner") || (path.Contains("/Robots/Prefabs/") || path.Contains("/LabEnemies/Prefabs/"));
+            bool actor = path.Contains("Prefabs/Operative") || path.Contains("Prefabs/Hunter") || path.Contains("Prefabs/Gunner") || (path.Contains("/Robots/Prefabs/") || path.Contains("/LabEnemies/Prefabs/") || path.Contains("/TransitEnemies/Prefabs/"));
             if (actor && !robot) model.AddComponent<ActorAnimation>();
             else if (!actor && solid && path.StartsWith("Detailed/"))
             {

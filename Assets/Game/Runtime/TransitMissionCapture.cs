@@ -17,6 +17,7 @@ namespace VideoGame
             game.Menus.Settings.SectorSize=6;game.StartMission();
             if(directory=="play"){Debug.Log("TRANSIT_MISSION_READY: normal seeded Transit combat, 6 rooms.");yield break;}
             Directory.CreateDirectory(directory);
+            if(System.Environment.GetEnvironmentVariable("POC_TRANSIT_ENEMIES")=="complete"){yield return CaptureEnemies(game,directory);Application.Quit();yield break;}
             foreach(int count in new[]{6,10,20})
             {
                 if(count!=6){game.Mission.Abandon();game.BuildHub();yield return null;game.Menus.Settings.SectorSize=count;game.StartMission();}
@@ -42,6 +43,40 @@ namespace VideoGame
             }
             Debug.Log("TRANSIT_MISSION_CAPTURE_COMPLETE: 6/10/20-room actual mission scenes, staged views with AI disabled.");
             Application.Quit();
+        }
+        IEnumerator CaptureEnemies(Prototype game,string directory)
+        {
+            game.Director.enabled=false;game.Player.enabled=false;
+            foreach(var enemy in FindObjectsByType<Drone>(FindObjectsSortMode.None))Destroy(enemy.gameObject);
+            yield return null;
+            game.GetComponent<GameHud>().enabled=false;
+            game.Player.Teleport(new Vector3(0,1,-3));
+            var camera=game.Player.View;
+            var kinds=new[]{EnemyKind.Rusher,EnemyKind.Gunner,EnemyKind.Bombardier,EnemyKind.Hunter};
+            var names=new[]{"TransitMelee","TransitGunner","TransitAoe","TransitHeavy"};
+            for(int i=0;i<kinds.Length;i++)
+            {
+                var d=game.SpawnDrone(new Vector3(0,1,0),kinds[i]);
+                d.enabled=false;d.transform.rotation=Quaternion.LookRotation(new Vector3(-1,0,-1));
+                d.Motion.enabled=false;d.Motion.Player.enabled=false;
+                yield return new WaitForSeconds(.25f);
+                foreach(string state in new[]{"Idle","RunForward","Fire","Cast","Death"})
+                {
+                    int count=state=="RunForward"?8:1;
+                    for(int frame=0;frame<count;frame++)
+                    {
+                        var animation=d.Motion.Player;animation.Stop();animation.Play(state);
+                        animation[state].normalizedTime=state=="Death"?.98f:count==1?.35f:frame/(float)count;animation.Sample();
+                        yield return new WaitForEndOfFrame();
+                        camera.orthographicSize=3.1f;
+                        var focus=Art.RenderedBounds(d.Motion.gameObject).center;camera.transform.rotation=Quaternion.Euler(50,45,0);camera.transform.position=focus-camera.transform.forward*25;
+                        if(state=="Idle")Debug.Log(names[i]+" rendered bounds "+Art.RenderedBounds(d.Motion.gameObject)+" actor "+d.transform.position+" camera "+camera.transform.position);
+                        game.CaptureFrame(Path.Combine(directory,names[i]+"-"+state+"-"+frame+".png"));
+                    }
+                }
+                Destroy(d.gameObject);yield return null;
+            }
+            Debug.Log("TRANSIT_COMPLETE_ROSTER_CAPTURE: four distinct Transit skins, sampled idle/run/fire/cast/death in actual Windows player; staged with AI disabled.");
         }
     }
 }

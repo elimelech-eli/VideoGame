@@ -5,10 +5,19 @@ using UnityEditor;
 using UnityEngine;
 namespace VideoGame.Editor
 {
-    public static class LabCombatClips
+    public static class BiomeCombatClips
     {
         static string Role(string name)
         {
+            if(name=="body"||name=="CC_Base_Hip"||name=="mixamorig:Hips")return "hips";
+            if(name=="CC_Base_Waist"||name=="CC_Base_Spine01"||name=="CC_Base_Spine02"||name=="mixamorig:Spine"||name=="mixamorig:Spine1"||name=="mixamorig:Spine2")return "spine";
+            if(name=="CC_Base_Head"||name=="mixamorig:Head")return "head";
+            foreach(var side in new[]{"L","R"})
+            {
+                string word=side=="L"?"Left":"Right";
+                foreach(var pair in new[]{new[]{"Thigh","UpLeg","thigh."},new[]{"Calf","Leg","calf."},new[]{"Foot","Foot","foot."},new[]{"Upperarm","Arm","upperarm."},new[]{"Forearm","ForeArm","forearm."},new[]{"Hand","Hand","hand."}})
+                    if(name=="CC_Base_"+side+"_"+pair[0]||name=="mixamorig:"+word+pair[1])return pair[2]+side;
+            }
             if(name=="Groin")return "hips";
             if(name=="Body")return "spine";
             if(name=="Head")return "head";
@@ -23,19 +32,19 @@ namespace VideoGame.Editor
             }
             return name;
         }
-        static bool Driven(string name)=>new[]{"hips","spine","head"}.Contains(Role(name)) || new[]{"thigh.","calf.","foot.","upperarm.","forearm.","hand."}.Any(p=>Role(name).StartsWith(p,StringComparison.Ordinal));
+        static bool Driven(string name)=>System.Text.RegularExpressions.Regex.IsMatch(name,@"^Tentacle (Mid )?(Front|Back)(\.00[16])?\.[LR]$") || new[]{"hips","spine","head"}.Contains(Role(name)) || new[]{"thigh.","calf.","foot.","upperarm.","forearm.","hand."}.Any(p=>Role(name).StartsWith(p,StringComparison.Ordinal));
         public static void Prepare(GameObject model,string id)
         {
-            var hand=model.GetComponentsInChildren<Transform>().First(t=>Role(t.name)=="hand.R");
-            Vector3 point=hand.position+Vector3.forward*(id=="LabHeavy"?.55f:.22f);
+            var hand=model.GetComponentsInChildren<Transform>().First(t=>Role(t.name)==(id=="TransitAoe"?"payload":"hand.R"));
+            Vector3 point=hand.position+Vector3.forward*(id=="LabHeavy"?.55f:id=="TransitHeavy"?.65f:id=="TransitAoe"?.4f:.22f);
             var gun=model.GetComponentsInChildren<Renderer>().FirstOrDefault(r=>r.name.Contains(id=="LabHeavy"?"weaponhnad":"DecontaminationEmitter2"));
             if(gun!=null)point=new Vector3(gun.bounds.center.x,gun.bounds.center.y,gun.bounds.max.z);
             var socket=new GameObject("ShotOrigin").transform;socket.SetParent(hand,false);socket.position=point;
         }
         public static void Bake(GameObject model,string id)
         {
-            string folder="Assets/Game/Resources/LabEnemyAnimations/"+id+"/";Directory.CreateDirectory(folder);AssetDatabase.Refresh();
-            var bones=model.GetComponentsInChildren<Transform>().Where(t=>Driven(t.name)&&t.GetComponent<Renderer>()==null).ToArray();
+            string folder="Assets/Game/Resources/"+(id.StartsWith("Transit",StringComparison.Ordinal)?"TransitEnemyAnimations/":"LabEnemyAnimations/")+id+"/";Directory.CreateDirectory(folder);AssetDatabase.Refresh();
+            var bones=model.GetComponentsInChildren<Transform>().Where(t=>(Driven(t.name)||(id=="TransitMelee"&&t.name=="Body")||(id=="TransitAoe"&&t.name=="payload"))&&t.GetComponent<Renderer>()==null).ToArray();
             foreach(string state in ActorAnimationBuilder.Names)
             {
                 float length=state=="Death"?1.25f:state=="Melee"?.65f:state=="Hit"?.2f:state=="Fire"?.45f:state=="Cast"?.8f:.8f;
@@ -48,6 +57,7 @@ namespace VideoGame.Editor
                     {
                         float u=frame/32f, wave=Mathf.Sin(u*Mathf.PI*2),strike=Mathf.Sin(u*Mathf.PI),side=role.EndsWith(".L",StringComparison.Ordinal)?1:-1;
                         bool run=state.StartsWith("Run")||state=="Dash";float stride=wave*side*(state=="RunBack"?-1:1),x=0,y=0,z=0,bob=0,back=0;
+                        if(id=="TransitMelee"&&bone.name=="Body")role="hips";
                         if(role=="hips") {bob=run?.025f*Mathf.Sin(u*Mathf.PI*4):.003f*wave;if(run)z=1.5f*wave;}
                         if(role=="spine"){x=run?3+1.5f*wave:.6f*wave;y=run?2*wave:0;}
                         if(role=="head"){x=run?-1.5f:0;y=1.3f*wave;}
@@ -59,6 +69,14 @@ namespace VideoGame.Editor
                             if(role.StartsWith("upperarm.")){x=1.5f*wave*side;z=1.5f*wave;}
                             if(role.StartsWith("forearm."))x=2*wave*side;
                             if((state=="RunLeft"||state=="RunRight")&&role.StartsWith("thigh.")){z=9*stride;x*=.45f;}
+                        }
+                        if(id=="TransitAoe"&&role=="hips"){bob=.035f*wave;x=run?5*wave:1.5f*wave;z=run?3*wave:1.5f*wave;}
+                        if(id=="TransitAoe"&&role=="payload"&&(state=="Cast"||state=="Fire"))x=-12*strike;
+                        if(id=="TransitMelee"&&role.StartsWith("Tentacle",StringComparison.Ordinal))
+                        {
+                            float phase=side*(role.Contains("Mid")?-1:1);x=(run?9:1.2f)*wave*phase;
+                            if(state=="Melee")x-=25*strike;
+                            if(state=="Death")x=32*u;
                         }
                         if(state=="Fire")
                         {

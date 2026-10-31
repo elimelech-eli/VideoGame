@@ -40,13 +40,13 @@ public static class LabEnemyAssets {
  }
  renderer.sharedMaterials=mats;
  }
- if(id!="LabSpider"&&id!="LabHazmat")LabCombatClips.Prepare(model,id);
+ if(id!="LabSpider"&&id!="LabHazmat")BiomeCombatClips.Prepare(model,id);
  PrefabUtility.SaveAsPrefabAsset(model,Root+"Prefabs/"+id+".prefab");BakeClips(model,id);UnityEngine.Object.DestroyImmediate(model);
  }AssetDatabase.SaveAssets();
  }
  static Texture2D Tex(string id,string file)=>AssetDatabase.LoadAssetAtPath<Texture2D>(Root+"Textures/"+id+"/"+file);
  static void BakeClips(GameObject model,string id){
- if(id!="LabSpider"&&id!="LabHazmat"){LabCombatClips.Bake(model,id);return;}
+ if(id!="LabSpider"&&id!="LabHazmat"){BiomeCombatClips.Bake(model,id);return;}
  string folder="Assets/Game/Resources/LabEnemyAnimations/"+id+"/";Directory.CreateDirectory(folder);AssetDatabase.Refresh();
  var bones=model.GetComponentsInChildren<Transform>().Where(t=>id=="LabSpider"?(t.name=="body"||t.name.StartsWith("leg_")||t.name.StartsWith("foot_")):new[]{"Hips","Spine","Spine1","Spine2","Head","L_up_leg","R_up_leg","L_knee","R_knee","L_foot","R_foot","L_shoulder","R_shoulder"}.Contains(t.name)).ToArray();
  foreach(string state in ActorAnimationBuilder.Names){

@@ -61,3 +61,7 @@ Credited source architecture, train and equipment: [Transit credits](../Assets/G
 ## Completed BiotechLab enemy roster
 
 The Lab has five distinct imported models, including a newly rigged Medical Android and shielded Megabot plus the Medical Assistance Bot boss. See [Lab enemy integration](LAB_ENEMIES.md) for role mapping, authored animation, combat rules, provenance and verification. Generic robots remain on biomes without integrated dedicated models.
+
+## Dedicated Transit enemy roster
+
+Transit uses Ancient Maintenance Bot, Security Cyborg, Attack Drone Scifi with the centered payload, and Robot Police Unit with shield and enlarged rifle. See [Transit integration](TRANSIT_BIOME.md) and [biome pipeline](BIOME_PIPELINE.md) for source credits, authored animation, shared combat behavior, current validation and the optional boss boundary.
