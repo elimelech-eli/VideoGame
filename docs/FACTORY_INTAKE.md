@@ -15,3 +15,9 @@ Proposed representative room: ruined automation/assembly hall with a clear comba
 Next gate: user selects the foundation; audit downloaded source/license files, measure modules, assemble one room/corridor in Unity and show gameplay/detail renders before procedural expansion. Enemy sourcing is a later bounded pass.
 
 Checks: source listings and rendered browser previews inspected; downloadable badges and displayed licenses verified. Archive hashes/dependency completeness/engine import/performance/gameplay remain not-run. No Unity suite or player build was run for this research/docs phase.
+
+## Approved audition
+
+User approved the Thomas architecture and machinery foundation on 2026-11-01. Approval covers creating one Unity room/corridor, not the finished biome. Original FBX sources acquired, hashes recorded in Assets/FactoryReview/catalog.json. See Assets/FactoryReview/CREDITS.md. Representative scene: Assets/FactoryReview/FactoryRoomAudition.unity; Editor entry point: VideoGame.Editor.FactoryRoomReview.Build. Native source grid 2.5m, room 15 x 12.5m, corridor 5 x 5m; approximately 1.98m operator scale reference. Runtime integration, animation, audio and natural playthrough are pending.
+
+Unity audition evidence: source bounds measured in Art/FactoryIntake/unity-source-bounds.txt; placements in unity-assembly.txt. Captures: factory-room-overview.png (50/45, size11), factory-room-gameplay.png (actual 50/45, size7.5), factory-room-detail.png (size5.7), factory-room-plan.png. Three Editor import/render passes; zero local test-suite invocations and zero player builds. Initial pass exposed presentation issues; final floor backing is separated by 15mm to avoid depth interference. User visual approval is pending. No runtime integration or CI delivery claimed.

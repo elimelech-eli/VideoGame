@@ -1,0 +1,128 @@
+{
+  "materials": [
+    {
+      "name": "bricks",
+      "albedo": "bricks_albedo.png",
+      "normal": "bricks_normal.png",
+      "packed": "bricks_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "concrete",
+      "albedo": "concrete_albedo.png",
+      "normal": "concrete_normal.png",
+      "packed": "concrete_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "concrete_floor",
+      "albedo": "concrete_floor_albedo.png",
+      "normal": "concrete_floor_normal.png",
+      "packed": "concrete_floor_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "Trim_metal",
+      "albedo": "Trim_metal_albedo.png",
+      "normal": "Trim_metal_normal.png",
+      "packed": "",
+      "emission": ""
+    },
+    {
+      "name": "Big Generator",
+      "albedo": "Big_Generator_albedo.png",
+      "normal": "Big_Generator_normal.png",
+      "packed": "Big_Generator_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "Misc_01",
+      "albedo": "Misc_01_albedo.png",
+      "normal": "Misc_01_normal.png",
+      "packed": "Misc_01_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "Misc_02",
+      "albedo": "Misc_02_albedo.png",
+      "normal": "Misc_02_normal.png",
+      "packed": "Misc_02_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "Tables",
+      "albedo": "Tables_albedo.png",
+      "normal": "Tables_normal.png",
+      "packed": "Tables_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "Carts",
+      "albedo": "Carts_albedo.png",
+      "normal": "Carts_normal.png",
+      "packed": "Carts_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "Crate",
+      "albedo": "Crate_albedo.png",
+      "normal": "Crate_normal.png",
+      "packed": "Crate_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "Shelves",
+      "albedo": "Shelves_albedo.png",
+      "normal": "Shelves_normal.png",
+      "packed": "Shelves_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "pipes_01",
+      "albedo": "pipes_01_albedo.png",
+      "normal": "pipes_01_normal.png",
+      "packed": "pipes_01_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "pipes_02",
+      "albedo": "pipes_02_albedo.png",
+      "normal": "pipes_02_normal.png",
+      "packed": "pipes_02_packed.png",
+      "emission": ""
+    },
+    {
+      "name": "Lamps",
+      "albedo": "Lamps_albedo.png",
+      "normal": "Lamps_normal.png",
+      "packed": "Lamps_packed.png",
+      "emission": "Lamps_emission.png"
+    },
+    {
+      "name": "Barrel + tools",
+      "albedo": "Barrel_plus_tools_albedo.png",
+      "normal": "Barrel_plus_tools_normal.png",
+      "packed": "Barrel_plus_tools_packed.png",
+      "emission": ""
+    }
+  ],
+  "provenance": [
+    {
+      "category": "architecture",
+      "uid": "3213637ed81d41138c6746a13bf585b9",
+      "author": "Thomas_Crozelon",
+      "license": "CC-BY-4.0",
+      "source": "https://sketchfab.com/3d-models/3213637ed81d41138c6746a13bf585b9",
+      "sha256": "e93831e7f93b2b9451dccc47ffc3e4315714b60a7f1dedad841c90b6705fa60e"
+    },
+    {
+      "category": "props",
+      "uid": "ee08d29bc6cd411e845e50903e4060ca",
+      "author": "Thomas_Crozelon",
+      "license": "CC-BY-4.0",
+      "source": "https://sketchfab.com/3d-models/ee08d29bc6cd411e845e50903e4060ca",
+      "sha256": "e67e5c4b8d34c7aa71be5ed07c9a87551358fdab0b5d87541933628631ba9564"
+    }
+  ],
+  "changes": "Original FBX geometry, source texture maps resampled to max2048; roughness inverted into Unity smoothness alpha. No bake or generative processing."
+}
