@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "layout_id": "nexus-full-ship-visual-v1",
+  "status": "pass",
+  "validation_mode": "static-layout-preflight",
+  "runtime_validation": "not-run",
+  "limits": [
+    "declared solid AABBs and flat room floors only",
+    "centered, bidirectional portals only",
+    "no within-room pathfinding, locks, jumping, slopes, camera or collision-engine simulation",
+    "inputs are declarations, not verified mesh measurements"
+  ],
+  "checks": [
+    {
+      "id": "room-interiors-disjoint",
+      "status": "pass",
+      "observed": {
+        "overlaps": []
+      }
+    },
+    {
+      "id": "solid-contained:cargo-stack",
+      "status": "pass",
+      "observed": {
+        "solid": "cargo-stack"
+      }
+    },
+    {
+      "id": "solid-contained:mess-table",
+      "status": "pass",
+      "observed": {
+        "solid": "mess-table"
+      }
+    },
+    {
+      "id": "solid-contained:mission-consoles",
+      "status": "pass",
+      "observed": {
+        "solid": "mission-consoles"
+      }
+    },
+    {
+      "id": "solid-contained:reactor",
+      "status": "pass",
+      "observed": {
+        "solid": "reactor"
+      }
+    },
+    {
+      "id": "solid-contained:repair-desk",
+      "status": "pass",
+      "observed": {
+        "solid": "repair-desk"
+      }
+    },
+    {
+      "id": "solid-contained:cabin-bed",
+      "status": "pass",
+      "observed": {
+        "solid": "cabin-bed"
+      }
+    },
+    {
+      "id": "solid-contained:cabin-desk",
+      "status": "pass",
+      "observed": {
+        "solid": "cabin-desk"
+      }
+    },
+    {
+      "id": "spawn-clear:ops-reference-spawn",
+      "status": "pass",
+      "observed": {
+        "body_aabb": [
+          [
+            -0.3,
+            0,
+            -1.9
+          ],
+          [
+            0.7,
+            2.25,
+            -0.8999999999999999
+          ]
+        ],
+        "blocking_solids": [],
+        "on_declared_floor": true
+      }
+    },
+    {
+      "id": "portal-fit:cargo-door",
+      "status": "pass",
+      "observed": {
+        "shared_boundary": true,
+        "lateral_fit": true,
+        "floor_fit": true,
+        "step_fit": true,
+        "ceiling_fit": true,
+        "size_fit": true,
+        "depth_fit": true,
+        "blocking_solids": [],
+        "required_width_m": 1.0,
+        "required_height_m": 2.25
+      }
+    },
+    {
+      "id": "portal-fit:bridge-door",
+      "status": "pass",
+      "observed": {
+        "shared_boundary": true,
+        "lateral_fit": true,
+        "floor_fit": true,
+        "step_fit": true,
+        "ceiling_fit": true,
+        "size_fit": true,
+        "depth_fit": true,
+        "blocking_solids": [],
+        "required_width_m": 1.0,
+        "required_height_m": 2.25
+      }
+    },
+    {
+      "id": "portal-fit:engineering-door",
+      "status": "pass",
+      "observed": {
+        "shared_boundary": true,
+        "lateral_fit": true,
+        "floor_fit": true,
+        "step_fit": true,
+        "ceiling_fit": true,
+        "size_fit": true,
+        "depth_fit": true,
+        "blocking_solids": [],
+        "required_width_m": 1.0,
+        "required_height_m": 2.25
+      }
+    },
+    {
+      "id": "portal-fit:cabin-door",
+      "status": "pass",
+      "observed": {
+        "shared_boundary": true,
+        "lateral_fit": true,
+        "floor_fit": true,
+        "step_fit": true,
+        "ceiling_fit": true,
+        "size_fit": true,
+        "depth_fit": true,
+        "blocking_solids": [],
+        "required_width_m": 1.0,
+        "required_height_m": 2.25
+      }
+    },
+    {
+      "id": "reachable:ops-reference-spawn:cargo",
+      "status": "pass",
+      "observed": {
+        "room_graph_reachable": true
+      }
+    },
+    {
+      "id": "reachable:ops-reference-spawn:ops",
+      "status": "pass",
+      "observed": {
+        "room_graph_reachable": true
+      }
+    },
+    {
+      "id": "reachable:ops-reference-spawn:bridge",
+      "status": "pass",
+      "observed": {
+        "room_graph_reachable": true
+      }
+    },
+    {
+      "id": "reachable:ops-reference-spawn:engineering",
+      "status": "pass",
+      "observed": {
+        "room_graph_reachable": true
+      }
+    },
+    {
+      "id": "reachable:ops-reference-spawn:cabin",
+      "status": "pass",
+      "observed": {
+        "room_graph_reachable": true
+      }
+    }
+  ],
+  "input_sha256": "39bd4343465fd42583a1637fa432b35e12a2d26442601768328281ef4332f335",
+  "tool_sha256": "1ef6385457098d39cc121de99a9c1f5740ed32205b945d78eb70bb589589c248"
+}

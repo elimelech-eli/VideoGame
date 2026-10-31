@@ -1,0 +1,18 @@
+{
+  "source_vertices": 28,
+  "source_triangles": 16,
+  "source_bounds": [
+    [
+      -394.5398254394531,
+      -392.7772216796875,
+      -0.24141918122768402
+    ],
+    [
+      403.4157409667969,
+      394.00164794921875,
+      -0.08225789666175842
+    ]
+  ],
+  "uv_layers": 2,
+  "adaptation": "Galaxy mesh only; static pose normalized to unit maximum dimension; source UV retained. Black-hole assembly omitted. Ambient rotation authored separately for preview."
+}

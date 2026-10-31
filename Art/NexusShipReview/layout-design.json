@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "layout_id": "nexus-full-ship-visual-v1",
+  "units": "m",
+  "basis": "right-handed-y-up",
+  "player": {
+    "radius": 0.4,
+    "height": 2.15,
+    "clearance": 0.1,
+    "max_step": 0.15
+  },
+  "rooms": [
+    {
+      "id": "cargo",
+      "bounds": [
+        [
+          -6,
+          0,
+          -6
+        ],
+        [
+          -2,
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "id": "ops",
+      "bounds": [
+        [
+          -2,
+          0,
+          -6
+        ],
+        [
+          6,
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "id": "bridge",
+      "bounds": [
+        [
+          -2,
+          0,
+          -10
+        ],
+        [
+          6,
+          3,
+          -6
+        ]
+      ]
+    },
+    {
+      "id": "engineering",
+      "bounds": [
+        [
+          6,
+          0,
+          -6
+        ],
+        [
+          10,
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "id": "cabin",
+      "bounds": [
+        [
+          -2,
+          0,
+          2
+        ],
+        [
+          6,
+          3,
+          6
+        ]
+      ]
+    }
+  ],
+  "solids": [
+    {
+      "id": "cargo-stack",
+      "bounds": [
+        [
+          -5.6,
+          0,
+          -2
+        ],
+        [
+          -3.9,
+          2,
+          0.4
+        ]
+      ]
+    },
+    {
+      "id": "mess-table",
+      "bounds": [
+        [
+          4.1,
+          0,
+          -0.7
+        ],
+        [
+          5.3,
+          1.4,
+          0.5
+        ]
+      ]
+    },
+    {
+      "id": "mission-consoles",
+      "bounds": [
+        [
+          3.35,
+          0,
+          -4.95
+        ],
+        [
+          5.45,
+          1.9,
+          -4.1
+        ]
+      ]
+    },
+    {
+      "id": "reactor",
+      "bounds": [
+        [
+          8.2,
+          0,
+          -4.4
+        ],
+        [
+          9.8,
+          2.5,
+          -3
+        ]
+      ]
+    },
+    {
+      "id": "repair-desk",
+      "bounds": [
+        [
+          6.55,
+          0,
+          0.1
+        ],
+        [
+          8.45,
+          1.4,
+          1.1
+        ]
+      ]
+    },
+    {
+      "id": "cabin-bed",
+      "bounds": [
+        [
+          -1.55,
+          0,
+          3.9
+        ],
+        [
+          0.75,
+          1.2,
+          5.3
+        ]
+      ]
+    },
+    {
+      "id": "cabin-desk",
+      "bounds": [
+        [
+          4,
+          0,
+          3.1
+        ],
+        [
+          5,
+          1.4,
+          4.7
+        ]
+      ]
+    }
+  ],
+  "spawns": [
+    {
+      "id": "ops-reference-spawn",
+      "room": "ops",
+      "position": [
+        0.2,
+        0,
+        -1.4
+      ]
+    }
+  ],
+  "portals": [
+    {
+      "id": "cargo-door",
+      "rooms": [
+        "cargo",
+        "ops"
+      ],
+      "axis": "x",
+      "center": [
+        -2,
+        0,
+        -2
+      ],
+      "width": 2,
+      "height": 2.5
+    },
+    {
+      "id": "bridge-door",
+      "rooms": [
+        "ops",
+        "bridge"
+      ],
+      "axis": "z",
+      "center": [
+        2,
+        0,
+        -6
+      ],
+      "width": 2,
+      "height": 2.5
+    },
+    {
+      "id": "engineering-door",
+      "rooms": [
+        "ops",
+        "engineering"
+      ],
+      "axis": "x",
+      "center": [
+        6,
+        0,
+        -2
+      ],
+      "width": 2,
+      "height": 2.5
+    },
+    {
+      "id": "cabin-door",
+      "rooms": [
+        "ops",
+        "cabin"
+      ],
+      "axis": "z",
+      "center": [
+        2,
+        0,
+        2
+      ],
+      "width": 2,
+      "height": 2.5
+    }
+  ],
+  "required_rooms": [
+    "cargo",
+    "ops",
+    "bridge",
+    "engineering",
+    "cabin"
+  ]
+}

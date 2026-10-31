@@ -1,0 +1,4 @@
+Forward-section visual preview: bridge/mission selection, port scanners and targeting, basic captain's quarters, aft cargo and sealed rear expansion socket.
+Captain's desk chair corrected to yaw 270. Added edge equipment racks, bench, break station, service panel, bedside cabinet/lamp and logbooks.
+393.5 square metre fitted deck retained; cargo route and added dressing's door approach bounds checked.
+Five static Unity captures. No gameplay, collision, interaction, save or unlock systems implemented. Expansion beyond stern is reserved, not constructed.

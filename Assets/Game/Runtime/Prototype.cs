@@ -16,6 +16,22 @@ namespace VideoGame
         public List<Room> Layout { get; private set; }
         public Art Visuals { get; private set; }
         public Vector3 Terminal => terminal;
+        public ShipService NearbyShipService
+        {
+            get
+            {
+                if(InMission || world==null)return null;
+                ShipService nearest=null;float distance=float.MaxValue;
+                foreach(var service in world.GetComponentsInChildren<ShipService>())
+                {
+                    if(!service.Available(this))continue;
+                    float d=(Player.transform.position-service.transform.TransformPoint(service.Approach)).sqrMagnitude;
+                    if(d<distance){nearest=service;distance=d;}
+                }
+                return nearest;
+            }
+        }
+        public bool TryShipService()=>NearbyShipService?.Open(this)==true;
         public EncounterDirector Director { get; private set; }
         public Soundtrack Music { get; private set; }
         public Atmosphere Ambience { get; private set; }
@@ -209,18 +225,9 @@ namespace VideoGame
             InMission = false;
             Music.SetBattle(false); Ambience.SetBattle(false);
             ResetWorld();
-            Floor(Vector3.zero, 18, new Color(.07f, .11f, .16f));
-            terminal = new Vector3(0, 1, 5);
-            Visuals.Model("Detailed/Prefabs/control_terminal", world, new Vector3(0, 0, 5), 2.5f, Art.Cyan, 180);
-            Visuals.Strip(new Vector3(0, .02f, 3), new Vector3(4, .04f, .08f), Art.Cyan, world);
-            Visuals.Sign("CONTRACT UPLINK", new Vector3(0, 3.2f, 5), .65f, Art.Cyan, world);
-            Visuals.Sign("NEXUS  /  OPERATIONS", new Vector3(0, .06f, -4), .9f, new Color(.4f, .62f, .7f), world);
-            Visuals.Model("Detailed/Prefabs/container", world, new Vector3(-5.5f, 0, -2.5f), 4.8f, Art.Cyan, -15);
-            Visuals.Model("Detailed/Prefabs/tank_control_panel", world, new Vector3(5, 0, 1), 2.8f, Art.Cyan);
-            Visuals.PointLight(new Vector3(0, 3, 5), Art.Cyan, world, 12);
-            Visuals.PointLight(new Vector3(-6, 2, -3), Art.Amber, world, 9);
-            DressRoom(Vector3.zero, 18, 0, true);
-            Ambience.Room(Vector3.zero, world, true);
+            var ship = Instantiate(Resources.Load<GameObject>("Nexus/StarshipNexus"), world);
+            ship.transform.localPosition = Vector3.zero;
+            terminal = new Vector3(0, 1, 9.1f);
             StartCoroutine(RefreshReflections());
         }
         void Floor(Vector3 center, float size, Color color)
@@ -489,7 +496,7 @@ namespace VideoGame
         {
             if (Player.IsDead || Menus?.BlocksGameplay == true) return;
             bool interact = Keyboard.current?.eKey.wasPressedThisFrame == true || Gamepad.current?.buttonSouth.wasPressedThisFrame == true;
-            if (interact && !Equipment.TryNearestPickup() && Vector3.Distance(Player.transform.position, terminal) < 3.5f) Interact();
+            if (interact && !Equipment.TryNearestPickup() && !TryShipService() && Vector3.Distance(Player.transform.position, terminal) < 3.5f) Interact();
             if (Player.Health <= 0) Player.Damage(1);
         }
         public void BeginPlayerDeath() => StartCoroutine(RecoverPlayer());

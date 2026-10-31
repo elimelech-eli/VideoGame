@@ -1,0 +1,4 @@
+Unity 6000.3.26f1
+25 source models selected; paired bulkhead faces and deck-mesh cut caps; two Camera.Render captures completed.
+Camera rotation 50/45/0; gameplay orthographic size 7.5.
+Static art review only; no gameplay, audio, build or player validation.
