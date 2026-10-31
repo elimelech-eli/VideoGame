@@ -1,17 +1,41 @@
-# Lab enemies: approved white/red models
+# Lab enemy roster
 
-Scope: every BiotechLab melee role (Rusher and Hunter) uses the approved PAndras Robot spider; every BiotechLab ranged role (Gunner and Bombardier) uses the approved 07productionz Hazmat Suit 3 with ul1tka Sci-Fi Rifle. This temporary reuse replaces all generic Lab bodies while preserving each role, movement speed and attack behavior. Initial populations and reinforcements share the same selection path. Other biomes retain generic models until their dedicated rosters are imported; Transit models are currently review assets. The previously chosen heavy-shielded and medical AOE assets still need integration; the medical boss remains deferred. The current Hunter is melee, so a heavy shielded ranged combat class is separate future work.
+BiotechLab now uses five distinct imported bodies. Initial spawns and reinforcements share the same biome mapping; the other five biomes retain their existing roster.
 
-Source attribution (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/):
-- Robot spider by PAndras: https://sketchfab.com/3d-models/robot-spider-c9c7188c7f9e4504b8499f1131693b72
-- Hazmat Suit 3 by 07productionz: https://sketchfab.com/3d-models/hazmat-suit-3-b4a96fe273c0431fabd54c9d65926d59
-- Sci-Fi Rifle by ul1tka: https://sketchfab.com/3d-models/sci-fi-rifle-648a72a0046a4d059cd850f32f30f4ce
-Hazmat author credits MakeHuman for the head and Kristiyan Marinov for the edited hardhat; retain these credits.
+| Role | Runtime model | Source | Triangles / bones |
+| --- | --- | --- | --- |
+| Fast melee | LabSpider | Robot spider, PAndras | 18,754 / 13 |
+| Regular ranged | LabHazmat | Hazmat Suit 3, 07productionz; Sci-Fi Rifle, ul1tka | 61,192 / source humanoid rig |
+| Ranged AOE | LabAoe | Medical Android, efforya | 21,382 / 15 |
+| Shielded ranged | LabHeavy | THE MEGABOT, Adriancgmask | 77,645 / 15 |
+| Optional boss | LabBoss | Medical Assistance Bot, SlagPerch 3D | 77,714 / 57 |
 
-Changes: source geometry/UVs retained; approved off-white/red paint baked into UV albedo; original normal detail retained; metallic R/smoothness A packed for Unity Standard. No protected medical emblem. Hazmat source rest skeleton rebased to the rifle preview pose, source weights retained, rifle skinned to firing hand. Spider receives 13-bone rig with articulated upper/lower legs. Eleven authored Unity clips per model: Idle, four movement directions, Fire, Melee, Cast, Dash, Hit, Death. These are initial authored clips, not motion capture or foot IK. Controller/input/AI rules remain unchanged.
+Exact attribution, licenses and new source archive hashes are in `Assets/Game/Resources/Detailed/LabEnemies/CREDITS.md`. All new sources are CC BY 4.0. The Medical Android carries a NoAI notice: it was processed with conventional Blender geometry, weighting, material baking and export, without generative processing.
 
-Rebuild materials/prefabs/clips with Nexus > Rebuild Lab enemies, or VideoGame.Editor.LabEnemyAssets.Build in batch mode. Windows builds include this step. Authoring source and downloaded originals are preserved in the local ignored .tools/gamedev/lab-enemies folder; shipped FBX/maps and Unity assets are tracked. The material manifest retains source-slot mapping and actual triangle/bone counts. New assets use 18,754 triangles for spider and 61,192 for the rifle-equipped hazmat; no crowd-performance claim.
+## Import and animation
 
-Review launcher: scripts/Start-LabMission.ps1 launches a normal Lab mission. Set POC_LAB_MISSION to an output directory and POC_LAB_ENEMIES=1 for staged enemy pose captures (isolated session, no profile save). Captures are actual runtime renders with AI disabled, not proof of live input or continuous animation smoothness.
+Shipping FBX geometry, UVs, weights, maps, prefabs and clips are committed. A checkout needs neither Blender nor fresh downloads to build. The android and heavy source downloads were unrigged; their new mechanical rigs are embedded in FBX. The boss keeps its source skeleton, rebased to the reviewed pose. Each new asset has one skinned renderer and four/five material slots; albedo/normal maps are at most 2K. Metallic R / smoothness A follows Unity Standard.
 
-Validation: final complete local suite 88.5 s, 17,420 core assertions and 5 EditMode + 59 PlayMode = 64 tests passed. Final Windows build invocation 19.6 s; eight-second player smoke passed. After the final imported-axis clip correction, both affected Lab enemy tests passed again in 8.6 s. Actual-player staged Idle/Run/Melee/Fire/Death captures reviewed. Physical controller and crowd performance not tested.
+Use **Nexus > Rebuild Lab enemies** or batch `VideoGame.Editor.LabEnemyAssets.Build` to regenerate materials, prefabs, sockets and eleven clips per model. `LabCombatClips` drives legs, torso, head and arms with bone-axis-aware keys. The android's asymmetric arms are fitted independently; its added emitter shares the hand weights. These are authored mechanical animation cycles, not mocap or foot IK. Runtime movement scales clip speed to actor speed. Source projects and archives remain in the local ignored `.tools/gamedev/lab-complete` workspace.
+
+## Combat contract
+
+The existing four-role enum is preserved. In the Lab, Hunter maps to shielded ranged heavy; the boolean spawn API still produces a melee enemy when passed false. The heavy has 180 base health plus a 90-point non-regenerating shield. Damage drains shield first, carries overflow into health and shows a cyan shield bar with the existing two-second hit visibility rule. Base values scale with enemy level.
+
+One optional medical boss spawns in the last Lab room and occupies one of the twelve population slots. Reinforcements never respawn it. It has 600 base health and alternates:
+
+- Ready -> Sterilize: cast pose, 0.5s windup, then a 1.3s ground warning before a 2.7m-radius blast.
+- Ready -> Burst: firing pose and 0.5s windup before three bolts at 0.22s spacing.
+- Both attacks -> Recover for 0.8s -> Ready.
+- At half health, Sterilize creates three separated markers and Burst fires four bolts; cooldown shortens from 4.2s to 3.2s.
+- Death is terminal: animation plays, colliders disable, attack coroutines and owned warnings cancel, and kills/loot register once.
+
+The intended counterplay is to move out of marked areas and use cover or dash during bursts, then punish recovery. Pause freezes attacks. Returning to Nexus, abandoning, dying or starting another mission clears the world; a fresh mission gets a fresh boss. The existing eight-kill objective and extraction remain available without defeating the boss. There is no separate boss quest, exclusive loot table or narrative in this slice.
+
+## Verification
+
+`LabCompletionTests` checks distinct geometry, clips and actual skin movement, floor placement, socket proximity, shield overflow, duplicate death rewards, boss population/reset, enraged warning pause/death cancellation, and non-Lab behavior. Existing Lab tests cover all biome mappings. Full local Unity validation, Windows build and headless smoke remain the delivery gate.
+
+For actual-player pose evidence, set `POC_LAB_MISSION` to an output directory and `POC_LAB_ENEMIES=complete`, then launch the Windows player without `-nographics`. It captures all five models in Idle, sampled movement phases, Fire, Cast and Death. This is an isolated capture session with AI disabled; it does not save a player profile and is not a physical-controller playtest or a crowd-performance benchmark.
+
+Delivery validation (2026-10-31): 38,420 core assertions, 20 EditMode and 103 PlayMode tests passed in 116.7s. Windows build succeeded (Unity build-pipeline time 7.076s); eight-second player smoke passed. Actual-player idle, movement, cast, fire and death poses reviewed for all five models. No physical-controller or crowd-performance claim.

@@ -304,7 +304,7 @@ namespace VideoGame
                 Physics.SyncTransforms();
                 if(ActiveBiome==BiomeId.BiotechLab||ActiveBiome==BiomeId.Transit)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i == 0) continue;
-                for (int j = 0; j < (i < 4 ? 2 : 1) && initialEnemies<EncounterDirector.PopulationCap; j++)
+                for (int j = 0; j < (i < 4 ? 2 : 1) && initialEnemies<EncounterDirector.PopulationCap-(ActiveBiome==BiomeId.BiotechLab?1:0); j++)
                 {
                     Vector3 point = center + new Vector3((float)random.NextDouble() * 8 - 4, 1, (float)random.NextDouble() * 8 - 4);
                     for (int attempt = 0; attempt < 20 && Physics.CheckSphere(point, .7f, 1 << 9); attempt++)
@@ -312,6 +312,8 @@ namespace VideoGame
                     SpawnDrone(point, (EnemyKind)Deployment.Enemy(ActiveBiome,i*2+j));initialEnemies++;
                 }
             }
+            if (ActiveBiome == BiomeId.BiotechLab)
+            { var bossRoom=rooms[rooms.Count-1]; SpawnDrone(new Vector3(bossRoom.X*MapLayout.Spacing,1,bossRoom.Y*MapLayout.Spacing),EnemyKind.Hunter,true); }
             var directorObject = new GameObject("Reinforcements"); directorObject.transform.SetParent(world);
             Director = directorObject.AddComponent<EncounterDirector>(); Director.Initialize(this, centers, Seed);
             DrawBoundaries(rooms);
@@ -349,26 +351,27 @@ namespace VideoGame
             return Center(next);
         }
         public Drone SpawnDrone(Vector3 point, bool ranged)
-            => SpawnDrone(point, ranged ? EnemyKind.Gunner : EnemyKind.Hunter);
-        public Drone SpawnDrone(Vector3 point, EnemyKind kind)
+            => SpawnDrone(point, ranged ? EnemyKind.Gunner : ActiveBiome==BiomeId.BiotechLab ? EnemyKind.Rusher : EnemyKind.Hunter);
+        public Drone SpawnDrone(Vector3 point, EnemyKind kind, bool labBoss = false)
         {
-            bool ranged = kind == EnemyKind.Gunner || kind == EnemyKind.Bombardier;
+            bool lab = ActiveBiome == BiomeId.BiotechLab;
+            if (labBoss && !lab) throw new System.ArgumentException("The medical boss belongs to the Lab roster.");
+            bool heavy = lab && kind == EnemyKind.Hunter && !labBoss;
+            bool ranged = kind == EnemyKind.Gunner || kind == EnemyKind.Bombardier || heavy || labBoss;
             var enemy = Shape(ranged ? "Ranged drone" : "Hunter drone", ranged ? PrimitiveType.Sphere : PrimitiveType.Capsule, point, Vector3.one, ranged ? Color.magenta : Art.Amber, world);
             enemy.GetComponent<Renderer>().enabled = false;
             string model = kind == EnemyKind.Hunter ? "Crawler" : kind == EnemyKind.Rusher ? "Roller" : kind == EnemyKind.Gunner ? "Blaster" : "Lobber";
             float size = kind == EnemyKind.Bombardier ? 2.6f : kind == EnemyKind.Rusher ? 1.65f : kind == EnemyKind.Hunter ? 2.2f : 2.35f;
             bool labEnemy = ActiveBiome == VideoGame.Core.BiomeId.BiotechLab;
-            // A dedicated biome roster replaces the entire generic roster. Until
-            // the remaining Lab bodies arrive, reuse its approved skins by role.
-            if (labEnemy) { model = ranged ? "LabHazmat" : "LabSpider"; size = ranged ? 2.15f : kind == EnemyKind.Rusher ? 1.65f : 2.2f; }
+            if (labEnemy) { model = labBoss ? "LabBoss" : heavy ? "LabHeavy" : kind == EnemyKind.Bombardier ? "LabAoe" : kind == EnemyKind.Gunner ? "LabHazmat" : "LabSpider"; size = labBoss ? 3f : heavy ? 2.9f : kind == EnemyKind.Bombardier ? 2.2f : kind == EnemyKind.Gunner ? 2.15f : 1.65f; }
             var enemyArt = Visuals.Model((labEnemy ? "Detailed/LabEnemies/Prefabs/" : "Detailed/Robots/Prefabs/") + model, enemy.transform, new Vector3(0, -1, 0), size, Art.Amber);
-            var drone = enemy.AddComponent<Drone>(); drone.Kind = kind;
+            var drone = enemy.AddComponent<Drone>(); drone.Kind = kind; drone.ConfigureLab(heavy, labBoss);
             if(InMission)drone.SetLevel(Equipment.RollEnemyLevel());
             var originalCollider = enemy.GetComponent<Collider>(); originalCollider.enabled = false; Destroy(originalCollider);
             var bounds = Art.RenderedBounds(enemyArt);
             var body = enemy.AddComponent<BoxCollider>(); body.center = enemy.transform.InverseTransformPoint(bounds.center); body.size = bounds.size;
             Color roleColor = kind == EnemyKind.Rusher ? new Color(1, .25f, .1f) : kind == EnemyKind.Bombardier ? new Color(.75f, .3f, 1) : ranged ? Color.magenta : Art.Amber;
-            Visuals.Sign(kind.ToString().ToUpperInvariant(), new Vector3(point.x, bounds.max.y + .35f, point.z), .27f, roleColor, enemy.transform);
+            Visuals.Sign(labBoss ? "MEDICAL OVERSEER" : heavy ? "SHIELDED HEAVY" : kind.ToString().ToUpperInvariant(), new Vector3(point.x, bounds.max.y + .35f, point.z), .27f, roleColor, enemy.transform);
             return drone;
         }
         public Destructible SpawnMedicalCache(Vector3 position)

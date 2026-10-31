@@ -8,12 +8,20 @@ namespace VideoGame
     {
         static readonly float[] SteeringAngles = {0, 60, -60, 90, -90};
         public EnemyKind Kind;
-        public bool Ranged => Kind == EnemyKind.Gunner || Kind == EnemyKind.Bombardier;
-        public float MoveSpeed => Kind == EnemyKind.Rusher ? 6.2f : Kind == EnemyKind.Bombardier ? 1.8f : Ranged ? 2 : 3.5f;
+        public bool IsLabHeavy { get; private set; }
+        public bool IsLabBoss { get; private set; }
+        public float ShieldMaximum { get; private set; }
+        public float Shield { get; private set; }
+        public bool Enraged => IsLabBoss && Health <= HealthMaximum*.5f;
+        public string BossState { get; private set; } = "Ready";
+        int bossPattern;
+        public void ConfigureLab(bool heavy, bool boss) { IsLabHeavy=heavy; IsLabBoss=boss; SetLevel(Level); }
+        public bool Ranged => Kind == EnemyKind.Gunner || Kind == EnemyKind.Bombardier || IsLabHeavy || IsLabBoss;
+        public float MoveSpeed => IsLabBoss ? 1.6f : IsLabHeavy ? 1.4f : Kind == EnemyKind.Rusher ? 6.2f : Kind == EnemyKind.Bombardier ? 1.8f : Ranged ? 2 : 3.5f;
         public const float MaxHealth = 60;
         public int Level {get;private set;}=1;
         public float HealthMaximum {get;private set;}=MaxHealth;
-        public void SetLevel(int level){Level=Mathf.Clamp(level,1,100);HealthMaximum=MaxHealth*(1+(Level-1)*.1f);Health=HealthMaximum;}
+        public void SetLevel(int level){Level=Mathf.Clamp(level,1,100);HealthMaximum=(IsLabBoss?600:IsLabHeavy?180:MaxHealth)*(1+(Level-1)*.1f);Health=HealthMaximum;ShieldMaximum=IsLabHeavy?90*(1+(Level-1)*.1f):0;Shield=ShieldMaximum;}
         public float Health { get; private set; } = MaxHealth;
         public float LastHitTime { get; private set; } = float.NegativeInfinity;
         public bool HealthBarVisible => Health > 0 && Time.time - LastHitTime < 2;
@@ -32,7 +40,7 @@ namespace VideoGame
             float distance = delta.magnitude;
             if (delta.sqrMagnitude > .01f) transform.rotation = Quaternion.LookRotation(delta);
             if (distance > 28) return;
-            float range = Kind == EnemyKind.Bombardier ? 11 : Ranged ? 7 : 1.6f;
+            float range = IsLabBoss ? 10 : Kind == EnemyKind.Bombardier ? 11 : Ranged ? 7 : 1.6f;
             // Permanent room walls require a route through a doorway. Breakable
             // cover can still be attacked, so enemy fire remains hazardous to it.
             bool blocked = Physics.Linecast(transform.position, game.Player.transform.position, out var obstruction, 1 << 9)
@@ -52,17 +60,18 @@ namespace VideoGame
             }
             else if (Time.time >= attackAt)
             {
-                attackAt = Time.time + (Kind == EnemyKind.Bombardier ? 3.4f : Ranged ? 1.5f : Kind == EnemyKind.Rusher ? .95f : 1.2f);
+                attackAt = Time.time + (IsLabBoss ? (Enraged?3.2f:4.2f) : IsLabHeavy ? 2.2f : Kind == EnemyKind.Bombardier ? 3.4f : Ranged ? 1.5f : Kind == EnemyKind.Rusher ? .95f : 1.2f);
                 StartCoroutine(Attack());
             }
         }
         IEnumerator Attack()
         {
             var game = Prototype.Instance;
+            if (IsLabBoss) { yield return MedicalBossAttack(game); yield break; }
             WindingUp = true;
             Motion.Act(Kind == EnemyKind.Bombardier ? "Cast" : Ranged ? "Fire" : "Melee");
             Vector3 target = game.Player.transform.position;
-            yield return new WaitForSeconds(Ranged ? .15f : .3f);
+            yield return new WaitForSeconds(IsLabHeavy ? .45f : Ranged ? .15f : .3f);
             while (game.Menus?.IsOpen == true) yield return null;
             WindingUp = false;
             if (Health <= 0 || !game.InMission || game.Player.IsDead) yield break;
@@ -70,18 +79,11 @@ namespace VideoGame
             if (Kind == EnemyKind.Bombardier)
             {
                 var shell = new GameObject("Bombardier telegraphed blast"); shell.transform.SetParent(transform.parent);
-                shell.AddComponent<EnemyMortar>().Initialize(transform.position + Vector3.up, target);
+                shell.AddComponent<EnemyMortar>().Initialize(ShotOrigin, target, this);
             }
             else if (Ranged)
             {
-                var bolt = new GameObject("Enemy bolt"); bolt.transform.SetParent(transform.parent);
-                bolt.transform.position = transform.position;
-                var trail = bolt.AddComponent<TrailRenderer>(); trail.time = .15f; trail.startWidth = .12f; trail.endWidth = .01f;
-                trail.startColor = new Color(1, .2f, .1f); trail.endColor = new Color(1, .1f, .1f, 0);
-                trail.sharedMaterial = Resources.Load<Material>("PrototypeTrace");
-                var projectile=bolt.AddComponent<EnemyBolt>();projectile.Direction=delta.normalized;projectile.DamageScale=1+(Level-1)*.06f;
-                game.Feedback.Shot(transform.position + delta.normalized * .5f, transform.position + delta.normalized * .9f, new Color(1, .3f, .1f));
-                Motion.Kick();
+                Shoot(game, delta);
             }
             else if (delta.magnitude < 2.2f)
             {
@@ -89,15 +91,56 @@ namespace VideoGame
                 game.Hit(game.Player.transform.position, Color.red);
             }
         }
+        public Vector3 ShotOrigin { get { var socket=GetComponentsInChildren<Transform>(); foreach(var t in socket)if(t.name=="ShotOrigin")return t.position; return transform.position; } }
+        void Shoot(Prototype game, Vector3 delta)
+        {
+                var bolt = new GameObject("Enemy bolt"); bolt.transform.SetParent(transform.parent);
+                bolt.transform.position = ShotOrigin;
+                var trail = bolt.AddComponent<TrailRenderer>(); trail.time = .15f; trail.startWidth = .12f; trail.endWidth = .01f;
+                trail.startColor = new Color(1, .2f, .1f); trail.endColor = new Color(1, .1f, .1f, 0);
+                trail.sharedMaterial = Resources.Load<Material>("PrototypeTrace");
+                var projectile=bolt.AddComponent<EnemyBolt>();projectile.Direction=delta.normalized;projectile.DamageScale=(IsLabBoss?1.3f:1)*(1+(Level-1)*.06f);
+                game.Feedback.Shot(ShotOrigin, ShotOrigin + delta.normalized * .4f, new Color(1, .3f, .1f));
+                Motion.Kick();
+        }
+        IEnumerator MedicalBossAttack(Prototype game)
+        {
+            WindingUp=true; bool pulse=(bossPattern++%2)==0;
+            BossState=pulse?"Sterilize":"Burst"; Motion.Act(pulse?"Cast":"Fire");
+            yield return new WaitForSeconds(.5f);
+            while(game.Menus?.IsOpen==true)yield return null;
+            if(Health<=0||!game.InMission||game.Player.IsDead){WindingUp=false;yield break;}
+            if(pulse)
+            {
+                Vector3 target=game.Player.transform.position;
+                Vector3 across=Vector3.Cross(Vector3.up,(target-transform.position).normalized);
+                int spread=Enraged?1:0;
+                for(int i=-spread;i<=spread;i++)
+                { var shell=new GameObject("Medical sterilization pulse");shell.transform.SetParent(transform.parent);shell.AddComponent<EnemyMortar>().Initialize(ShotOrigin,target+across*(i*3.5f),this); }
+            }
+            else for(int i=0;i<(Enraged?4:3);i++)
+            {
+                while(game.Menus?.IsOpen==true)yield return null;
+                if(Health<=0||!game.InMission||game.Player.IsDead)break;
+                Shoot(game,game.Player.transform.position-ShotOrigin);
+                yield return new WaitForSeconds(.22f);
+            }
+            BossState="Recover";yield return new WaitForSeconds(.8f);
+            WindingUp=false;if(Health>0)BossState="Ready";
+        }
         public void Damage(float amount)
         {
             if (Health <= 0 || amount <= 0) return;
-            Health = Mathf.Max(0, Health - amount); LastHitTime = Time.time;
+            LastHitTime = Time.time;
+            float absorbed=Mathf.Min(Shield,amount);Shield-=absorbed;amount-=absorbed;
+            if(absorbed>0)Prototype.Instance.Hit(transform.position,Art.Cyan,.6f);
+            if(amount<=0){Motion.Act("Hit");return;}
+            Health = Mathf.Max(0, Health - amount);
             Prototype.Instance.Hit(transform.position, Color.white, .6f);
             if (Health > 0) { Motion.Act("Hit"); return; }
             Prototype.Instance.Mission.RegisterKill();
             Prototype.Instance.Equipment.Killed(transform.position,Level);
-            StopAllCoroutines(); WindingUp = false;
+            StopAllCoroutines(); WindingUp = false; if(IsLabBoss)BossState="Dead";
             foreach (var collider in GetComponentsInChildren<Collider>()) collider.enabled = false;
             foreach (var sign in GetComponentsInChildren<TextMesh>()) sign.gameObject.SetActive(false);
             Motion.Act("Death");
@@ -139,9 +182,12 @@ namespace VideoGame
         public bool Detonated { get; private set; }
         float started;
         Vector3 launch;
+        Drone owner; bool owned;
+        public Drone Owner => owner;
         LineRenderer ring, arc;
-        public void Initialize(Vector3 source, Vector3 target)
+        public void Initialize(Vector3 source, Vector3 target, Drone sourceActor=null)
         {
+            owner=sourceActor;owned=sourceActor!=null;
             launch = source; Target = new Vector3(target.x, .08f, target.z); started = Time.time;
             ring = Line("AOE warning", 65, .09f);
             for (int i = 0; i < 65; i++) ring.SetPosition(i, Target + new Vector3(Mathf.Cos(i * Mathf.PI / 32), 0, Mathf.Sin(i * Mathf.PI / 32)) * Radius);
@@ -155,6 +201,7 @@ namespace VideoGame
         }
         void Update()
         {
+            if(owned && (owner==null || owner.Health<=0)){Destroy(gameObject);return;}
             if (ring == null || Time.timeScale == 0 || Prototype.Instance?.Menus?.IsOpen==true) return;
             float t = Mathf.Clamp01((Time.time - started) / WarningDuration);
             float pulse = .08f + .05f * Mathf.Sin(t * 40); ring.startWidth = ring.endWidth = pulse;

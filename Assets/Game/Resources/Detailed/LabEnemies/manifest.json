@@ -203,5 +203,153 @@
     ],
     "bones": 67,
     "triangles": 61192
+  },
+  "LabAoe": {
+    "materials": [
+      {
+        "name": "Emitter aperture",
+        "id": "m00",
+        "glass": false,
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Roughness": "m00_Roughness.png",
+          "Metallic": "m00_Metallic.png"
+        }
+      },
+      {
+        "name": "Emitter enamel",
+        "id": "m01",
+        "glass": false,
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Roughness": "m01_Roughness.png",
+          "Metallic": "m01_Metallic.png"
+        }
+      },
+      {
+        "name": "Emitter steel",
+        "id": "m02",
+        "glass": false,
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Roughness": "m02_Roughness.png",
+          "Metallic": "m02_Metallic.png"
+        }
+      },
+      {
+        "name": "medbot.003",
+        "id": "m03",
+        "glass": false,
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Roughness": "m03_Roughness.png",
+          "Metallic": "m03_Metallic.png"
+        }
+      }
+    ],
+    "bones": 15,
+    "triangles": 21382
+  },
+  "LabHeavy": {
+    "materials": [
+      {
+        "name": "LOWer BODY LOW",
+        "id": "m00",
+        "glass": false,
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Roughness": "m00_Roughness.png",
+          "Metallic": "m00_Metallic.png"
+        }
+      },
+      {
+        "name": "SHELL",
+        "id": "m01",
+        "glass": false,
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Roughness": "m01_Roughness.png",
+          "Metallic": "m01_Metallic.png"
+        }
+      },
+      {
+        "name": "UPPER BODY LOW",
+        "id": "m02",
+        "glass": false,
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Roughness": "m02_Roughness.png",
+          "Metallic": "m02_Metallic.png"
+        }
+      },
+      {
+        "name": "UPPER BODY LOW.001",
+        "id": "m03",
+        "glass": false,
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Roughness": "m03_Roughness.png",
+          "Metallic": "m03_Metallic.png"
+        }
+      }
+    ],
+    "bones": 15,
+    "triangles": 77645
+  },
+  "LabBoss": {
+    "materials": [
+      {
+        "name": "Arms_head",
+        "id": "m00",
+        "glass": false,
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Roughness": "m00_Roughness.png",
+          "Metallic": "m00_Metallic.png"
+        }
+      },
+      {
+        "name": "Black",
+        "id": "m01",
+        "glass": false,
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Roughness": "m01_Roughness.png",
+          "Metallic": "m01_Metallic.png"
+        }
+      },
+      {
+        "name": "Chest_waist",
+        "id": "m02",
+        "glass": false,
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Roughness": "m02_Roughness.png",
+          "Metallic": "m02_Metallic.png"
+        }
+      },
+      {
+        "name": "Green_glass",
+        "id": "m03",
+        "glass": false,
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Roughness": "m03_Roughness.png",
+          "Metallic": "m03_Metallic.png"
+        }
+      },
+      {
+        "name": "Legs_feet",
+        "id": "m04",
+        "glass": false,
+        "maps": {
+          "Albedo": "m04_Albedo.png",
+          "Roughness": "m04_Roughness.png",
+          "Metallic": "m04_Metallic.png"
+        }
+      }
+    ],
+    "bones": 57,
+    "triangles": 77714
   }
 }
