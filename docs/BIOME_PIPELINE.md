@@ -9,7 +9,7 @@ Use this checklist for one biome at a time. Carry forward explicit approvals and
 | Representative assembly | Finished room and corridor junction in actual Unity gameplay-angle and detail renders, measured scale/pivots/contact planes, clean seams and coherent materials. User approval before expanding an unapproved visual direction. |
 | Procedural integration | Seeded connected 6/10/20-room maps excluding hallways; protected entrances/spawn/extraction; fitting room/corridor variants; hazards, ambience, lighting and environmental motion. Whole landmark reservations must not be cut by room boundaries. |
 | Enemy integration | Dedicated melee, regular ranged, AOE and shielded ranged models; weighted motion, weapons/sockets, attack/death clips, readable scale/colliders; initial and reinforcement roster restricted to biome. Boss optional unless explicitly scoped. |
-| Validation and delivery | Affected checks during iteration; one final complete Unity suite, player build/smoke and actual-player visual review. Review diff/input edges and whitespace. Push -> PR -> required checks -> merge -> master verification. |
+| Validation and delivery | Affected checks during iteration; one final complete Unity suite, player build/smoke and actual-player visual review. Review diff/input edges and whitespace. Push -> PR -> required checks -> merge -> master verification -> refresh and smoke-test the standard D:\VideoGame\Builds\Windows player with source-commit provenance. |
 
 ## Reuse and scope
 

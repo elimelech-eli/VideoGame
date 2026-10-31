@@ -7,6 +7,7 @@
 5. Open a PR against `master` immediately after pushing. Full Unity tests, Windows build and player smoke run against the proposed merge. Do not wait for a duplicate branch build.
 6. Merge only after tests pass and the change has been reviewed.
 7. The push to `master` reruns the checks. Fix or revert any regression before further development.
+8. Refresh `D:\VideoGame\Builds\Windows` from the latest verified master player and smoke-test that exact copy before reporting delivery complete. This is the standard folder the user executes.
 
 The Unity job builds a Windows player after its tests pass and uploads `windows-player`. Full validation runs on PRs and master when project or CI tooling changes. Changes confined to Markdown and `docs/` skip Unity/player jobs and explain that decision in the run summary; fast checks still run. Skipped jobs satisfy their existing required contexts. Unknown/missing comparison history runs full validation. Manual workflow dispatch always runs full validation, including on feature branches. No license or test failure is treated as a documentation skip.
 
@@ -47,3 +48,17 @@ In GitHub Settings → Branches, protect `master`: require a pull request, requi
 - Check the Unity Console for errors. Record whether a physical controller was tested.
 
 The prototype includes Nexus checkpoint persistence, imported sci-fi models, seeded connected rooms, a styled immediate-mode HUD and licensed atmosphere tracks. Equipment, inventory/stash, leveling, vendors and death penalties are implemented; see EQUIPMENT.md. Dialogue and base management remain future work. See ASSETS.md for provenance and presentation limitations.
+
+## Standard playable build
+
+`D:\VideoGame\Builds\Windows\VideoGame.exe` is the single standard playable build. It must contain the latest verified remote-master game content at the end of every delivery. Feature branches and staged review builds go in isolated worktrees or `artifacts/`, not this standard folder. Never build dirty feature/Nexus work over the standard master copy.
+
+After master CI succeeds:
+
+1. Resolve current remote master and its successful CI run. Obtain the `windows-player` artifact from that exact run; do not choose an older run merely because it succeeded. If the latest game-changing master fails CI, report the blockage and keep the previous working build.
+2. Extract to a staging directory and validate archive paths and expected player files. Use the complete player folder, including `VideoGame_Data`, UnityPlayer.dll and MonoBleedingEdge; replacing only the exe is insufficient. Confirm the user is not running the destination player before replacing locked files.
+3. Preserve the previous standard folder, replace it as a complete unit, then run `scripts/Test-Player.ps1` against the standard executable. Keep/restore the previous build if replacement or smoke fails. Preserve player saves/preferences; they are not build artifacts.
+4. Write `BUILD-INFO.json` beside the executable with the actual build/source commit, CI run and artifact, verified remote-master commit, install UTC and smoke result. Recheck remote master before declaring ready; if newer gameplay content has merged, repeat for that version.
+5. For documentation-only master commits that intentionally skip player builds, verify unchanged game/build inputs against the last successful player-producing commit. Reuse that artifact with separate actual-build and verified-master commits plus an explicit equivalence record. Never relabel an older binary as built from a newer commit.
+
+This is a required post-merge delivery step, not a claim that an unattended background updater is running. Always give the user the standard executable path for routine testing.

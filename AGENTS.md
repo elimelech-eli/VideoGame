@@ -8,6 +8,7 @@
 - Preserve the three required branch-protection checks. Merge only after the current PR checks pass; verify master afterward.
 - Use `scripts/Watch-CI.ps1 -RunId <id>` for bounded monitoring. Report transitions/failures/completion; do not repeatedly inspect unchanged jobs or re-review completed work while waiting.
 - Keep tool output narrow. For each delivery, report local validation time, remote job durations, and full test/build counts when available. Account usage has no reliable per-PR attribution; do not invent it.
+- A delivery is not complete until D:\VideoGame\Builds\Windows contains the complete playable artifact for the latest verified remote master. Refresh the whole player folder from successful master CI (or an exact-master build), preserve the previous working build until replacement passes smoke, and record the source commit/run in BUILD-INFO.json. Feature/review builds belong outside this standard folder. Documentation-only master commits may reuse an unchanged player artifact only with an explicit source/content-equivalence record.
 - See docs/DEVELOPMENT.md for the pipeline and manual smoke checklist.
 
 # Environment assembly and visual review
