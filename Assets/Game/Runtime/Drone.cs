@@ -9,6 +9,9 @@ namespace VideoGame
         static readonly float[] SteeringAngles = {0, 60, -60, 90, -90};
         public EnemyKind Kind;
         public bool IsLabHeavy { get; private set; }
+        public bool IsTransitHeavy {get;private set;}
+        public bool IsShieldedHeavy=>IsLabHeavy||IsTransitHeavy;
+        public void ConfigureTransitHeavy(){IsTransitHeavy=true;SetLevel(Level);}
         public bool IsLabBoss { get; private set; }
         public float ShieldMaximum { get; private set; }
         public float Shield { get; private set; }
@@ -16,12 +19,12 @@ namespace VideoGame
         public string BossState { get; private set; } = "Ready";
         int bossPattern;
         public void ConfigureLab(bool heavy, bool boss) { IsLabHeavy=heavy; IsLabBoss=boss; SetLevel(Level); }
-        public bool Ranged => Kind == EnemyKind.Gunner || Kind == EnemyKind.Bombardier || IsLabHeavy || IsLabBoss;
-        public float MoveSpeed => IsLabBoss ? 1.6f : IsLabHeavy ? 1.4f : Kind == EnemyKind.Rusher ? 6.2f : Kind == EnemyKind.Bombardier ? 1.8f : Ranged ? 2 : 3.5f;
+        public bool Ranged => Kind == EnemyKind.Gunner || Kind == EnemyKind.Bombardier || IsShieldedHeavy || IsLabBoss;
+        public float MoveSpeed => IsLabBoss ? 1.6f : IsShieldedHeavy ? 1.4f : Kind == EnemyKind.Rusher ? 6.2f : Kind == EnemyKind.Bombardier ? 1.8f : Ranged ? 2 : 3.5f;
         public const float MaxHealth = 60;
         public int Level {get;private set;}=1;
         public float HealthMaximum {get;private set;}=MaxHealth;
-        public void SetLevel(int level){Level=Mathf.Clamp(level,1,100);HealthMaximum=(IsLabBoss?600:IsLabHeavy?180:MaxHealth)*(1+(Level-1)*.1f);Health=HealthMaximum;ShieldMaximum=IsLabHeavy?90*(1+(Level-1)*.1f):0;Shield=ShieldMaximum;}
+        public void SetLevel(int level){Level=Mathf.Clamp(level,1,100);HealthMaximum=(IsLabBoss?600:IsShieldedHeavy?180:MaxHealth)*(1+(Level-1)*.1f);Health=HealthMaximum;ShieldMaximum=IsShieldedHeavy?90*(1+(Level-1)*.1f):0;Shield=ShieldMaximum;}
         public float Health { get; private set; } = MaxHealth;
         public float LastHitTime { get; private set; } = float.NegativeInfinity;
         public bool HealthBarVisible => Health > 0 && Time.time - LastHitTime < 2;
@@ -60,7 +63,7 @@ namespace VideoGame
             }
             else if (Time.time >= attackAt)
             {
-                attackAt = Time.time + (IsLabBoss ? (Enraged?3.2f:4.2f) : IsLabHeavy ? 2.2f : Kind == EnemyKind.Bombardier ? 3.4f : Ranged ? 1.5f : Kind == EnemyKind.Rusher ? .95f : 1.2f);
+                attackAt = Time.time + (IsLabBoss ? (Enraged?3.2f:4.2f) : IsShieldedHeavy ? 2.2f : Kind == EnemyKind.Bombardier ? 3.4f : Ranged ? 1.5f : Kind == EnemyKind.Rusher ? .95f : 1.2f);
                 StartCoroutine(Attack());
             }
         }
@@ -71,7 +74,7 @@ namespace VideoGame
             WindingUp = true;
             Motion.Act(Kind == EnemyKind.Bombardier ? "Cast" : Ranged ? "Fire" : "Melee");
             Vector3 target = game.Player.transform.position;
-            yield return new WaitForSeconds(IsLabHeavy ? .45f : Ranged ? .15f : .3f);
+            yield return new WaitForSeconds(IsShieldedHeavy ? .45f : Ranged ? .15f : .3f);
             while (game.Menus?.IsOpen == true) yield return null;
             WindingUp = false;
             if (Health <= 0 || !game.InMission || game.Player.IsDead) yield break;

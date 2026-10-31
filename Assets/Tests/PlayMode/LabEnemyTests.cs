@@ -41,10 +41,10 @@ public sealed class LabEnemyTests {
  }
  foreach(EnemyKind kind in System.Enum.GetValues(typeof(EnemyKind))){
  var d=game.SpawnDrone(new Vector3(0,1,0),kind);d.enabled=false;
- string expected=biome==BiomeId.BiotechLab?(kind==EnemyKind.Hunter?"LabHeavy":kind==EnemyKind.Bombardier?"LabAoe":kind==EnemyKind.Gunner?"LabHazmat":"LabSpider"):kind==EnemyKind.Hunter?"Crawler":kind==EnemyKind.Rusher?"Roller":kind==EnemyKind.Gunner?"Blaster":"Lobber";
+ string expected=biome==BiomeId.BiotechLab?(kind==EnemyKind.Hunter?"LabHeavy":kind==EnemyKind.Bombardier?"LabAoe":kind==EnemyKind.Gunner?"LabHazmat":"LabSpider"):biome==BiomeId.Transit?(kind==EnemyKind.Hunter?"TransitHeavy":kind==EnemyKind.Bombardier?"TransitAoe":kind==EnemyKind.Gunner?"TransitGunner":"TransitMelee"):kind==EnemyKind.Hunter?"Crawler":kind==EnemyKind.Rusher?"Roller":kind==EnemyKind.Gunner?"Blaster":"Lobber";
  Assert.AreEqual(expected,d.Motion.name.Replace("(Clone)",""),biome+" / "+kind);
  Assert.AreEqual(kind,d.Kind,"A temporary shared skin must not replace the combat role");
- Assert.AreEqual(kind==EnemyKind.Gunner||kind==EnemyKind.Bombardier||(biome==BiomeId.BiotechLab&&kind==EnemyKind.Hunter),d.Ranged);
+ Assert.AreEqual(kind==EnemyKind.Gunner||kind==EnemyKind.Bombardier||((biome==BiomeId.BiotechLab||biome==BiomeId.Transit)&&kind==EnemyKind.Hunter),d.Ranged);
  Assert.IsNotNull(d.Motion.Player[kind==EnemyKind.Bombardier?"Cast":d.Ranged?"Fire":"Melee"]);
  Object.Destroy(d.gameObject);
  }

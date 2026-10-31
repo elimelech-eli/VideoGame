@@ -33,11 +33,12 @@ namespace VideoGame
             Player = gameObject.AddComponent<Animation>();
             Player.cullingType = AnimationCullingType.AlwaysAnimate;
             string model = name.Replace("(Clone)", "").Trim();
-            if(model=="LabHeavy"||model=="LabBoss"||model=="LabAoe")locomotionReference=1.8f;
+            if(model.StartsWith("Transit",System.StringComparison.Ordinal)||model=="LabHeavy"||model=="LabBoss"||model=="LabAoe")locomotionReference=1.8f;
+            bool transit=model.StartsWith("Transit",System.StringComparison.Ordinal);
             bool lab = model.StartsWith("Lab", System.StringComparison.Ordinal);
-            robot = lab || model == "Crawler" || model == "Roller" || model == "Blaster" || model == "Lobber";
+            robot = transit || lab || model == "Crawler" || model == "Roller" || model == "Blaster" || model == "Lobber";
             string folder = GetComponent<PlayerRig>()?.AnimationFolder;
-            foreach (var clip in Resources.LoadAll<AnimationClip>(folder ?? (lab ? "LabEnemyAnimations/" + model : robot ? "RobotAnimations/" + model : model == "OperativeV03" ? "OperatorAnimations" : "Animations"))) Player.AddClip(clip, clip.name);
+            foreach (var clip in Resources.LoadAll<AnimationClip>(folder ?? (transit ? "TransitEnemyAnimations/"+model : lab ? "LabEnemyAnimations/" + model : robot ? "RobotAnimations/" + model : model == "OperativeV03" ? "OperatorAnimations" : "Animations"))) Player.AddClip(clip, clip.name);
             if (Player["Idle"] == null) throw new System.InvalidOperationException("Missing baked actor animations");
             foreach (string name in new[] {"Fire", "Hit", "Cast"})
             {
