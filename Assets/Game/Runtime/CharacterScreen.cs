@@ -15,6 +15,15 @@ namespace VideoGame
         public GearItem SelectedItem {get;private set;}
         public GearSlot CompareSlot {get;private set;}=GearSlot.MainHand;
         public CharacterStorage Storage {get;private set;}
+        public bool Selling {get;private set;}
+        public void OpenSelling(){SetStorage(CharacterStorage.Inventory);Selling=true;FocusId="storage-bag";Status="Select carried gear to sell. Each sale requires confirmation.";}
+        public bool ConfirmSellSelected()
+        {
+            if(!Open || game.InMission || SelectedItem==null || selectedEquipped>=0 || Storage!=CharacterStorage.Inventory)return false;
+            var item=SelectedItem;
+            game.Menus.ConfirmEquipment("Sell "+item.Design.Name+" for "+item.Sale+" credits?",()=>Transaction(Profile.Sell(item.Id,game.InMission),"Sold."));
+            return true;
+        }
         public CharacterFilter Filter {get;private set;}
         public string Status {get;private set;}="Select an item to inspect and compare it.";
         public string FocusId {get;private set;}="tab-character";
@@ -147,9 +156,10 @@ namespace VideoGame
         void Awake(){game=GetComponent<Prototype>();Preview=gameObject.AddComponent<CharacterPreview>();}
         public void RefreshPreview()=>Preview?.Refresh();
         public bool CloseActions(){if(dragItem!=null){CancelDrag();return true;}if(!MoreOpen)return false;MoreOpen=false;FocusId="more";return true;}
-        public void ResetScreen(){CancelDrag();Storage=CharacterStorage.Inventory;Filter=CharacterFilter.All;SelectedItem=null;selectedEquipped=-1;MoreOpen=false;Page=0;FocusId="tab-character";Status="Select an item to inspect and compare it.";RefreshPreview();}
+        public void ResetScreen(){Selling=false;CancelDrag();Storage=CharacterStorage.Inventory;Filter=CharacterFilter.All;SelectedItem=null;selectedEquipped=-1;MoreOpen=false;Page=0;FocusId="tab-character";Status="Select an item to inspect and compare it.";RefreshPreview();}
         public void SetStorage(CharacterStorage storage)
         {
+            Selling=false;
             if(game.InMission && (storage==CharacterStorage.Stash || storage==CharacterStorage.Vendor)){Status="Stash and vendor services are available at the Nexus.";return;}
             CancelDrag();Storage=storage;Page=0;SelectedItem=null;selectedEquipped=-1;MoreOpen=false;
             FocusId=storage==CharacterStorage.Attributes?"tab-attributes":storage==CharacterStorage.Stash?"storage-stash":storage==CharacterStorage.Vendor?"storage-vendor":"storage-bag";
@@ -168,7 +178,7 @@ namespace VideoGame
             SelectedItem=item;selectedEquipped=-1;MoreOpen=false;
             if(!GearCatalog.Weapon(item.Design.Kind))CompareSlot=(GearSlot)item.Design.Kind;
             else CompareSlot=item.Design.Kind==GearKind.Shield?GearSlot.OffHand:GearSlot.MainHand;
-            Status=game.InMission?"Field inventory: inspection and dropping only.":"Compare the changes below, then equip.";return true;
+            Status=game.InMission?"Field inventory: inspection and dropping only.":Selling?"Review the sale price, then confirm the sale.":"Compare the changes below, then equip.";return true;
         }
         public void ChooseHand(GearSlot hand){if(SelectedItem?.Design.Kind==GearKind.Shield){CompareSlot=GearSlot.OffHand;return;}if(hand>=GearSlot.MainHand && hand<=GearSlot.OffHand)CompareSlot=hand;}
         public bool QuickEquip(string id)
@@ -216,7 +226,7 @@ namespace VideoGame
             else if(Time.unscaledTime>=repeatAt){MoveFocus(new Vector2(x,y));repeatAt=Time.unscaledTime+.2f;}
             if(k?.tabKey.wasPressedThisFrame==true)CycleFocus(k.shiftKey.isPressed?-1:1);
             if(k?.enterKey.wasPressedThisFrame==true || p?.buttonSouth.wasPressedThisFrame==true)controls.Find(c=>c.Id==FocusId&&c.Enabled)?.Action();
-            if(k?.eKey.wasPressedThisFrame==true || p?.buttonWest.wasPressedThisFrame==true)EquipSelected();
+            if(k?.eKey.wasPressedThisFrame==true || p?.buttonWest.wasPressedThisFrame==true){if(Selling)ConfirmSellSelected();else EquipSelected();}
             if(p?.buttonEast.wasPressedThisFrame==true){if(MoreOpen)MoreOpen=false;else game.Menus.Resume();}
         }
         void CycleFocus(int delta)
@@ -282,7 +292,7 @@ namespace VideoGame
                 Button("close",new Rect(1540,10,42,43),"X",game.Menus.Resume);
                 DrawStats();DrawCharacter();
                 if(Storage==CharacterStorage.Attributes)DrawAttributes();else{DrawInventory();DrawDetails();}
-                Text(new Rect(30,865,1540,28),"ARROWS / D-PAD  NAVIGATE     ENTER / A  SELECT     E / X  EQUIP     I / B / ESC  CLOSE     DRAG ITEMS TO EQUIP / MOVE",small,muted);
+                Text(new Rect(30,865,1540,28),Selling?"ARROWS / D-PAD  NAVIGATE     ENTER / A  SELECT     E / X  SELL     I / B / ESC  CLOSE":"ARROWS / D-PAD  NAVIGATE     ENTER / A  SELECT     E / X  EQUIP     I / B / ESC  CLOSE     DRAG ITEMS TO EQUIP / MOVE",small,muted);
                 if(dragging && dragItem!=null){var r=new Rect(Event.current.mousePosition.x+12,Event.current.mousePosition.y+12,80,80);Fill(r,ink);Icon(r,dragItem.Design.Kind);Outline(r,EquipmentSystem.QualityColor(dragItem.Quality),2);}
             }
             finally{GUI.matrix=matrix;GUI.depth=oldDepth;GUI.color=GUI.contentColor=Color.white;}
@@ -329,7 +339,7 @@ namespace VideoGame
         }
         void DrawInventory()
         {
-            Text(new Rect(975,85,360,40),Storage==CharacterStorage.Inventory?"INVENTORY":Storage==CharacterStorage.Stash?"NEXUS STASH":"EQUIPMENT VENDOR",title);
+            Text(new Rect(975,85,360,40),Selling?"GEAR EXCHANGE / SELL":Storage==CharacterStorage.Inventory?"INVENTORY":Storage==CharacterStorage.Stash?"NEXUS STASH":"EQUIPMENT VENDOR",title);
             Text(new Rect(1400,95,180,28),Storage==CharacterStorage.Inventory?Profile.Bag.Count+" / "+Profile.BagCapacity+" SLOTS":VisibleItems().Count+" ITEMS",small,muted);
             Button("storage-bag",new Rect(975,135,155,36),"INVENTORY",()=>SetStorage(CharacterStorage.Inventory),true,Storage==CharacterStorage.Inventory);
             Button("storage-stash",new Rect(1140,135,135,36),"STASH",()=>SetStorage(CharacterStorage.Stash),!game.InMission,Storage==CharacterStorage.Stash);
@@ -383,6 +393,8 @@ namespace VideoGame
                 string error=EquipRestriction;
                 if(game.InMission)
                     Button("drop-primary",new Rect(980,793,380,38),"DROP ITEM INTO MISSION",()=>DropSelected());
+                else if(Selling)
+                    Button("sell-primary",new Rect(980,793,380,38),"SELL / "+item.Sale+" CR",()=>ConfirmSellSelected());
                 else
                 {
                     Button("equip",new Rect(980,793,185,38),"EQUIP "+CompareSlot.ToString().ToUpperInvariant(),()=>EquipSelected(),error==null);

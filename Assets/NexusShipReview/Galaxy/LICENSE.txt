@@ -1,0 +1,11 @@
+Model Information:
+* title:	Milky Way
+* source:	https://sketchfab.com/3d-models/milky-way-676a183390ff4dd2b1075cae853f63f8
+* author:	per.rb1 (https://sketchfab.com/per.rb1)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Milky Way" (https://sketchfab.com/3d-models/milky-way-676a183390ff4dd2b1075cae853f63f8) by per.rb1 (https://sketchfab.com/per.rb1) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

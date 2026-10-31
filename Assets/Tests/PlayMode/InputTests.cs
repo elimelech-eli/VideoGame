@@ -90,17 +90,24 @@ public sealed class InputTests
     [UnityTest] public IEnumerator ControllerGunAndGrenadeKillActualEnemies()
     {
         game.StartMission();
+        game.Director.enabled = false;
         yield return null;
         var enemies = Object.FindObjectsByType<Drone>(FindObjectsSortMode.None);
         foreach (var enemy in enemies) enemy.enabled = false;
-        enemies[0].transform.position = new Vector3(0, 1, 5);
+        // Input behavior must not depend on the biome roster's enumeration order:
+        // its first targets may now include shielded heavies with >1-grenade health.
+        var gunTarget=game.SpawnDrone(new Vector3(0,1,5),EnemyKind.Gunner);gunTarget.enabled=false;
+        Physics.SyncTransforms();
         InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = new Vector2(-.707f,.707f), rightTrigger = 1 });
         yield return WaitForKills(1);
         Assert.GreaterOrEqual(game.Mission.Kills, 1, "Gun did not hit the aimed-at drone");
+        Assert.AreEqual(0,gunTarget.Health,"Controller gun must kill its explicit target");
+        var grenadeTarget=game.SpawnDrone(new Vector3(0,1,5),EnemyKind.Gunner);grenadeTarget.enabled=false;
+        Physics.SyncTransforms();
         InputSystem.QueueStateEvent(pad, new GamepadState { rightStick = new Vector2(-.707f,.707f) }.WithButton(GamepadButton.RightShoulder));
-        enemies[1].transform.position = new Vector3(0, 1, 5);
         yield return WaitForKills(2);
         Assert.GreaterOrEqual(game.Mission.Kills, 2, "Grenade did not damage nearby drone");
+        Assert.AreEqual(0,grenadeTarget.Health,"Controller grenade must kill its explicit target");
         Assert.Greater(game.Player.GrenadeRemaining, 0);
     }
     IEnumerator WaitForKills(int expected)

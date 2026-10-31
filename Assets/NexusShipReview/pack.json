@@ -1,0 +1,332 @@
+{
+  "schema": "nexus.asset-pack/1",
+  "name": "Quaternius Standard ship audition selection",
+  "genre": "isometric sci-fi hub",
+  "version": "2026-10-31",
+  "rights": {
+    "originality": "Unmodified downloaded Quaternius meshes and textures; project-authored selection metadata.",
+    "third_party": [
+      {
+        "source": "https://quaternius.itch.io/modular-sci-fi-megakit",
+        "licence": "CC0-1.0"
+      }
+    ],
+    "licence": "CC0-1.0"
+  },
+  "logical": {
+    "tick_hz": 60,
+    "unit": "metre",
+    "coordinate_system": "Unity Y-up",
+    "facing": "+Z",
+    "actor_pivot": "feet"
+  },
+  "targetResolution": "1600x1000",
+  "display": {
+    "targetResolution": "1600x1000",
+    "profiles": {
+      "industrial-3d": {
+        "kind": "3d"
+      }
+    }
+  },
+  "styles": [
+    {
+      "id": "industrial-3d",
+      "kind": "3d",
+      "art_root": "Models",
+      "filter": "n/a"
+    }
+  ],
+  "characters": [],
+  "levels": [],
+  "assets": {},
+  "files": [
+    {
+      "path": "License_Standard.txt",
+      "bytes": 837,
+      "sha256": "885b700f02932c08a41163b35cc97d1abe0895a05de29d9a9062fde5132969a8",
+      "role": "source-art"
+    },
+    {
+      "path": "source-materials.json",
+      "bytes": 9673,
+      "sha256": "5a1067b5823e3dfe4db593a2af1bf2a6343cf6e493d838c1d6bfe575e74a2aac",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/BottomMetal_Straight.fbx",
+      "bytes": 22700,
+      "sha256": "d7b1042dfde5339de33accf31f2056618f91611d07b890bb6e3c2b566c193aba",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Column_MetalSupport.fbx",
+      "bytes": 41324,
+      "sha256": "e20d463f344778da47f254b2fe43f930301a5e41022b210cfba7272cae10d862",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Door_DarkMetal.fbx",
+      "bytes": 20140,
+      "sha256": "a717af2565b1d636179019a1754a2f2b4222a382d3cbba861281bebd907e1801",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Door_Frame_Square.fbx",
+      "bytes": 24364,
+      "sha256": "2513bd2956c209bf087558adbdacb96caf0113df8fbbbb996b887ee19b3636ac",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Platform_DarkPlates.fbx",
+      "bytes": 20124,
+      "sha256": "5b01a655dc4afeef4ba4dcac33e21a1006e31f8a0e96204a3e025f7060d77148",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Platform_Metal.fbx",
+      "bytes": 18540,
+      "sha256": "748c4f0fa56de20b81dd79b9e5137f563552216064b3c13bfe886f3c7f2ac4eb",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Platform_Squares.fbx",
+      "bytes": 18860,
+      "sha256": "b1803e407510c7026c7b7e101ec8af274d56535db611b66e002f5c810244e54a",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_AccessPoint.fbx",
+      "bytes": 45132,
+      "sha256": "ead70d3ff2bdec72a5d49859ab5c857ede291dd8ae2d3a72db2935848fac045c",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Barrel_Large.fbx",
+      "bytes": 33164,
+      "sha256": "82bd57e0414cbfafc217ebeee73afe846717ca53ee6dbe6600a6c274b132423c",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Cable_1.fbx",
+      "bytes": 95324,
+      "sha256": "3e22c32e47e9c7d31c1d90a9ccd32a0538c55e7c002bde5125d9aa58547120a3",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Cable_3.fbx",
+      "bytes": 163292,
+      "sha256": "dfc17f981296da3b29a0b710f4d4083c05141500d22bd9c188d75670e8d559e3",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Chest.fbx",
+      "bytes": 125292,
+      "sha256": "963a68595371887b14a6309bd864129781fc1bd8b76095cf55c3a1e5a92fdee5",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Computer.fbx",
+      "bytes": 38556,
+      "sha256": "a93b0c0497f3da8a17a11b1fa51a431174ace3bccd8f16fd6e73063727fd74a7",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Crate3.fbx",
+      "bytes": 22060,
+      "sha256": "26129469cacc0ada386f320d3cb413ffc7a1703aeaca647730b3a6ca42ef2638",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Crate4.fbx",
+      "bytes": 37980,
+      "sha256": "cdddddf7fe51159ded8d6ce3f8e29cdf8afe1615f883132a490ebd4f2c1a3c8f",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Light_Floor.fbx",
+      "bytes": 25036,
+      "sha256": "c47bebdd70e57d96e1f6151ae1ac6196899c681b74813a3216ed0a7af6d4b268",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Light_Wide.fbx",
+      "bytes": 27756,
+      "sha256": "fdc4f8dd70cac6eaa30dcea4043e40a60ccbc322f0443ff269fa2c251cc14a2c",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Vent_Small.fbx",
+      "bytes": 27532,
+      "sha256": "cd4f71c1637ae25b554ced47161a4a66ee467bd525413d598cad51b6eb667285",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/Prop_Vent_Wide.fbx",
+      "bytes": 27484,
+      "sha256": "9f92f1bd476f1c77e8e4794ae6e5fe52bbcbc295797d5552ed8702ba19714989",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/ShortWall_MetalPlates_Straight.fbx",
+      "bytes": 18588,
+      "sha256": "33128559787ca0fdbc47212e9fa7845351c6592897fed6788550572adf882dba",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/TopCables_Straight.fbx",
+      "bytes": 52012,
+      "sha256": "002d6e5eee8ed721a9c35be6bc5174685b1eeed9beef9ff8abcc73ec392759fe",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/WallAstra_Straight.fbx",
+      "bytes": 39132,
+      "sha256": "95e0cab097046a1f0c7f84880cf8686a8b54e32147596115be6e9ab7240ec992",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/WallAstra_Straight_Broken.fbx",
+      "bytes": 176412,
+      "sha256": "5958b8d20cd12c0ab580e48e6952ce6ffc854c64489601c4f25216879ae9e54f",
+      "role": "source-art"
+    },
+    {
+      "path": "Models/WallAstra_Straight_Window.fbx",
+      "bytes": 39260,
+      "sha256": "e8bceb99705cdb60e8b8610356208051b04fc20e506e6d87b88a194166d6b3ac",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Decals.png",
+      "bytes": 161794,
+      "sha256": "cfd1dfe9d3c86a7f5f9bc2e516d935599a70854090f413a29aec0ced1d6c908a",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_PaddedWall_BaseColor.png",
+      "bytes": 2129999,
+      "sha256": "7b431c76896c8d2de736e33271049fc869f2a8a5c0632678c9f030146e90c650",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_PaddedWall_Normal.png",
+      "bytes": 3491441,
+      "sha256": "141c075ee32a4dda83c4b954076ea563b86e2a6329d5c536aa7ddccb6c1328bf",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_PaddedWall_ORM.png",
+      "bytes": 2846320,
+      "sha256": "555039f51a71803be3d617ac03eac05e840ec5b36c269de2115a50e956bff3b2",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_PaddingWall_Emissive.png",
+      "bytes": 14752,
+      "sha256": "e29de6549929f2d8ba322e9477a290e63f761cf6afd51e114aa5232f7ab60f8a",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_01_BaseColor.png",
+      "bytes": 980201,
+      "sha256": "a8f3271be2aa9c450ef5ef85c15bf8bcaeeaa48f5fc616df12d1334a96e78605",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_01_BaseColor_Red.png",
+      "bytes": 965873,
+      "sha256": "15fc0e344ed35483bc771aaa95c1c2a0b0ec2349a893cf24af18b8742f0842ac",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_01_DetailMask.png",
+      "bytes": 12808,
+      "sha256": "3ce977235dc82314cc8be07dcfe81293a3d0c6b317e267557d3849621dbb47e9",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_01_Emissive.png",
+      "bytes": 12619,
+      "sha256": "e031d09286c602e5d5bd847a4f84e88a124a800c1eb151c40302650a955f69bb",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_01_Normal.png",
+      "bytes": 585626,
+      "sha256": "1aec7ad47a642fc68216b5a3119341b7dca038c1fc9493df8a15ad4aa27ddbcf",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_01_ORM.png",
+      "bytes": 3338790,
+      "sha256": "6ab7ad231df22867652048ebfd602684a9072d45c483ca57df0fcd4cb2cb4feb",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_02_BaseColor.png",
+      "bytes": 1125543,
+      "sha256": "7b13c6a7d82b434314237c4b1930b8e12ddc69a70ffef28d73cbd178d3ff6293",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_02_BaseColor_Blue.png",
+      "bytes": 1464045,
+      "sha256": "f5b2289f70fed4997f01e6f774c918bc30813ee9ec37f83f479f9bc36e0b68de",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_02_BaseColor_Red.png",
+      "bytes": 1150649,
+      "sha256": "4a08abf8dc0a5bf558a0ae38dc0d70eddc328eaa8060725d07b95d7c8a75663c",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_02_DetailMask.png",
+      "bytes": 14281,
+      "sha256": "cdbb533d3b25e552e528351c19449a840ec7feec6a62c4cf49c0e8131aad7e81",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_02_Normal.png",
+      "bytes": 756841,
+      "sha256": "7faaa7059192f43aded9cc2f93917dd54fd14545509c37318d4e6bf0a8104960",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_02_ORM.png",
+      "bytes": 3994352,
+      "sha256": "2a433e6a7fbcec375b5c5e5c7aa57dbe1fd23ca6592f48c52d09dde2d622aab8",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_03_BaseColor.png",
+      "bytes": 1285125,
+      "sha256": "2a15eadbedbc928d771ed8f2a7a8c1a16bce89b2836a0ecf34ece7e2fab96769",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_03_Cables.png",
+      "bytes": 779284,
+      "sha256": "758a95beccdc9f0621d8b8a283ee2593e04b56f1cd32776165ec85e1568e8eb8",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_03_Normal.png",
+      "bytes": 375307,
+      "sha256": "b2c3238cbe2586e44df0b00179adf85e5b7ac7fed1713ec0b807482245a30738",
+      "role": "source-art"
+    },
+    {
+      "path": "Textures/T_Trim_03_ORM.png",
+      "bytes": 3009230,
+      "sha256": "c57134b5d496b39b955a87765ea32b93567b1ab494fe6b890de24c75dcfd6fe4",
+      "role": "source-art"
+    }
+  ],
+  "acceptance_status": {
+    "engine_import": "not-run",
+    "human_playtest": "not-run",
+    "audio_perception": "not-run"
+  }
+}
