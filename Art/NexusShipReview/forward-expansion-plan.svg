@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="860" viewBox="0 0 720 860">
+  <rect width="720" height="860" fill="#111820"/>
+  <style>text{font-family:Arial,sans-serif;fill:#dce6ed;text-anchor:middle}.small{font-size:13px;fill:#99aebc}.label{font-size:17px;font-weight:bold}.sub{font-size:12px;fill:#bbcbd5}</style>
+  <text x="360" y="32" class="label">FORWARD SECTION + AFT GROWTH</text>
+  <text x="360" y="53" class="small">Room arrangement agreed; future aft layout remains to be designed</text>
+  <defs><clipPath id="hull"><path d="M304 510 L416 510 L458 454 L472 370 L472 272 L451 202 L416 118 L388 90 L332 90 L304 118 L269 202 L248 272 L248 370 L262 454 Z"/></clipPath><marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#e5b568" stroke-width="1.5"/></marker></defs>
+  <g clip-path="url(#hull)">
+    <rect x="240" y="90" width="240" height="154" fill="#203e50"/>
+    <rect x="240" y="244" width="98" height="154" fill="#234b56"/>
+    <rect x="382" y="244" width="98" height="154" fill="#514536"/>
+    <rect x="338" y="244" width="44" height="154" fill="#35434d"/>
+    <rect x="240" y="398" width="240" height="112" fill="#493e32"/>
+    <path d="M240 244 H480 M240 398 H480 M338 244 V398 M382 244 V398" stroke="#9aaab4" stroke-width="3"/>
+    <path d="M344 244 H376 M338 305 V337 M382 305 V337 M344 398 H376" stroke="#e5b568" stroke-width="6"/>
+  </g>
+  <path d="M304 510 L416 510 L458 454 L472 370 L472 272 L451 202 L416 118 L388 90 L332 90 L304 118 L269 202 L248 272 L248 370 L262 454 Z" fill="none" stroke="#bdcbd4" stroke-width="3"/>
+  <text x="360" y="169" class="label">BRIDGE</text><text x="360" y="189" class="sub">Flight + mission planning</text>
+  <text x="290" y="300" class="label">OPS</text><text x="290" y="319" class="sub">Scanners</text><text x="290" y="335" class="sub">Targeting</text>
+  <text x="430" y="300" class="label">CAPTAIN</text><text x="430" y="319" class="sub">Basic berth</text><text x="430" y="335" class="sub">Upgrades later</text>
+  <text x="360" y="447" class="label">CARGO</text><text x="360" y="466" class="sub">Clear center route</text>
+  <path d="M344 510 H376" stroke="#eb9a57" stroke-width="9"/>
+  <path d="M360 476 V600" stroke="#e5b568" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="512" y="506" class="small">Sealed aft hatch</text><path d="M458 502 H390" stroke="#99aebc"/>
+  <path d="M304 510 V558 H220 V754 H500 V558 H416 V510" fill="none" stroke="#718795" stroke-width="2" stroke-dasharray="9 7"/>
+  <text x="360" y="654" class="label">FUTURE AFT SECTIONS</text><text x="360" y="678" class="small">Additional rooms and facilities</text><text x="360" y="700" class="small">Connect through the existing spine</text>
+  <text x="360" y="791" class="small">Future outline is schematic, not approved geometry or final size.</text>
+  <text x="360" y="815" class="small">Forward preview is visual only; hatch and stations have no gameplay yet.</text>
+</svg>

@@ -8,3 +8,6 @@
 *.unity text eol=lf
 *.asset text eol=lf
 *.meta text eol=lf
+
+# Preserve downloaded Nexus FBX sources byte-for-byte.
+Assets/NexusShipReview/**/*.fbx binary

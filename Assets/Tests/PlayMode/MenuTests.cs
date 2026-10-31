@@ -42,6 +42,117 @@ public sealed class MenuTests
         string full=Path.GetFullPath(directory);
         if(full.StartsWith(Path.GetFullPath(Path.GetTempPath()),StringComparison.OrdinalIgnoreCase) && Directory.Exists(full))Directory.Delete(full,true);
     }
+    [UnityTest] public IEnumerator GalaxyConsoleHasSolidBaseClearApproachAndSurvivesHubRebuild()
+    {
+        for(int visit=0;visit<2;visit++)
+        {
+            if(visit>0){game.BuildHub();yield return null;}
+            var console=game.GetComponentsInChildren<Transform>().Single(t=>t.name=="GalaxyConsole(Clone)");
+            var blocker=console.GetComponent<BoxCollider>();Assert.IsNotNull(blocker);
+            Physics.SyncTransforms();
+            Assert.IsTrue(Physics.CheckSphere(blocker.bounds.center,.1f,1<<9),"Pedestal must block walking through its base");
+            Assert.IsFalse(Physics.CheckCapsule(game.Terminal+Vector3.back*2-Vector3.up*.5f,game.Terminal+Vector3.back*2+Vector3.up*.5f,.4f,1<<9),"Mission interaction approach must stay clear");
+            var animation=console.GetComponentInChildren<Animation>();Assert.IsTrue(animation.isPlaying);
+            var before=animation.transform.rotation;yield return new WaitForSeconds(.1f);
+            Assert.Greater(Quaternion.Angle(before,animation.transform.rotation),.1f,"Galaxy rotation must play in the live hub");
+            Assert.Less(blocker.bounds.max.y,animation.transform.position.y,"Projection must float above physical console");
+            game.Player.Teleport(game.Terminal+Vector3.back*2);game.Interact();
+            Assert.AreEqual(MenuPage.Deployment,game.Menus.Page);
+            game.Menus.Back();
+            Assert.AreEqual(MenuPage.Closed,game.Menus.Page);
+        }
+    }
+    [UnityTest] public IEnumerator CargoServicesHaveClearApproachesAndKeyboardOpensStash()
+    {
+        var services=game.GetComponentsInChildren<ShipService>();Assert.AreEqual(2,services.Length);
+        Physics.SyncTransforms();
+        foreach(var service in services)
+        {
+            var p=service.transform.TransformPoint(service.Approach);
+            Assert.IsTrue(Physics.Raycast(p,Vector3.down,2,1<<8));
+            Assert.IsFalse(Physics.CheckCapsule(p-Vector3.up*.5f,p+Vector3.up*.5f,.4f,1<<9),"Blocked service approach: "+service.Kind);
+        }
+        var stash=services.Single(s=>s.Kind==ShipServiceKind.Stash);
+        Assert.IsFalse(stash.Open(game),"Cannot use stash remotely");
+        game.Player.Teleport(stash.transform.TransformPoint(stash.Approach));
+        InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.E));yield return null;yield return null;
+        Assert.AreEqual(MenuPage.Equipment,game.Menus.Page);Assert.AreEqual(CharacterStorage.Stash,game.GetComponent<CharacterScreen>().Storage);
+        Assert.AreEqual(0,Time.timeScale);Assert.IsFalse(game.InMission);
+    }
+    [UnityTest] public IEnumerator CargoSellingRequiresConfirmationAndPaysOnlyOnce()
+    {
+        var sell=game.GetComponentsInChildren<ShipService>().Single(s=>s.Kind==ShipServiceKind.Sell);
+        game.Player.Teleport(sell.transform.TransformPoint(sell.Approach));
+        int credits=game.Equipment.Wallet;
+        InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.South));yield return null;yield return null;
+        var screen=game.GetComponent<CharacterScreen>();Assert.IsTrue(screen.Selling);Assert.AreEqual(MenuPage.Equipment,game.Menus.Page);
+        Assert.AreEqual(credits,game.Equipment.Wallet,"Opening sell console must not transact");
+        InputSystem.QueueStateEvent(pad,new GamepadState());yield return null;
+        var item=game.Equipment.Profile.Bag.First();Assert.IsTrue(screen.SelectItem(item.Id));
+        Assert.IsTrue(screen.ConfirmSellSelected());Assert.AreEqual(MenuPage.Confirm,game.Menus.Page);
+        game.Menus.Back();Assert.AreEqual(credits,game.Equipment.Wallet);Assert.IsTrue(game.Equipment.Profile.Bag.Contains(item));
+        Assert.IsTrue(screen.ConfirmSellSelected());game.Menus.Activate("confirm");
+        Assert.AreEqual(credits+item.Sale,game.Equipment.Wallet);Assert.IsFalse(game.Equipment.Profile.Bag.Contains(item));
+        Assert.IsFalse(screen.ConfirmSellSelected());Assert.AreEqual(credits+item.Sale,game.Equipment.Wallet);
+        game.Menus.Resume();yield return null;yield return null;game.StartMission();
+        Assert.IsTrue(game.InMission);Assert.IsNull(game.NearbyShipService);Assert.IsFalse(sell.Open(game));
+    }
+    [UnityTest] public IEnumerator CargoStashTransfersPersistAcrossCheckpointLoad()
+    {
+        var stash=game.GetComponentsInChildren<ShipService>().Single(s=>s.Kind==ShipServiceKind.Stash);
+        game.Player.Teleport(stash.transform.TransformPoint(stash.Approach));Assert.IsTrue(stash.Open(game));
+        var item=game.Equipment.Profile.Bag.First();string id=item.Id;
+        Assert.IsTrue(game.Equipment.Profile.Transfer(id,true,false));game.Equipment.Changed();
+        Assert.IsTrue(game.Menus.Save(1));Assert.IsTrue(game.Menus.Load(1));yield return null;
+        Assert.IsTrue(game.Equipment.Profile.Stash.Any(i=>i.Id==id));Assert.IsFalse(game.Equipment.Profile.Bag.Any(i=>i.Id==id));
+        Assert.IsTrue(game.Equipment.Profile.Transfer(id,false,false));game.Equipment.Changed();
+        Assert.IsTrue(game.Equipment.Profile.Bag.Any(i=>i.Id==id));
+    }
+    [UnityTest] public IEnumerator StarshipRoomsHaveContinuousDeckClearDoorwaysAndSealedAftHull()
+    {
+        var doors=game.GetComponentsInChildren<ShipDoor>();
+        foreach(var door in doors){door.enabled=false;door.Blocker.enabled=false;}
+        Physics.SyncTransforms();
+        var routes=new[]{new Vector3(0,0,-12.5f),new Vector3(0,0,7.1f),new Vector3(-4,0,0),new Vector3(4,0,0)};
+        foreach(var end in routes)for(int step=0;step<=40;step++)
+        {
+            var p=Vector3.Lerp(Vector3.zero,end,step/40f);
+            Assert.IsTrue(Physics.Raycast(p+Vector3.up*2,Vector3.down,3,1<<8),"Deck missing: "+p);
+            Assert.IsFalse(Physics.CheckCapsule(p+Vector3.up*.5f,p+Vector3.up*1.5f,.4f,1<<9),"Route obstructed: "+p);
+        }
+        Assert.IsTrue(Physics.Raycast(new Vector3(0,1,-12.5f),Vector3.back,3,1<<9),"Sealed aft expansion must block exit");
+        foreach(var door in doors)door.enabled=true;
+        game.Player.Teleport(new Vector3(0,1,4));
+        yield return new WaitForSeconds(.6f);
+        var controller=game.Player.GetComponent<CharacterController>();
+        for(int i=0;i<60;i++){controller.Move(new Vector3(0,-.02f,.05f));yield return null;}
+        Assert.Greater(game.Player.transform.position.z,6.8f,"Player must physically cross bridge doorway");
+        yield return null;
+    }
+    [UnityTest] public IEnumerator ShipDoorsOpenFromBothSidesRemainSafeAndCloseAfterDeparture()
+    {
+        var door=game.GetComponentsInChildren<ShipDoor>().Single(d=>Mathf.Abs(d.transform.position.z-5)<.1f);
+        game.Player.Teleport(new Vector3(0,1,3));yield return new WaitForSeconds(.65f);
+        Assert.Greater(door.Openness,.99f);Assert.IsFalse(door.Blocker.enabled);
+        game.Player.Teleport(new Vector3(0,1,5));yield return new WaitForSeconds(1.5f);
+        Assert.IsFalse(door.Blocker.enabled,"Standing in the doorway must hold it open");
+        game.Player.Teleport(new Vector3(0,1,-3));yield return new WaitForSeconds(1.9f);
+        Assert.Less(door.Openness,.01f);Assert.IsTrue(door.Blocker.enabled);
+        game.Player.Teleport(new Vector3(0,1,7));yield return new WaitForSeconds(.65f);
+        Assert.Greater(door.Openness,.99f,"Door must open from bridge side too");
+    }
+    [UnityTest] public IEnumerator OccupiedRoomsRevealTheirShellAndOtherRoomsStayClosed()
+    {
+        var points=new[]{new Vector3(0,1,11),new Vector3(-5,1,-4),new Vector3(5,1,-1),new Vector3(0,1,-10),new Vector3(0,1,2)};
+        var shells=game.GetComponentsInChildren<ShipRoomShell>();Assert.AreEqual(5,shells.Length);
+        for(int room=0;room<points.Length;room++)
+        {
+            game.Player.Teleport(points[room]);yield return new WaitForSeconds(.5f);
+            Assert.AreEqual(room,game.GetComponentInChildren<StarshipLife>().OccupiedRoom);
+            foreach(var shell in shells)Assert.AreEqual(shell.RoomId!=room,shell.GetComponent<Renderer>().enabled,"Room shell visibility: "+shell.RoomId);
+        }
+        Assert.AreEqual(2,game.GetComponentsInChildren<ShipCrewIdle>().Length);
+    }
     [UnityTest] public IEnumerator TerminalListsEveryBiomeAndLaunchesSelectedDestinationWithRandomSize()
     {
         game.Menus.Settings.Biome=0;game.Menus.Settings.SectorSize=6;

@@ -1,0 +1,3 @@
+Static full-ship art preview, Unity 6000.3.26f1
+Approved room connection retained. Bridge, engineering/repair, personal cabin and sealed expansion added.
+Three Camera.Render images. No gameplay or build settings changes. Runtime traversal and service interactions not run.

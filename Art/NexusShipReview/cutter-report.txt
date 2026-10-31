@@ -1,0 +1,9 @@
+Expedition cutter: 16m maximum beam / 30m length. Command deck Z5..16; uninterrupted axial circulation X+-1.6.
+Downloaded deck meshes cropped to a convex hull and compartment boundaries with UVs preserved. 40 clipped deck sections.
+Measured fitted triangle area 393.50 / hull area 393.50 square metres; coverage tolerance .02.
+CARGO: 102.67 square metres
+OPERATIONS: 69.47 square metres
+COMMAND: 116.70 square metres
+SPINE: 35.20 square metres
+CAPTAIN: 69.47 square metres
+Static architecture review only; no gameplay or furniture. No player/build/collision validation.
