@@ -1,0 +1,457 @@
+{
+  "melee": {
+    "file": "D:\\VideoGame\\.tools\\gamedev\\enemy-donors\\mech-drone\\source.glb",
+    "sha256": "fffa6aca21ee92efb709efe5a6452ae70421576b984bd3770d93e5a096e089d5",
+    "mesh_count": 17,
+    "triangles": 9331,
+    "rigs": [
+      {
+        "name": "Object_4",
+        "bones": 14
+      }
+    ],
+    "actions": [
+      {
+        "name": "Take 001",
+        "frames": [
+          8.0,
+          120.0
+        ]
+      }
+    ],
+    "weighted_meshes": 1,
+    "materials": 2
+  },
+  "ranged": {
+    "file": "D:\\VideoGame\\.tools\\gamedev\\enemy-donors\\dangry-robot\\source.glb",
+    "sha256": "5d05c2997539ce7f5a7cda49dda201f6daa4fabe6d2cdc053a116ea738f84c1f",
+    "mesh_count": 64,
+    "triangles": 67828,
+    "rigs": [
+      {
+        "name": "Object_5",
+        "bones": 37
+      }
+    ],
+    "actions": [
+      {
+        "name": "Take 001",
+        "frames": [
+          1.0,
+          120.0
+        ]
+      }
+    ],
+    "weighted_meshes": 0,
+    "materials": 10
+  },
+  "aoe": {
+    "file": "D:\\VideoGame\\.tools\\gamedev\\factory-enemies\\aoe\\source\\Mech long legs Army CC export.fbx",
+    "sha256": "0897201afb334a25652ba582c84bb21a10ea51a569893f8f9137ff467f1fe4f2",
+    "mesh_count": 53,
+    "triangles": 14650,
+    "rigs": [
+      {
+        "name": "Armature",
+        "bones": 71
+      }
+    ],
+    "actions": [
+      {
+        "name": "Armature|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.001|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.002|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.003|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.004|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.005|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.006|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.007|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.008|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.009|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.010|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.011|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.012|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.013|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.014|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.015|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.016|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.017|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.018|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.019|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.020|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.021|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.022|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.023|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.024|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.025|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.026|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.027|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.028|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.029|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.030|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.031|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.032|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.033|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.034|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.035|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.036|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.037|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.038|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.039|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.040|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.041|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.042|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.043|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.044|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.045|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.046|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.047|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.048|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.049|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.050|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.051|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key.052|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      },
+      {
+        "name": "Key|2666562703104_TempMotion",
+        "frames": [
+          1.0,
+          912.0
+        ]
+      }
+    ],
+    "weighted_meshes": 53,
+    "materials": 7
+  },
+  "heavy": {
+    "file": "D:\\VideoGame\\.tools\\gamedev\\factory-enemies\\heavy\\source\\robot\\robot.fbx",
+    "sha256": "4ba35dd9722966ffbb80ec7f8216b0a9e8d2aef6700f39ee2c341463dcf8791d",
+    "mesh_count": 1,
+    "triangles": 68646,
+    "rigs": [
+      {
+        "name": "Armature",
+        "bones": 21
+      }
+    ],
+    "actions": [],
+    "weighted_meshes": 1,
+    "materials": 1
+  }
+}
