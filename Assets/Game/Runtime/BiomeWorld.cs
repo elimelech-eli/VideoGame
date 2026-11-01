@@ -11,6 +11,7 @@ namespace VideoGame
         public void ResetDressing()=>DressingHash=17;
         public GameObject Place(BiomeId biome,string role,Transform parent,Vector3 point,Quaternion rotation)
         {
+            if(biome==BiomeId.RuinedFactory&&(role=="Volatile"||role=="Unstable")){var prop=FactoryBiome.Place(role=="Volatile"?"Barrel":"Wall2",parent,point);prop.transform.rotation=rotation;foreach(var c in prop.GetComponentsInChildren<Collider>())Destroy(c);return prop;}
             string key=(int)biome+"_"+role;
             if(!models.TryGetValue(key,out var model))
             {
@@ -26,6 +27,7 @@ namespace VideoGame
         }
         public void Deck(BiomeId biome,Vector3 center,float width,float depth,Transform parent)
         {
+            if(biome==BiomeId.RuinedFactory){FactoryBiome.Deck(center,width,depth,parent);return;}
             if(biome==BiomeId.Transit){TransitBiome.Deck(center,width,depth,parent);return;}
             if(biome==BiomeId.BiotechLab){LabBiome.Deck(center,width,depth,parent);return;}
             int columns=Mathf.CeilToInt(width/4),rows=Mathf.CeilToInt(depth/4);
@@ -38,6 +40,7 @@ namespace VideoGame
         }
         public void Wall(BiomeId biome,Vector3 center,Vector3 tangent,float length,Vector2Int facing,Transform parent,bool corridor=false)
         {
+            if(biome==BiomeId.RuinedFactory){FactoryBiome.Wall(center,tangent,length,facing,parent);return;}
             if(biome==BiomeId.Transit){GetComponent<TransitBiome>().Wall(center,tangent,length,facing,parent,corridor);return;}
             if(biome==BiomeId.BiotechLab){LabBiome.Wall(center,tangent,length,facing,parent);return;}
             int pieces=Mathf.CeilToInt(length/4);float width=length/pieces;
@@ -63,6 +66,7 @@ namespace VideoGame
         }
         public void Dress(BiomeId biome,Room room,int index,int seed,int turn,Transform parent)
         {
+            if(biome==BiomeId.RuinedFactory){unchecked{DressingHash=DressingHash*31+FactoryBiome.Dress(room,index,seed,turn,parent);}return;}
             if(biome==BiomeId.Transit){unchecked{DressingHash=DressingHash*31+GetComponent<TransitBiome>().Dress(room,index,seed,turn,parent);}return;}
             if(biome==BiomeId.BiotechLab){unchecked{DressingHash=DressingHash*31+LabBiome.Dress(room,index,seed,turn,parent);}return;}
             if(index==0)turn=0; // Extraction occupies the opposite corner of the arrival room.

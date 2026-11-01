@@ -10,7 +10,9 @@ namespace VideoGame
         public EnemyKind Kind;
         public bool IsLabHeavy { get; private set; }
         public bool IsTransitHeavy {get;private set;}
-        public bool IsShieldedHeavy=>IsLabHeavy||IsTransitHeavy;
+        public bool IsFactoryHeavy {get;private set;}
+        public void ConfigureFactoryHeavy(){IsFactoryHeavy=true;SetLevel(Level);}
+        public bool IsShieldedHeavy=>IsLabHeavy||IsTransitHeavy||IsFactoryHeavy;
         public void ConfigureTransitHeavy(){IsTransitHeavy=true;SetLevel(Level);}
         public bool IsLabBoss { get; private set; }
         public float ShieldMaximum { get; private set; }

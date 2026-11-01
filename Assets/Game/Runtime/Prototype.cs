@@ -299,7 +299,7 @@ namespace VideoGame
                 float corner = rooms[i].Size / 2f - 2.5f;
                 int turn = random.Next(4);
                 Quaternion dressing = Quaternion.Euler(0, turn * 90, 0);
-                if(ActiveBiome!=BiomeId.BiotechLab&&ActiveBiome!=BiomeId.Transit)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
+                if(ActiveBiome!=BiomeId.BiotechLab&&ActiveBiome!=BiomeId.Transit&&ActiveBiome!=BiomeId.RuinedFactory)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i != 0) SpawnDestructible(center + dressing * new Vector3(corner, 0, -corner), false);
                 if (i != 0 && rooms[i].Theme != 2) SpawnDestructible(center + dressing * new Vector3(corner - 1.2f, 0, -corner), false);
                 if (i != 0)
@@ -309,7 +309,7 @@ namespace VideoGame
                     SpawnMedicalCache(center + dressing * new Vector3(-corner, 0, -corner));
                 }
                 Physics.SyncTransforms();
-                if(ActiveBiome==BiomeId.BiotechLab||ActiveBiome==BiomeId.Transit)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
+                if(ActiveBiome==BiomeId.BiotechLab||ActiveBiome==BiomeId.Transit||ActiveBiome==BiomeId.RuinedFactory)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i == 0) continue;
                 for (int j = 0; j < (i < 4 ? 2 : 1) && initialEnemies<EncounterDirector.PopulationCap-(ActiveBiome==BiomeId.BiotechLab?1:0); j++)
                 {
@@ -364,7 +364,8 @@ namespace VideoGame
             bool lab = ActiveBiome == BiomeId.BiotechLab;
             if (labBoss && !lab) throw new System.ArgumentException("The medical boss belongs to the Lab roster.");
             bool transit=ActiveBiome==BiomeId.Transit;
-            bool heavy = (lab||transit) && kind == EnemyKind.Hunter && !labBoss;
+            bool factory=ActiveBiome==BiomeId.RuinedFactory;
+            bool heavy = (lab||transit||factory) && kind == EnemyKind.Hunter && !labBoss;
             bool ranged = kind == EnemyKind.Gunner || kind == EnemyKind.Bombardier || heavy || labBoss;
             var enemy = Shape(ranged ? "Ranged drone" : "Hunter drone", ranged ? PrimitiveType.Sphere : PrimitiveType.Capsule, point, Vector3.one, ranged ? Color.magenta : Art.Amber, world);
             enemy.GetComponent<Renderer>().enabled = false;
@@ -373,8 +374,9 @@ namespace VideoGame
             bool labEnemy = ActiveBiome == VideoGame.Core.BiomeId.BiotechLab;
             if (labEnemy) { model = labBoss ? "LabBoss" : heavy ? "LabHeavy" : kind == EnemyKind.Bombardier ? "LabAoe" : kind == EnemyKind.Gunner ? "LabHazmat" : "LabSpider"; size = labBoss ? 3f : heavy ? 2.9f : kind == EnemyKind.Bombardier ? 2.2f : kind == EnemyKind.Gunner ? 2.15f : 1.65f; }
             if(transit){model=kind==EnemyKind.Hunter?"TransitHeavy":kind==EnemyKind.Bombardier?"TransitAoe":kind==EnemyKind.Gunner?"TransitGunner":"TransitMelee";size=kind==EnemyKind.Hunter?2.25f:kind==EnemyKind.Gunner?1.95f:kind==EnemyKind.Bombardier?2.1f:1.45f;}
-            var enemyArt = Visuals.Model((transit?"Detailed/TransitEnemies/Prefabs/":labEnemy ? "Detailed/LabEnemies/Prefabs/" : "Detailed/Robots/Prefabs/") + model, enemy.transform, new Vector3(0, transit&&kind==EnemyKind.Bombardier?-.1f:-1, 0), size, Art.Amber);
-            var drone = enemy.AddComponent<Drone>(); drone.Kind = kind; drone.ConfigureLab(lab&&heavy, labBoss);if(transit&&heavy)drone.ConfigureTransitHeavy();
+            if(factory){model=kind==EnemyKind.Hunter?"FactoryHeavy":kind==EnemyKind.Bombardier?"FactoryAoe":kind==EnemyKind.Gunner?"FactoryGunner":"FactoryMelee";size=kind==EnemyKind.Hunter?3.1f:kind==EnemyKind.Bombardier?2.6f:kind==EnemyKind.Gunner?2.05f:1.45f;}
+            var enemyArt = Visuals.Model((factory?"Detailed/FactoryEnemies/Prefabs/":transit?"Detailed/TransitEnemies/Prefabs/":labEnemy ? "Detailed/LabEnemies/Prefabs/" : "Detailed/Robots/Prefabs/") + model, enemy.transform, new Vector3(0, factory&&kind==EnemyKind.Rusher?-.5f:transit&&kind==EnemyKind.Bombardier?-.1f:-1, 0), size, Art.Amber);
+            var drone = enemy.AddComponent<Drone>(); drone.Kind = kind; drone.ConfigureLab(lab&&heavy, labBoss);if(transit&&heavy)drone.ConfigureTransitHeavy();if(factory&&heavy)drone.ConfigureFactoryHeavy();
             if(InMission)drone.SetLevel(Equipment.RollEnemyLevel());
             var originalCollider = enemy.GetComponent<Collider>(); originalCollider.enabled = false; Destroy(originalCollider);
             var bounds = Art.RenderedBounds(enemyArt);
@@ -423,6 +425,7 @@ namespace VideoGame
                 collider.center = prop.transform.InverseTransformPoint(bounds.center);
                 collider.size = bounds.size;
             }
+            if(!wall&&InMission&&ActiveBiome==BiomeId.RuinedFactory){var bounds=Art.RenderedBounds(model);collider.center=prop.transform.InverseTransformPoint(bounds.center);collider.size=bounds.size;}
             Visuals.Sign(wall ? "UNSTABLE" : "VOLATILE", position + Vector3.up * (wall ? 2.8f : 1.8f), .35f, Art.Amber, prop.transform);
             var destructible = prop.AddComponent<Destructible>(); destructible.IsWall = wall;
             return destructible;

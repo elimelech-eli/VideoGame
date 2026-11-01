@@ -1,0 +1,159 @@
+Factory_modularKit_01 size=(0.1977, 2.5000, 2.5000) center=(-1.2757, 1.2501, 8.3982) mats=bricks,concrete
+Factory_modularKit_02 size=(0.1977, 2.5000, 2.5000) center=(-1.2757, 1.2501, 4.6607) mats=bricks,concrete
+Factory_modularKit_03 size=(0.1560, 2.5000, 5.0000) center=(5.5144, 1.2501, -26.7077) mats=bricks,Trim_metal
+Factory_modularKit_04 size=(0.3988, 2.5000, 2.5000) center=(-1.2393, 1.2501, 12.1561) mats=bricks,Trim_metal
+Factory_modularKit_05 size=(0.1248, 2.5000, 2.5000) center=(-1.2393, 1.2501, 0.9881) mats=bricks
+Factory_modularKit_06 size=(0.3330, 2.5000, 2.5000) center=(-1.3434, 1.2501, -2.6175) mats=bricks
+Factory_modularKit_07 size=(0.0178, 2.1202, 3.8243) center=(5.5105, 1.1026, -15.4852) mats=Trim_metal
+Factory_modularKit_08 size=(0.0372, 2.0700, 3.7641) center=(5.5060, 1.0513, -20.9701) mats=Trim_metal,glass
+Factory_modularKit_09 size=(0.1579, 2.5000, 2.5000) center=(5.5144, 1.2503, -11.1426) mats=bricks,Trim_metal
+Factory_modularKit_10 size=(0.4860, 2.6558, 0.4860) center=(5.4520, 1.3298, -4.1714) mats=Trim_metal
+Factory_modularKit_11 size=(0.3713, 2.5000, 0.3713) center=(5.5144, 1.2501, -1.9367) mats=Trim_metal
+Factory_modularKit_13 size=(0.3714, 2.5000, 1.4335) center=(5.5144, 1.2584, -0.1286) mats=Trim_metal
+Factory_modularKit_14 size=(0.3713, 0.3713, 2.5000) center=(5.5143, 2.3228, 4.4239) mats=Trim_metal
+Factory_modularKit_15 size=(1.2847, 2.5000, 0.3012) center=(5.3266, 1.2519, 6.8765) mats=Trim_metal
+Factory_modularKit_16 size=(0.0025, 2.0988, 3.7929) center=(5.5144, 1.0513, -20.9701) mats=Trim_metal
+Factory_modularKit_17 size=(0.1358, 2.1000, 0.9500) center=(5.5124, 1.0519, -8.5790) mats=door_01,Trim_metal
+Factory_modularKit_18 size=(0.1309, 2.1000, 0.9500) center=(5.5144, 1.0519, -7.1528) mats=door_02,Trim_metal,glass
+Factory_modularKit_19 size=(0.4236, 2.5000, 1.2500) center=(-1.2393, 1.2501, 21.8891) mats=bricks,Trim_metal,concrete
+Factory_modularKit_20 size=(0.1248, 2.5000, 1.2500) center=(-1.2393, 1.2501, 16.9122) mats=bricks
+Factory_modularKit_21 size=(0.3988, 2.5000, 1.2500) center=(-1.2393, 1.2501, 24.4336) mats=bricks,Trim_metal
+Factory_modularKit_22 size=(0.4236, 2.5000, 1.2500) center=(-1.2393, 1.2501, 19.4952) mats=bricks,Trim_metal,concrete
+Factory_modularKit_23 size=(0.3330, 2.5000, 2.5000) center=(-1.3434, 1.2501, -5.6505) mats=bricks
+Factory_modularKit_24 size=(2.5000, 0.0000, 2.5000) center=(-5.4891, 0.0019, 9.2045) mats=concrete_floor
+Factory_modularKit_25 size=(1.2481, 0.0000, 1.2481) center=(-4.8651, 0.0019, 12.1087) mats=concrete_floor
+Factory_modularKit_26 size=(2.5000, 0.0000, 1.2500) center=(-5.4891, 0.0019, 14.1404) mats=concrete_floor
+Factory_modularKit_27 size=(2.5013, 0.0250, 0.6241) center=(-5.4898, 0.0144, -2.3511) mats=Trim_metal
+Factory_modularKit_28 size=(0.5000, 2.5000, 0.5000) center=(-1.2393, 1.2519, 14.8764) mats=concrete
+Factory_modularKit_29 size=(1.0324, 3.1537, 1.0324) center=(10.1709, 1.5788, -21.8848) mats=Trim_metal
+Factory_modularKit_30 size=(0.6749, 3.5374, 0.6885) center=(10.1709, 1.7707, -24.0374) mats=Trim_metal
+Factory_modularKit_31 size=(0.6749, 0.6885, 3.5374) center=(10.1709, 0.9017, -30.6916) mats=Trim_metal
+Factory_modularKit_32 size=(0.6749, 1.2450, 1.3699) center=(10.1709, 0.6244, -26.4611) mats=Trim_metal
+Factory_modularKit_33 size=(1.4170, 1.7623, 2.5000) center=(9.5645, 1.7103, -11.2222) mats=Trim_metal
+Factory_modularKit_34 size=(2.5000, 1.0827, 2.5000) center=(10.0837, 2.0500, 1.7025) mats=Trim_metal
+Factory_modularKit_35 size=(3.4688, 3.4845, 1.1378) center=(11.9026, 1.7442, 5.1728) mats=Trim_metal
+Factory_modularKit_36 size=(0.1248, 2.5000, 2.5000) center=(-1.2393, 1.2501, -9.4101) mats=bricks,concrete,Trim_metal,glass
+Factory_modularKit_37 size=(0.1248, 5.0000, 2.5000) center=(-1.2393, 2.4982, -13.1354) mats=bricks,concrete,glass
+Factory_modularKit_38 size=(0.0250, 3.9224, 1.9612) center=(-1.2393, 2.4982, -13.1354) mats=Trim_metal
+Factory_modularKit_39 size=(0.0250, 1.3075, 0.9806) center=(-1.2393, 1.8444, -13.1354) mats=Trim_metal,glass
+Factory_modularKit_40 size=(0.2099, 0.2210, 2.5000) center=(-6.0225, 0.1181, -4.8149) mats=Trim_metal
+Factory_modularKit_41 size=(0.1120, 1.2500, 0.1120) center=(-5.5099, 0.6307, -4.8149) mats=Trim_metal
+Factory_modularKit_42 size=(0.1574, 0.1484, 0.4751) center=(-5.0385, 0.0818, -4.8149) mats=Trim_metal
+Factory_modularKit_43 size=(0.1120, 1.3470, 2.2211) center=(-4.4745, 0.7261, -12.7914) mats=Trim_metal
+Factory_modularKit_45 size=(0.1492, 0.2129, 0.2129) center=(-1.2585, 1.2501, -16.9167) mats=Trim_metal
+Factory_modularKit_47 size=(0.0535, 1.6036, 1.6431) center=(-1.2864, 1.3051, -16.9129) mats=Trim_metal
+Factory_modularKit_49 size=(0.1789, 0.8669, 0.8669) center=(-1.2457, 1.6859, -20.1962) mats=Trim_metal
+Factory_modularKit_50 size=(0.0879, 0.0866, 0.0866) center=(-1.2574, 1.6859, -20.1962) mats=Trim_metal
+Factory_modularKit_52 size=(0.0315, 0.6519, 0.6680) center=(-1.2738, 1.7083, -20.1947) mats=Trim_metal
+Factory_modularKit_57 size=(0.1680, 2.5000, 2.5000) center=(-1.2387, 1.2501, -26.8890) mats=bricks,Trim_metal
+Factory_modularKit_59 size=(0.0239, 0.2391, 0.2391) center=(-1.2678, 2.0635, -26.8895) mats=Trim_metal
+Factory_modularKit_61 size=(2.5000, 0.1363, 0.1843) center=(-5.4891, 0.0701, -8.0077) mats=Trim_metal
+Factory_modularKit_62 size=(0.4236, 2.5000, 1.2500) center=(-4.3015, 1.2501, 21.8891) mats=bricks,Trim_metal,concrete
+Factory_modularKit_63 size=(0.1248, 2.5000, 1.2500) center=(-4.3015, 1.2501, 16.9122) mats=bricks
+Factory_modularKit_64 size=(0.3988, 2.5000, 1.2500) center=(-4.3015, 1.2501, 24.4336) mats=bricks,Trim_metal
+Factory_modularKit_65 size=(0.4236, 2.5000, 1.2500) center=(-4.3015, 1.2501, 19.4952) mats=bricks,Trim_metal,concrete
+Factory_modularKit_66 size=(1.2481, 0.0000, 1.2481) center=(-6.4907, 0.0019, 12.1087) mats=concrete_floor
+Factory_modularKit_67 size=(1.2481, 0.0000, 1.2481) center=(-8.1287, 0.0019, 12.1087) mats=concrete_floor
+Factory_modularKit_68 size=(1.2481, 0.0000, 1.2481) center=(-9.8529, 0.0019, 12.1087) mats=concrete_floor
+Factory_modularKit_69 size=(2.5000, 0.0000, 1.2500) center=(-8.5151, 0.0019, 14.1404) mats=concrete_floor
+Factory_modularKit_70 size=(0.4500, 0.5000, 2.5000) center=(-4.1139, 0.2501, 4.8765) mats=concrete
+Factory_modularKit_71 size=(0.2029, 2.5000, 0.2029) center=(-4.3406, 1.2501, 6.8679) mats=concrete
+Factory_modularKit_72 size=(0.4500, 0.5000, 1.2500) center=(-4.1139, 0.2501, 2.3805) mats=concrete
+Factory_modularKit_73 size=(0.4500, 0.5000, 1.2500) center=(-4.1139, 0.2501, 0.5601) mats=concrete
+Factory_modularKit_74 size=(0.4500, 0.6688, 0.4500) center=(-4.1139, 0.3345, -0.7621) mats=concrete
+Factory_modularKit_75 size=(2.5000, 0.0000, 2.5000) center=(-5.4891, 0.0019, -10.0972) mats=roof_steel
+Factory_modularKit_76 size=(2.5000, 0.0000, 2.5000) center=(-5.4891, 0.0019, -14.9801) mats=roof_gravel
+Factory_modularKit_77 size=(3.4343, 2.4484, 1.0967) center=(11.8854, 1.2262, 8.3087) mats=Trim_metal
+Factory_modularKit_78 size=(2.2922, 2.6127, 1.1378) center=(11.1000, 1.3083, -14.2934) mats=Trim_metal
+Factory_modularKit_79 size=(3.3902, 4.1059, 2.4000) center=(10.5511, 2.0549, -17.1692) mats=Trim_metal
+Factory_modularKit_80 size=(0.1811, 1.5294, 2.3189) center=(9.4839, 0.7667, -5.3358) mats=Trim_metal
+Factory_modularKit_81 size=(1.0979, 1.0827, 2.5000) center=(9.4049, 2.0500, -8.2877) mats=Trim_metal
+Factory_modularKit_82 size=(1.0979, 1.0827, 2.5115) center=(9.4049, 2.0500, -1.5010) mats=Trim_metal
+Factory_modularKit_83 size=(3.2897, 3.4828, 1.0804) center=(11.9922, 1.7450, 11.0301) mats=Trim_metal
+Factory_modularKit_84 size=(0.0250, 1.3075, 0.9806) center=(-1.2393, 3.1541, -13.1354) mats=Trim_metal,glass
+Factory_modularKit_85 size=(0.0315, 0.6519, 0.6679) center=(-1.2684, 0.8366, -23.5153) mats=Trim_metal
+Factory_modularKit_86 size=(0.0879, 0.0866, 0.0866) center=(-1.2567, 0.8140, -23.5159) mats=Trim_metal
+Factory_modularKit_87 size=(0.0239, 0.2391, 0.2391) center=(-1.2678, 2.0635, -26.3905) mats=Trim_metal
+Factory_modularKit_88 size=(0.0312, 0.0314, 0.0311) center=(-1.2555, 2.0635, -19.3941) mats=Trim_metal
+Factory_modularKit_89 size=(0.0239, 0.2391, 0.2391) center=(-1.2678, 2.0635, -25.8905) mats=Trim_metal
+Factory_modularKit_90 size=(0.0239, 0.2391, 0.2391) center=(-1.2678, 2.0635, -27.3875) mats=Trim_metal
+Factory_modularKit_91 size=(0.0239, 0.2391, 0.2391) center=(-1.2678, 2.0635, -27.8875) mats=Trim_metal
+Factory_modularKit_92 size=(0.3714, 2.5000, 1.4335) center=(5.5144, 1.2584, 1.9720) mats=Trim_metal
+Factory_modularKit_93 size=(0.1494, 2.4962, 0.2652) center=(-1.2640, 1.2482, 26.3602) mats=Trim_metal
+Factory_modularKit_94 size=(0.3036, 2.5000, 2.5000) center=(-1.2388, 1.2501, -16.9167) mats=bricks,Trim_metal
+Factory_modularKit_94.001 size=(0.1248, 2.5000, 2.5000) center=(-1.2393, 1.2501, -20.1962) mats=bricks
+Factory_modularKit_94.002 size=(0.1789, 2.5000, 2.5000) center=(-1.2403, 1.2501, -23.5159) mats=bricks,Trim_metal
+Chair_01 size=(0.5888, 0.8598, 0.5760) center=(-11.9881, 0.4300, 3.6220) mats=Vent + chair
+Cone_01 size=(0.3993, 0.6141, 0.3993) center=(2.2413, 0.3086, -4.1847) mats=Misc_02
+Container_01 size=(2.6531, 2.5780, 5.6572) center=(-8.6939, 1.2986, -3.1152) mats=Container_02
+Container_02 size=(2.6531, 2.5780, 6.7079) center=(-12.5499, 1.2986, -2.5899) mats=Container_01
+Crate_01 size=(0.9324, 0.9324, 0.9324) center=(-16.0810, 0.4577, 3.7516) mats=Crate
+Crate_03 size=(0.9864, 0.7437, 0.9864) center=(-17.2371, 0.6027, 3.7514) mats=Crate
+Cube.081 size=(0.4601, 0.2907, 0.3296) center=(12.4215, 0.0979, 4.3031) mats=Barrel + tools
+Cube.083 size=(0.9301, 0.4054, 0.7296) center=(13.3848, 0.1553, 4.3786) mats=Barrel + tools
+Cube.092 size=(0.6772, 0.4358, 0.4923) center=(13.2660, 0.1734, 3.5489) mats=Barrel + tools
+Cube.101 size=(0.1213, 0.1225, 0.1154) center=(13.4409, 0.0149, 2.8895) mats=Barrel + tools
+Cube.102 size=(0.0518, 0.1238, 0.0285) center=(13.1101, 0.0142, 2.8803) mats=Barrel + tools
+Cylinder.014 size=(0.3561, 0.7301, 0.1943) center=(11.8302, 0.9975, 4.0932) mats=Barrel + tools
+Cylinder.015 size=(0.5966, 1.0742, 0.5966) center=(9.7184, 0.4793, 3.4097) mats=Barrel + tools
+Cylinder.016 size=(0.5883, 1.0631, 0.5883) center=(10.6668, 0.4778, 3.4097) mats=Barrel + tools
+Cylinder.017 size=(0.3124, 1.0911, 0.3124) center=(11.3236, 0.4919, 3.9238) mats=Barrel + tools
+Cylinder.029 size=(0.1398, 0.0479, 0.1398) center=(13.2562, -0.0245, 2.8774) mats=Barrel + tools
+Cylinder.030 size=(0.1020, 0.0297, 0.3097) center=(13.0243, -0.0289, 2.8535) mats=Barrel + tools
+Cylinder.031 size=(0.0187, 0.0187, 0.1794) center=(12.7966, -0.0370, 2.8665) mats=Barrel + tools
+Forklift_01 size=(0.8710, 1.0887, 1.9071) center=(-8.5884, 0.5459, 3.7879) mats=Carts
+Forklift_02 size=(0.5890, 1.2310, 0.5302) center=(-7.3935, 0.6171, 3.6312) mats=Carts
+Generator_01 size=(1.0618, 0.8242, 0.7246) center=(11.1605, 0.3079, -4.1847) mats=Misc_01
+Generator_01.001 size=(0.0200, 0.0200, 0.0076) center=(10.9427, 0.4410, -3.9506) mats=Misc_01
+Generator_01.002 size=(0.0200, 0.0200, 0.0076) center=(10.8927, 0.4410, -3.9506) mats=Misc_01
+Generator_01.003 size=(0.0200, 0.0200, 0.0076) center=(10.8427, 0.4410, -3.9506) mats=Misc_01
+Generator_02 size=(4.2955, 1.7887, 1.8471) center=(7.7332, 0.8959, -3.9962) mats=Big Generator
+Glass_01 size=(0.6790, 1.1025, 0.0169) center=(6.4845, 1.4253, 3.3371) mats=Bathroom
+IndusLight_01 size=(0.6583, 1.7146, 0.6227) center=(12.3828, 0.8602, -4.0369) mats=Misc_01
+IndusLight_02 size=(0.5026, 0.0844, 0.0143) center=(12.4107, 1.6387, -4.0346) mats=Misc_01
+Ladder_01 size=(0.5941, 3.3867, 0.2024) center=(-13.5386, 1.6949, 3.3317) mats=Ladders
+Ladder_02 size=(0.5356, 2.2279, 1.3513) center=(-14.7973, 1.1155, 3.8520) mats=Ladders
+Light_01 size=(1.3461, 0.1256, 0.2256) center=(-20.6968, 2.5938, -5.2668) mats=Lamps
+Light_02 size=(1.0930, 0.1550, 0.3170) center=(-20.6968, 2.5791, -4.6515) mats=Lamps
+Light_03 size=(0.5476, 1.1430, 0.5476) center=(-20.6353, 2.0851, -3.9658) mats=Lamps
+Light_04 size=(0.1242, 0.1967, 0.0758) center=(-20.3418, 1.9678, -4.3675) mats=Lamps
+Light_05 size=(0.0950, 0.2377, 0.1363) center=(-20.5593, 1.9806, -4.3822) mats=Lamps
+Light_06 size=(0.1242, 0.1967, 0.0854) center=(-20.1391, 1.9678, -4.3627) mats=Lamps
+Locker_01 size=(0.4103, 1.4559, 0.4555) center=(8.4943, 0.7294, 3.7441) mats=Lockers
+Locker_02 size=(0.4103, 1.8340, 0.4555) center=(7.5183, 0.9184, 3.7441) mats=Lockers
+Locker_03 size=(0.3336, 1.4655, 0.0531) center=(7.5170, 1.0573, 3.9452) mats=Lockers
+Locker_04 size=(0.3336, 1.1989, 0.0531) center=(8.4930, 0.8125, 3.9452) mats=Lockers
+Pallet_01 size=(0.9819, 0.1941, 1.4563) center=(13.7415, 0.0839, -4.1250) mats=Misc_01
+Pallet_02 size=(0.4171, 0.1657, 0.6408) center=(-0.1512, 0.0843, -4.4183) mats=Misc_02
+Pipes_01 size=(0.5662, 0.5662, 7.7391) center=(-15.3188, 0.2307, -4.1000) mats=pipes_01
+Pipes_02 size=(0.5662, 0.5662, 3.8704) center=(-16.7638, 0.2307, -2.1657) mats=pipes_01
+Pipes_03 size=(2.1291, 0.5662, 2.0982) center=(-17.6403, 0.2307, -6.5490) mats=pipes_01
+Pipes_04 size=(1.0412, 0.3870, 1.0412) center=(-18.2281, 0.2307, -3.7060) mats=pipes_02
+Pipes_05 size=(1.0457, 0.5662, 1.0147) center=(-18.6182, 0.2307, -5.8640) mats=pipes_02
+Pipes_06 size=(0.5662, 0.5662, 0.2824) center=(-18.2281, 0.2307, -2.3592) mats=pipes_02
+Pipes_07 size=(0.4970, 0.9129, 1.1495) center=(-18.3184, 0.4661, -1.1580) mats=pipes_02
+Plane.093 size=(2.2376, 0.9325, 1.1217) center=(-2.3214, 0.4678, 3.6597) mats=Tables
+Plane.095 size=(2.2120, 0.9387, 1.0961) center=(-5.2819, 0.4709, 3.6265) mats=Tables
+Plank_01 size=(0.2848, 0.0677, 1.5511) center=(1.5070, 0.0354, -4.1820) mats=Misc_02
+Plank_02 size=(0.2769, 0.0731, 1.5640) center=(1.0114, 0.0463, -4.1704) mats=Misc_02
+Point size=(0.0384, 0.0121, 0.2372) center=(12.8920, -0.0403, 2.8748) mats=Barrel + tools
+Point.001 size=(0.0577, 0.0075, 0.1734) center=(12.6973, -0.0426, 2.8911) mats=Barrel + tools
+Pole_01 size=(0.3980, 0.9497, 0.3980) center=(2.8180, 0.4764, -4.1847) mats=Misc_02
+Sandbag_01 size=(0.4967, 0.2253, 0.7666) center=(0.4089, 0.0075, -4.5077) mats=Misc_02
+Shelves_01 size=(2.1847, 2.6301, 0.7784) center=(3.0076, 1.3166, 3.7388) mats=Shelves
+Shelves_02 size=(1.6742, 1.1127, 0.6529) center=(0.1853, 0.5580, 3.6760) mats=Shelves
+Sign_01 size=(0.2571, 0.2571, 0.0104) center=(4.6292, 0.7081, -4.1456) mats=Misc_02
+Sign_02 size=(0.5638, 0.9315, 0.4501) center=(3.3816, 0.4898, -4.2047) mats=Misc_02
+Sign_03 size=(0.4032, 0.2623, 0.0104) center=(4.6350, 0.3201, -4.1456) mats=Misc_02
+Sign_04 size=(0.0366, 1.4961, 0.0193) center=(4.1186, 0.7496, -4.1641) mats=Misc_02
+Sign_05 size=(0.4169, 0.4169, 0.0104) center=(4.6229, 1.2087, -4.1456) mats=Misc_02
+Sink_01 size=(0.8549, 0.7888, 0.4932) center=(6.4914, 0.8663, 4.0290) mats=Bathroom
+Vent_01 size=(0.6103, 0.6103, 0.0968) center=(-9.8951, 0.4174, 3.5470) mats=Vent + chair
+Vent_02 size=(0.9668, 0.6789, 0.0626) center=(-10.8909, 0.4174, 3.5893) mats=Vent + chair
+WC_01 size=(0.5158, 1.2301, 0.9051) center=(5.2543, 0.6166, 3.9646) mats=Bathroom
+WC_kit_01 size=(1.0446, 2.1333, 0.0682) center=(-6.0270, 1.0682, -4.6643) mats=WC_02
+WC_kit_02 size=(1.4914, 2.3736, 0.0314) center=(-2.8563, 1.1884, -4.6060) mats=WC_01
+WC_kit_03 size=(0.0250, 2.1285, 1.7292) center=(-1.4844, 1.3110, -4.2611) mats=WC_01
+WC_kit_04 size=(1.0199, 2.1285, 0.0664) center=(-4.4274, 1.3110, -4.6142) mats=WC_02
+WC_kit_05 size=(1.4914, 0.0696, 0.0393) center=(-2.8704, 2.4100, -4.1134) mats=WC_01
+WC_kit_06 size=(0.0969, 0.1444, 0.1453) center=(-1.8828, 1.0570, -4.3987) mats=WC_01

@@ -1,0 +1,526 @@
+{
+  "FactoryAoe": {
+    "materials": [
+      {
+        "name": "Material",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png"
+        },
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.9292893409729004,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "camo_metal_armor_30_98",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Normal": "m01_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null
+        },
+        "constants": {
+          "Metallic": 0.0,
+          "Roughness": 0.9292893409729004,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "green_metal_armor_30_1100",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Normal": "m02_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null
+        },
+        "constants": {
+          "Metallic": 0.0,
+          "Roughness": 0.9292893409729004,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "green_metal_armor_30_99",
+        "id": "m03",
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Normal": "m03_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null
+        },
+        "constants": {
+          "Metallic": 0.0,
+          "Roughness": 0.9292893409729004,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "green_painted_metal_30_26",
+        "id": "m04",
+        "maps": {
+          "Albedo": "m04_Albedo.png",
+          "Normal": "m04_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null
+        },
+        "constants": {
+          "Metallic": 0.0,
+          "Roughness": 0.9292893409729004,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "gun_black_metal_30_05",
+        "id": "m05",
+        "maps": {
+          "Albedo": "m05_Albedo.png",
+          "Normal": "m05_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null
+        },
+        "constants": {
+          "Metallic": 0.0,
+          "Roughness": 0.9292893409729004,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "scratched_metal_30_28",
+        "id": "m06",
+        "maps": {
+          "Albedo": "m06_Albedo.png",
+          "Normal": "m06_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null
+        },
+        "constants": {
+          "Metallic": 0.0,
+          "Roughness": 0.9292893409729004,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      }
+    ],
+    "bones": 71,
+    "triangles": 14650,
+    "unweighted": 0
+  },
+  "FactoryGunner": {
+    "materials": [
+      {
+        "name": "Eye1",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Normal": "m00_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "EyeBloom1",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Emission": [
+            1.0,
+            0.6725367903709412,
+            0.6725367903709412,
+            1.0
+          ]
+        },
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Galler1",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Normal": "m02_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Head_Metal1",
+        "id": "m03",
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Normal": "m03_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Metal_Arm2",
+        "id": "m04",
+        "maps": {
+          "Albedo": "m04_Albedo.png",
+          "Normal": "m04_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Metal_Leg1",
+        "id": "m05",
+        "maps": {
+          "Albedo": "m05_Albedo.png",
+          "Normal": "m05_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Plasic_Arm2",
+        "id": "m06",
+        "maps": {
+          "Albedo": "m06_Albedo.png",
+          "Normal": "m06_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Plast_Leg1",
+        "id": "m07",
+        "maps": {
+          "Albedo": "m07_Albedo.png",
+          "Normal": "m07_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Torsue_Metal1",
+        "id": "m08",
+        "maps": {
+          "Albedo": "m08_Albedo.png",
+          "Normal": "m08_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Tourso-plastic1",
+        "id": "m09",
+        "maps": {
+          "Albedo": "m09_Albedo.png",
+          "Normal": "m09_Normal.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "emissionStrength": 0.0
+      }
+    ],
+    "bones": 37,
+    "triangles": 67748,
+    "unweighted": 0
+  },
+  "FactoryHeavy": {
+    "materials": [
+      {
+        "name": "Color.001",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Normal": "m00_Normal.png",
+          "Emission": "m00_Emission.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G",
+          "Emission": null
+        },
+        "constants": {},
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Material",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Normal": "m01_Normal.png",
+          "Emission": "m01_Emission.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": null,
+          "Roughness": null,
+          "Emission": null
+        },
+        "constants": {},
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Metal.001",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Normal": "m02_Normal.png",
+          "Emission": "m02_Emission.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G",
+          "Emission": null
+        },
+        "constants": {},
+        "emissionStrength": 1.0
+      }
+    ],
+    "bones": 21,
+    "triangles": 74688,
+    "unweighted": 0
+  },
+  "FactoryMelee": {
+    "materials": [
+      {
+        "name": "Fire",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Emission": "m00_Emission.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Emission": null
+        },
+        "constants": {
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.20000000298023224
+        },
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Robot",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Normal": "m01_Normal.png",
+          "Emission": "m01_Emission.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Roughness": null,
+          "Emission": null
+        },
+        "constants": {
+          "Metallic": 0.0
+        },
+        "emissionStrength": 1.0
+      }
+    ],
+    "bones": 14,
+    "triangles": 9251,
+    "unweighted": 0
+  }
+}
