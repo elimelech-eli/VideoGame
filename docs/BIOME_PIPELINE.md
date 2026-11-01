@@ -48,3 +48,7 @@ Acceptance for this process change: preserve the visual approval gates and requi
 - Cached Mech Drone source has provenance, one skin and one animation. This is an intake candidate only: its animation coverage and actual Unity appearance still need the single-asset proof. Its availability does not approve using one body for every role.
 - Required visual identity: ruined industrial automation spaces, substantial machinery and coherent factory architecture, with four distinct enemy silhouettes. Optional boss excluded from this content pass.
 - Pending: environment source/license shortlist, user visual selection, representative Unity room/corridor and enemy proof, then bounded integration and delivery.
+
+## Factory delivery status
+
+Environment audition and all four enemy selections approved. Production integration and three affected Factory PlayMode checks complete; see FACTORY_BIOME.md. PR/master CI and standard Windows artifact refresh pending. User combined playtesting pending. Boss excluded.

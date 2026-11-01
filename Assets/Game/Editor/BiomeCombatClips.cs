@@ -43,7 +43,7 @@ namespace VideoGame.Editor
         }
         public static void Bake(GameObject model,string id)
         {
-            string folder="Assets/Game/Resources/"+(id.StartsWith("Transit",StringComparison.Ordinal)?"TransitEnemyAnimations/":"LabEnemyAnimations/")+id+"/";Directory.CreateDirectory(folder);AssetDatabase.Refresh();
+            string folder="Assets/Game/Resources/"+(id.StartsWith("Factory",StringComparison.Ordinal)?"FactoryEnemyAnimations/":id.StartsWith("Transit",StringComparison.Ordinal)?"TransitEnemyAnimations/":"LabEnemyAnimations/")+id+"/";Directory.CreateDirectory(folder);AssetDatabase.Refresh();
             var bones=model.GetComponentsInChildren<Transform>().Where(t=>(Driven(t.name)||(id=="TransitMelee"&&t.name=="Body")||(id=="TransitAoe"&&t.name=="payload"))&&t.GetComponent<Renderer>()==null).ToArray();
             foreach(string state in ActorAnimationBuilder.Names)
             {
@@ -70,7 +70,7 @@ namespace VideoGame.Editor
                             if(role.StartsWith("forearm."))x=2*wave*side;
                             if((state=="RunLeft"||state=="RunRight")&&role.StartsWith("thigh.")){z=9*stride;x*=.45f;}
                         }
-                        if(id=="TransitAoe"&&role=="hips"){bob=.035f*wave;x=run?5*wave:1.5f*wave;z=run?3*wave:1.5f*wave;}
+                        if((id=="TransitAoe"||id=="FactoryMelee")&&role=="hips"){bob=.035f*wave;x=run?5*wave:1.5f*wave;z=run?3*wave:1.5f*wave;}
                         if(id=="TransitAoe"&&role=="payload"&&(state=="Cast"||state=="Fire"))x=-12*strike;
                         if(id=="TransitMelee"&&role.StartsWith("Tentacle",StringComparison.Ordinal))
                         {
