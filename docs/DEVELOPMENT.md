@@ -23,7 +23,7 @@ Run `scripts/Watch-CI.ps1 -RunId <id>` once rather than repeatedly querying unch
 
 Keep an acceptance checklist and one final review before pushing. Re-run broader checks only when new edits affect their evidence. Record local elapsed time, full test/build counts, and remote job durations in the PR or delivery summary. These are comparable process measurements; account-wide usage changes cannot reliably be attributed to one PR.
 
-After a local Windows build, `scripts/Test-Player.ps1` launches the executable headlessly for eight seconds and checks initialization and runtime errors. This complements the interactive smoke test below; it does not evaluate graphics or input feel.
+After a local Windows build, `scripts/Test-Player.ps1` launches the executable headlessly, allows up to 60 seconds for initialization, then checks eight further seconds for runtime errors. This complements the interactive smoke test below; it does not evaluate graphics or input feel.
 
 ## Remote Unity setup
 

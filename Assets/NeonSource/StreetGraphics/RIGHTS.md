@@ -1,0 +1,1 @@
+Original conventional graphics authored for this project using Pillow paths and Windows Arial typography. No external images, copyrighted brands, AI-generated imagery or source-asset repainting. Sign/paint images are project original artwork; font files are not redistributed.

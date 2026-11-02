@@ -74,16 +74,17 @@ public sealed class BiomeTests
         game.Menus.Settings.Biome=0;game.Menus.Settings.SectorSize=6;
         game.NewSession();game.StartMission();Quiet();yield return null;
         int hash=game.Biomes.DressingHash;var clip=game.Music.Battle.clip;
-        var motion=Object.FindObjectsByType<BiomeMotion>(FindObjectsSortMode.None).First(m=>m.Rotors.Count>0&&(m.transform.position-game.Player.transform.position).sqrMagnitude<100);
-        var rotor=motion.Rotors[0];Quaternion pose=rotor.rotation;float health=game.Player.Health;
-        yield return new WaitForSeconds(.15f);Assert.Greater(Quaternion.Angle(pose,rotor.rotation),1);
-        game.Menus.Pause();pose=rotor.rotation;
-        yield return new WaitForSecondsRealtime(.15f);Assert.AreEqual(pose,rotor.rotation);Assert.AreEqual(health,game.Player.Health);
+        var motion=Object.FindObjectsByType<BiomeMotion>(FindObjectsSortMode.None).First(m=>m.GetComponentInChildren<NeonPracticalPulse>()!=null&&(m.transform.position-game.Player.transform.position).sqrMagnitude<100);
+        var lamp=motion.GetComponentInChildren<NeonPracticalPulse>().GetComponentInChildren<Light>();
+        float before=motion.MotionTime,intensity=lamp.intensity,health=game.Player.Health;
+        yield return new WaitForSeconds(.15f);Assert.Greater(motion.MotionTime,before);Assert.AreNotEqual(intensity,lamp.intensity);
+        game.Menus.Pause();before=motion.MotionTime;intensity=lamp.intensity;
+        yield return new WaitForSecondsRealtime(.15f);Assert.AreEqual(before,motion.MotionTime);Assert.AreEqual(intensity,lamp.intensity);Assert.AreEqual(health,game.Player.Health);
         game.Menus.Resume();yield return null;yield return null;
         game.NewSession();game.StartMission();Quiet();yield return null;
         Assert.AreEqual(hash,game.Biomes.DressingHash);Assert.AreSame(clip,game.Music.Battle.clip);
         game.BuildHub();yield return null;
-        Assert.AreEqual(0,Object.FindObjectsByType<BiomeMotion>(FindObjectsSortMode.None).Count(m=>m.Rotors.Count>0),"Mission motion leaked into Nexus");
+        Assert.AreEqual(0,Object.FindObjectsByType<BiomeMotion>(FindObjectsSortMode.None).Count(m=>m.GetComponentInChildren<NeonPracticalPulse>()!=null),"Mission motion leaked into Nexus");
     }
     [UnityTest] public IEnumerator BiomeMusicIsDistinctAndAllChannelsRespectMute()
     {

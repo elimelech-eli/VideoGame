@@ -27,6 +27,9 @@ namespace VideoGame
         }
         public void Deck(BiomeId biome,Vector3 center,float width,float depth,Transform parent)
         {
+            if(biome==BiomeId.NeonStreets){NeonBiome.Deck(center,width,depth,parent);return;}
+            if(biome==BiomeId.CorporateOffice){CorporateBiome.Deck(center,width,depth,parent);return;}
+            if(biome==BiomeId.Undercity){UndercityBiome.Deck(center,width,depth,parent);return;}
             if(biome==BiomeId.RuinedFactory){FactoryBiome.Deck(center,width,depth,parent);return;}
             if(biome==BiomeId.Transit){TransitBiome.Deck(center,width,depth,parent);return;}
             if(biome==BiomeId.BiotechLab){LabBiome.Deck(center,width,depth,parent);return;}
@@ -40,6 +43,9 @@ namespace VideoGame
         }
         public void Wall(BiomeId biome,Vector3 center,Vector3 tangent,float length,Vector2Int facing,Transform parent,bool corridor=false)
         {
+            if(biome==BiomeId.NeonStreets){GetComponent<NeonBiome>().Wall(center,tangent,length,facing,parent,corridor);return;}
+            if(biome==BiomeId.CorporateOffice){CorporateBiome.Wall(center,tangent,length,facing,parent);return;}
+            if(biome==BiomeId.Undercity){UndercityBiome.Wall(center,tangent,length,facing,parent);return;}
             if(biome==BiomeId.RuinedFactory){FactoryBiome.Wall(center,tangent,length,facing,parent);return;}
             if(biome==BiomeId.Transit){GetComponent<TransitBiome>().Wall(center,tangent,length,facing,parent,corridor);return;}
             if(biome==BiomeId.BiotechLab){LabBiome.Wall(center,tangent,length,facing,parent);return;}
@@ -66,6 +72,9 @@ namespace VideoGame
         }
         public void Dress(BiomeId biome,Room room,int index,int seed,int turn,Transform parent)
         {
+            if(biome==BiomeId.NeonStreets){unchecked{DressingHash=DressingHash*31+GetComponent<NeonBiome>().Dress(room,index,seed,turn,parent);}return;}
+            if(biome==BiomeId.CorporateOffice){unchecked{DressingHash=DressingHash*31+CorporateBiome.Dress(room,index,seed,turn,parent);}return;}
+            if(biome==BiomeId.Undercity){unchecked{DressingHash=DressingHash*31+UndercityBiome.Dress(room,index,seed,turn,parent);}return;}
             if(biome==BiomeId.RuinedFactory){unchecked{DressingHash=DressingHash*31+FactoryBiome.Dress(room,index,seed,turn,parent);}return;}
             if(biome==BiomeId.Transit){unchecked{DressingHash=DressingHash*31+GetComponent<TransitBiome>().Dress(room,index,seed,turn,parent);}return;}
             if(biome==BiomeId.BiotechLab){unchecked{DressingHash=DressingHash*31+LabBiome.Dress(room,index,seed,turn,parent);}return;}

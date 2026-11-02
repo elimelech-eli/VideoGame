@@ -2,7 +2,7 @@
 
 - Agree on a short acceptance checklist. Implement the requested scope; flag material scope growth before adding it.
 - During iteration, run affected checks (`scripts/Test-Local.ps1 -Suite Core|EditMode|PlayMode`, optionally `-TestFilter`). Default `-Suite All` remains the final full Unity check.
-- User testing override (2026-11-01): run targeted automated checks locally; the user performs local playtesting and gameplay/visual acceptance. Do not duplicate the full local Unity suite or repeated player builds/smoke by default. Required PR/master CI retains full Unity tests, Windows build and player smoke. Record user playtesting as pending until reported. Representative Editor renders still support the visual approval gate. CI/docs-only changes need tooling checks, not local Unity builds.
+- For gameplay changes, finish with one complete local suite and the relevant player build/smoke/visual checks. Repeat wider validation only when a later change invalidates its evidence. CI/docs-only changes need tooling checks, not local Unity builds.
 - Review the final diff, input edge cases and `git diff --check` before pushing. Check native command exit codes explicitly in PowerShell.
 - Branch pushes run fast checks. Open the PR without waiting for a branch Unity build; full Unity tests, Windows build and player smoke run on the PR and master. Documentation-only PR/master changes skip expensive jobs with an explicit scope summary.
 - Preserve the three required branch-protection checks. Merge only after the current PR checks pass; verify master afterward.

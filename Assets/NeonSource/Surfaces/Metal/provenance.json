@@ -1,0 +1,28 @@
+{
+  "id": "metal_plate",
+  "source": "https://polyhaven.com/a/metal_plate",
+  "license": "CC0-1.0",
+  "authors": {
+    "Rob Tuytel": "All"
+  },
+  "files": {
+    "color": {
+      "file": "color.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate/metal_plate_diff_1k.jpg",
+      "md5": "bd9daf4c04046ca392a38b8df955ed26",
+      "sha256": "c6b6739eac2c75ccc898e753d7833df24eafbdb9aa92fb6eabfb92abd1a680a5"
+    },
+    "normal": {
+      "file": "normal.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate/metal_plate_nor_gl_1k.jpg",
+      "md5": "d379e66130ad6ccff217ac9b13de935d",
+      "sha256": "994f851a84d52b51e97906021a1b7070ee6eac9a789fef041132268de47d8e6b"
+    },
+    "roughness": {
+      "file": "roughness.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate/metal_plate_rough_1k.jpg",
+      "md5": "6e1c8672d804b90546a23db621515b16",
+      "sha256": "756308485ce742a52831453c296452f48cf0adead7d85adfffd34c08dce23ec1"
+    }
+  }
+}

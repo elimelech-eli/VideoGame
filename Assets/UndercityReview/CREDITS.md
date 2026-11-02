@@ -1,0 +1,7 @@
+# Undercity approval audition sources
+
+- **Modular Sewer Asset Pack**, RotoPoly: https://rotopoly.itch.io/sewers-modular-assets — CC0. Official source page and downloadable Blender original retained under `artifacts/biome-parallel/undercity`; page explicitly permits personal/commercial use under CC0. 53 separable mesh objects present (page advertises54 pieces; no invented missing54th module). Source packed maps copied, native metric geometry evaluated/exported with floor-centred pivots; one solid source wall cut at1.1m and capped for camera visibility. No generative processing or rebaking.
+- **Modular Pipes**, Kuutti Siitonen / Poly Haven: https://polyhaven.com/a/modular_pipes — CC0, https://polyhaven.com/license. Official2K Blender package and eight linked PBR maps; supplied map MD5s verified before export. Native10cm supply pipes, not per-piece stretched columns. Exported106 separable mesh objects with original detail/UVs.
+- Metallic/smoothness maps conventionally channel packed from source metal/roughness; no new texture generation. Added small runoff surfaces, lights and temporary diagnostic signage for the audition.
+
+Source SHA256s, source material maps, dimensions and triangle counts are recorded in `artifacts/biome-parallel/undercity/source-hashes.json`, `sewer-audit.json` and this folder's `catalog.json`. Export scripts live in the artifact folder. Unity import, assembly and visual evidence are separate gates; this folder is not registered with live procedural generation or build settings.
