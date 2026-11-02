@@ -36,7 +36,7 @@ Acceptance for this process change: preserve the visual approval gates and requi
 4. Preserve original textures and source clips where practical. Repack channels only when the Unity shader requires it. Bake only an identified incompatible material; never rebake an entire roster by default. Keep bake targets separate from source images and verify output texture detail before exporting further assets.
 5. Allow one targeted repair and one verification per blocking asset defect. If it still fails, record the defect and switch to the next suitable candidate. If replacement changes an approved design materially, obtain that decision before proceeding. Do not accumulate speculative fixes or build a replacement character from primitives.
 6. Approve one room plus corridor before expanding dressing across 6/10/20-room layouts. Reuse the seeded layout, reservations, hazards, ambience routing and existing enemy mechanics. Bosses, new AI, new combat systems and unrelated refactors require separate scope.
-7. User override (2026-11-01): use targeted automated checks locally; the user owns local playtesting and gameplay/visual acceptance. Do not run a duplicate full local Unity suite or repeated local player smoke/build passes by default. Required PR/master CI still supplies full tests, Windows build and smoke evidence. Use Editor renders for the representative visual gate, and refresh the standard player from verified master CI. Record user testing as pending until reported.
+7. Current AGENTS.md supersedes the historical local-testing waiver: run affected checks during iteration, then one complete local Unity suite plus relevant player build/smoke/visual checks for gameplay delivery. Repeat wider validation only when later changes invalidate it. User playtesting/acceptance remains separately recorded; required PR/master checks and verified-master Windows refresh still apply.
 8. Before a merge, check for an active master validation run. The current workflow cancels an older run on the same ref: do not interrupt a needed gameplay build with a documentation merge. Finish delivery with the verified master player in the standard Windows folder.
 9. At each gate report only decisions, unresolved blockers and evidence. At delivery record repair attempts, local test/build invocations and durations, and remote job durations. Stop optional polish once the agreed checklist passes.
 
@@ -52,3 +52,8 @@ Acceptance for this process change: preserve the visual approval gates and requi
 ## Factory delivery status
 
 Environment audition and all four enemy selections approved. Production integration and three affected Factory PlayMode checks complete; see FACTORY_BIOME.md. PR/master CI and standard Windows artifact refresh pending. User combined playtesting pending. Boss excluded.
+
+
+## Remaining environment integration
+
+Neon, Corporate and Undercity source directions approved. Dedicated adapters and actual-source runtime kits prepared; integrated validation/delivery tracked in MIXED_BIOMES.md. Neon contains seeded slum/corporate/transition pockets rather than a skyline-only tile. Enemy replacement on these three biomes is a separate active phase: twelve sources audited; first weighted-motion proofs precede roster batches. Do not call these three biomes complete until enemy, gameplay and delivery gates pass.

@@ -279,6 +279,8 @@ namespace VideoGame
             Music.SetBattle(true); Ambience.SetBattle(true);
             ResetWorld();
             var rooms = Layout = MapLayout.Generate(Seed,ActiveDeployment.Rooms);
+            if(ActiveBiome==BiomeId.NeonStreets)
+            {var neon=GetComponent<NeonBiome>()??gameObject.AddComponent<NeonBiome>();neon.Begin(rooms,Seed,world);}
             if(ActiveBiome==BiomeId.Transit)
             {var transit=GetComponent<TransitBiome>()??gameObject.AddComponent<TransitBiome>();transit.Begin(rooms,world);}
             var centers = new List<Vector3>();
@@ -299,7 +301,6 @@ namespace VideoGame
                 float corner = rooms[i].Size / 2f - 2.5f;
                 int turn = random.Next(4);
                 Quaternion dressing = Quaternion.Euler(0, turn * 90, 0);
-                if(ActiveBiome!=BiomeId.BiotechLab&&ActiveBiome!=BiomeId.Transit&&ActiveBiome!=BiomeId.RuinedFactory)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i != 0) SpawnDestructible(center + dressing * new Vector3(corner, 0, -corner), false);
                 if (i != 0 && rooms[i].Theme != 2) SpawnDestructible(center + dressing * new Vector3(corner - 1.2f, 0, -corner), false);
                 if (i != 0)
@@ -309,7 +310,7 @@ namespace VideoGame
                     SpawnMedicalCache(center + dressing * new Vector3(-corner, 0, -corner));
                 }
                 Physics.SyncTransforms();
-                if(ActiveBiome==BiomeId.BiotechLab||ActiveBiome==BiomeId.Transit||ActiveBiome==BiomeId.RuinedFactory)Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
+                Biomes.Dress(ActiveBiome,rooms[i],i,Seed,turn,world);
                 if (i == 0) continue;
                 for (int j = 0; j < (i < 4 ? 2 : 1) && initialEnemies<EncounterDirector.PopulationCap-(ActiveBiome==BiomeId.BiotechLab?1:0); j++)
                 {

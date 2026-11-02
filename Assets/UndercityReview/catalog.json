@@ -1,0 +1,4220 @@
+{
+  "materials": [
+    {
+      "name": "Sewer_brick debris",
+      "albedo": "Sewer_brick_debris.png",
+      "normal": "",
+      "metal": "",
+      "rough": ""
+    },
+    {
+      "name": "Sewer_brick-concrte",
+      "albedo": "Sewer_brick_color.png",
+      "normal": "Sewer_brick_normal.png",
+      "metal": "",
+      "rough": "Sewer_brick_roughnes.png",
+      "packed": "Sewer_brick_concrte_MetalSmooth.png"
+    },
+    {
+      "name": "Sewer_decal",
+      "albedo": "Sewer_decal_PNG.png",
+      "normal": "",
+      "metal": "",
+      "rough": ""
+    },
+    {
+      "name": "Sewer_metal 02",
+      "albedo": "Sewer_metal_2_color.png",
+      "normal": "Sewer_metal_2_normal.png",
+      "metal": "Sewer_metal_2_metalic.png",
+      "rough": "Sewer_metal_2_roughness.png",
+      "packed": "Sewer_metal_02_MetalSmooth.png"
+    },
+    {
+      "name": "Sewer_pipes-metal",
+      "albedo": "Sewer_metal1_color.png",
+      "normal": "Sewer_metal1_normal.png",
+      "metal": "Sewer_metal1_metalic.png",
+      "rough": "Sewer_metal1_roughness.png",
+      "packed": "Sewer_pipes_metal_MetalSmooth.png"
+    },
+    {
+      "name": "Sewer_Weathered Concrete",
+      "albedo": "Sewer_concrete_color.png",
+      "normal": "Sewer_concrete_normal.png",
+      "metal": "",
+      "rough": "Sewer_concrete_roughness.png",
+      "packed": "Sewer_Weathered_Concrete_MetalSmooth.png"
+    },
+    {
+      "name": "Pipes_modular_pipes_metal",
+      "albedo": "Pipes_modular_pipes_metal_diff_png.png",
+      "normal": "Pipes_modular_pipes_metal_nor_gl_png.png",
+      "metal": "Pipes_modular_pipes_metal_metal_png.png",
+      "rough": "Pipes_modular_pipes_metal_rough_png.png",
+      "packed": "Pipes_modular_pipes_metal_MetalSmooth.png"
+    },
+    {
+      "name": "Pipes_modular_pipes_pvc",
+      "albedo": "Pipes_modular_pipes_pvc_diff_png.png",
+      "normal": "Pipes_modular_pipes_pvc_nor_gl_png.png",
+      "metal": "Pipes_modular_pipes_pvc_metal_png.png",
+      "rough": "Pipes_modular_pipes_pvc_rough_png.png",
+      "packed": "Pipes_modular_pipes_pvc_MetalSmooth.png"
+    }
+  ],
+  "objects": [
+    {
+      "name": "Sewer_big sewer extend 1",
+      "file": "Models/Sewer_big sewer extend 1.fbx",
+      "source_name": " big sewer extend 1",
+      "source_world_min": [
+        12.934698104858398,
+        0.5535335540771484,
+        -3.0
+      ],
+      "source_world_max": [
+        22.934720993041992,
+        8.553539276123047,
+        7.231400489807129
+      ],
+      "size_blender": [
+        10.000022888183594,
+        8.000005722045898,
+        10.231400489807129
+      ],
+      "pivot": "bottom centre",
+      "triangles": 944,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02",
+        "Sewer_brick-concrte",
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_arche",
+      "file": "Models/Sewer_arche.fbx",
+      "source_name": "arche",
+      "source_world_min": [
+        15.959707260131836,
+        6.803535461425781,
+        -0.08699184656143188
+      ],
+      "source_world_max": [
+        20.15970802307129,
+        8.803535461425781,
+        0.6293273568153381
+      ],
+      "size_blender": [
+        4.200000762939453,
+        2.0,
+        0.71631920337677
+      ],
+      "pivot": "bottom centre",
+      "triangles": 164,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_bars door",
+      "file": "Models/Sewer_bars door.fbx",
+      "source_name": "bars door",
+      "source_world_min": [
+        -23.723974227905273,
+        -0.47533345222473145,
+        0.0
+      ],
+      "source_world_max": [
+        -22.423974990844727,
+        -0.41759562492370605,
+        2.4200000762939453
+      ],
+      "size_blender": [
+        1.2999992370605469,
+        0.05773782730102539,
+        2.4200000762939453
+      ],
+      "pivot": "bottom centre",
+      "triangles": 432,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_big metal bar with door",
+      "file": "Models/Sewer_big metal bar with door.fbx",
+      "source_name": "big metal bar with door",
+      "source_world_min": [
+        13.51006031036377,
+        11.458316802978516,
+        0.0
+      ],
+      "source_world_max": [
+        22.18718910217285,
+        11.64875316619873,
+        6.914371013641357
+      ],
+      "size_blender": [
+        8.677128791809082,
+        0.19043636322021484,
+        6.914371013641357
+      ],
+      "pivot": "bottom centre",
+      "triangles": 3828,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_big pipe 01",
+      "file": "Models/Sewer_big pipe 01.fbx",
+      "source_name": "big pipe 01",
+      "source_world_min": [
+        -21.25763702392578,
+        -10.446464538574219,
+        0.7076563239097595
+      ],
+      "source_world_max": [
+        -20.872947692871094,
+        -8.426465034484863,
+        1.092344045639038
+      ],
+      "size_blender": [
+        0.3846893310546875,
+        2.0199995040893555,
+        0.38468772172927856
+      ],
+      "pivot": "bottom centre",
+      "triangles": 224,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_big pipe 02",
+      "file": "Models/Sewer_big pipe 02.fbx",
+      "source_name": "big pipe 02",
+      "source_world_min": [
+        -21.305721282958984,
+        -7.446464538574219,
+        0.6595701575279236
+      ],
+      "source_world_max": [
+        -20.82486343383789,
+        -6.446464538574219,
+        1.1404296159744263
+      ],
+      "size_blender": [
+        0.48085784912109375,
+        1.0,
+        0.4808594584465027
+      ],
+      "pivot": "bottom centre",
+      "triangles": 224,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_big pipe corner",
+      "file": "Models/Sewer_big pipe corner.fbx",
+      "source_name": "big pipe corner",
+      "source_world_min": [
+        -21.065292358398438,
+        -5.686894416809082,
+        0.7595700025558472
+      ],
+      "source_world_max": [
+        -20.32486343383789,
+        -5.046464443206787,
+        1.2404297590255737
+      ],
+      "size_blender": [
+        0.7404289245605469,
+        0.6404299736022949,
+        0.48085975646972656
+      ],
+      "pivot": "bottom centre",
+      "triangles": 288,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_big sewer entrance",
+      "file": "Models/Sewer_big sewer entrance.fbx",
+      "source_name": "big sewer entrance",
+      "source_world_min": [
+        1.934704303741455,
+        2.5535337924957275,
+        -3.000000238418579
+      ],
+      "source_world_max": [
+        11.934715270996094,
+        12.553535461425781,
+        7.2313995361328125
+      ],
+      "size_blender": [
+        10.000011444091797,
+        10.000001907348633,
+        10.231399536132812
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1175,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02",
+        "Sewer_brick-concrte",
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_big sewer extend 2",
+      "file": "Models/Sewer_big sewer extend 2.fbx",
+      "source_name": "big sewer extend 2",
+      "source_world_min": [
+        25.934707641601562,
+        1.5535335540771484,
+        -3.0000009536743164
+      ],
+      "source_world_max": [
+        35.93471908569336,
+        9.688631057739258,
+        7.231398582458496
+      ],
+      "size_blender": [
+        10.000011444091797,
+        8.13509750366211,
+        10.231399536132812
+      ],
+      "pivot": "bottom centre",
+      "triangles": 904,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02",
+        "Sewer_brick-concrte",
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_brick debris",
+      "file": "Models/Sewer_brick debris.fbx",
+      "source_name": "brick debris",
+      "source_world_min": [
+        -30.198810577392578,
+        -10.79177474975586,
+        0.33714741468429565
+      ],
+      "source_world_max": [
+        -27.914262771606445,
+        -8.295791625976562,
+        1.035549283027649
+      ],
+      "size_blender": [
+        2.284547805786133,
+        2.495983123779297,
+        0.6984018683433533
+      ],
+      "pivot": "bottom centre",
+      "triangles": 32,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick debris"
+      ]
+    },
+    {
+      "name": "Sewer_broken sewer",
+      "file": "Models/Sewer_broken sewer.fbx",
+      "source_name": "broken sewer",
+      "source_world_min": [
+        -18.065292358398438,
+        -2.4839730262756348,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        -14.065292358398438,
+        1.5535392761230469,
+        4.820933818817139
+      ],
+      "size_blender": [
+        4.0,
+        4.037512302398682,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 470,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_decal.001",
+      "file": "Models/Sewer_decal.001.fbx",
+      "source_name": "decal.001",
+      "source_world_min": [
+        -34.06529235839844,
+        -11.446464538574219,
+        0.9999988675117493
+      ],
+      "source_world_max": [
+        -30.065292358398438,
+        -7.446464538574219,
+        1.0000011920928955
+      ],
+      "size_blender": [
+        4.0,
+        4.0,
+        2.3245811462402344e-06
+      ],
+      "pivot": "bottom centre",
+      "triangles": 2,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_decal"
+      ]
+    },
+    {
+      "name": "Sewer_door wall 01",
+      "file": "Models/Sewer_door wall 01.fbx",
+      "source_name": "door wall 01",
+      "source_world_min": [
+        -28.065292358398438,
+        1.5535353422164917,
+        0.0
+      ],
+      "source_world_max": [
+        -24.065292358398438,
+        1.9035354852676392,
+        3.999999761581421
+      ],
+      "size_blender": [
+        4.0,
+        0.35000014305114746,
+        3.999999761581421
+      ],
+      "pivot": "bottom centre",
+      "triangles": 96,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte",
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_door wall 02",
+      "file": "Models/Sewer_door wall 02.fbx",
+      "source_name": "door wall 02",
+      "source_world_min": [
+        -23.065292358398438,
+        1.553534984588623,
+        0.0
+      ],
+      "source_world_max": [
+        -21.065292358398438,
+        1.9035354852676392,
+        3.999999761581421
+      ],
+      "size_blender": [
+        2.0,
+        0.3500005006790161,
+        3.999999761581421
+      ],
+      "pivot": "bottom centre",
+      "triangles": 96,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte",
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_floor_ceiling 02",
+      "file": "Models/Sewer_floor_ceiling 02.fbx",
+      "source_name": "floor/ceiling 02",
+      "source_world_min": [
+        -31.065292358398438,
+        -6.446465969085693,
+        -0.10000000149011612
+      ],
+      "source_world_max": [
+        -27.065292358398438,
+        -2.446463108062744,
+        0.10000000149011612
+      ],
+      "size_blender": [
+        4.0,
+        4.000002861022949,
+        0.20000000298023224
+      ],
+      "pivot": "bottom centre",
+      "triangles": 12,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_huge pipe",
+      "file": "Models/Sewer_huge pipe.fbx",
+      "source_name": "huge pipe",
+      "source_world_min": [
+        -29.12587547302246,
+        -2.251631736755371,
+        -0.11516737937927246
+      ],
+      "source_world_max": [
+        -27.00469970703125,
+        -0.19646382331848145,
+        2.1151673793792725
+      ],
+      "size_blender": [
+        2.121175765991211,
+        2.0551679134368896,
+        2.230334758758545
+      ],
+      "pivot": "bottom centre",
+      "triangles": 440,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_metal bars",
+      "file": "Models/Sewer_metal bars.fbx",
+      "source_name": "metal bars",
+      "source_world_min": [
+        -24.122802734375,
+        -10.013303756713867,
+        0.0
+      ],
+      "source_world_max": [
+        -24.007781982421875,
+        -6.879624843597412,
+        4.5
+      ],
+      "size_blender": [
+        0.115020751953125,
+        3.133678913116455,
+        4.5
+      ],
+      "pivot": "bottom centre",
+      "triangles": 432,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_metal bars with door",
+      "file": "Models/Sewer_metal bars with door.fbx",
+      "source_name": "metal bars with door",
+      "source_world_min": [
+        -21.723398208618164,
+        -1.586431860923767,
+        -7.373740373850524e-08
+      ],
+      "source_world_max": [
+        -18.407184600830078,
+        -1.4398386478424072,
+        4.5
+      ],
+      "size_blender": [
+        3.316213607788086,
+        0.14659321308135986,
+        4.5
+      ],
+      "pivot": "bottom centre",
+      "triangles": 548,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_mid pipe 01",
+      "file": "Models/Sewer_mid pipe 01.fbx",
+      "source_name": "mid pipe 01",
+      "source_world_min": [
+        -20.199934005737305,
+        -10.446464538574219,
+        0.9653593897819519
+      ],
+      "source_world_max": [
+        -19.930652618408203,
+        -8.426465034484863,
+        1.2346408367156982
+      ],
+      "size_blender": [
+        0.26928138732910156,
+        2.0199995040893555,
+        0.26928144693374634
+      ],
+      "pivot": "bottom centre",
+      "triangles": 224,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_mid pipe corner.003",
+      "file": "Models/Sewer_mid pipe corner.003.fbx",
+      "source_name": "mid pipe corner.003",
+      "source_world_min": [
+        -20.199932098388672,
+        -7.917106628417969,
+        0.8653592467308044
+      ],
+      "source_world_max": [
+        -19.723691940307617,
+        -7.446464538574219,
+        1.1346406936645508
+      ],
+      "size_blender": [
+        0.4762401580810547,
+        0.47064208984375,
+        0.26928144693374634
+      ],
+      "pivot": "bottom centre",
+      "triangles": 416,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_normal door.002",
+      "file": "Models/Sewer_normal door.002.fbx",
+      "source_name": "normal door.002",
+      "source_world_min": [
+        -25.715293884277344,
+        -0.5714643597602844,
+        -2.2678445077417564e-07
+      ],
+      "source_world_max": [
+        -24.415292739868164,
+        -0.3214643597602844,
+        2.419999837875366
+      ],
+      "size_blender": [
+        1.3000011444091797,
+        0.25,
+        2.4200000762939453
+      ],
+      "pivot": "bottom centre",
+      "triangles": 350,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02",
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_pipe van 01",
+      "file": "Models/Sewer_pipe van 01.fbx",
+      "source_name": "pipe van 01",
+      "source_world_min": [
+        -21.692523956298828,
+        -6.584871768951416,
+        0.7742328643798828
+      ],
+      "source_world_max": [
+        -21.404727935791016,
+        -6.3080573081970215,
+        1.1000001430511475
+      ],
+      "size_blender": [
+        0.2877960205078125,
+        0.27681446075439453,
+        0.32576727867126465
+      ],
+      "pivot": "bottom centre",
+      "triangles": 156,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_pipe van 02",
+      "file": "Models/Sewer_pipe van 02.fbx",
+      "source_name": "pipe van 02",
+      "source_world_min": [
+        -20.209190368652344,
+        -6.584871768951416,
+        0.7742328643798828
+      ],
+      "source_world_max": [
+        -19.92139434814453,
+        -6.3080573081970215,
+        1.1000001430511475
+      ],
+      "size_blender": [
+        0.2877960205078125,
+        0.27681446075439453,
+        0.32576727867126465
+      ],
+      "pivot": "bottom centre",
+      "triangles": 156,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_pipe van 03",
+      "file": "Models/Sewer_pipe van 03.fbx",
+      "source_name": "pipe van 03",
+      "source_world_min": [
+        -21.780029296875,
+        -6.615904808044434,
+        1.2000000476837158
+      ],
+      "source_world_max": [
+        -21.14862632751465,
+        -6.277024269104004,
+        1.413455605506897
+      ],
+      "size_blender": [
+        0.6314029693603516,
+        0.3388805389404297,
+        0.21345555782318115
+      ],
+      "pivot": "bottom centre",
+      "triangles": 98,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_pipe van 04",
+      "file": "Models/Sewer_pipe van 04.fbx",
+      "source_name": "pipe van 04",
+      "source_world_min": [
+        -20.54059410095215,
+        -6.9469685554504395,
+        1.1974849700927734
+      ],
+      "source_world_max": [
+        -19.589027404785156,
+        -5.946619510650635,
+        1.3965359926223755
+      ],
+      "size_blender": [
+        0.9515666961669922,
+        1.0003490447998047,
+        0.19905102252960205
+      ],
+      "pivot": "bottom centre",
+      "triangles": 244,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_pipes-metal"
+      ]
+    },
+    {
+      "name": "Sewer_sewer 01",
+      "file": "Models/Sewer_sewer 01.fbx",
+      "source_name": "sewer 01",
+      "source_world_min": [
+        -18.065296173095703,
+        -10.446464538574219,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        -14.065291404724121,
+        -6.4464640617370605,
+        4.820933818817139
+      ],
+      "size_blender": [
+        4.000004768371582,
+        4.000000476837158,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 192,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer 02",
+      "file": "Models/Sewer_sewer 02.fbx",
+      "source_name": "sewer 02",
+      "source_world_min": [
+        -18.065296173095703,
+        -5.446464538574219,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        -14.065291404724121,
+        -3.4464640617370605,
+        4.820933818817139
+      ],
+      "size_blender": [
+        4.000004768371582,
+        2.000000476837158,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 192,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer 03",
+      "file": "Models/Sewer_sewer 03.fbx",
+      "source_name": "sewer 03",
+      "source_world_min": [
+        7.934706687927246,
+        -10.446467399597168,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        13.939651489257812,
+        -6.446463108062744,
+        4.820933818817139
+      ],
+      "size_blender": [
+        6.004944801330566,
+        4.000004291534424,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 398,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer 04",
+      "file": "Models/Sewer_sewer 04.fbx",
+      "source_name": "sewer 04",
+      "source_world_min": [
+        13.929763793945312,
+        -10.446467399597168,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        21.939651489257812,
+        -6.446464538574219,
+        4.820933818817139
+      ],
+      "size_blender": [
+        8.0098876953125,
+        4.000002861022949,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 404,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer double entrance",
+      "file": "Models/Sewer_sewer double entrance.fbx",
+      "source_name": "sewer double entrance",
+      "source_world_min": [
+        11.929765701293945,
+        -4.44647216796875,
+        1.076957141776802e-05
+      ],
+      "source_world_max": [
+        23.939659118652344,
+        -0.4464592933654785,
+        4.820944786071777
+      ],
+      "size_blender": [
+        12.009893417358398,
+        4.0000128746032715,
+        4.820933818817139
+      ],
+      "pivot": "bottom centre",
+      "triangles": 735,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-04-connection",
+      "file": "Models/Sewer_sewer-04-connection.fbx",
+      "source_name": "sewer-04-connection",
+      "source_world_min": [
+        -7.065295696258545,
+        1.5535354614257812,
+        -1.5099587358236022e-07
+      ],
+      "source_world_max": [
+        0.9347105026245117,
+        5.553535461425781,
+        4.820933818817139
+      ],
+      "size_blender": [
+        8.000005722045898,
+        4.0,
+        4.820933818817139
+      ],
+      "pivot": "bottom centre",
+      "triangles": 758,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-2-connection",
+      "file": "Models/Sewer_sewer-2-connection.fbx",
+      "source_name": "sewer-2-connection",
+      "source_world_min": [
+        2.9347047805786133,
+        -4.446465492248535,
+        -3.019916334778827e-07
+      ],
+      "source_world_max": [
+        10.934711456298828,
+        -0.44646167755126953,
+        4.820933818817139
+      ],
+      "size_blender": [
+        8.000006675720215,
+        4.000003814697266,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 510,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-2-connection pipe",
+      "file": "Models/Sewer_sewer-2-connection pipe.fbx",
+      "source_name": "sewer-2-connection pipe",
+      "source_world_min": [
+        -17.065296173095703,
+        2.5535354614257812,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        -9.065288543701172,
+        7.827552795410156,
+        4.820933818817139
+      ],
+      "size_blender": [
+        8.000007629394531,
+        5.274017333984375,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1632,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte",
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-3-connection",
+      "file": "Models/Sewer_sewer-3-connection.fbx",
+      "source_name": "sewer-3-connection",
+      "source_world_min": [
+        -12.065295219421387,
+        -10.446464538574219,
+        -1.5099587358236022e-07
+      ],
+      "source_world_max": [
+        -8.065291404724121,
+        -6.446464538574219,
+        4.820933818817139
+      ],
+      "size_blender": [
+        4.000003814697266,
+        4.0,
+        4.820933818817139
+      ],
+      "pivot": "bottom centre",
+      "triangles": 404,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-corner",
+      "file": "Models/Sewer_sewer-corner.fbx",
+      "source_name": "sewer-corner",
+      "source_world_min": [
+        -7.065292835235596,
+        -10.446464538574219,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        -3.06528902053833,
+        -6.446460723876953,
+        4.820933818817139
+      ],
+      "size_blender": [
+        4.000003814697266,
+        4.000003814697266,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 280,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-corner-pipe",
+      "file": "Models/Sewer_sewer-corner-pipe.fbx",
+      "source_name": "sewer-corner-pipe",
+      "source_world_min": [
+        -7.065292835235596,
+        -5.446464538574219,
+        -3.5329938441464037e-07
+      ],
+      "source_world_max": [
+        -3.0652894973754883,
+        -0.19646453857421875,
+        4.8209333419799805
+      ],
+      "size_blender": [
+        4.000003337860107,
+        5.25,
+        4.820933818817139
+      ],
+      "pivot": "bottom centre",
+      "triangles": 960,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte",
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-corner-pipe.003",
+      "file": "Models/Sewer_sewer-corner-pipe.003.fbx",
+      "source_name": "sewer-corner-pipe.003",
+      "source_world_min": [
+        -2.065296173095703,
+        -5.446465015411377,
+        -1.1920928955078125e-07
+      ],
+      "source_world_max": [
+        1.9347114562988281,
+        -0.19646453857421875,
+        4.8209333419799805
+      ],
+      "size_blender": [
+        4.000007629394531,
+        5.250000476837158,
+        4.8209333419799805
+      ],
+      "pivot": "bottom centre",
+      "triangles": 819,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte",
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-door",
+      "file": "Models/Sewer_sewer-door.fbx",
+      "source_name": "sewer-door",
+      "source_world_min": [
+        -2.0652925968170166,
+        -10.447964668273926,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        1.9347081184387207,
+        -6.446460723876953,
+        4.820933818817139
+      ],
+      "size_blender": [
+        4.000000953674316,
+        4.001503944396973,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 488,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte",
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-end",
+      "file": "Models/Sewer_sewer-end.fbx",
+      "source_name": "sewer-end",
+      "source_world_min": [
+        2.934703826904297,
+        -10.446464538574219,
+        -3.019916050561733e-07
+      ],
+      "source_world_max": [
+        6.934711456298828,
+        -6.446462154388428,
+        4.820933818817139
+      ],
+      "size_blender": [
+        4.000007629394531,
+        4.000002384185791,
+        4.820934295654297
+      ],
+      "pivot": "bottom centre",
+      "triangles": 236,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_sewer-pipe",
+      "file": "Models/Sewer_sewer-pipe.fbx",
+      "source_name": "sewer-pipe",
+      "source_world_min": [
+        -13.315292358398438,
+        -2.4464645385742188,
+        -3.5329946967976866e-07
+      ],
+      "source_world_max": [
+        -8.065291404724121,
+        1.5535359382629395,
+        4.8209333419799805
+      ],
+      "size_blender": [
+        5.250000953674316,
+        4.000000476837158,
+        4.820933818817139
+      ],
+      "pivot": "bottom centre",
+      "triangles": 764,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte",
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_small pipe 01",
+      "file": "Models/Sewer_small pipe 01.fbx",
+      "source_name": "small pipe 01",
+      "source_world_min": [
+        -19.122995376586914,
+        -10.446464538574219,
+        0.6422969102859497
+      ],
+      "source_world_max": [
+        -19.00758934020996,
+        -8.426465034484863,
+        0.7577032446861267
+      ],
+      "size_blender": [
+        0.11540603637695312,
+        2.0199995040893555,
+        0.115406334400177
+      ],
+      "pivot": "bottom centre",
+      "triangles": 224,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_small pipe corner",
+      "file": "Models/Sewer_small pipe corner.fbx",
+      "source_name": "small pipe corner",
+      "source_world_min": [
+        -19.253549575805664,
+        -7.500320911407471,
+        0.7461436986923218
+      ],
+      "source_world_max": [
+        -19.065292358398438,
+        -7.309824466705322,
+        0.8538562059402466
+      ],
+      "size_blender": [
+        0.18825721740722656,
+        0.19049644470214844,
+        0.1077125072479248
+      ],
+      "pivot": "bottom centre",
+      "triangles": 288,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_small to big sewer",
+      "file": "Models/Sewer_small to big sewer.fbx",
+      "source_name": "small to big sewer",
+      "source_world_min": [
+        -9.580204010009766,
+        9.376937866210938,
+        -0.017061153426766396
+      ],
+      "source_world_max": [
+        1.4496245384216309,
+        11.569049835205078,
+        7.000001430511475
+      ],
+      "size_blender": [
+        11.029829025268555,
+        2.1921119689941406,
+        7.017062664031982
+      ],
+      "pivot": "bottom centre",
+      "triangles": 616,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_stairs",
+      "file": "Models/Sewer_stairs.fbx",
+      "source_name": "stairs",
+      "source_world_min": [
+        -34.06529235839844,
+        -0.44646456837654114,
+        0.0
+      ],
+      "source_world_max": [
+        -32.06529235839844,
+        3.5535359382629395,
+        2.000000238418579
+      ],
+      "size_blender": [
+        2.0,
+        4.000000476837158,
+        2.000000238418579
+      ],
+      "pivot": "bottom centre",
+      "triangles": 228,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_support 01",
+      "file": "Models/Sewer_support 01.fbx",
+      "source_name": "support 01",
+      "source_world_min": [
+        -25.76529312133789,
+        -10.596463203430176,
+        -1.1657566467704328e-08
+      ],
+      "source_world_max": [
+        -22.365291595458984,
+        -10.296465873718262,
+        4.384929180145264
+      ],
+      "size_blender": [
+        3.4000015258789062,
+        0.29999732971191406,
+        4.384929180145264
+      ],
+      "pivot": "bottom centre",
+      "triangles": 204,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_support 02",
+      "file": "Models/Sewer_support 02.fbx",
+      "source_name": "support 02",
+      "source_world_min": [
+        -25.76529312133789,
+        -5.920303821563721,
+        -3.0224907021647596e-08
+      ],
+      "source_world_max": [
+        -22.365291595458984,
+        -4.972625732421875,
+        4.504671096801758
+      ],
+      "size_blender": [
+        3.4000015258789062,
+        0.9476780891418457,
+        4.504671096801758
+      ],
+      "pivot": "bottom centre",
+      "triangles": 860,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_Weathered Concrete"
+      ]
+    },
+    {
+      "name": "Sewer_support 03",
+      "file": "Models/Sewer_support 03.fbx",
+      "source_name": "support 03",
+      "source_world_min": [
+        -20.565292358398438,
+        1.5535352230072021,
+        0.0
+      ],
+      "source_world_max": [
+        -19.565292358398438,
+        2.0285282135009766,
+        3.999999761581421
+      ],
+      "size_blender": [
+        1.0,
+        0.4749929904937744,
+        3.999999761581421
+      ],
+      "pivot": "bottom centre",
+      "triangles": 68,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_support 04",
+      "file": "Models/Sewer_support 04.fbx",
+      "source_name": "support 04",
+      "source_world_min": [
+        -24.565292358398438,
+        5.078540802001953,
+        -1.9491804437166138e-07
+      ],
+      "source_world_max": [
+        -23.565292358398438,
+        5.553535461425781,
+        6.0
+      ],
+      "size_blender": [
+        1.0,
+        0.4749946594238281,
+        6.0
+      ],
+      "pivot": "bottom centre",
+      "triangles": 68,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_support 05",
+      "file": "Models/Sewer_support 05.fbx",
+      "source_name": "support 05",
+      "source_world_min": [
+        -19.21529197692871,
+        1.4035354852676392,
+        0.0
+      ],
+      "source_world_max": [
+        -18.915292739868164,
+        1.7035354375839233,
+        3.999999761581421
+      ],
+      "size_blender": [
+        0.2999992370605469,
+        0.2999999523162842,
+        3.999999761581421
+      ],
+      "pivot": "bottom centre",
+      "triangles": 116,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_support 06",
+      "file": "Models/Sewer_support 06.fbx",
+      "source_name": "support 06",
+      "source_world_min": [
+        -21.065292358398438,
+        -3.496464490890503,
+        0.05000006780028343
+      ],
+      "source_world_max": [
+        -19.065292358398438,
+        -3.3964645862579346,
+        1.0
+      ],
+      "size_blender": [
+        2.0,
+        0.09999990463256836,
+        0.9499999284744263
+      ],
+      "pivot": "bottom centre",
+      "triangles": 44,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_metal 02"
+      ]
+    },
+    {
+      "name": "Sewer_wall 01",
+      "file": "Models/Sewer_wall 01.fbx",
+      "source_name": "wall 01",
+      "source_world_min": [
+        -31.065292358398438,
+        1.553534984588623,
+        -0.296669602394104
+      ],
+      "source_world_max": [
+        -29.065292358398438,
+        1.9035354852676392,
+        4.000000476837158
+      ],
+      "size_blender": [
+        2.0,
+        0.3500005006790161,
+        4.296669960021973
+      ],
+      "pivot": "bottom centre",
+      "triangles": 12,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_wall 02",
+      "file": "Models/Sewer_wall 02.fbx",
+      "source_name": "wall 02",
+      "source_world_min": [
+        -35.06529235839844,
+        -0.44646453857421875,
+        0.0
+      ],
+      "source_world_max": [
+        -34.715293884277344,
+        3.5535354614257812,
+        2.0
+      ],
+      "size_blender": [
+        0.34999847412109375,
+        4.0,
+        2.0
+      ],
+      "pivot": "bottom centre",
+      "triangles": 12,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Sewer_wall 03",
+      "file": "Models/Sewer_wall 03.fbx",
+      "source_name": "wall 03",
+      "source_world_min": [
+        -22.065292358398438,
+        5.553535461425781,
+        0.0
+      ],
+      "source_world_max": [
+        -18.065292358398438,
+        5.90353536605835,
+        3.999999761581421
+      ],
+      "size_blender": [
+        4.0,
+        0.34999990463256836,
+        3.999999761581421
+      ],
+      "pivot": "bottom centre",
+      "triangles": 12,
+      "uv_layers": 1,
+      "materials": [
+        "Sewer_brick-concrte"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_100cm_metal",
+      "file": "Models/Pipes_pipe_100cm_metal.fbx",
+      "source_name": "pipe_100cm_metal",
+      "source_world_min": [
+        0.2500000596046448,
+        -0.048867929726839066,
+        0.699999988079071
+      ],
+      "source_world_max": [
+        0.3500000834465027,
+        0.05113206431269646,
+        1.7000000476837158
+      ],
+      "size_blender": [
+        0.10000002384185791,
+        0.09999999403953552,
+        1.0
+      ],
+      "pivot": "bottom centre",
+      "triangles": 144,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_100cm_pvc",
+      "file": "Models/Pipes_pipe_100cm_pvc.fbx",
+      "source_name": "pipe_100cm_pvc",
+      "source_world_min": [
+        -1.8499999046325684,
+        -0.048867929726839066,
+        0.699999988079071
+      ],
+      "source_world_max": [
+        -1.75,
+        0.05113206431269646,
+        1.7000000476837158
+      ],
+      "size_blender": [
+        0.09999990463256836,
+        0.09999999403953552,
+        1.0
+      ],
+      "pivot": "bottom centre",
+      "triangles": 144,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_10cm_metal",
+      "file": "Models/Pipes_pipe_10cm_metal.fbx",
+      "source_name": "pipe_10cm_metal",
+      "source_world_min": [
+        0.050000011920928955,
+        -0.04886794835329056,
+        0.19999998807907104
+      ],
+      "source_world_max": [
+        0.15000002086162567,
+        0.05113204941153526,
+        0.30000001192092896
+      ],
+      "size_blender": [
+        0.10000000894069672,
+        0.09999999403953552,
+        0.10000002384185791
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_10cm_pvc",
+      "file": "Models/Pipes_pipe_10cm_pvc.fbx",
+      "source_name": "pipe_10cm_pvc",
+      "source_world_min": [
+        -2.049999952316284,
+        -0.04886794835329056,
+        0.19999998807907104
+      ],
+      "source_world_max": [
+        -1.9500000476837158,
+        0.05113204941153526,
+        0.30000001192092896
+      ],
+      "size_blender": [
+        0.09999990463256836,
+        0.09999999403953552,
+        0.10000002384185791
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_140cm_metal",
+      "file": "Models/Pipes_pipe_140cm_metal.fbx",
+      "source_name": "pipe_140cm_metal",
+      "source_world_min": [
+        0.4500001072883606,
+        -0.04886791482567787,
+        -1.1225475660125994e-08
+      ],
+      "source_world_max": [
+        0.5500001311302185,
+        0.05113207921385765,
+        1.399999976158142
+      ],
+      "size_blender": [
+        0.10000002384185791,
+        0.09999999403953552,
+        1.399999976158142
+      ],
+      "pivot": "bottom centre",
+      "triangles": 192,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_140cm_pvc",
+      "file": "Models/Pipes_pipe_140cm_pvc.fbx",
+      "source_name": "pipe_140cm_pvc",
+      "source_world_min": [
+        -1.6499998569488525,
+        -0.04886791482567787,
+        -1.1225475660125994e-08
+      ],
+      "source_world_max": [
+        -1.5499999523162842,
+        0.05113207921385765,
+        1.399999976158142
+      ],
+      "size_blender": [
+        0.09999990463256836,
+        0.09999999403953552,
+        1.399999976158142
+      ],
+      "pivot": "bottom centre",
+      "triangles": 192,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_200cm_metal",
+      "file": "Models/Pipes_pipe_200cm_metal.fbx",
+      "source_name": "pipe_200cm_metal",
+      "source_world_min": [
+        0.6500001549720764,
+        -0.04886789619922638,
+        -1.1225475660125994e-08
+      ],
+      "source_world_max": [
+        0.7500001788139343,
+        0.05113209784030914,
+        2.0
+      ],
+      "size_blender": [
+        0.10000002384185791,
+        0.09999999403953552,
+        2.0
+      ],
+      "pivot": "bottom centre",
+      "triangles": 288,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_200cm_pvc",
+      "file": "Models/Pipes_pipe_200cm_pvc.fbx",
+      "source_name": "pipe_200cm_pvc",
+      "source_world_min": [
+        -1.4499998092651367,
+        -0.04886789619922638,
+        -1.1225475660125994e-08
+      ],
+      "source_world_max": [
+        -1.3499999046325684,
+        0.05113209784030914,
+        2.0
+      ],
+      "size_blender": [
+        0.09999990463256836,
+        0.09999999403953552,
+        2.0
+      ],
+      "pivot": "bottom centre",
+      "triangles": 288,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_20cm_metal",
+      "file": "Models/Pipes_pipe_20cm_metal.fbx",
+      "source_name": "pipe_20cm_metal",
+      "source_world_min": [
+        0.050000011920928955,
+        -0.04886794835329056,
+        0.4000000059604645
+      ],
+      "source_world_max": [
+        0.15000002086162567,
+        0.051132045686244965,
+        0.6000000238418579
+      ],
+      "size_blender": [
+        0.10000000894069672,
+        0.09999999403953552,
+        0.20000001788139343
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_20cm_pvc",
+      "file": "Models/Pipes_pipe_20cm_pvc.fbx",
+      "source_name": "pipe_20cm_pvc",
+      "source_world_min": [
+        -2.049999952316284,
+        -0.04886794835329056,
+        0.4000000059604645
+      ],
+      "source_world_max": [
+        -1.9500000476837158,
+        0.051132045686244965,
+        0.6000000238418579
+      ],
+      "size_blender": [
+        0.09999990463256836,
+        0.09999999403953552,
+        0.20000001788139343
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_40cm_metal",
+      "file": "Models/Pipes_pipe_40cm_metal.fbx",
+      "source_name": "pipe_40cm_metal",
+      "source_world_min": [
+        0.050000011920928955,
+        -0.04886794835329056,
+        0.699999988079071
+      ],
+      "source_world_max": [
+        0.15000002086162567,
+        0.05113204941153526,
+        1.100000023841858
+      ],
+      "size_blender": [
+        0.10000000894069672,
+        0.09999999403953552,
+        0.40000003576278687
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_40cm_pvc",
+      "file": "Models/Pipes_pipe_40cm_pvc.fbx",
+      "source_name": "pipe_40cm_pvc",
+      "source_world_min": [
+        -2.049999952316284,
+        -0.04886794835329056,
+        0.699999988079071
+      ],
+      "source_world_max": [
+        -1.9500000476837158,
+        0.05113204941153526,
+        1.100000023841858
+      ],
+      "size_blender": [
+        0.09999990463256836,
+        0.09999999403953552,
+        0.40000003576278687
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_5cm_metal",
+      "file": "Models/Pipes_pipe_5cm_metal.fbx",
+      "source_name": "pipe_5cm_metal",
+      "source_world_min": [
+        0.050000011920928955,
+        -0.04886794835329056,
+        -1.1225475660125994e-08
+      ],
+      "source_world_max": [
+        0.15000002086162567,
+        0.05113204941153526,
+        0.05000000074505806
+      ],
+      "size_blender": [
+        0.10000000894069672,
+        0.09999999403953552,
+        0.050000011920928955
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_5cm_pvc",
+      "file": "Models/Pipes_pipe_5cm_pvc.fbx",
+      "source_name": "pipe_5cm_pvc",
+      "source_world_min": [
+        -2.049999952316284,
+        -0.04886794835329056,
+        -1.1225475660125994e-08
+      ],
+      "source_world_max": [
+        -1.9500000476837158,
+        0.05113204941153526,
+        0.05000000074505806
+      ],
+      "size_blender": [
+        0.09999990463256836,
+        0.09999999403953552,
+        0.050000011920928955
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_60cm_metal",
+      "file": "Models/Pipes_pipe_60cm_metal.fbx",
+      "source_name": "pipe_60cm_metal",
+      "source_world_min": [
+        0.2500000596046448,
+        -0.048867929726839066,
+        -1.1225475660125994e-08
+      ],
+      "source_world_max": [
+        0.3500000834465027,
+        0.05113206431269646,
+        0.6000000238418579
+      ],
+      "size_blender": [
+        0.10000002384185791,
+        0.09999999403953552,
+        0.6000000238418579
+      ],
+      "pivot": "bottom centre",
+      "triangles": 96,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_60cm_pvc",
+      "file": "Models/Pipes_pipe_60cm_pvc.fbx",
+      "source_name": "pipe_60cm_pvc",
+      "source_world_min": [
+        -1.8499999046325684,
+        -0.048867929726839066,
+        -1.1225475660125994e-08
+      ],
+      "source_world_max": [
+        -1.75,
+        0.05113206431269646,
+        0.6000000238418579
+      ],
+      "size_blender": [
+        0.09999990463256836,
+        0.09999999403953552,
+        0.6000000238418579
+      ],
+      "pivot": "bottom centre",
+      "triangles": 96,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_chamber_large_metal",
+      "file": "Models/Pipes_pipe_chamber_large_metal.fbx",
+      "source_name": "pipe_chamber_large_metal",
+      "source_world_min": [
+        0.7998430132865906,
+        -0.09902508556842804,
+        1.3000000715255737
+      ],
+      "source_world_max": [
+        1.000157356262207,
+        0.10128924250602722,
+        1.899999976158142
+      ],
+      "size_blender": [
+        0.20031434297561646,
+        0.20031432807445526,
+        0.5999999046325684
+      ],
+      "pivot": "bottom centre",
+      "triangles": 912,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_chamber_large_pvc",
+      "file": "Models/Pipes_pipe_chamber_large_pvc.fbx",
+      "source_name": "pipe_chamber_large_pvc",
+      "source_world_min": [
+        -1.300157070159912,
+        -0.09902508556842804,
+        1.3000000715255737
+      ],
+      "source_world_max": [
+        -1.0998426675796509,
+        0.10128924250602722,
+        1.899999976158142
+      ],
+      "size_blender": [
+        0.20031440258026123,
+        0.20031432807445526,
+        0.5999999046325684
+      ],
+      "pivot": "bottom centre",
+      "triangles": 912,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_chamber_small_metal",
+      "file": "Models/Pipes_pipe_chamber_small_metal.fbx",
+      "source_name": "pipe_chamber_small_metal",
+      "source_world_min": [
+        0.8224783539772034,
+        -0.06902631372213364,
+        0.9000000357627869
+      ],
+      "source_world_max": [
+        0.9627951383590698,
+        0.071290522813797,
+        1.100000023841858
+      ],
+      "size_blender": [
+        0.14031678438186646,
+        0.14031684398651123,
+        0.19999998807907104
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1152,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_chamber_small_pvc",
+      "file": "Models/Pipes_pipe_chamber_small_pvc.fbx",
+      "source_name": "pipe_chamber_small_pvc",
+      "source_world_min": [
+        -1.2775216102600098,
+        -0.06902631372213364,
+        0.9000000357627869
+      ],
+      "source_world_max": [
+        -1.137204885482788,
+        0.071290522813797,
+        1.100000023841858
+      ],
+      "size_blender": [
+        0.14031672477722168,
+        0.14031684398651123,
+        0.19999998807907104
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1152,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_t_2_metal",
+      "file": "Models/Pipes_pipe_junction_t_2_metal.fbx",
+      "source_name": "pipe_junction_t_2_metal",
+      "source_world_min": [
+        1.9500001668930054,
+        -0.04886777326464653,
+        0.6999998688697815
+      ],
+      "source_world_max": [
+        2.1000003814697266,
+        0.051132094115018845,
+        0.8999999761581421
+      ],
+      "size_blender": [
+        0.1500002145767212,
+        0.09999986737966537,
+        0.2000001072883606
+      ],
+      "pivot": "bottom centre",
+      "triangles": 378,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_t_2_pvc",
+      "file": "Models/Pipes_pipe_junction_t_2_pvc.fbx",
+      "source_name": "pipe_junction_t_2_pvc",
+      "source_world_min": [
+        -0.149999737739563,
+        -0.04886777326464653,
+        0.6999998688697815
+      ],
+      "source_world_max": [
+        4.3958425521850586e-07,
+        0.051132094115018845,
+        0.8999999761581421
+      ],
+      "size_blender": [
+        0.1500001847743988,
+        0.09999986737966537,
+        0.2000001072883606
+      ],
+      "pivot": "bottom centre",
+      "triangles": 378,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_t_3_metal",
+      "file": "Models/Pipes_pipe_junction_t_3_metal.fbx",
+      "source_name": "pipe_junction_t_3_metal",
+      "source_world_min": [
+        1.6000001430511475,
+        -0.051575325429439545,
+        0.4999999701976776
+      ],
+      "source_world_max": [
+        1.8000017404556274,
+        0.05383973941206932,
+        0.652626633644104
+      ],
+      "size_blender": [
+        0.20000159740447998,
+        0.10541506111621857,
+        0.1526266634464264
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1064,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_t_3_pvc",
+      "file": "Models/Pipes_pipe_junction_t_3_pvc.fbx",
+      "source_name": "pipe_junction_t_3_pvc",
+      "source_world_min": [
+        -0.49999991059303284,
+        -0.051575325429439545,
+        0.4999999701976776
+      ],
+      "source_world_max": [
+        -0.29999828338623047,
+        0.05383973941206932,
+        0.652626633644104
+      ],
+      "size_blender": [
+        0.20000162720680237,
+        0.10541506111621857,
+        0.1526266634464264
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1064,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_t_metal",
+      "file": "Models/Pipes_pipe_junction_t_metal.fbx",
+      "source_name": "pipe_junction_t_metal",
+      "source_world_min": [
+        0.8000001907348633,
+        -0.04886791855096817,
+        0.5999999046325684
+      ],
+      "source_world_max": [
+        1.0000004768371582,
+        0.05113217607140541,
+        0.7500004172325134
+      ],
+      "size_blender": [
+        0.20000028610229492,
+        0.10000009834766388,
+        0.15000051259994507
+      ],
+      "pivot": "bottom centre",
+      "triangles": 300,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_t_pvc",
+      "file": "Models/Pipes_pipe_junction_t_pvc.fbx",
+      "source_name": "pipe_junction_t_pvc",
+      "source_world_min": [
+        -1.2999998331069946,
+        -0.04886791855096817,
+        0.5999999046325684
+      ],
+      "source_world_max": [
+        -1.0999995470046997,
+        0.05113217607140541,
+        0.7500004172325134
+      ],
+      "size_blender": [
+        0.20000028610229492,
+        0.10000009834766388,
+        0.15000051259994507
+      ],
+      "pivot": "bottom centre",
+      "triangles": 300,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_x_2_metal",
+      "file": "Models/Pipes_pipe_junction_x_2_metal.fbx",
+      "source_name": "pipe_junction_x_2_metal",
+      "source_world_min": [
+        1.5999999046325684,
+        -0.04886773228645325,
+        0.6999998092651367
+      ],
+      "source_world_max": [
+        1.8000001907348633,
+        0.05113207921385765,
+        0.9000001549720764
+      ],
+      "size_blender": [
+        0.20000028610229492,
+        0.0999998152256012,
+        0.2000003457069397
+      ],
+      "pivot": "bottom centre",
+      "triangles": 700,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_x_2_pvc",
+      "file": "Models/Pipes_pipe_junction_x_2_pvc.fbx",
+      "source_name": "pipe_junction_x_2_pvc",
+      "source_world_min": [
+        -0.5000000596046448,
+        -0.04886773228645325,
+        0.6999998092651367
+      ],
+      "source_world_max": [
+        -0.2999997138977051,
+        0.05113207921385765,
+        0.9000001549720764
+      ],
+      "size_blender": [
+        0.2000003457069397,
+        0.0999998152256012,
+        0.2000003457069397
+      ],
+      "pivot": "bottom centre",
+      "triangles": 700,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_x_metal",
+      "file": "Models/Pipes_pipe_junction_x_metal.fbx",
+      "source_name": "pipe_junction_x_metal",
+      "source_world_min": [
+        1.099998950958252,
+        -0.048867881298065186,
+        0.5999998450279236
+      ],
+      "source_world_max": [
+        1.299999713897705,
+        0.051132190972566605,
+        0.8000006675720215
+      ],
+      "size_blender": [
+        0.20000076293945312,
+        0.10000006854534149,
+        0.2000008225440979
+      ],
+      "pivot": "bottom centre",
+      "triangles": 496,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_junction_x_pvc",
+      "file": "Models/Pipes_pipe_junction_x_pvc.fbx",
+      "source_name": "pipe_junction_x_pvc",
+      "source_world_min": [
+        -1.0000009536743164,
+        -0.048867881298065186,
+        0.5999998450279236
+      ],
+      "source_world_max": [
+        -0.8000001907348633,
+        0.051132190972566605,
+        0.8000006675720215
+      ],
+      "size_blender": [
+        0.20000076293945312,
+        0.10000006854534149,
+        0.2000008225440979
+      ],
+      "pivot": "bottom centre",
+      "triangles": 496,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_s_curve_1_metal",
+      "file": "Models/Pipes_pipe_s_curve_1_metal.fbx",
+      "source_name": "pipe_s_curve_1_metal",
+      "source_world_min": [
+        1.049047589302063,
+        -0.05162587761878967,
+        -2.2053178838632448e-08
+      ],
+      "source_world_max": [
+        1.2509483098983765,
+        0.05389014631509781,
+        0.20000003278255463
+      ],
+      "size_blender": [
+        0.20190072059631348,
+        0.10551602393388748,
+        0.20000004768371582
+      ],
+      "pivot": "bottom centre",
+      "triangles": 912,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_s_curve_1_pvc",
+      "file": "Models/Pipes_pipe_s_curve_1_pvc.fbx",
+      "source_name": "pipe_s_curve_1_pvc",
+      "source_world_min": [
+        -1.050952434539795,
+        -0.05162587761878967,
+        -2.2053178838632448e-08
+      ],
+      "source_world_max": [
+        -0.8490517139434814,
+        0.05389014631509781,
+        0.20000003278255463
+      ],
+      "size_blender": [
+        0.20190072059631348,
+        0.10551602393388748,
+        0.20000004768371582
+      ],
+      "pivot": "bottom centre",
+      "triangles": 912,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_s_curve_2_metal",
+      "file": "Models/Pipes_pipe_s_curve_2_metal.fbx",
+      "source_name": "pipe_s_curve_2_metal",
+      "source_world_min": [
+        1.249048113822937,
+        -0.0516265332698822,
+        -2.2053178838632448e-08
+      ],
+      "source_world_max": [
+        1.5509499311447144,
+        0.0538901649415493,
+        0.2999999225139618
+      ],
+      "size_blender": [
+        0.30190181732177734,
+        0.1055167019367218,
+        0.2999999523162842
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1200,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_s_curve_2_pvc",
+      "file": "Models/Pipes_pipe_s_curve_2_pvc.fbx",
+      "source_name": "pipe_s_curve_2_pvc",
+      "source_world_min": [
+        -0.8509520292282104,
+        -0.0516265332698822,
+        -2.2053178838632448e-08
+      ],
+      "source_world_max": [
+        -0.5490502119064331,
+        0.0538901649415493,
+        0.2999999225139618
+      ],
+      "size_blender": [
+        0.30190181732177734,
+        0.1055167019367218,
+        0.2999999523162842
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1200,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_s_curve_3_metal",
+      "file": "Models/Pipes_pipe_s_curve_3_metal.fbx",
+      "source_name": "pipe_s_curve_3_metal",
+      "source_world_min": [
+        1.4478784799575806,
+        -0.05105745047330856,
+        -1.5040157563817047e-07
+      ],
+      "source_world_max": [
+        1.7521185874938965,
+        0.053322091698646545,
+        0.4000002443790436
+      ],
+      "size_blender": [
+        0.3042401075363159,
+        0.10437954217195511,
+        0.4000003933906555
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1824,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_s_curve_3_pvc",
+      "file": "Models/Pipes_pipe_s_curve_3_pvc.fbx",
+      "source_name": "pipe_s_curve_3_pvc",
+      "source_world_min": [
+        -0.6521216630935669,
+        -0.05105745047330856,
+        -1.5040157563817047e-07
+      ],
+      "source_world_max": [
+        -0.34788161516189575,
+        0.053322091698646545,
+        0.4000002443790436
+      ],
+      "size_blender": [
+        0.30424004793167114,
+        0.10437954217195511,
+        0.4000003933906555
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1824,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_s_curve_4_metal",
+      "file": "Models/Pipes_pipe_s_curve_4_metal.fbx",
+      "source_name": "pipe_s_curve_4_metal",
+      "source_world_min": [
+        1.6478787660598755,
+        -0.051057443022727966,
+        -1.9534260786713276e-07
+      ],
+      "source_world_max": [
+        2.0521185398101807,
+        0.0533221997320652,
+        0.5000004768371582
+      ],
+      "size_blender": [
+        0.4042397737503052,
+        0.10437963902950287,
+        0.5000006556510925
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1776,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_s_curve_4_pvc",
+      "file": "Models/Pipes_pipe_s_curve_4_pvc.fbx",
+      "source_name": "pipe_s_curve_4_pvc",
+      "source_world_min": [
+        -0.45212140679359436,
+        -0.051057443022727966,
+        -1.9534260786713276e-07
+      ],
+      "source_world_max": [
+        -0.04788166284561157,
+        0.0533221997320652,
+        0.5000004768371582
+      ],
+      "size_blender": [
+        0.4042397439479828,
+        0.10437963902950287,
+        0.5000006556510925
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1776,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_crossover_metal",
+      "file": "Models/Pipes_pipe_support_crossover_metal.fbx",
+      "source_name": "pipe_support_crossover_metal",
+      "source_world_min": [
+        0.04438871890306473,
+        -0.2544792890548706,
+        1.5443885326385498
+      ],
+      "source_world_max": [
+        0.15561139583587646,
+        0.10113205015659332,
+        1.655611276626587
+      ],
+      "size_blender": [
+        0.11122267693281174,
+        0.35561132431030273,
+        0.11122274398803711
+      ],
+      "pivot": "bottom centre",
+      "triangles": 642,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_crossover_pvc",
+      "file": "Models/Pipes_pipe_support_crossover_pvc.fbx",
+      "source_name": "pipe_support_crossover_pvc",
+      "source_world_min": [
+        -2.0556113719940186,
+        -0.2544792890548706,
+        1.5443885326385498
+      ],
+      "source_world_max": [
+        -1.9443886280059814,
+        0.10113205015659332,
+        1.655611276626587
+      ],
+      "size_blender": [
+        0.11122274398803711,
+        0.35561132431030273,
+        0.11122274398803711
+      ],
+      "pivot": "bottom centre",
+      "triangles": 642,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_double_metal",
+      "file": "Models/Pipes_pipe_support_double_metal.fbx",
+      "source_name": "pipe_support_double_metal",
+      "source_world_min": [
+        0.04438871890306473,
+        -0.2544792890548706,
+        1.3837902545928955
+      ],
+      "source_world_max": [
+        0.15561145544052124,
+        0.10113205015659332,
+        1.4162099361419678
+      ],
+      "size_blender": [
+        0.11122273653745651,
+        0.35561132431030273,
+        0.032419681549072266
+      ],
+      "pivot": "bottom centre",
+      "triangles": 642,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_double_pvc",
+      "file": "Models/Pipes_pipe_support_double_pvc.fbx",
+      "source_name": "pipe_support_double_pvc",
+      "source_world_min": [
+        -2.0556113719940186,
+        -0.2544792890548706,
+        1.3837902545928955
+      ],
+      "source_world_max": [
+        -1.9443886280059814,
+        0.10113205015659332,
+        1.4162099361419678
+      ],
+      "size_blender": [
+        0.11122274398803711,
+        0.35561132431030273,
+        0.032419681549072266
+      ],
+      "pivot": "bottom centre",
+      "triangles": 642,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_extension_long_metal",
+      "file": "Models/Pipes_pipe_support_extension_long_metal.fbx",
+      "source_name": "pipe_support_extension_long_metal",
+      "source_world_min": [
+        0.28885331749916077,
+        -0.19886794686317444,
+        1.9888532161712646
+      ],
+      "source_world_max": [
+        0.31114691495895386,
+        0.10113206505775452,
+        2.0111467838287354
+      ],
+      "size_blender": [
+        0.02229359745979309,
+        0.30000001192092896,
+        0.022293567657470703
+      ],
+      "pivot": "bottom centre",
+      "triangles": 22,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_extension_long_pvc",
+      "file": "Models/Pipes_pipe_support_extension_long_pvc.fbx",
+      "source_name": "pipe_support_extension_long_pvc",
+      "source_world_min": [
+        -1.8111467361450195,
+        -0.19886794686317444,
+        1.9888532161712646
+      ],
+      "source_world_max": [
+        -1.7888531684875488,
+        0.10113206505775452,
+        2.0111467838287354
+      ],
+      "size_blender": [
+        0.022293567657470703,
+        0.30000001192092896,
+        0.022293567657470703
+      ],
+      "pivot": "bottom centre",
+      "triangles": 22,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_extension_short_metal",
+      "file": "Models/Pipes_pipe_support_extension_short_metal.fbx",
+      "source_name": "pipe_support_extension_short_metal",
+      "source_world_min": [
+        0.08885328471660614,
+        0.0011320561170578003,
+        1.9888532161712646
+      ],
+      "source_world_max": [
+        0.11114680022001266,
+        0.10113205015659332,
+        2.0111467838287354
+      ],
+      "size_blender": [
+        0.022293515503406525,
+        0.09999999403953552,
+        0.022293567657470703
+      ],
+      "pivot": "bottom centre",
+      "triangles": 22,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_extension_short_pvc",
+      "file": "Models/Pipes_pipe_support_extension_short_pvc.fbx",
+      "source_name": "pipe_support_extension_short_pvc",
+      "source_world_min": [
+        -2.0111467838287354,
+        0.0011320561170578003,
+        1.9888532161712646
+      ],
+      "source_world_max": [
+        -1.9888532161712646,
+        0.10113205015659332,
+        2.0111467838287354
+      ],
+      "size_blender": [
+        0.022293567657470703,
+        0.09999999403953552,
+        0.022293567657470703
+      ],
+      "pivot": "bottom centre",
+      "triangles": 22,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_long_metal",
+      "file": "Models/Pipes_pipe_support_long_metal.fbx",
+      "source_name": "pipe_support_long_metal",
+      "source_world_min": [
+        0.044388748705387115,
+        -0.1544792503118515,
+        1.7837903499603271
+      ],
+      "source_world_max": [
+        0.15561142563819885,
+        0.10113205015659332,
+        1.8162100315093994
+      ],
+      "size_blender": [
+        0.11122267693281174,
+        0.2556113004684448,
+        0.032419681549072266
+      ],
+      "pivot": "bottom centre",
+      "triangles": 278,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_long_pvc",
+      "file": "Models/Pipes_pipe_support_long_pvc.fbx",
+      "source_name": "pipe_support_long_pvc",
+      "source_world_min": [
+        -2.0556113719940186,
+        -0.1544792503118515,
+        1.7837903499603271
+      ],
+      "source_world_max": [
+        -1.9443886280059814,
+        0.10113205015659332,
+        1.8162100315093994
+      ],
+      "size_blender": [
+        0.11122274398803711,
+        0.2556113004684448,
+        0.032419681549072266
+      ],
+      "pivot": "bottom centre",
+      "triangles": 278,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_metal",
+      "file": "Models/Pipes_pipe_support_metal.fbx",
+      "source_name": "pipe_support_metal",
+      "source_world_min": [
+        0.04438871890306473,
+        -0.05447928607463837,
+        1.1837903261184692
+      ],
+      "source_world_max": [
+        0.15561139583587646,
+        0.10113205015659332,
+        1.2162100076675415
+      ],
+      "size_blender": [
+        0.11122267693281174,
+        0.1556113362312317,
+        0.032419681549072266
+      ],
+      "pivot": "bottom centre",
+      "triangles": 278,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_support_pvc",
+      "file": "Models/Pipes_pipe_support_pvc.fbx",
+      "source_name": "pipe_support_pvc",
+      "source_world_min": [
+        -2.0556113719940186,
+        -0.05447928607463837,
+        1.1837903261184692
+      ],
+      "source_world_max": [
+        -1.9443886280059814,
+        0.10113205015659332,
+        1.2162100076675415
+      ],
+      "size_blender": [
+        0.11122274398803711,
+        0.1556113362312317,
+        0.032419681549072266
+      ],
+      "pivot": "bottom centre",
+      "triangles": 278,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_100cm_metal",
+      "file": "Models/Pipes_pipe_thin_100cm_metal.fbx",
+      "source_name": "pipe_thin_100cm_metal",
+      "source_world_min": [
+        0.8000001907348633,
+        -0.028867758810520172,
+        2.2699999809265137
+      ],
+      "source_world_max": [
+        1.8000001907348633,
+        0.031132325530052185,
+        2.330000162124634
+      ],
+      "size_blender": [
+        1.0,
+        0.06000008434057236,
+        0.06000018119812012
+      ],
+      "pivot": "bottom centre",
+      "triangles": 144,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_100cm_pvc",
+      "file": "Models/Pipes_pipe_thin_100cm_pvc.fbx",
+      "source_name": "pipe_thin_100cm_pvc",
+      "source_world_min": [
+        -1.2999998331069946,
+        -0.028867758810520172,
+        2.2699999809265137
+      ],
+      "source_world_max": [
+        -0.29999983310699463,
+        0.031132325530052185,
+        2.330000162124634
+      ],
+      "size_blender": [
+        1.0,
+        0.06000008434057236,
+        0.06000018119812012
+      ],
+      "pivot": "bottom centre",
+      "triangles": 144,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_10cm_metal",
+      "file": "Models/Pipes_pipe_thin_10cm_metal.fbx",
+      "source_name": "pipe_thin_10cm_metal",
+      "source_world_min": [
+        0.30000004172325134,
+        -0.02886776626110077,
+        2.370000123977661
+      ],
+      "source_world_max": [
+        0.40000006556510925,
+        0.03113224357366562,
+        2.430000066757202
+      ],
+      "size_blender": [
+        0.10000002384185791,
+        0.06000000983476639,
+        0.059999942779541016
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_10cm_pvc",
+      "file": "Models/Pipes_pipe_thin_10cm_pvc.fbx",
+      "source_name": "pipe_thin_10cm_pvc",
+      "source_world_min": [
+        -1.7999999523162842,
+        -0.02886776626110077,
+        2.370000123977661
+      ],
+      "source_world_max": [
+        -1.6999999284744263,
+        0.03113224357366562,
+        2.430000066757202
+      ],
+      "size_blender": [
+        0.10000002384185791,
+        0.06000000983476639,
+        0.059999942779541016
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_140cm_metal",
+      "file": "Models/Pipes_pipe_thin_140cm_metal.fbx",
+      "source_name": "pipe_thin_140cm_metal",
+      "source_world_min": [
+        0.10000024735927582,
+        -0.028867747634649277,
+        2.169999837875366
+      ],
+      "source_world_max": [
+        1.500000238418579,
+        0.031132370233535767,
+        2.2300002574920654
+      ],
+      "size_blender": [
+        1.399999976158142,
+        0.06000011786818504,
+        0.06000041961669922
+      ],
+      "pivot": "bottom centre",
+      "triangles": 192,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_140cm_pvc",
+      "file": "Models/Pipes_pipe_thin_140cm_pvc.fbx",
+      "source_name": "pipe_thin_140cm_pvc",
+      "source_world_min": [
+        -1.999999761581421,
+        -0.028867747634649277,
+        2.169999837875366
+      ],
+      "source_world_max": [
+        -0.5999997854232788,
+        0.031132370233535767,
+        2.2300002574920654
+      ],
+      "size_blender": [
+        1.399999976158142,
+        0.06000011786818504,
+        0.06000041961669922
+      ],
+      "pivot": "bottom centre",
+      "triangles": 192,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_200cm_metal",
+      "file": "Models/Pipes_pipe_thin_200cm_metal.fbx",
+      "source_name": "pipe_thin_200cm_metal",
+      "source_world_min": [
+        0.10000024735927582,
+        -0.02886774018406868,
+        2.0699994564056396
+      ],
+      "source_world_max": [
+        2.1000003814697266,
+        0.03113243356347084,
+        2.130000114440918
+      ],
+      "size_blender": [
+        2.000000238418579,
+        0.06000017374753952,
+        0.06000065803527832
+      ],
+      "pivot": "bottom centre",
+      "triangles": 288,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_200cm_pvc",
+      "file": "Models/Pipes_pipe_thin_200cm_pvc.fbx",
+      "source_name": "pipe_thin_200cm_pvc",
+      "source_world_min": [
+        -1.999999761581421,
+        -0.02886774018406868,
+        2.0699994564056396
+      ],
+      "source_world_max": [
+        2.384185791015625e-07,
+        0.03113243356347084,
+        2.130000114440918
+      ],
+      "size_blender": [
+        2.0,
+        0.06000017374753952,
+        0.06000065803527832
+      ],
+      "pivot": "bottom centre",
+      "triangles": 288,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_20cm_metal",
+      "file": "Models/Pipes_pipe_thin_20cm_metal.fbx",
+      "source_name": "pipe_thin_20cm_metal",
+      "source_world_min": [
+        0.5000001192092896,
+        -0.02886776626110077,
+        2.370000123977661
+      ],
+      "source_world_max": [
+        0.7000001668930054,
+        0.031132247298955917,
+        2.430000066757202
+      ],
+      "size_blender": [
+        0.20000004768371582,
+        0.060000013560056686,
+        0.059999942779541016
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_20cm_pvc",
+      "file": "Models/Pipes_pipe_thin_20cm_pvc.fbx",
+      "source_name": "pipe_thin_20cm_pvc",
+      "source_world_min": [
+        -1.5999999046325684,
+        -0.02886776626110077,
+        2.370000123977661
+      ],
+      "source_world_max": [
+        -1.3999998569488525,
+        0.031132247298955917,
+        2.430000066757202
+      ],
+      "size_blender": [
+        0.20000004768371582,
+        0.060000013560056686,
+        0.059999942779541016
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_40cm_metal",
+      "file": "Models/Pipes_pipe_thin_40cm_metal.fbx",
+      "source_name": "pipe_thin_40cm_metal",
+      "source_world_min": [
+        0.8000001907348633,
+        -0.02886776626110077,
+        2.369999885559082
+      ],
+      "source_world_max": [
+        1.2000001668930054,
+        0.031132269650697708,
+        2.430000066757202
+      ],
+      "size_blender": [
+        0.3999999761581421,
+        0.06000003591179848,
+        0.06000018119812012
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_40cm_pvc",
+      "file": "Models/Pipes_pipe_thin_40cm_pvc.fbx",
+      "source_name": "pipe_thin_40cm_pvc",
+      "source_world_min": [
+        -1.2999998331069946,
+        -0.02886776626110077,
+        2.369999885559082
+      ],
+      "source_world_max": [
+        -0.8999998569488525,
+        0.031132269650697708,
+        2.430000066757202
+      ],
+      "size_blender": [
+        0.3999999761581421,
+        0.06000003591179848,
+        0.06000018119812012
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_5cm_metal",
+      "file": "Models/Pipes_pipe_thin_5cm_metal.fbx",
+      "source_name": "pipe_thin_5cm_metal",
+      "source_world_min": [
+        0.10000023990869522,
+        -0.02886776626110077,
+        2.370000123977661
+      ],
+      "source_world_max": [
+        0.15000027418136597,
+        0.031132236123085022,
+        2.430000066757202
+      ],
+      "size_blender": [
+        0.050000034272670746,
+        0.06000000238418579,
+        0.059999942779541016
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_5cm_pvc",
+      "file": "Models/Pipes_pipe_thin_5cm_pvc.fbx",
+      "source_name": "pipe_thin_5cm_pvc",
+      "source_world_min": [
+        -1.999999761581421,
+        -0.02886776626110077,
+        2.370000123977661
+      ],
+      "source_world_max": [
+        -1.9499998092651367,
+        0.031132236123085022,
+        2.430000066757202
+      ],
+      "size_blender": [
+        0.04999995231628418,
+        0.06000000238418579,
+        0.059999942779541016
+      ],
+      "pivot": "bottom centre",
+      "triangles": 48,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_60cm_metal",
+      "file": "Models/Pipes_pipe_thin_60cm_metal.fbx",
+      "source_name": "pipe_thin_60cm_metal",
+      "source_world_min": [
+        0.10000024735927582,
+        -0.028867756947875023,
+        2.2699999809265137
+      ],
+      "source_world_max": [
+        0.7000002861022949,
+        0.03113229013979435,
+        2.330000162124634
+      ],
+      "size_blender": [
+        0.6000000238418579,
+        0.06000004708766937,
+        0.06000018119812012
+      ],
+      "pivot": "bottom centre",
+      "triangles": 96,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_60cm_pvc",
+      "file": "Models/Pipes_pipe_thin_60cm_pvc.fbx",
+      "source_name": "pipe_thin_60cm_pvc",
+      "source_world_min": [
+        -1.999999761581421,
+        -0.028867756947875023,
+        2.2699999809265137
+      ],
+      "source_world_max": [
+        -1.399999737739563,
+        0.03113229013979435,
+        2.330000162124634
+      ],
+      "size_blender": [
+        0.6000000238418579,
+        0.06000004708766937,
+        0.06000018119812012
+      ],
+      "pivot": "bottom centre",
+      "triangles": 96,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_end_metal",
+      "file": "Models/Pipes_pipe_thin_end_metal.fbx",
+      "source_name": "pipe_thin_end_metal",
+      "source_world_min": [
+        1.6618541479110718,
+        -0.09843111038208008,
+        1.6342395544052124
+      ],
+      "source_world_max": [
+        1.7381460666656494,
+        0.03883950412273407,
+        1.9000000953674316
+      ],
+      "size_blender": [
+        0.07629191875457764,
+        0.13727061450481415,
+        0.26576054096221924
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1418,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_end_pvc",
+      "file": "Models/Pipes_pipe_thin_end_pvc.fbx",
+      "source_name": "pipe_thin_end_pvc",
+      "source_world_min": [
+        -0.43814584612846375,
+        -0.09843111038208008,
+        1.6342395544052124
+      ],
+      "source_world_max": [
+        -0.3618538975715637,
+        0.03883950412273407,
+        1.9000000953674316
+      ],
+      "size_blender": [
+        0.07629194855690002,
+        0.13727061450481415,
+        0.26576054096221924
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1418,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_junction_t_metal",
+      "file": "Models/Pipes_pipe_thin_junction_t_metal.fbx",
+      "source_name": "pipe_thin_junction_t_metal",
+      "source_world_min": [
+        1.6000001430511475,
+        -0.02886781468987465,
+        1.0000001192092896
+      ],
+      "source_world_max": [
+        1.8000001907348633,
+        0.03113219328224659,
+        1.130000114440918
+      ],
+      "size_blender": [
+        0.20000004768371582,
+        0.06000000983476639,
+        0.12999999523162842
+      ],
+      "pivot": "bottom centre",
+      "triangles": 252,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_junction_t_pvc",
+      "file": "Models/Pipes_pipe_thin_junction_t_pvc.fbx",
+      "source_name": "pipe_thin_junction_t_pvc",
+      "source_world_min": [
+        -0.49999991059303284,
+        -0.02886781468987465,
+        1.0000001192092896
+      ],
+      "source_world_max": [
+        -0.2999998927116394,
+        0.03113219328224659,
+        1.130000114440918
+      ],
+      "size_blender": [
+        0.20000001788139343,
+        0.06000000983476639,
+        0.12999999523162842
+      ],
+      "pivot": "bottom centre",
+      "triangles": 252,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_junction_x_metal",
+      "file": "Models/Pipes_pipe_thin_junction_x_metal.fbx",
+      "source_name": "pipe_thin_junction_x_metal",
+      "source_world_min": [
+        1.899999976158142,
+        -0.028867870569229126,
+        1.0
+      ],
+      "source_world_max": [
+        2.0999999046325684,
+        0.03113226406276226,
+        1.2000000476837158
+      ],
+      "size_blender": [
+        0.19999992847442627,
+        0.060000136494636536,
+        0.20000004768371582
+      ],
+      "pivot": "bottom centre",
+      "triangles": 400,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_junction_x_pvc",
+      "file": "Models/Pipes_pipe_thin_junction_x_pvc.fbx",
+      "source_name": "pipe_thin_junction_x_pvc",
+      "source_world_min": [
+        -0.19999991357326508,
+        -0.028867870569229126,
+        1.0
+      ],
+      "source_world_max": [
+        1.1920928955078125e-07,
+        0.03113226406276226,
+        1.2000000476837158
+      ],
+      "size_blender": [
+        0.20000003278255463,
+        0.060000136494636536,
+        0.20000004768371582
+      ],
+      "pivot": "bottom centre",
+      "triangles": 400,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_s_curve_1_metal",
+      "file": "Models/Pipes_pipe_thin_s_curve_1_metal.fbx",
+      "source_name": "pipe_thin_s_curve_1_metal",
+      "source_world_min": [
+        1.9681705236434937,
+        -0.030697209760546684,
+        1.5
+      ],
+      "source_world_max": [
+        2.1318295001983643,
+        0.032961681485176086,
+        1.6999999284744263
+      ],
+      "size_blender": [
+        0.1636589765548706,
+        0.06365889310836792,
+        0.19999992847442627
+      ],
+      "pivot": "bottom centre",
+      "triangles": 960,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_s_curve_1_pvc",
+      "file": "Models/Pipes_pipe_thin_s_curve_1_pvc.fbx",
+      "source_name": "pipe_thin_s_curve_1_pvc",
+      "source_world_min": [
+        -0.13182932138442993,
+        -0.030697209760546684,
+        1.5
+      ],
+      "source_world_max": [
+        0.03182953596115112,
+        0.032961681485176086,
+        1.6999999284744263
+      ],
+      "size_blender": [
+        0.16365885734558105,
+        0.06365889310836792,
+        0.19999992847442627
+      ],
+      "pivot": "bottom centre",
+      "triangles": 960,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_s_curve_2_metal",
+      "file": "Models/Pipes_pipe_thin_s_curve_2_metal.fbx",
+      "source_name": "pipe_thin_s_curve_2_metal",
+      "source_world_min": [
+        1.7681708335876465,
+        -0.030697226524353027,
+        1.5
+      ],
+      "source_world_max": [
+        2.031829595565796,
+        0.033047039061784744,
+        1.8000000715255737
+      ],
+      "size_blender": [
+        0.2636587619781494,
+        0.06374426186084747,
+        0.30000007152557373
+      ],
+      "pivot": "bottom centre",
+      "triangles": 912,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_s_curve_2_pvc",
+      "file": "Models/Pipes_pipe_thin_s_curve_2_pvc.fbx",
+      "source_name": "pipe_thin_s_curve_2_pvc",
+      "source_world_min": [
+        -0.3318292498588562,
+        -0.030697226524353027,
+        1.5
+      ],
+      "source_world_max": [
+        -0.06817048788070679,
+        0.033047039061784744,
+        1.8000000715255737
+      ],
+      "size_blender": [
+        0.2636587619781494,
+        0.06374426186084747,
+        0.30000007152557373
+      ],
+      "pivot": "bottom centre",
+      "triangles": 912,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_support_crossover_metal",
+      "file": "Models/Pipes_pipe_thin_support_crossover_metal.fbx",
+      "source_name": "pipe_thin_support_crossover_metal",
+      "source_world_min": [
+        1.6650515794754028,
+        -0.23381590843200684,
+        2.3650519847869873
+      ],
+      "source_world_max": [
+        1.734947919845581,
+        0.10113222151994705,
+        2.434948444366455
+      ],
+      "size_blender": [
+        0.06989634037017822,
+        0.3349481225013733,
+        0.06989645957946777
+      ],
+      "pivot": "bottom centre",
+      "triangles": 642,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_support_crossover_pvc",
+      "file": "Models/Pipes_pipe_thin_support_crossover_pvc.fbx",
+      "source_name": "pipe_thin_support_crossover_pvc",
+      "source_world_min": [
+        -0.4349483549594879,
+        -0.23381590843200684,
+        2.3650519847869873
+      ],
+      "source_world_max": [
+        -0.3650520443916321,
+        0.10113222151994705,
+        2.434948444366455
+      ],
+      "size_blender": [
+        0.06989631056785583,
+        0.3349481225013733,
+        0.06989645957946777
+      ],
+      "pivot": "bottom centre",
+      "triangles": 642,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_support_double_metal",
+      "file": "Models/Pipes_pipe_thin_support_double_metal.fbx",
+      "source_name": "pipe_thin_support_double_metal",
+      "source_world_min": [
+        1.4837902784347534,
+        -0.23381593823432922,
+        2.365051746368408
+      ],
+      "source_world_max": [
+        1.5162099599838257,
+        0.10113222151994705,
+        2.434948205947876
+      ],
+      "size_blender": [
+        0.032419681549072266,
+        0.3349481523036957,
+        0.06989645957946777
+      ],
+      "pivot": "bottom centre",
+      "triangles": 642,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_support_double_pvc",
+      "file": "Models/Pipes_pipe_thin_support_double_pvc.fbx",
+      "source_name": "pipe_thin_support_double_pvc",
+      "source_world_min": [
+        -0.6162096261978149,
+        -0.23381593823432922,
+        2.365051746368408
+      ],
+      "source_world_max": [
+        -0.5837899446487427,
+        0.10113222151994705,
+        2.434948205947876
+      ],
+      "size_blender": [
+        0.032419681549072266,
+        0.3349481523036957,
+        0.06989645957946777
+      ],
+      "pivot": "bottom centre",
+      "triangles": 642,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_support_long_metal",
+      "file": "Models/Pipes_pipe_thin_support_long_metal.fbx",
+      "source_name": "pipe_thin_support_long_metal",
+      "source_world_min": [
+        1.8837904930114746,
+        -0.1338159441947937,
+        2.365051746368408
+      ],
+      "source_world_max": [
+        1.9162101745605469,
+        0.10113222151994705,
+        2.434948205947876
+      ],
+      "size_blender": [
+        0.032419681549072266,
+        0.23494815826416016,
+        0.06989645957946777
+      ],
+      "pivot": "bottom centre",
+      "triangles": 278,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_support_long_pvc",
+      "file": "Models/Pipes_pipe_thin_support_long_pvc.fbx",
+      "source_name": "pipe_thin_support_long_pvc",
+      "source_world_min": [
+        -0.21620963513851166,
+        -0.1338159441947937,
+        2.365051746368408
+      ],
+      "source_world_max": [
+        -0.1837899535894394,
+        0.10113222151994705,
+        2.434948205947876
+      ],
+      "size_blender": [
+        0.032419681549072266,
+        0.23494815826416016,
+        0.06989645957946777
+      ],
+      "pivot": "bottom centre",
+      "triangles": 278,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_support_metal",
+      "file": "Models/Pipes_pipe_thin_support_metal.fbx",
+      "source_name": "pipe_thin_support_metal",
+      "source_world_min": [
+        1.2837905883789062,
+        -0.03381594270467758,
+        2.365051746368408
+      ],
+      "source_world_max": [
+        1.3162102699279785,
+        0.10113222151994705,
+        2.434948205947876
+      ],
+      "size_blender": [
+        0.032419681549072266,
+        0.13494816422462463,
+        0.06989645957946777
+      ],
+      "pivot": "bottom centre",
+      "triangles": 278,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_support_pvc",
+      "file": "Models/Pipes_pipe_thin_support_pvc.fbx",
+      "source_name": "pipe_thin_support_pvc",
+      "source_world_min": [
+        -0.8162095546722412,
+        -0.03381594270467758,
+        2.365051746368408
+      ],
+      "source_world_max": [
+        -0.783789873123169,
+        0.10113222151994705,
+        2.434948205947876
+      ],
+      "size_blender": [
+        0.032419681549072266,
+        0.13494816422462463,
+        0.06989645957946777
+      ],
+      "pivot": "bottom centre",
+      "triangles": 278,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_turn_long_metal",
+      "file": "Models/Pipes_pipe_thin_turn_long_metal.fbx",
+      "source_name": "pipe_thin_turn_long_metal",
+      "source_world_min": [
+        1.668171763420105,
+        -0.03069721721112728,
+        1.1999990940093994
+      ],
+      "source_world_max": [
+        1.900001049041748,
+        0.03296166658401489,
+        1.4318289756774902
+      ],
+      "size_blender": [
+        0.23182928562164307,
+        0.06365888565778732,
+        0.23182988166809082
+      ],
+      "pivot": "bottom centre",
+      "triangles": 864,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_turn_long_pvc",
+      "file": "Models/Pipes_pipe_thin_turn_long_pvc.fbx",
+      "source_name": "pipe_thin_turn_long_pvc",
+      "source_world_min": [
+        -0.43182823061943054,
+        -0.03069721721112728,
+        1.1999990940093994
+      ],
+      "source_world_max": [
+        -0.19999898970127106,
+        0.03296166658401489,
+        1.4318289756774902
+      ],
+      "size_blender": [
+        0.23182924091815948,
+        0.06365888565778732,
+        0.23182988166809082
+      ],
+      "pivot": "bottom centre",
+      "triangles": 864,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_turn_short_metal",
+      "file": "Models/Pipes_pipe_thin_turn_short_metal.fbx",
+      "source_name": "pipe_thin_turn_short_metal",
+      "source_world_min": [
+        1.9681705236434937,
+        -0.030697209760546684,
+        1.3000000715255737
+      ],
+      "source_world_max": [
+        2.0999999046325684,
+        0.03296167030930519,
+        1.4318299293518066
+      ],
+      "size_blender": [
+        0.1318293809890747,
+        0.06365887820720673,
+        0.1318298578262329
+      ],
+      "pivot": "bottom centre",
+      "triangles": 768,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_turn_short_pvc",
+      "file": "Models/Pipes_pipe_thin_turn_short_pvc.fbx",
+      "source_name": "pipe_thin_turn_short_pvc",
+      "source_world_min": [
+        -0.13182932138442993,
+        -0.030697209760546684,
+        1.3000000715255737
+      ],
+      "source_world_max": [
+        -7.450580596923828e-09,
+        0.03296167030930519,
+        1.4318299293518066
+      ],
+      "size_blender": [
+        0.13182932138442993,
+        0.06365887820720673,
+        0.1318298578262329
+      ],
+      "pivot": "bottom centre",
+      "triangles": 768,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_valve_1_metal",
+      "file": "Models/Pipes_pipe_thin_valve_1_metal.fbx",
+      "source_name": "pipe_thin_valve_1_metal",
+      "source_world_min": [
+        1.458909511566162,
+        -0.1991387903690338,
+        1.3999998569488525
+      ],
+      "source_world_max": [
+        1.541090726852417,
+        0.04270721226930618,
+        1.5999999046325684
+      ],
+      "size_blender": [
+        0.08218121528625488,
+        0.2418459951877594,
+        0.20000004768371582
+      ],
+      "pivot": "bottom centre",
+      "triangles": 2516,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_valve_1_pvc",
+      "file": "Models/Pipes_pipe_thin_valve_1_pvc.fbx",
+      "source_name": "pipe_thin_valve_1_pvc",
+      "source_world_min": [
+        -0.6410905718803406,
+        -0.1991387903690338,
+        1.3999998569488525
+      ],
+      "source_world_max": [
+        -0.5589092373847961,
+        0.04270721226930618,
+        1.5999999046325684
+      ],
+      "size_blender": [
+        0.08218133449554443,
+        0.2418459951877594,
+        0.20000004768371582
+      ],
+      "pivot": "bottom centre",
+      "triangles": 2516,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_valve_2_metal",
+      "file": "Models/Pipes_pipe_thin_valve_2_metal.fbx",
+      "source_name": "pipe_thin_valve_2_metal",
+      "source_world_min": [
+        1.4497870206832886,
+        -0.08467023074626923,
+        1.6999999284744263
+      ],
+      "source_world_max": [
+        1.5502132177352905,
+        0.051345277577638626,
+        1.9317474365234375
+      ],
+      "size_blender": [
+        0.10042619705200195,
+        0.13601550459861755,
+        0.23174750804901123
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1032,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_thin_valve_2_pvc",
+      "file": "Models/Pipes_pipe_thin_valve_2_pvc.fbx",
+      "source_name": "pipe_thin_valve_2_pvc",
+      "source_world_min": [
+        -0.6502130031585693,
+        -0.08467023074626923,
+        1.6999999284744263
+      ],
+      "source_world_max": [
+        -0.5497868061065674,
+        0.051345277577638626,
+        1.9317474365234375
+      ],
+      "size_blender": [
+        0.10042619705200195,
+        0.13601550459861755,
+        0.23174750804901123
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1032,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_to_thin_metal",
+      "file": "Models/Pipes_pipe_to_thin_metal.fbx",
+      "source_name": "pipe_to_thin_metal",
+      "source_world_min": [
+        1.9499999284744263,
+        -0.04886775463819504,
+        0.6000000834465027
+      ],
+      "source_world_max": [
+        2.049999952316284,
+        0.051132239401340485,
+        0.6500000357627869
+      ],
+      "size_blender": [
+        0.10000002384185791,
+        0.09999999403953552,
+        0.04999995231628418
+      ],
+      "pivot": "bottom centre",
+      "triangles": 336,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_to_thin_pvc",
+      "file": "Models/Pipes_pipe_to_thin_pvc.fbx",
+      "source_name": "pipe_to_thin_pvc",
+      "source_world_min": [
+        -0.1499999761581421,
+        -0.04886775463819504,
+        0.6000000834465027
+      ],
+      "source_world_max": [
+        -0.04999999329447746,
+        0.051132239401340485,
+        0.6500000357627869
+      ],
+      "size_blender": [
+        0.09999997913837433,
+        0.09999999403953552,
+        0.04999995231628418
+      ],
+      "pivot": "bottom centre",
+      "triangles": 336,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_turn_long_metal",
+      "file": "Models/Pipes_pipe_turn_long_metal.fbx",
+      "source_name": "pipe_turn_long_metal",
+      "source_world_min": [
+        0.8473750352859497,
+        -0.05157540738582611,
+        0.2000000774860382
+      ],
+      "source_world_max": [
+        1.1000016927719116,
+        0.05383966118097305,
+        0.45262664556503296
+      ],
+      "size_blender": [
+        0.2526266574859619,
+        0.10541506856679916,
+        0.25262656807899475
+      ],
+      "pivot": "bottom centre",
+      "triangles": 960,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_turn_long_pvc",
+      "file": "Models/Pipes_pipe_turn_long_pvc.fbx",
+      "source_name": "pipe_turn_long_pvc",
+      "source_world_min": [
+        -1.2526249885559082,
+        -0.05157540738582611,
+        0.2000000774860382
+      ],
+      "source_world_max": [
+        -0.9999983310699463,
+        0.05383966118097305,
+        0.45262664556503296
+      ],
+      "size_blender": [
+        0.2526266574859619,
+        0.10541506856679916,
+        0.25262656807899475
+      ],
+      "pivot": "bottom centre",
+      "triangles": 960,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_turn_short_metal",
+      "file": "Models/Pipes_pipe_turn_short_metal.fbx",
+      "source_name": "pipe_turn_short_metal",
+      "source_world_min": [
+        0.8473749756813049,
+        -0.051575396209955215,
+        -2.0489096641540527e-08
+      ],
+      "source_world_max": [
+        1.0000015497207642,
+        0.05383968725800514,
+        0.15262660384178162
+      ],
+      "size_blender": [
+        0.15262657403945923,
+        0.10541508346796036,
+        0.1526266187429428
+      ],
+      "pivot": "bottom centre",
+      "triangles": 864,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_turn_short_pvc",
+      "file": "Models/Pipes_pipe_turn_short_pvc.fbx",
+      "source_name": "pipe_turn_short_pvc",
+      "source_world_min": [
+        -1.2526251077651978,
+        -0.051575396209955215,
+        -2.0489096641540527e-08
+      ],
+      "source_world_max": [
+        -1.0999984741210938,
+        0.05383968725800514,
+        0.15262660384178162
+      ],
+      "size_blender": [
+        0.152626633644104,
+        0.10541508346796036,
+        0.1526266187429428
+      ],
+      "pivot": "bottom centre",
+      "triangles": 864,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_uturn_metal",
+      "file": "Models/Pipes_pipe_uturn_metal.fbx",
+      "source_name": "pipe_uturn_metal",
+      "source_world_min": [
+        1.1473753452301025,
+        -0.05157508701086044,
+        0.3999998867511749
+      ],
+      "source_world_max": [
+        1.4526281356811523,
+        0.053839970380067825,
+        0.5518947243690491
+      ],
+      "size_blender": [
+        0.3052527904510498,
+        0.10541506111621857,
+        0.15189483761787415
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1632,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_uturn_pvc",
+      "file": "Models/Pipes_pipe_uturn_pvc.fbx",
+      "source_name": "pipe_uturn_pvc",
+      "source_world_min": [
+        -0.9526247382164001,
+        -0.05157508701086044,
+        0.3999998867511749
+      ],
+      "source_world_max": [
+        -0.6473719477653503,
+        0.053839970380067825,
+        0.5518947243690491
+      ],
+      "size_blender": [
+        0.3052527904510498,
+        0.10541506111621857,
+        0.15189483761787415
+      ],
+      "pivot": "bottom centre",
+      "triangles": 1632,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_valve_large_metal",
+      "file": "Models/Pipes_pipe_valve_large_metal.fbx",
+      "source_name": "pipe_valve_large_metal",
+      "source_world_min": [
+        1.0800554752349854,
+        -0.34316325187683105,
+        1.4000000953674316
+      ],
+      "source_world_max": [
+        1.319944977760315,
+        0.11460255831480026,
+        1.9000000953674316
+      ],
+      "size_blender": [
+        0.2398895025253296,
+        0.4577658176422119,
+        0.5
+      ],
+      "pivot": "bottom centre",
+      "triangles": 8432,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_valve_large_pvc",
+      "file": "Models/Pipes_pipe_valve_large_pvc.fbx",
+      "source_name": "pipe_valve_large_pvc",
+      "source_world_min": [
+        -1.0199445486068726,
+        -0.34316325187683105,
+        1.4000000953674316
+      ],
+      "source_world_max": [
+        -0.780055046081543,
+        0.11460255831480026,
+        1.9000000953674316
+      ],
+      "size_blender": [
+        0.2398895025253296,
+        0.4577658176422119,
+        0.5
+      ],
+      "pivot": "bottom centre",
+      "triangles": 8432,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_valve_small_1_metal",
+      "file": "Models/Pipes_pipe_valve_small_1_metal.fbx",
+      "source_name": "pipe_valve_small_1_metal",
+      "source_world_min": [
+        1.1243499517440796,
+        -0.18129363656044006,
+        0.8999999761581421
+      ],
+      "source_world_max": [
+        1.2756505012512207,
+        0.07129055261611938,
+        1.3000001907348633
+      ],
+      "size_blender": [
+        0.1513005495071411,
+        0.25258418917655945,
+        0.4000002145767212
+      ],
+      "pivot": "bottom centre",
+      "triangles": 4910,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_valve_small_1_pvc",
+      "file": "Models/Pipes_pipe_valve_small_1_pvc.fbx",
+      "source_name": "pipe_valve_small_1_pvc",
+      "source_world_min": [
+        -0.9756501317024231,
+        -0.18129363656044006,
+        0.8999999761581421
+      ],
+      "source_world_max": [
+        -0.8243495225906372,
+        0.07129055261611938,
+        1.3000001907348633
+      ],
+      "size_blender": [
+        0.1513006091117859,
+        0.25258418917655945,
+        0.4000002145767212
+      ],
+      "pivot": "bottom centre",
+      "triangles": 4910,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_valve_small_2_metal",
+      "file": "Models/Pipes_pipe_valve_small_2_metal.fbx",
+      "source_name": "pipe_valve_small_2_metal",
+      "source_world_min": [
+        1.3243452310562134,
+        -0.18129360675811768,
+        0.8999999761581421
+      ],
+      "source_world_max": [
+        1.4756553173065186,
+        0.07129056751728058,
+        1.3000001907348633
+      ],
+      "size_blender": [
+        0.15131008625030518,
+        0.25258415937423706,
+        0.4000002145767212
+      ],
+      "pivot": "bottom centre",
+      "triangles": 4910,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    },
+    {
+      "name": "Pipes_pipe_valve_small_2_pvc",
+      "file": "Models/Pipes_pipe_valve_small_2_pvc.fbx",
+      "source_name": "pipe_valve_small_2_pvc",
+      "source_world_min": [
+        -0.7756547927856445,
+        -0.18129360675811768,
+        0.8999999761581421
+      ],
+      "source_world_max": [
+        -0.6243447661399841,
+        0.07129056751728058,
+        1.3000001907348633
+      ],
+      "size_blender": [
+        0.1513100266456604,
+        0.25258415937423706,
+        0.4000002145767212
+      ],
+      "pivot": "bottom centre",
+      "triangles": 4910,
+      "uv_layers": 1,
+      "materials": [
+        "Pipes_modular_pipes_pvc"
+      ]
+    }
+  ],
+  "source_hashes": {
+    "D:/VideoGame/artifacts/biome-parallel/undercity/sewer-modular.blend": "ade5740d05adaf500b40f6ed5de1944d92cf3e8de3cf5ba3bf38d145ea8dd1c9",
+    "D:/VideoGame/artifacts/biome-parallel/undercity/pipes/modular_pipes_2k.blend": "73dfea4a7f92f741456268dd364dbf78d30d046dfd6011723d14ad82e0b4f976"
+  }
+}

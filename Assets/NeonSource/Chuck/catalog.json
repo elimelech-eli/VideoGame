@@ -1,0 +1,199 @@
+{
+  "status": "PROJECT_DERIVATIVES_FROM_LICENSED_SOURCE",
+  "materials": [
+    {
+      "name": "Material.003",
+      "baseColor": "Material_003_baseColor.png",
+      "normal": "Material_003_normal.png",
+      "roughness": "Material_003_roughness.png",
+      "metallic": "Material_003_metallic.png",
+      "emission": "Material_003_emission.png",
+      "baseColorFactor": [
+        0.17985187470912933,
+        0.20777033269405365,
+        0.22658208012580872,
+        1.0
+      ],
+      "metallicFactor": 1.0,
+      "roughnessFactor": 0.625984251499176,
+      "packed": "Material00_MetalSmooth.png"
+    },
+    {
+      "name": "Material.001",
+      "baseColor": "Material_001_baseColor.png",
+      "normal": "Material_001_normal.png",
+      "roughness": "Material_001_roughness.png",
+      "metallic": "Material_001_metallic.png",
+      "emission": "Material_001_emission.png",
+      "baseColorFactor": [
+        0.17985187470912933,
+        0.20777033269405365,
+        0.22658208012580872,
+        1.0
+      ],
+      "metallicFactor": 1.0,
+      "roughnessFactor": 0.625984251499176,
+      "packed": "Material01_MetalSmooth.png"
+    },
+    {
+      "name": "building 2 mat",
+      "baseColor": "building_2_mat_baseColor.png",
+      "normal": "building_2_mat_normal.png",
+      "roughness": "building_2_mat_roughness.png",
+      "metallic": "building_2_mat_metallic.png",
+      "emission": "building_2_mat_emission.png",
+      "baseColorFactor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallicFactor": 0.0,
+      "roughnessFactor": 0.5,
+      "packed": "Material02_MetalSmooth.png"
+    },
+    {
+      "name": "Material.002",
+      "baseColor": "Material_002_baseColor.png",
+      "normal": "Material_002_normal.png",
+      "roughness": "Material_002_roughness.png",
+      "metallic": "Material_002_metallic.png",
+      "emission": "Material_002_emission.png",
+      "baseColorFactor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallicFactor": 0.0,
+      "roughnessFactor": 0.5,
+      "packed": "Material03_MetalSmooth.png"
+    },
+    {
+      "name": "building 4 mat",
+      "baseColor": "building_4_mat_baseColor.png",
+      "normal": "building_4_mat_normal.png",
+      "roughness": "building_4_mat_roughness.png",
+      "metallic": "building_4_mat_metallic.png",
+      "emission": "building_4_mat_emission.png",
+      "baseColorFactor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallicFactor": 0.0,
+      "roughnessFactor": 0.5,
+      "packed": "Material04_MetalSmooth.png"
+    },
+    {
+      "name": "block 1 mat",
+      "baseColor": "block_1_mat_baseColor.png",
+      "normal": null,
+      "roughness": "block_1_mat_roughness.png",
+      "metallic": null,
+      "emission": null,
+      "baseColorFactor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallicFactor": 0.0,
+      "roughnessFactor": 0.5,
+      "packed": "Material05_MetalSmooth.png"
+    },
+    {
+      "name": "block 2 mat",
+      "baseColor": "block_2_mat_baseColor.png",
+      "normal": "block_2_mat_normal.png",
+      "roughness": "block_2_mat_roughness.png",
+      "metallic": "block_2_mat_metallic.png",
+      "emission": null,
+      "baseColorFactor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallicFactor": 0.0,
+      "roughnessFactor": 0.5,
+      "packed": "Material06_MetalSmooth.png"
+    },
+    {
+      "name": "lamp",
+      "baseColor": "lamp_baseColor.png",
+      "normal": "lamp_normal.png",
+      "roughness": "lamp_roughness.png",
+      "metallic": "lamp_metallic.png",
+      "emission": "lamp_emission.png",
+      "baseColorFactor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallicFactor": 0.0,
+      "roughnessFactor": 0.5,
+      "packed": "Material07_MetalSmooth.png"
+    }
+  ],
+  "buildings": [
+    {
+      "name": "building 1",
+      "native_dimensions": [
+        11.213071823120117,
+        8.87498664855957,
+        17.170021057128906
+      ]
+    },
+    {
+      "name": "building 2",
+      "native_dimensions": [
+        18.436824798583984,
+        11.016992568969727,
+        31.95812225341797
+      ]
+    },
+    {
+      "name": "building 3",
+      "native_dimensions": [
+        5.670373916625977,
+        12.509085655212402,
+        15.615141868591309
+      ]
+    },
+    {
+      "name": "building 4",
+      "native_dimensions": [
+        34.551422119140625,
+        33.19963836669922,
+        45.8958625793457
+      ]
+    },
+    {
+      "name": "block 1",
+      "native_dimensions": [
+        2.5360782146453857,
+        2.047809362411499,
+        1.0431311130523682
+      ]
+    },
+    {
+      "name": "block 2",
+      "native_dimensions": [
+        2.5360782146453857,
+        2.047809362411499,
+        1.0431311130523682
+      ]
+    },
+    {
+      "name": "lamp",
+      "native_dimensions": [
+        0.3950228691101074,
+        0.015557520091533661,
+        0.015666775405406952
+      ]
+    }
+  ]
+}

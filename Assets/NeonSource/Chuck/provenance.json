@@ -1,0 +1,19 @@
+{
+  "publisher": "ChuckCG / Carlos Cardona",
+  "url": "https://chuckcg.gumroad.com/l/kwkhj",
+  "acquired": "2026-11-02",
+  "license_text": "Feel free to use these assets in your commercial or personal projects. Please don’t sell only the assets in a pack. Thank you.",
+  "restriction": "Use in commercial or personal projects permitted; do not sell only these assets in a pack. Included files are game-used project derivatives. Original buildings.blend is not included.",
+  "source_files": [
+    {
+      "file": "buildings.blend",
+      "bytes": 103897970,
+      "sha256": "46a5dc757df85e909caf1a8392dc84c5776c2892440cd4171bbf913c16889806"
+    },
+    {
+      "file": "License.pdf",
+      "bytes": 17624,
+      "sha256": "fe5f0a3c9fd958f3f57ef49d7df3a026be1d53f0430bb4ab299f3717cf5af8af"
+    }
+  ]
+}
