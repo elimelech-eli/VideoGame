@@ -39,9 +39,9 @@ namespace VideoGame
             bool factory=model.StartsWith("Factory",System.StringComparison.Ordinal);
             bool transit=model.StartsWith("Transit",System.StringComparison.Ordinal);
             bool lab = model.StartsWith("Lab", System.StringComparison.Ordinal);
-            robot = dedicatedFolder!=null || factory || transit || lab || model == "Crawler" || model == "Roller" || model == "Blaster" || model == "Lobber";
+            robot = dedicatedFolder!=null || factory || transit || lab;
             string folder = GetComponent<PlayerRig>()?.AnimationFolder;
-            foreach (var clip in Resources.LoadAll<AnimationClip>(folder ?? dedicatedFolder ?? (factory ? "FactoryEnemyAnimations/"+model : transit ? "TransitEnemyAnimations/"+model : lab ? "LabEnemyAnimations/" + model : robot ? "RobotAnimations/" + model : model == "OperativeV03" ? "OperatorAnimations" : "Animations"))) Player.AddClip(clip, clip.name);
+            foreach (var clip in Resources.LoadAll<AnimationClip>(folder ?? dedicatedFolder ?? (factory ? "FactoryEnemyAnimations/"+model : transit ? "TransitEnemyAnimations/"+model : lab ? "LabEnemyAnimations/" + model : model == "OperativeV03" ? "OperatorAnimations" : throw new System.InvalidOperationException("Unknown actor animation set: "+model)))) Player.AddClip(clip, clip.name);
             if (Player["Idle"] == null) throw new System.InvalidOperationException("Missing baked actor animations");
             foreach (string name in new[] {"Fire", "Hit", "Cast"})
             {

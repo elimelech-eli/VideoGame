@@ -6,7 +6,7 @@ The current presentation uses PBR assets under `Resources/Detailed`. Original so
 
 | Source | Creator | License | Use |
 | --- | --- | --- | --- |
-| https://opengameart.org/content/sci-fi-soldier | Irondust | CC0 | Rigged operative and enemy armor; albedo, normal, specular, AO and emission maps |
+| https://opengameart.org/content/sci-fi-soldier | Irondust | CC0 | Retired first-generation soldier; source attribution retained |
 | https://opengameart.org/content/pbr-industrial-asset-pack | a52 / rubberduck | CC0 | Textured industrial machinery, containers, tanks, vents and terminals |
 | https://ambientcg.com/view?id=MetalPlates017A | ambientCG / Lennart Demes | CC0 | PBR metal deck and bulkhead surfaces |
 
@@ -14,9 +14,9 @@ The bulkhead mesh, rendering setup, and rig-specific animation keyframes were au
 
 ## Enemy models and music
 
-The player now uses the approved v03 male operator, with newly authored armor over a CC0 MakeHuman/MPFB anatomical foundation. Its license statement is preserved in `Resources/Detailed/OperativeV03/`. A 52-bone fitted skeleton drives one skinned renderer (60,244 triangles, eight armor/suit material roles). The existing eleven gameplay actions are baked specifically for this bind pose into `Resources/OperatorAnimations`; this is not a new animation library. The existing CC0 Kenney rifle is mounted on `SOCKET_weapon_R`. Rebuild the prefab/materials/player clips with `VideoGame.Editor.OperativeV03Assets.Rebuild`; ordinary builds reuse committed assets. The original soldier asset remains available as a development fallback.
+The player now uses the approved v03 male operator, with newly authored armor over a CC0 MakeHuman/MPFB anatomical foundation. Its license statement is preserved in `Resources/Detailed/OperativeV03/`. A 52-bone fitted skeleton drives one skinned renderer (60,244 triangles, eight armor/suit material roles). The existing eleven gameplay actions are baked specifically for this bind pose into `Resources/OperatorAnimations`; this is not a new animation library. The existing CC0 Kenney rifle is mounted on `SOCKET_weapon_R`. Rebuild the prefab/materials/player clips with `VideoGame.Editor.OperativeV03Assets.Rebuild`; ordinary builds reuse committed assets. The first-generation soldier fallback has been retired.
 
-Each enemy role currently has different geometry and a different original rig from Teh_Bucket's [Robot Enemy Pack](https://opengameart.org/content/robot-enemy-pack), published as CC0: Crawler for hunters, Roller for rushers, Blaster for gunners, and Lobber for bombardiers. The artist's idle, movement, attack, and death actions are exported and baked into gameplay clips. Role colors supplement the different shapes. Export instructions and source records are included under `Tools/Art` and `Resources/Detailed/Robots`.
+All six biomes use dedicated melee, ranged, AOE and shielded-heavy rosters. See `REMAINING_ENEMIES.md`, the biome delivery notes and each `Resources/Detailed/*Enemies/CREDITS.md` for current professional sources and animation ownership. The superseded Teh_Bucket generic robot pack is no longer shipped; its CC0 source record is retained in `asset-history/retired-robot-sources.txt`.
 
 The Nexus uses **Night Club Chill (100 BPM)** and combat uses **AI Fight (120 BPM)** by Alexander Ehlers / tricksntraps, from the CC0 [T & T Free Cyberpunk Pack 2](https://opengameart.org/content/t-t-free-cyberpunk-pack-2). Original files and exact download URLs are recorded in `Resources/Audio/SOURCES.txt`. Tracks are streamed, looped and crossfaded, and can be muted using M or the HUD music button.
 

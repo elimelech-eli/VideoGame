@@ -36,8 +36,6 @@ namespace VideoGame.Editor
         {
             EnsureScene();
             DetailedAssets.Build();
-            RobotAssets.Build();
-            ActorAnimationBuilder.Build();
             OperativeV03Assets.Build();
             LoadoutWeaponAssets.Build();
             BiomeAssets.Build();
