@@ -1,0 +1,590 @@
+{
+  "NeonGunner": {
+    "materials": [
+      {
+        "name": "SoldierSurface00",
+        "sourceName": "Mark_Boots_2",
+        "id": "s00",
+        "maps": {
+          "Albedo": "s00_Albedo.png",
+          "Normal": "s00_Normal.png",
+          "MetalSmooth": "s00_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false
+      },
+      {
+        "name": "SoldierSurface01",
+        "sourceName": "Mark_Eye",
+        "id": "s01",
+        "maps": {
+          "Albedo": "s01_Albedo.png",
+          "MetalSmooth": "s01_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false,
+        "Normal": null,
+        "Metallic": 0.0,
+        "Roughness": 0.0
+      },
+      {
+        "name": "SoldierSurface02",
+        "sourceName": "Mark_Gloves_1",
+        "id": "s02",
+        "maps": {
+          "Albedo": "s02_Albedo.png",
+          "Normal": "s02_Normal.png",
+          "MetalSmooth": "s02_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false
+      },
+      {
+        "name": "SoldierSurface03",
+        "sourceName": "Mark_HeadMasked",
+        "id": "s03",
+        "maps": {
+          "Albedo": "s03_Albedo.png",
+          "Normal": "s03_Normal.png",
+          "MetalSmooth": "s03_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false,
+        "Metallic": 0.0,
+        "Roughness": 0.9548738598823547
+      },
+      {
+        "name": "SoldierSurface04",
+        "sourceName": "Mark_Helmet1",
+        "id": "s04",
+        "maps": {
+          "Albedo": "s04_Albedo.png",
+          "Normal": "s04_Normal.png",
+          "MetalSmooth": "s04_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false
+      },
+      {
+        "name": "SoldierSurface05",
+        "sourceName": "Mark_Kitel_1",
+        "id": "s05",
+        "maps": {
+          "Albedo": "s05_Albedo.png",
+          "Normal": "s05_Normal.png",
+          "MetalSmooth": "s05_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false
+      },
+      {
+        "name": "SoldierSurface06",
+        "sourceName": "Mark_Pants_1",
+        "id": "s06",
+        "maps": {
+          "Albedo": "s06_Albedo.png",
+          "Normal": "s06_Normal.png",
+          "MetalSmooth": "s06_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false
+      },
+      {
+        "name": "SoldierSurface07",
+        "sourceName": "Mark_Plate_1",
+        "id": "s07",
+        "maps": {
+          "Albedo": "s07_Albedo.png",
+          "Normal": "s07_Normal.png",
+          "MetalSmooth": "s07_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false
+      },
+      {
+        "name": "SoldierSurface08",
+        "sourceName": "Mark_Pouches_1",
+        "id": "s08",
+        "maps": {
+          "Albedo": "s08_Albedo.png",
+          "Normal": "s08_Normal.png",
+          "MetalSmooth": "s08_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "glass": false
+      },
+      {
+        "name": "SoldierSurface09",
+        "sourceName": "Mark_SunGlusses_Glus",
+        "id": "s09",
+        "maps": {
+          "MetalSmooth": "s09_MetalSmooth.png"
+        },
+        "channels": {},
+        "color": [
+          0.014814164489507675,
+          0.014993038959801197,
+          0.013479839079082012,
+          1.0
+        ],
+        "glass": true,
+        "Albedo": null,
+        "Normal": null,
+        "Metallic": 0.0,
+        "Roughness": 0.0
+      }
+    ],
+    "bones": 114,
+    "triangles": 84154,
+    "unweighted": 0
+  },
+  "NeonAoe": {
+    "materials": [
+      {
+        "name": "BASE",
+        "id": "m00",
+        "maps": {
+          "Emission": "m00_Emission.png",
+          "Roughness": "m00_Roughness.png",
+          "Metallic": "m00_Metallic.png",
+          "Albedo": "m00_Albedo.png",
+          "Normal": "m00_Normal.png",
+          "Occlusion": "m00_Occlusion.png",
+          "MetalSmooth": "m00_MetalSmooth.png"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.5
+      },
+      {
+        "name": "Light",
+        "id": "m01",
+        "maps": {
+          "MetalSmooth": "m01_MetalSmooth.png"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.5
+      },
+      {
+        "name": "Tires",
+        "id": "m02",
+        "maps": {
+          "Roughness": "m02_Roughness.png",
+          "Metallic": "m02_Metallic.png",
+          "Albedo": "m02_Albedo.png",
+          "Normal": "m02_Normal.png",
+          "Occlusion": "m02_Occlusion.png",
+          "MetalSmooth": "m02_MetalSmooth.png"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.5
+      }
+    ],
+    "bones": 4,
+    "triangles": 144789,
+    "unweighted": 0,
+    "size": [
+      1.9328625202178955,
+      1.946913719177246,
+      0.9999999403953552
+    ]
+  },
+  "NeonRifle": {
+    "materials": [
+      {
+        "name": "Color.001",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Normal": "m00_Normal.png",
+          "Metallic": "m00_Metallic.png",
+          "Roughness": "m00_Roughness.png",
+          "MetalSmooth": "m00_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.5
+      },
+      {
+        "name": "Metal.001",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Normal": "m01_Normal.png",
+          "Metallic": "m01_Metallic.png",
+          "Roughness": "m01_Roughness.png",
+          "MetalSmooth": "m01_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.5
+      }
+    ],
+    "triangles": 6042
+  },
+  "NeonMelee": {
+    "materials": [
+      {
+        "name": "Final",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Normal": "m00_Normal.png",
+          "Emission": "m00_Emission.png",
+          "MetalSmooth": "m00_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Emission": null
+        },
+        "color": [
+          0.5879999995231628,
+          0.5879999995231628,
+          0.5879999995231628,
+          1.0
+        ],
+        "metallic": 1.0,
+        "roughness": 0.858578622341156
+      },
+      {
+        "name": "lambert2SG",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Normal": "m01_Normal.png",
+          "Metallic": "m01_Metallic.png",
+          "Roughness": "m01_Roughness.png",
+          "MetalSmooth": "m01_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.5
+      },
+      {
+        "name": "lambert3SG",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Normal": "m02_Normal.png",
+          "Metallic": "m02_Metallic.png",
+          "Roughness": "m02_Roughness.png",
+          "MetalSmooth": "m02_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.5
+      },
+      {
+        "name": "lambert4SG",
+        "id": "m03",
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "MetalSmooth": "m03_MetalSmooth.png"
+        },
+        "channels": {
+          "Albedo": null
+        },
+        "color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.6000000238418579
+      }
+    ],
+    "bones": 18,
+    "triangles": 39112,
+    "unweighted": 0,
+    "size": [
+      1.258392333984375,
+      0.7818098664283752,
+      2.049999952316284
+    ],
+    "source": "Thomas Walker approved masked Samurai + credited byhoangtran source katana"
+  },
+  "NeonHeavy": {
+    "materials": [
+      {
+        "name": "Arms",
+        "id": "Arms",
+        "maps": {
+          "Albedo": "Arms_Albedo.png",
+          "Normal": "Arms_Normal.png",
+          "MetalSmooth": "Arms_MetalSmooth.png",
+          "Occlusion": "Arms_Occlusion.png"
+        },
+        "color": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.5,
+        "glass": false
+      },
+      {
+        "name": "CyberSMG",
+        "id": "CyberSMG",
+        "maps": {
+          "Albedo": "CyberSMG_Albedo.png",
+          "Normal": "CyberSMG_Normal.png",
+          "MetalSmooth": "CyberSMG_MetalSmooth.png",
+          "Occlusion": "CyberSMG_Occlusion.png"
+        },
+        "color": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.5,
+        "glass": false
+      },
+      {
+        "name": "Head",
+        "id": "Head",
+        "maps": {
+          "Albedo": "Head_Albedo.png",
+          "Normal": "Head_Normal.png",
+          "MetalSmooth": "Head_MetalSmooth.png",
+          "Occlusion": "Head_Occlusion.png",
+          "Emission": "Head_Emission.png"
+        },
+        "color": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.5,
+        "glass": false
+      },
+      {
+        "name": "Legs",
+        "id": "Legs",
+        "maps": {
+          "Albedo": "Legs_Albedo.png",
+          "Normal": "Legs_Normal.png",
+          "MetalSmooth": "Legs_MetalSmooth.png",
+          "Occlusion": "Legs_Occlusion.png"
+        },
+        "color": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.5,
+        "glass": false
+      },
+      {
+        "name": "Shield",
+        "id": "Shield",
+        "maps": {
+          "Albedo": "Shield_Albedo.png",
+          "Normal": "Shield_Normal.png",
+          "MetalSmooth": "Shield_MetalSmooth.png",
+          "Occlusion": "Shield_Occlusion.png"
+        },
+        "color": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.5,
+        "glass": true
+      },
+      {
+        "name": "Torso",
+        "id": "Torso",
+        "maps": {
+          "Albedo": "Torso_Albedo.png",
+          "Normal": "Torso_Normal.png",
+          "MetalSmooth": "Torso_MetalSmooth.png",
+          "Occlusion": "Torso_Occlusion.png"
+        },
+        "color": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.5,
+        "glass": false
+      }
+    ],
+    "bones": 65,
+    "triangles": 34204,
+    "unweighted": 0,
+    "size": [
+      1.4,
+      1,
+      2.2
+    ]
+  }
+}

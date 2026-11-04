@@ -1,0 +1,26 @@
+{
+  "author": "byhoangtran",
+  "source": "https://sketchfab.com/3d-models/6b7c89af7c5b4a17a94f890e0ec3eedf",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "58085532fd488eb6b8bb6971c187123cbdad978d20544a9aca3b4d1a18be7cf5",
+  "files": [
+    {
+      "path": "source/Shining Planet 2099.zip",
+      "bytes": 16708469,
+      "sha256": "c33b33e75f571e07d2081b936e1881293c4b7ca410353a390b56894ad58b5b26"
+    },
+    {
+      "path": "textures/Defuse Map.png",
+      "bytes": 8738488,
+      "sha256": "606d4ecd5454dcd60dd86f55bd4fde3e739eb0bc71161cc0245696b3687faffe"
+    },
+    {
+      "path": "textures/Normal Clean.png",
+      "bytes": 4080163,
+      "sha256": "ed07d468c43173f6bc13d635fcbb2359d8c08090e979d72d257266076e14013e"
+    }
+  ],
+  "rigAudit": "not-run"
+}

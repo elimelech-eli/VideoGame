@@ -12,7 +12,9 @@ namespace VideoGame
         public bool IsTransitHeavy {get;private set;}
         public bool IsFactoryHeavy {get;private set;}
         public void ConfigureFactoryHeavy(){IsFactoryHeavy=true;SetLevel(Level);}
-        public bool IsShieldedHeavy=>IsLabHeavy||IsTransitHeavy||IsFactoryHeavy;
+        public bool IsBiomeHeavy {get;private set;}
+        public void ConfigureBiomeHeavy(){IsBiomeHeavy=true;SetLevel(Level);}
+        public bool IsShieldedHeavy=>IsLabHeavy||IsTransitHeavy||IsFactoryHeavy||IsBiomeHeavy;
         public void ConfigureTransitHeavy(){IsTransitHeavy=true;SetLevel(Level);}
         public bool IsLabBoss { get; private set; }
         public float ShieldMaximum { get; private set; }
@@ -88,7 +90,7 @@ namespace VideoGame
             }
             else if (Ranged)
             {
-                Shoot(game, delta);
+                Shoot(game);
             }
             else if (delta.magnitude < 2.2f)
             {
@@ -97,15 +99,17 @@ namespace VideoGame
             }
         }
         public Vector3 ShotOrigin { get { var socket=GetComponentsInChildren<Transform>(); foreach(var t in socket)if(t.name=="ShotOrigin")return t.position; return transform.position; } }
-        void Shoot(Prototype game, Vector3 delta)
+        void Shoot(Prototype game)
         {
+                Vector3 origin=ShotOrigin;
+                Vector3 direction=(game.Player.transform.position-origin).normalized;
                 var bolt = new GameObject("Enemy bolt"); bolt.transform.SetParent(transform.parent);
-                bolt.transform.position = ShotOrigin;
+                bolt.transform.position = origin;
                 var trail = bolt.AddComponent<TrailRenderer>(); trail.time = .15f; trail.startWidth = .12f; trail.endWidth = .01f;
                 trail.startColor = new Color(1, .2f, .1f); trail.endColor = new Color(1, .1f, .1f, 0);
                 trail.sharedMaterial = Resources.Load<Material>("PrototypeTrace");
-                var projectile=bolt.AddComponent<EnemyBolt>();projectile.Direction=delta.normalized;projectile.DamageScale=(IsLabBoss?1.3f:1)*(1+(Level-1)*.06f);
-                game.Feedback.Shot(ShotOrigin, ShotOrigin + delta.normalized * .4f, new Color(1, .3f, .1f));
+                var projectile=bolt.AddComponent<EnemyBolt>();projectile.Direction=direction;projectile.DamageScale=(IsLabBoss?1.3f:1)*(1+(Level-1)*.06f);
+                game.Feedback.Shot(origin, origin + direction * .4f, new Color(1, .3f, .1f));
                 Motion.Kick();
         }
         IEnumerator MedicalBossAttack(Prototype game)
@@ -127,7 +131,7 @@ namespace VideoGame
             {
                 while(game.Menus?.IsOpen==true)yield return null;
                 if(Health<=0||!game.InMission||game.Player.IsDead)break;
-                Shoot(game,game.Player.transform.position-ShotOrigin);
+                Shoot(game);
                 yield return new WaitForSeconds(.22f);
             }
             BossState="Recover";yield return new WaitForSeconds(.8f);

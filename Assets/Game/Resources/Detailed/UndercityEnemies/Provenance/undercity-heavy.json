@@ -1,0 +1,51 @@
+{
+  "author": "pinguinoconpulgares",
+  "source": "https://sketchfab.com/3d-models/8993602ca91f4c499e690e5dae19f978",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "93c657245e21bb9594a4644aa5dc62f91c4355b707c09d494914473545c14adc",
+  "files": [
+    {
+      "path": "source/SPRITE_ROBOT_CP.blend.blend",
+      "bytes": 4738864,
+      "sha256": "e53186a09a213226c799f017b32f235b666e2f89f50f7bbf0f6370426097825f"
+    },
+    {
+      "path": "textures/reflection.jpg",
+      "bytes": 36398,
+      "sha256": "1e022a876059c5b62eaf06690c7e66f820fbc955d4be7b3f9c1daf64fe5dbe0f"
+    },
+    {
+      "path": "textures/EYES.png",
+      "bytes": 1621,
+      "sha256": "09d0a2bd6d19c4fdc52a4939a5af5087f138f0c5566013ae44948162acb38b41"
+    },
+    {
+      "path": "textures/HINGE.png",
+      "bytes": 653730,
+      "sha256": "75d80bec4f134a218116271a7ccd7003df8e57cd9d1f1fffb6ed9710b4242884"
+    },
+    {
+      "path": "textures/HEAD.png",
+      "bytes": 842819,
+      "sha256": "d230a0bc08c26df7c7392076e1fdd009954be474f8d2319c9be154191af0f3a2"
+    },
+    {
+      "path": "textures/ARM.png",
+      "bytes": 867095,
+      "sha256": "dd6019cc6470c7b6a3afc79e0f8806422eff77db0d979dc897d84f8667eed1d4"
+    },
+    {
+      "path": "textures/BODY.png",
+      "bytes": 796976,
+      "sha256": "431dd03de56d3e6b8185d14f858246729a011b63aaa9d110ac5355d78eb97476"
+    },
+    {
+      "path": "textures/LEG.png",
+      "bytes": 787753,
+      "sha256": "c96c2076bb122abcbb22bd914c700535e9184220d102551d22ba04ac701e430d"
+    }
+  ],
+  "rigAudit": "not-run"
+}

@@ -1,0 +1,1311 @@
+{
+  "CorporateAoe": {
+    "id": "CorporateAoe",
+    "materials": [
+      {
+        "name": "CorporateDroneSource",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Normal": "m00_Normal.png",
+          "Metallic": "m00_Metallic.png",
+          "Roughness": "m00_Roughness.png",
+          "Occlusion": "m00_Occlusion.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": null,
+          "Roughness": null,
+          "Occlusion": null
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      }
+    ],
+    "bones": 15,
+    "sourceTriangles": 1850,
+    "triangles": 1850,
+    "unweighted": 0,
+    "targetHeight": 1.8,
+    "sourceToMetreScale": 1.3751569666737309,
+    "shotOrigin": [
+      -1.0880273580551147,
+      0.7350976467132568,
+      1.6958472728729248
+    ],
+    "shotParent": "forearm.R",
+    "map": {
+      "Base": "hips",
+      "Cannon_Base_L": "upperarm.L",
+      "Top_Cannon_L": "forearm.L",
+      "Bottom_Cannon_L": "cannon.lower.L",
+      "Shield_L": "panel.L",
+      "Cannon_Base_R": "upperarm.R",
+      "Top_Cannon_R": "forearm.R",
+      "Bottom_Cannon_R": "cannon.lower.R",
+      "Shield_R": "panel.R"
+    },
+    "rigPolicy": "native source weights",
+    "sourceGeometryOptimized": false
+  },
+  "CorporateGunner": {
+    "id": "CorporateGunner",
+    "materials": [
+      {
+        "name": ".Aircraft_007.002",
+        "id": "m00",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": ".Aircraft_039.002",
+        "id": "m01",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": ".Example_Sheet_018.002",
+        "id": "m02",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": ".Example_Sheet_037.003",
+        "id": "m03",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": ".Example_Sheet_046.004",
+        "id": "m04",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": ".Example_Sheet_046.005",
+        "id": "m05",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": ".Example_Sheet_046.006",
+        "id": "m06",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": ".Examples_032.003",
+        "id": "m07",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": ".Examples_033.016",
+        "id": "m08",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 1.0,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Body_Niz.002",
+        "id": "m09",
+        "maps": {
+          "Albedo": "m09_Albedo.png",
+          "Normal": "m09_Normal.png",
+          "Metallic": "m09_Metallic.png",
+          "Roughness": "m09_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Body_Verh.002",
+        "id": "m10",
+        "maps": {
+          "Albedo": "m10_Albedo.png",
+          "Normal": "m10_Normal.png",
+          "Metallic": "m10_Metallic.png",
+          "Roughness": "m10_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_01_arm",
+        "id": "m11",
+        "maps": {
+          "Albedo": "m11_Albedo.png",
+          "Normal": "m11_Normal.png",
+          "Metallic": "m11_Metallic.png",
+          "Roughness": "m11_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_01_leg",
+        "id": "m12",
+        "maps": {
+          "Albedo": "m12_Albedo.png",
+          "Normal": "m12_Normal.png",
+          "Metallic": "m12_Metallic.png",
+          "Roughness": "m12_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_02_arm",
+        "id": "m13",
+        "maps": {
+          "Albedo": "m13_Albedo.png",
+          "Normal": "m13_Normal.png",
+          "Metallic": "m13_Metallic.png",
+          "Roughness": "m13_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_02_leg",
+        "id": "m14",
+        "maps": {
+          "Albedo": "m14_Albedo.png",
+          "Normal": "m14_Normal.png",
+          "Metallic": "m14_Metallic.png",
+          "Roughness": "m14_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_Armor_01",
+        "id": "m15",
+        "maps": {
+          "Albedo": "m15_Albedo.png",
+          "Normal": "m15_Normal.png",
+          "Metallic": "m15_Metallic.png",
+          "Roughness": "m15_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_Armor_02",
+        "id": "m16",
+        "maps": {
+          "Albedo": "m16_Albedo.png",
+          "Normal": "m16_Normal.png",
+          "Metallic": "m16_Metallic.png",
+          "Roughness": "m16_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_Body_Niz",
+        "id": "m17",
+        "maps": {
+          "Albedo": "m17_Albedo.png",
+          "Normal": "m17_Normal.png",
+          "Metallic": "m17_Metallic.png",
+          "Roughness": "m17_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_Body_Verkh",
+        "id": "m18",
+        "maps": {
+          "Albedo": "m18_Albedo.png",
+          "Normal": "m18_Normal.png",
+          "Metallic": "m18_Metallic.png",
+          "Roughness": "m18_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_Head_Dron",
+        "id": "m19",
+        "maps": {
+          "Albedo": "m19_Albedo.png",
+          "Normal": "m19_Normal.png",
+          "Metallic": "m19_Metallic.png",
+          "Roughness": "m19_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Dron_PP",
+        "id": "m20",
+        "maps": {
+          "Albedo": "m20_Albedo.png",
+          "Normal": "m20_Normal.png",
+          "Metallic": "m20_Metallic.png",
+          "Roughness": "m20_Roughness.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": "B",
+          "Roughness": "G"
+        },
+        "constants": {
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Mate",
+        "id": "m21",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.005604499951004982,
+            0.005604499951004982,
+            0.005604499951004982,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.8315790295600891,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Metallic",
+        "id": "m22",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.4385409951210022,
+            0.4385409951210022,
+            0.4385409951210022,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 1.0,
+          "Roughness": 0.5,
+          "Emission": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      }
+    ],
+    "bones": 15,
+    "sourceTriangles": 1686461,
+    "triangles": 337799,
+    "unweighted": 0,
+    "targetHeight": 2.05,
+    "sourceToMetreScale": 1.0880560129111632,
+    "shotOrigin": [
+      0.2638106048107147,
+      1.1362249851226807,
+      0.5994307398796082
+    ],
+    "shotParent": "hand.R",
+    "map": {},
+    "rigPolicy": "source mechanical geometry, authored segmented weights",
+    "sourceGeometryOptimized": true
+  },
+  "CorporateHeavy": {
+    "id": "CorporateHeavy",
+    "materials": [
+      {
+        "name": "Cockpit",
+        "id": "m00",
+        "maps": {
+          "Albedo": "m00_Albedo.png",
+          "Normal": "m00_Normal.png",
+          "Metallic": "m00_Metallic.png",
+          "Roughness": "m00_Roughness.png",
+          "Occlusion": "m00_Occlusion.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": null,
+          "Roughness": null,
+          "Occlusion": null
+        },
+        "constants": {
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Glass",
+        "id": "m01",
+        "maps": {
+          "Albedo": "m01_Albedo.png",
+          "Normal": "m01_Normal.png",
+          "Metallic": "m01_Metallic.png",
+          "Roughness": "m01_Roughness.png",
+          "Occlusion": "m01_Occlusion.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": null,
+          "Roughness": null,
+          "Occlusion": null
+        },
+        "constants": {
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": true,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Hatch",
+        "id": "m02",
+        "maps": {
+          "Albedo": "m02_Albedo.png",
+          "Normal": "m02_Normal.png",
+          "Metallic": "m02_Metallic.png",
+          "Roughness": "m02_Roughness.png",
+          "Occlusion": "m02_Occlusion.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": null,
+          "Roughness": null,
+          "Occlusion": null
+        },
+        "constants": {
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Heels",
+        "id": "m03",
+        "maps": {
+          "Albedo": "m03_Albedo.png",
+          "Normal": "m03_Normal.png",
+          "Metallic": "m03_Metallic.png",
+          "Roughness": "m03_Roughness.png",
+          "Occlusion": "m03_Occlusion.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": null,
+          "Roughness": null,
+          "Occlusion": null
+        },
+        "constants": {
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Leg Bases",
+        "id": "m04",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Lower Legs",
+        "id": "m05",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Toes",
+        "id": "m06",
+        "maps": {
+          "Albedo": "m06_Albedo.png",
+          "Normal": "m06_Normal.png",
+          "Metallic": "m06_Metallic.png",
+          "Roughness": "m06_Roughness.png",
+          "Occlusion": "m06_Occlusion.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": null,
+          "Roughness": null,
+          "Occlusion": null
+        },
+        "constants": {
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Turret Barrels",
+        "id": "m07",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Turret Bases",
+        "id": "m08",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      },
+      {
+        "name": "Waist",
+        "id": "m09",
+        "maps": {
+          "Albedo": "m09_Albedo.png",
+          "Normal": "m09_Normal.png",
+          "Metallic": "m09_Metallic.png",
+          "Roughness": "m09_Roughness.png",
+          "Occlusion": "m09_Occlusion.png"
+        },
+        "channels": {
+          "Albedo": null,
+          "Normal": null,
+          "Metallic": null,
+          "Roughness": null,
+          "Occlusion": null
+        },
+        "constants": {
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 1.0
+      }
+    ],
+    "bones": 20,
+    "sourceTriangles": 5230,
+    "triangles": 5230,
+    "unweighted": 0,
+    "targetHeight": 2.7,
+    "sourceToMetreScale": 0.31593593832736017,
+    "shotOrigin": [
+      -1.0223839282989502,
+      1.674826979637146,
+      0.9071812629699707
+    ],
+    "shotParent": "forearm.R",
+    "map": {
+      "Waist": "hips",
+      "Cockpit": "spine",
+      "Minigun_Base_L": "upperarm.L",
+      "Minigun_Barrel_L": "forearm.L",
+      "Leg_Top_L": "thigh.L",
+      "Leg_Bottom_L": "calf.L",
+      "Toe_L": "foot.L",
+      "Heel_L": "heel.L",
+      "Minigun_Base_R": "upperarm.R",
+      "Minigun_Barrel_R": "forearm.R",
+      "Leg_Top_R": "thigh.R",
+      "Leg_Bottom_R": "calf.R",
+      "Toe_R": "foot.R",
+      "Heel_R": "heel.R"
+    },
+    "rigPolicy": "native source weights",
+    "sourceGeometryOptimized": false
+  },
+  "CorporateMelee": {
+    "id": "CorporateMelee",
+    "materials": [
+      {
+        "name": "Material #2131694027.001",
+        "id": "m00",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.0,
+            0.003921568859368563,
+            0.019607843831181526,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5527864098548889,
+          "Emission": [
+            0.0,
+            0.003921568859368563,
+            0.019607843831181526,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Material #2131694312.001",
+        "id": "m01",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.5879999995231628,
+            0.5879999995231628,
+            0.5879999995231628,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.858578622341156,
+          "Emission": [
+            0.5879999995231628,
+            0.5879999995231628,
+            0.5879999995231628,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Лапы.001",
+        "id": "m02",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.019607843831181526,
+            0.019607843831181526,
+            0.019607843831181526,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5527864098548889,
+          "Emission": [
+            0.019607843831181526,
+            0.019607843831181526,
+            0.019607843831181526,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Лицевая часть.001",
+        "id": "m03",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.0,
+            0.003921568859368563,
+            0.019607843831181526,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5527864098548889,
+          "Emission": [
+            0.0,
+            0.003921568859368563,
+            0.019607843831181526,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Обводка.001",
+        "id": "m04",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.0860210433602333,
+            0.0860210433602333,
+            0.0860210433602333,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5527864098548889,
+          "Emission": [
+            0.0860210433602333,
+            0.0860210433602333,
+            0.0860210433602333,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Светодиод.001",
+        "id": "m05",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5527864098548889,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Стекло",
+        "id": "m06",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.0,
+            0.003921568859368563,
+            0.019607843831181526,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5527864098548889,
+          "Emission": [
+            0.0,
+            0.003921568859368563,
+            0.019607843831181526,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Тело и голова.001",
+        "id": "m07",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.21649466454982758,
+            0.21649466454982758,
+            0.21649466454982758,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5527864098548889,
+          "Emission": [
+            0.21649466454982758,
+            0.21649466454982758,
+            0.21649466454982758,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      },
+      {
+        "name": "Уши и хвост.001",
+        "id": "m08",
+        "maps": {},
+        "channels": {},
+        "constants": {
+          "Albedo": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Metallic": 0.0,
+          "Roughness": 0.5527864098548889,
+          "Emission": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "glass": false,
+        "emissionStrength": 0.0
+      }
+    ],
+    "bones": 16,
+    "sourceTriangles": 84184,
+    "triangles": 84184,
+    "unweighted": 0,
+    "targetHeight": 1.05,
+    "sourceToMetreScale": 4.966410534474202,
+    "shotOrigin": [
+      0.0,
+      0.7350000143051147,
+      0.617967963218689
+    ],
+    "shotParent": "head",
+    "map": {},
+    "rigPolicy": "source mechanical geometry, authored segmented weights",
+    "sourceGeometryOptimized": false
+  }
+}

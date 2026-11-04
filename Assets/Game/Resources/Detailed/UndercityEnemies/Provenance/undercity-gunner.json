@@ -1,0 +1,116 @@
+{
+  "author": "Groccel",
+  "source": "https://sketchfab.com/3d-models/af6329e2b7ef45d6b35f08755b980203",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "2171a61c6fdcb95e6ca840cff26a910c10060a464053388968ccbb654a980744",
+  "files": [
+    {
+      "path": "source/tv-rabbit.fbx",
+      "bytes": 3578236,
+      "sha256": "754f2a77eb1cb1a3692453123d0b42579fa3ca193b035f903cd45f1fee8358b1"
+    },
+    {
+      "path": "textures/Head_metallic.jpg",
+      "bytes": 1019875,
+      "sha256": "5c8f0101fb30ffa922eec69da33958a11739b11d75013d5f4fcbbe0803207c36"
+    },
+    {
+      "path": "textures/Legs_and_arms_metallic.jpg",
+      "bytes": 1925185,
+      "sha256": "39e4d7a170da43c9b812ba881166ef258229863ab03f0df89c2188e06a260da5"
+    },
+    {
+      "path": "textures/Head_AO.jpg",
+      "bytes": 896319,
+      "sha256": "e196837f2482aad5f25b9833394c1ff143ce387236c304f644d7743932ca859e"
+    },
+    {
+      "path": "textures/Legs_and_arms_normal.png",
+      "bytes": 20694945,
+      "sha256": "b87e4d67cb8c87c67ebf14caee3d78e1be3e550b807ebfd7e5593fec8b0ad256"
+    },
+    {
+      "path": "textures/Legs_and_arms_AO.jpg",
+      "bytes": 2587211,
+      "sha256": "5c9ca0d9ddfb864c36d5699c9e558f79d932cf620371e56f456a0b1244ad5162"
+    },
+    {
+      "path": "textures/Body_AO.jpg",
+      "bytes": 2048508,
+      "sha256": "883341ac22e54708a3dd286352e1f56ab1a3f70fca9bd01147b09be2e4969883"
+    },
+    {
+      "path": "textures/Head_normal.png",
+      "bytes": 18245515,
+      "sha256": "9be01769b734da031ae983bf55e1fa098932d5f992af464e84ae6caa6cebe139"
+    },
+    {
+      "path": "textures/Body_metallic.jpg",
+      "bytes": 1397348,
+      "sha256": "cdfb853d10d31d538df1591b64effa69a9d9605c10a5bed3fdb03ef97c717014"
+    },
+    {
+      "path": "textures/Head_roughness.jpg",
+      "bytes": 1861415,
+      "sha256": "87feb8d086af43744392e04742a59fa5db457c821fdd27d91054634878558fe4"
+    },
+    {
+      "path": "textures/Legs_and_arms_albedo.jpg",
+      "bytes": 4945273,
+      "sha256": "b4583e0de20edad535fa78076341b48878c3a57df39e5d386f12d7d92f9011a7"
+    },
+    {
+      "path": "textures/Legs_and_arms_opacity.jpg",
+      "bytes": 226017,
+      "sha256": "e9510890477b2433f658259f7034531939801e255aa018c11c54d6722b3702ec"
+    },
+    {
+      "path": "textures/Head_opacity.jpg",
+      "bytes": 313359,
+      "sha256": "e52e7e77c91e0b9fe3758e12d52348bdd58c8b2ab834f80e008dcbfd5aaac50f"
+    },
+    {
+      "path": "textures/Body_normal.png",
+      "bytes": 20356518,
+      "sha256": "ce65b6305a09d02054b4aaf2cd79923c335fc04396b4f37f2b80d6a7cef8934d"
+    },
+    {
+      "path": "textures/Body_emissive.jpg",
+      "bytes": 265524,
+      "sha256": "f3739b127510d302b7e023f8a3110ac41a45c7885c23e89b0710d684f38a12be"
+    },
+    {
+      "path": "textures/Legs_and_arms_roughness.jpg",
+      "bytes": 3703994,
+      "sha256": "e2be336cc5cecf04be971a788b207d7ab63ed97f4d91f46ef1b5854cea1ca370"
+    },
+    {
+      "path": "textures/Legs_and_arms_emissive.jpg",
+      "bytes": 270332,
+      "sha256": "661a4d90eb2d27d053a88516c878f5dbf7222e931afbffe30bc252670184ea13"
+    },
+    {
+      "path": "textures/Body_albedo.jpg",
+      "bytes": 2398229,
+      "sha256": "e3bf25b3dbf56327956fdade8c45eb407d5a3678f16776eafd40f37db4d4e85c"
+    },
+    {
+      "path": "textures/Head_albedo.jpg",
+      "bytes": 1808349,
+      "sha256": "2bab7d4e90d15b40fff475d408474d12166169f68178da4529bccfda58341de7"
+    },
+    {
+      "path": "textures/Body_roughness.jpg",
+      "bytes": 2536177,
+      "sha256": "fdc3674baaade625bfd73b5ce12c5493e91a7939366b25481ebf6654ea387fd4"
+    },
+    {
+      "path": "textures/Head_emissive.jpg",
+      "bytes": 661259,
+      "sha256": "36d493846852f47f235cc7305d1924ae915b7d69ba43affda116c99c898f09bc"
+    }
+  ],
+  "rigAudit": "not-run"
+}

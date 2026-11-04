@@ -1,0 +1,271 @@
+{
+  "author": "HighPolyDensity",
+  "source": "https://sketchfab.com/3d-models/fe01999e5a9d4e9bbaf7c7112417d3fd",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "214fecd39cfc53023ba65325e0db8fde98458d4660fac90ebdd6dfceae866357",
+  "files": [
+    {
+      "path": "source/Camo Snow.zip",
+      "bytes": 7254131,
+      "sha256": "e4f611f4aa8316c4461aa8599e24a8ba9c65db159b6852247c0955079bc62c34"
+    },
+    {
+      "path": "textures/Leg_Bases_roughness.jpeg",
+      "bytes": 27248,
+      "sha256": "7d56268f3558afdd106f8a9b93b990e672d25c3601ccf61e7235fb0d957766ac"
+    },
+    {
+      "path": "textures/Heels_albedo.jpeg",
+      "bytes": 41538,
+      "sha256": "435ca5a9426f4194d8cc7ca04864d179013fc49cd2eb0953adeafb1fae73affa"
+    },
+    {
+      "path": "textures/Turret_Bases_roughness.jpeg",
+      "bytes": 18558,
+      "sha256": "0db7c0cac3774e592861e224282a3bda51409d80959972cbbf05d525cf4b401c"
+    },
+    {
+      "path": "textures/Heels_roughness.jpeg",
+      "bytes": 17506,
+      "sha256": "b8a92a5139f60d561b284909e229fb146b9be158b49d06824efd9c46720b5fe4"
+    },
+    {
+      "path": "textures/Cockpit_albedo.jpeg",
+      "bytes": 89848,
+      "sha256": "9e210c7d539129ec36580ac7a729a2b6ee8d4b5eb9d74fc9f8e4dd6706fba87e"
+    },
+    {
+      "path": "textures/Hatch_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "6d342c50eae9e6838d588f4ae4349bbe191c6d4e5a3c3f793138b4431e16760a"
+    },
+    {
+      "path": "textures/Leg_Bases_albedo.jpeg",
+      "bytes": 92891,
+      "sha256": "e1d57075f3a044c61377a478c691882433b5f9599e30da550a4ea04c0d60a87f"
+    },
+    {
+      "path": "textures/Toes_roughness.jpeg",
+      "bytes": 21229,
+      "sha256": "69567ab74176c95994fcd6bf84683b9b889e1d2bbce3cbfbeb2eb1b5e540d756"
+    },
+    {
+      "path": "textures/Heels_metallic.jpeg",
+      "bytes": 39345,
+      "sha256": "0d7f96840a5bbd41706ee3cfd99639e1e7cee558205477a3ce473fb7be5d2ac0"
+    },
+    {
+      "path": "textures/Turret_Barrels_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "6d342c50eae9e6838d588f4ae4349bbe191c6d4e5a3c3f793138b4431e16760a"
+    },
+    {
+      "path": "textures/Waist_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "c1e0cadf9e1aa448079dfbb6b28a57379d76900ac4ebb9edbdbcac10433dab56"
+    },
+    {
+      "path": "textures/Toes_normal.png",
+      "bytes": 607177,
+      "sha256": "def547f546e917f155a3f58d8f67ae41524ecd5f20332bf30b98dc2593d28db7"
+    },
+    {
+      "path": "textures/Turret_Barrels_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "ea2b78eeae6d7b4cf521aa9d12de5b19ca843583e84dc55300bbba286271bddc"
+    },
+    {
+      "path": "textures/Glass_opacity.jpeg",
+      "bytes": 12620,
+      "sha256": "5d183fb07811fb201c8215487ce3aa11d07175382f9d20177ea20cdbddfe96b3"
+    },
+    {
+      "path": "textures/Cockpit_AO.jpeg",
+      "bytes": 47046,
+      "sha256": "c3ea4684593b55c71c0ef199772108300558661286afe09e785862e30f0559e2"
+    },
+    {
+      "path": "textures/Waist_AO.jpeg",
+      "bytes": 30399,
+      "sha256": "4e63671c6dc51cb6325173a2f363bdf6cbdbc0dad7ca32df3614ea567abf0457"
+    },
+    {
+      "path": "textures/Lower_Legs_roughness.jpeg",
+      "bytes": 13960,
+      "sha256": "df068cd8e070b654c76ee332f2d25a2cff849d1a5a506defdc903d19a7cc1d44"
+    },
+    {
+      "path": "textures/Glass_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "e8a7f0cf0d6e064b11eb61f9aaa55f899f264bf11e092d09c44c855539417185"
+    },
+    {
+      "path": "textures/Cockpit_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "c1e0cadf9e1aa448079dfbb6b28a57379d76900ac4ebb9edbdbcac10433dab56"
+    },
+    {
+      "path": "textures/Lower_Legs_normal.png",
+      "bytes": 598299,
+      "sha256": "ed68aac4429adcf376b1fbbd53dcae99b70487f8431d72d049b7318e42f07886"
+    },
+    {
+      "path": "textures/Turret_Bases_AO.jpeg",
+      "bytes": 39158,
+      "sha256": "d1a2ff61ece5749b8b06c19e65f93c34d49e810e9945af82a1337202018e1bce"
+    },
+    {
+      "path": "textures/Lower_Legs_AO.jpeg",
+      "bytes": 35060,
+      "sha256": "230232dd6baccc4b3c3d5f32fdd5d696473e36d261b580ddbc7b0147fac1770c"
+    },
+    {
+      "path": "textures/Glass_albedo.jpeg",
+      "bytes": 17013,
+      "sha256": "e37f4328feaea23edcffadb58a28ac5d78fb5e584c9fcdf5311eebc2cfdab42c"
+    },
+    {
+      "path": "textures/Turret_Bases_normal.png",
+      "bytes": 663078,
+      "sha256": "1c53a9d356bf8700928b6c7deeff88dfdf03c4932290db15b1f62a6c439e8b68"
+    },
+    {
+      "path": "textures/Waist_normal.png",
+      "bytes": 262764,
+      "sha256": "10c45c1f9a0a2a929ef9d4e92517bcb256fbb22aa51d8c0067eea90e955740c4"
+    },
+    {
+      "path": "textures/Waist_albedo.jpeg",
+      "bytes": 17011,
+      "sha256": "87db7a2bf10f6d20f536cdae83c6e5eed1ff198984550a3864dd4bd937e4a133"
+    },
+    {
+      "path": "textures/Leg_Bases_normal.png",
+      "bytes": 655285,
+      "sha256": "231bbf0b39588d6a23c30357e1e636b501327a9bf674fb361044158bae7cd50f"
+    },
+    {
+      "path": "textures/Turret_Bases_metallic.jpeg",
+      "bytes": 40517,
+      "sha256": "5626dc9022741224fa6c865b6f1d0d74c8561879eaa4e3c1d3f86de5e096f94e"
+    },
+    {
+      "path": "textures/Cockpit_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "3e13f9b90017035a6a69d4caefdf31ff9a92f266aa90312e742a4f57463f1012"
+    },
+    {
+      "path": "textures/Turret_Bases_albedo.jpeg",
+      "bytes": 110656,
+      "sha256": "dc6829247229fdf81456f28e706b66085d4008af12026092f896941b4cef3c1f"
+    },
+    {
+      "path": "textures/Glass_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "6d342c50eae9e6838d588f4ae4349bbe191c6d4e5a3c3f793138b4431e16760a"
+    },
+    {
+      "path": "textures/Heels_AO.jpeg",
+      "bytes": 27632,
+      "sha256": "8905beb79f197e520294bcf992e48ea66280ae0b3b1682fbe48b74022742d9c7"
+    },
+    {
+      "path": "textures/Hatch_normal.png",
+      "bytes": 624509,
+      "sha256": "154381a7f14f714c082dd542963315e254f8b6dbc69c0866858674561e28c619"
+    },
+    {
+      "path": "textures/Lower_Legs_albedo.jpeg",
+      "bytes": 48324,
+      "sha256": "454c94d76fc8219f240f2968fe40b93648d7a9084e29873b32efcb394c017438"
+    },
+    {
+      "path": "textures/Hatch_AO.jpeg",
+      "bytes": 36378,
+      "sha256": "ec9816677290efd587897d6d15aa981ceee4c66f5a75a5ecf630c586fb401ca0"
+    },
+    {
+      "path": "textures/Heels_normal.png",
+      "bytes": 603174,
+      "sha256": "e786ae06d8275134f272485035a4bec795a7549b97cb8fd37b3ac15e0f64f697"
+    },
+    {
+      "path": "textures/Turret_Barrels_AO.jpeg",
+      "bytes": 35021,
+      "sha256": "0406476572fbab5c47e78b670667cb619277d208dd170d9e0b2f4699283cb860"
+    },
+    {
+      "path": "textures/Glass_normal.png",
+      "bytes": 262761,
+      "sha256": "c0a71ad8872974662dc87e7a2c688406a5136c2cacb8fe7a4a8ac0115facea2e"
+    },
+    {
+      "path": "textures/Toes_AO.jpeg",
+      "bytes": 31646,
+      "sha256": "0eb39dda35eced9e8e54488f5e7bd0e01167cf25bb6d4b9008bca5faa4930889"
+    },
+    {
+      "path": "textures/Toes_metallic.jpeg",
+      "bytes": 53500,
+      "sha256": "d797e392d56932325acb93bb754edb39eb3850dddd1fad01b9ebf4a3741623f3"
+    },
+    {
+      "path": "textures/Cockpit_normal.png",
+      "bytes": 262750,
+      "sha256": "d35c5b08a53952ba7b0b8e916772f0253c810d7f9cc3062d662618b7ba463c95"
+    },
+    {
+      "path": "textures/Toes_albedo.jpeg",
+      "bytes": 58884,
+      "sha256": "78b1714356274546ff6f75db8f0eca355a7da4fd89964676e3146197c05c2570"
+    },
+    {
+      "path": "textures/Leg_Bases_metallic.jpeg",
+      "bytes": 83222,
+      "sha256": "c17b10edde41f65e27d0edaf94ea4eb9f3d83112015d847f2ed25f77bd6de030"
+    },
+    {
+      "path": "textures/Lower_Legs_metallic.jpeg",
+      "bytes": 19486,
+      "sha256": "4010fdb161addb98c110bf2eb5c501b3b3d473be67c54426b6f4585b37beef55"
+    },
+    {
+      "path": "textures/Turret_Barrels_normal.png",
+      "bytes": 644445,
+      "sha256": "9a72d7fd7310753e8351ed5ecd89881f992df5fad849c8d82b92ec11a8b090d1"
+    },
+    {
+      "path": "textures/Leg_Bases_AO.jpeg",
+      "bytes": 48478,
+      "sha256": "cb338738b400c720efebc6fe7bd12981b00e18a1edd9785de3f37485ab0a03cd"
+    },
+    {
+      "path": "textures/Hatch_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "ea2b78eeae6d7b4cf521aa9d12de5b19ca843583e84dc55300bbba286271bddc"
+    },
+    {
+      "path": "textures/Turret_Barrels_albedo.jpeg",
+      "bytes": 34222,
+      "sha256": "5deafd043c4cba2cafc4d1838a699257c9b84e160a8abb8dd2ab929094fb6d12"
+    },
+    {
+      "path": "textures/Waist_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "3e13f9b90017035a6a69d4caefdf31ff9a92f266aa90312e742a4f57463f1012"
+    },
+    {
+      "path": "textures/Glass_AO.jpeg",
+      "bytes": 22748,
+      "sha256": "7fcaed4becacbf2667030dc1c68aecabbe82b25c4031f8e4588142c6d68dee8d"
+    },
+    {
+      "path": "textures/Hatch_albedo.jpeg",
+      "bytes": 26231,
+      "sha256": "1e5a28633408d71103ee664c2cb454b12d27eacfbbe83d2a5ad0111b41c8290a"
+    }
+  ],
+  "rigAudit": "not-run"
+}

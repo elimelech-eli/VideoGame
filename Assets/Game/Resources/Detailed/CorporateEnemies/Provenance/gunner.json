@@ -1,0 +1,259 @@
+{
+  "author": "gueriero",
+  "source": "https://sketchfab.com/3d-models/9d943813e89d433cbc68b3e8aaf114c7",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "4b6b01b5983fa429383bc20bd07c36449ee9ccb66230aa8974090a66b667f30d",
+  "files": [
+    {
+      "path": "source/Sketchfab_2023_08_01_02_34_51.blend",
+      "bytes": 56861274,
+      "sha256": "d83f48dcffec0dcd34bf90c42cd77fff7d9fd1300c2b58548f52c4cd07b46c33"
+    },
+    {
+      "path": "textures/Dron_Body_Verkh_Normal_OpenGL_Low_Q.jpeg",
+      "bytes": 143361,
+      "sha256": "54a9f55adb3cad1e1fd975205b9aa6a5b7c206ef1b54841141057bfc4f64b6ea"
+    },
+    {
+      "path": "textures/Dron_Body_Niz_Normal_OpenGL_Low_Q.jpeg",
+      "bytes": 124403,
+      "sha256": "37976fc0d7de416de43b2392c20879df589524d1fc4018ef290d90a6e5e592a4"
+    },
+    {
+      "path": "textures/Dron_Head_Dron_Normal_OpenGL_10012.jpeg",
+      "bytes": 483735,
+      "sha256": "c840f04a857055aafcd885a4bd45733a743698b65d8ed11edb99e2b5f8c4aa9e"
+    },
+    {
+      "path": "textures/Body_Verh_Metallic_1001-Body_Verh_Roughness_1001@channels=G.png",
+      "bytes": 469984,
+      "sha256": "e9acb9ed720e1fd875661876052d227fce4d0ecff744e6ad40f91d098ec7089e"
+    },
+    {
+      "path": "textures/Dron_02_leg_Normal_OpenGL_1001000.jpeg",
+      "bytes": 151743,
+      "sha256": "909689046a218db91588ad5acdabb18f78c72c78e3cbb2208d7a6fab6ed4bdbe"
+    },
+    {
+      "path": "textures/Dron_Body_Verkh_Metallic_Low_Q-Dron_Body_Verkh_Roughness_Low.png",
+      "bytes": 600418,
+      "sha256": "011b01867aaa168958753bd086002bf64daa3f59a80fc7c1a071dceb3a852f8a"
+    },
+    {
+      "path": "textures/Dron_Head_Dron_Base_Color_10012.jpeg",
+      "bytes": 583093,
+      "sha256": "b3f67e04d385b3f6183507da3ce390d4abdea3a0ed1772989f503c23c6d7927b"
+    },
+    {
+      "path": "textures/Dron_Body_Verkh_Base_Color_Low_Q.jpeg",
+      "bytes": 315120,
+      "sha256": "c9365edb3573b52c0ef0f0f1398dd71f77aa6f617e31d0d1e3912eedb1c83e82"
+    },
+    {
+      "path": "textures/Dron_Armor_02_Base_Color_1001000.jpeg",
+      "bytes": 125336,
+      "sha256": "3a7fb5ba22462584ee61142dfd3521a172d8e5ee6f25bb20484937bf3a4402ea"
+    },
+    {
+      "path": "textures/Body_Verh_Metallic_1001-Body_Verh_Roughness_1001@channels=B.png",
+      "bytes": 427616,
+      "sha256": "59c4cad89a9d49dc9359faccd67caf9e36bed0f35d5e0152875bf97bd4023129"
+    },
+    {
+      "path": "textures/Dron_01_arm_Base_Color_Low_Q.jpeg",
+      "bytes": 296286,
+      "sha256": "822ac4346db20f0715f9e36f3222208b13c727781ba40eacbb7adc2bb5966894"
+    },
+    {
+      "path": "textures/Dron_Body_Verkh_Metallic_Low_Q-Dron_Body_Verkh_Roughness_Low.png",
+      "bytes": 216113,
+      "sha256": "b8a4d025d1f58b784b3d2cbe97429b6240593194799796f05f2e35f6d5203f7d"
+    },
+    {
+      "path": "textures/Dron_Head_Dron_Metallic_10012-Dron_Head_Dron_Roughness_10012.png",
+      "bytes": 1076490,
+      "sha256": "a01cd94e2161c17eb50311b59264bfad36b27cc3fbe6d5ffb082bc22bd3e8f9b"
+    },
+    {
+      "path": "textures/Dron_02_leg_Base_Color_1001000.jpeg",
+      "bytes": 231990,
+      "sha256": "602004ae488f1c6fe7e4c25ff4afd8c83a1fdf60c9e922862bf18e27e3173f11"
+    },
+    {
+      "path": "textures/Dron_02_arm_Metallic_Low_Q-Dron_02_arm_Roughness_Low_Q@chann.png",
+      "bytes": 224965,
+      "sha256": "92dd0431d1e63ed09aa0b1e956d1d45370789d076c12df8d2fa2d3423d23ec15"
+    },
+    {
+      "path": "textures/Dron_Armor_02_Metallic_1001_jpg-Dron_Armor_02_Roughness_1001.png",
+      "bytes": 32594,
+      "sha256": "ff2cf70a7fd6ad10b98c9aa99bb90b1c5359dfc4459d778a86496be8e08e0285"
+    },
+    {
+      "path": "textures/Dron_02_arm_Normal_OpenGL_Low_Q.jpeg",
+      "bytes": 155059,
+      "sha256": "e5e69779757aa45e9bde042b2c6c172296e5e507c24bec0020c1af2da3201922"
+    },
+    {
+      "path": "textures/Dron_PP_Metallic_Low_Q-Dron_PP_Roughness_Low_Q@channels=B.png",
+      "bytes": 401000,
+      "sha256": "637a0964a140cea165c0cc071120f3eb5f9c08ebf4e4964c04d9380a85267cc6"
+    },
+    {
+      "path": "textures/Dron_01_leg_Metallic_Low_Q-Dron_01_leg_Roughness_Low_Q@chann.png",
+      "bytes": 231064,
+      "sha256": "0430075216735c27bace8a1c26536fde0a627ecfef8d82261cafe3ec3a3e246c"
+    },
+    {
+      "path": "textures/Body_Niz_Normal_OpenGL_1001.jpeg",
+      "bytes": 91597,
+      "sha256": "9c277d9350682b8ddfcf845139669bb07f39f60e4e1cb7a00827302d1abdc51b"
+    },
+    {
+      "path": "textures/Body_Verh_Base_Color_1001.jpeg",
+      "bytes": 202796,
+      "sha256": "2905ff07b7d400ee625b9476d25621fae8f1132a27b16a6ec16816c3799f64b9"
+    },
+    {
+      "path": "textures/Dron_Body_Niz_Base_Color_Low_Q.jpeg",
+      "bytes": 230735,
+      "sha256": "6338a44f7edb19521e81b619f076c93b595732433c4ea70b7c2e440b2cc39fa6"
+    },
+    {
+      "path": "textures/Dron_Armor_02_Metallic_1001_jpg-Dron_Armor_02_Roughness_1001.png",
+      "bytes": 192779,
+      "sha256": "399ed1b0f02077038a02ffae1d2604c61b94230b868cc9a5b58c2ba5e154a0bd"
+    },
+    {
+      "path": "textures/Dron_01_arm_Metallic_Low_Q-Dron_01_arm_Roughness_Low_Q@chann.png",
+      "bytes": 388314,
+      "sha256": "06a1c15034605cae375d64a72f91198bae198d8205fd6dda6c16905df760d40e"
+    },
+    {
+      "path": "textures/Dron_Armor_01_Roughness__Low_Q@channels=G.png",
+      "bytes": 406216,
+      "sha256": "8b6ed35106f9409a8e34136c6a4009de507b549dc6a38bd2cad8c749db2b0081"
+    },
+    {
+      "path": "textures/Dron_PP_Metallic_Low_Q-Dron_PP_Roughness_Low_Q@channels=G.png",
+      "bytes": 584376,
+      "sha256": "5c2aa8d459c6e4539301b669efd4b3f1b41eea3537a03a1cdbc1a5c36cbbcd55"
+    },
+    {
+      "path": "textures/Dron_02_leg_Metallic_1001_jpg-Dron_02_leg_Roughness_1001_jpg.png",
+      "bytes": 298509,
+      "sha256": "95e8798791ae3cc9464f835a5e21a682d89d211c1fa6bda22a8e8d771a5736e1"
+    },
+    {
+      "path": "textures/Dron_02_arm_Base_Color_Low_Q.jpeg",
+      "bytes": 264009,
+      "sha256": "55e1ef4eef5093b6e025fa03b9b76942fe8d3b9a9274b41a56e8c19de2f6af95"
+    },
+    {
+      "path": "textures/Dron_PP_Base_Color_Low_Q.jpeg",
+      "bytes": 200140,
+      "sha256": "92704cab64cfbd90d2f2f34bf8fc9834baff315c81747dbb9be739132e7f57ad"
+    },
+    {
+      "path": "textures/Dron_Armor_01_Normal_OpenG_Low_Q.jpeg",
+      "bytes": 293450,
+      "sha256": "16939d699693de748ea5248f94db0c78871a4be4ee7da8903ae4612a82510e48"
+    },
+    {
+      "path": "textures/Dron_Body_Niz_Metallic_Low_Q-Dron_Body_Niz_Roughness_Low_Q@c.png",
+      "bytes": 198218,
+      "sha256": "bba818de33b9738e6efd8494cd8f5600268196c3a07a737f3e733b204a27b0a2"
+    },
+    {
+      "path": "textures/Body_Niz_Metallic_1001-Body_Niz_Roughness_1001@channels=B.png",
+      "bytes": 445379,
+      "sha256": "3a735543fbf1fde323412f4ab90d8e7e2b765e9039f2261d5a1e04c0f225b37d"
+    },
+    {
+      "path": "textures/Body_Verh_Normal_OpenGL_1001.jpeg",
+      "bytes": 94151,
+      "sha256": "81c7a64543a6f433b6b58eb1254dd430176954450e0d34d8145e69a08e3fcce9"
+    },
+    {
+      "path": "textures/Dron_Body_Niz_Metallic_Low_Q-Dron_Body_Niz_Roughness_Low_Q@c.png",
+      "bytes": 282467,
+      "sha256": "26833e6540da02be408c59a437958efa02b6a596cbeb92b3041dd2a3c6f28898"
+    },
+    {
+      "path": "textures/Dron_PP_Normal_OpenGL_Low_Q.jpeg",
+      "bytes": 122635,
+      "sha256": "34e559f135af2e34811f4195d087c261d6928c3de1c3d1b6f55340c10a7a1642"
+    },
+    {
+      "path": "textures/Body_Niz_Metallic_1001-Body_Niz_Roughness_1001@channels=G.png",
+      "bytes": 460383,
+      "sha256": "73b1b844559589bc0adc648e5c0a78fd9d1936bf8b6c0383440236f29be8e4b3"
+    },
+    {
+      "path": "textures/Dron_01_arm_Normal_OpenGL_Low_Q.jpeg",
+      "bytes": 208530,
+      "sha256": "8a4bd8f224669d20e2c3a168c54a7664b763aff176b31b6c31896dd098948793"
+    },
+    {
+      "path": "textures/Dron_02_leg_Metallic_1001_jpg-Dron_02_leg_Roughness_1001_jpg.png",
+      "bytes": 193723,
+      "sha256": "69880e785cb6aeab9588a80bf6681e2a1df3808d3778ae7e69a633330d77fc5d"
+    },
+    {
+      "path": "textures/Dron_01_arm_Metallic_Low_Q-Dron_01_arm_Roughness_Low_Q@chann.png",
+      "bytes": 560164,
+      "sha256": "ce2827bf010a5a509bd6247bdf60c24ffcf874eff9409f30b9c064a2ecbb9c22"
+    },
+    {
+      "path": "textures/Body_Niz_Base_Color_1001.jpeg",
+      "bytes": 194035,
+      "sha256": "7201aa574b10bb583ff885f56a877aad99468e499f314bb00c1bd54f6a5887c0"
+    },
+    {
+      "path": "textures/Dron_01_leg_Normal_Low_Q.jpeg",
+      "bytes": 61761,
+      "sha256": "b1c790edcde4119c6a898858d12b6e016c047c55ad60443f294a56fcd3f070fa"
+    },
+    {
+      "path": "textures/Dron_Armor_01_Base_Color__Low_Q.jpeg",
+      "bytes": 111776,
+      "sha256": "48d10325894a4856f759199c74b6b24d1ef8f8884d15c223046933804b097740"
+    },
+    {
+      "path": "textures/Dron_01_leg_Base_Color_Low_Q.jpeg",
+      "bytes": 192033,
+      "sha256": "b9872cacb6d13a1507e4f70ec936adf2fc5d7d994c056a2af68d65bb67c1aee2"
+    },
+    {
+      "path": "textures/Dron_Head_Dron_Metallic_10012-Dron_Head_Dron_Roughness_10012.png",
+      "bytes": 713265,
+      "sha256": "0d5113cb23d3d57f282b5de5f387c0444f5c81febee9497e5f933ef2add4d608"
+    },
+    {
+      "path": "textures/Dron_02_arm_Metallic_Low_Q-Dron_02_arm_Roughness_Low_Q@chann.png",
+      "bytes": 501455,
+      "sha256": "2ec986209ea30676577989c06ab3f43ef388384562b7adca33ff1651aeb014f6"
+    },
+    {
+      "path": "textures/Dron_01_leg_Metallic_Low_Q-Dron_01_leg_Roughness_Low_Q@chann.png",
+      "bytes": 252250,
+      "sha256": "9a75da3c2b4e132c183bedad2f208132d3c0e216550aa8f35c584aad68c44114"
+    },
+    {
+      "path": "textures/Dron_Armor_02_Normal_OpenGL_1001000.jpeg",
+      "bytes": 270116,
+      "sha256": "140071162b96f27bea1928cf676bf6d17424cc8862bba864e3a2e5b94301f88c"
+    }
+  ],
+  "rigAudit": "not-run",
+  "officialConverted": {
+    "sha256": "9FE1177D36D9AC1BD6D32E9FC1D8B8C6BE9D4DE77039DA00F2C4118585F60D7A",
+    "licenseEvidence": "Official authenticated Sketchfab download dialog: CC Attribution, commercial use allowed",
+    "bytes": 141778148,
+    "file": "official-converted.glb",
+    "format": "GLB",
+    "textureSize": 2048
+  }
+}
