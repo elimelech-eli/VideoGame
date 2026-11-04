@@ -1,0 +1,201 @@
+{
+  "author": "Andrei Milin",
+  "source": "https://sketchfab.com/3d-models/dae0366489e54d10b15c1315407cac33",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "0ba60f2a27cc66934c044abe8032990f45456095f9dfcd192b2b13fd88e14414",
+  "files": [
+    {
+      "path": "source/RobotWarrior.fbx",
+      "bytes": 2013596,
+      "sha256": "6e7a86fba3656767328ddc5eb586edd9a334d0b0b454c91f9e5d6be53bcd6a1e"
+    },
+    {
+      "path": "textures/CyberBox_Base_color.png",
+      "bytes": 2495165,
+      "sha256": "1872b167e837d39ed3ab9fca8c72667c0fdc95b8d85860bda3ce7ff3923d8c32"
+    },
+    {
+      "path": "textures/Legs_Normal_OpenGL.png",
+      "bytes": 16786911,
+      "sha256": "4eb26d3e078ecee7911d9908c899faab18b2be259d68a4b8dbca3b8400143e6c"
+    },
+    {
+      "path": "textures/Legs_Roughness.png",
+      "bytes": 2232122,
+      "sha256": "d2b94b3849512d015305ef207ba434bd6d0744510e413d1d25baeef35414c7bf"
+    },
+    {
+      "path": "textures/CyberBox_Metallic.png",
+      "bytes": 56986,
+      "sha256": "326a81e9dc0711a343137b6cb874144c039aaee01926f67b89af74c618ac844c"
+    },
+    {
+      "path": "textures/Legs_Metallic.png",
+      "bytes": 2235058,
+      "sha256": "ec80c124b57d41b7825123a8f84b2094d0cd7b75bbe21ea1dc2c059079e16ba8"
+    },
+    {
+      "path": "textures/Shield_Base_color.png",
+      "bytes": 3322779,
+      "sha256": "95acd037fef769e758dfa6496af2f4f6cfe7aae4a7bbe2ce8843f14481f71d9b"
+    },
+    {
+      "path": "textures/Shield_Roughness.png",
+      "bytes": 1587709,
+      "sha256": "195d8ac068905d213dfcb11f992f079c73fd5086559b207c75027080c2df16b4"
+    },
+    {
+      "path": "textures/Shield_Opacity.png",
+      "bytes": 91748,
+      "sha256": "ea173578ab5ed8bc98ab1c43ba8e7cc98a381acd4993b8b666d2a3bd765f3241"
+    },
+    {
+      "path": "textures/CyberSMG_Base_color.png",
+      "bytes": 4689883,
+      "sha256": "e21ec97a280f37abed1fea5afda899e7c6c2594e3342e2859b1a629ca88c8829"
+    },
+    {
+      "path": "textures/Arms_Roughness.png",
+      "bytes": 2216676,
+      "sha256": "aa3df51a04c38eda6818e52d6de5afa6d3808576c20e4cd55953fb5424780bda"
+    },
+    {
+      "path": "textures/CyberBox_Normal_OpenGL.png",
+      "bytes": 2702832,
+      "sha256": "bebfd88138895fe093e899c63791b89cf30903c761ac1a51006ea61b39a7d3b4"
+    },
+    {
+      "path": "textures/Head_Metallic.png",
+      "bytes": 1834676,
+      "sha256": "f68114d4caff6f74d8e7f690fb77fe1e9e157ad28afe1315988d4687de5a47e9"
+    },
+    {
+      "path": "textures/Head_Normal_OpenGL.png",
+      "bytes": 16175027,
+      "sha256": "12a65482d4dd42201e9784a9d962a8c839a2e49c772c5a4e76cc2b74c19c9f0a"
+    },
+    {
+      "path": "textures/Head_Roughness.png",
+      "bytes": 2021439,
+      "sha256": "ecb5f88fe87bc23e9a4e2fc6151017f4b2e3142694cdc5d7ec73792c7be9234c"
+    },
+    {
+      "path": "textures/Shield_Normal_OpenGL.png",
+      "bytes": 12186712,
+      "sha256": "fbf2b84ee9be7def0eeb60993e6ae3e4740db5f319fa167128ded1e13bd829ec"
+    },
+    {
+      "path": "textures/CyberSMG_Metallic.png",
+      "bytes": 955603,
+      "sha256": "c06884001fd268bcfc89c257772a12162c7231d227f852439227498ecc4a9266"
+    },
+    {
+      "path": "textures/CyberSMG_Normal_OpenGL.png",
+      "bytes": 16490803,
+      "sha256": "db08d31293e3f12aa409dbc279a7b09c04da8dce09c54fe10f21163b6a1d0109"
+    },
+    {
+      "path": "textures/Arms_Normal_OpenGL.png",
+      "bytes": 16839252,
+      "sha256": "8291b3829303fc5dc364c76e4c7a01290a025f600c6b0eb3d37fc6ad6ff45ac8"
+    },
+    {
+      "path": "textures/Arms_Base_color.png",
+      "bytes": 3898285,
+      "sha256": "fa60978295f1e1563acf9d25f45129aaef35e2aa51c39c889ded319b56043812"
+    },
+    {
+      "path": "textures/Shield_Metallic.png",
+      "bytes": 139996,
+      "sha256": "8fa94d85900c221cc91be56c663a2a5f1beb20ded7d27b79d54ef5a24d80bacb"
+    },
+    {
+      "path": "textures/Torso_Normal_OpenGL.png",
+      "bytes": 16088849,
+      "sha256": "ba1d8bba35c8621a6c7e8a0b05d6075fe71681808f2467f9c1010e79347f38c3"
+    },
+    {
+      "path": "textures/CyberSMG_Mixed_AO.png",
+      "bytes": 261851,
+      "sha256": "b505290f716316d7bbdccc02b654816dc9a3e283a96f27b3765b47f53e5dfe03"
+    },
+    {
+      "path": "textures/Torso_Roughness.png",
+      "bytes": 2115709,
+      "sha256": "412054d1d38b048bc983af59d30ca1d5318c6dfbfcc5a7c0ce8a344738bdd912"
+    },
+    {
+      "path": "textures/Head_Mixed_AO.png",
+      "bytes": 1001221,
+      "sha256": "614c31c64c773188923d9820ae7dadec3a07ca85f28023c645fb0f494a9236df"
+    },
+    {
+      "path": "textures/Legs_Mixed_AO.png",
+      "bytes": 1137126,
+      "sha256": "238149638181c909b92da240c317a30c155341856981664b30c157ffa347ad16"
+    },
+    {
+      "path": "textures/Arms_Metallic.png",
+      "bytes": 2066369,
+      "sha256": "e1b782dc153cbc1fc9f5c875ddcceff29d8ad039e4c2dca31e10e3bce1eb6a47"
+    },
+    {
+      "path": "textures/CyberBox_Mixed_AO.png",
+      "bytes": 565821,
+      "sha256": "41dd5c60150029123be10637974ea0c9cc29d6f7e5224426e052b5b9c456bf91"
+    },
+    {
+      "path": "textures/Head_Emissive.png",
+      "bytes": 69805,
+      "sha256": "f898c4d07043ada66a811db767671441ddb2663e1ff049573ab3421a44f90345"
+    },
+    {
+      "path": "textures/Torso_Base_color.png",
+      "bytes": 3932331,
+      "sha256": "81df8f9aeeddfeb0cfcde5c38d87c733708e83eb91ed395b8399d1dad9b8c486"
+    },
+    {
+      "path": "textures/Torso_Mixed_AO.png",
+      "bytes": 999000,
+      "sha256": "5b5533e2f34b385be7554d986c3aea403eac2b17f8b9590fb0f77f4bc4be9019"
+    },
+    {
+      "path": "textures/Head_Base_color.png",
+      "bytes": 3635684,
+      "sha256": "e2a4c6136c528680fe58e82c1950daa8111014d65b3f1cc8a585bc289097f17b"
+    },
+    {
+      "path": "textures/Shield_Mixed_AO.png",
+      "bytes": 876545,
+      "sha256": "b0845301897b840a9c66606488341db2965efaf738e1522ba128c434e7431297"
+    },
+    {
+      "path": "textures/Torso_Metallic.png",
+      "bytes": 2065992,
+      "sha256": "02cc27e32af704ae6c7d14a62ac5f99aa5277a6aee79c449618e2a284617198e"
+    },
+    {
+      "path": "textures/Legs_Base_color.png",
+      "bytes": 4398220,
+      "sha256": "a7b9b3433519edc9eb62f948d8b97ea507eada77773c5b92b2e021a9cd28a16f"
+    },
+    {
+      "path": "textures/CyberBox_Roughness.png",
+      "bytes": 1210564,
+      "sha256": "45d95f7796d8c693e3d93edf93c3fc4b9907dc49036d38916e579f219b42cf59"
+    },
+    {
+      "path": "textures/CyberSMG_Roughness.png",
+      "bytes": 2318811,
+      "sha256": "2180b63a59c59556e0ed83fffc8b795d9cce6968e29b89784cf33ffa89c43c9f"
+    },
+    {
+      "path": "textures/Arms_Mixed_AO.png",
+      "bytes": 1188904,
+      "sha256": "264054d5fa5df0ec90792e0888bf0c5000e949d8916561cae2ffa20a0c50a76e"
+    }
+  ],
+  "rigAudit": "not-run"
+}

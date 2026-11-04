@@ -1,0 +1,116 @@
+{
+  "author": "HighPolyDensity",
+  "source": "https://sketchfab.com/3d-models/28b3e1a216904de7ad212368fb9d8f59",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "e374cbf0f5f3932a940e3142d000ea195ccfb84f2d85d51b5ddd2d736068a4e8",
+  "files": [
+    {
+      "path": "source/model.zip",
+      "bytes": 6911041,
+      "sha256": "586c0e777d5d2fd7d513f5fcacf52adec324a41b55b572cdc0624b69f5e7f04a"
+    },
+    {
+      "path": "textures/Eyes_1001_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "3e13f9b90017035a6a69d4caefdf31ff9a92f266aa90312e742a4f57463f1012"
+    },
+    {
+      "path": "textures/Beaks_1001_albedo.jpeg",
+      "bytes": 17011,
+      "sha256": "1da99f8b9f09c27cc9ef7e447a83da0148348bd5db1402fa1f733e79d2edf3ed"
+    },
+    {
+      "path": "textures/Spikes_1001_AO.jpeg",
+      "bytes": 148125,
+      "sha256": "e35240b5fe4f71bda98a197ab293db881b115691b974aca195dd03257753d944"
+    },
+    {
+      "path": "textures/Body_1001_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "c1e0cadf9e1aa448079dfbb6b28a57379d76900ac4ebb9edbdbcac10433dab56"
+    },
+    {
+      "path": "textures/Eyes_1001_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "3e13f9b90017035a6a69d4caefdf31ff9a92f266aa90312e742a4f57463f1012"
+    },
+    {
+      "path": "textures/Spikes_1001_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "c1e0cadf9e1aa448079dfbb6b28a57379d76900ac4ebb9edbdbcac10433dab56"
+    },
+    {
+      "path": "textures/Beaks_1001_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "3e13f9b90017035a6a69d4caefdf31ff9a92f266aa90312e742a4f57463f1012"
+    },
+    {
+      "path": "textures/Spikes_1001_normal.png",
+      "bytes": 296325,
+      "sha256": "0a21587a36cbc522a10b5d26940578ad135e031d5f594336d775849d4aac2c07"
+    },
+    {
+      "path": "textures/Body_1001_albedo.jpeg",
+      "bytes": 100360,
+      "sha256": "971e35dbac5a7420e6af16d220319bfa7494987957ec61fdcc9255ca7ba9c01c"
+    },
+    {
+      "path": "textures/Eyes_1001_albedo.jpeg",
+      "bytes": 17012,
+      "sha256": "72ca3be94f2e6a8b560b74baad62c2b4f562698b9b29138cd0fb54ec645940c3"
+    },
+    {
+      "path": "textures/Eyes_1001_normal.png",
+      "bytes": 266989,
+      "sha256": "158b0b5ec28a7fd291c5c8ec6ad1f72af161fa798bf0ebef68d80aa96697adfc"
+    },
+    {
+      "path": "textures/Spikes_1001_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "3e13f9b90017035a6a69d4caefdf31ff9a92f266aa90312e742a4f57463f1012"
+    },
+    {
+      "path": "textures/Spikes_1001_albedo.jpeg",
+      "bytes": 17012,
+      "sha256": "787a18806c24a24ed67bf47bc2db4d6ca42ed486ff09319b96759d0694af2192"
+    },
+    {
+      "path": "textures/Body_1001_metallic.jpeg",
+      "bytes": 12620,
+      "sha256": "3e13f9b90017035a6a69d4caefdf31ff9a92f266aa90312e742a4f57463f1012"
+    },
+    {
+      "path": "textures/Beaks_1001_AO.jpeg",
+      "bytes": 95015,
+      "sha256": "f390d7be2469b62f24fe1204a9b9b2a871a1761bc6d9dc691892920b1ecd4172"
+    },
+    {
+      "path": "textures/Beaks_1001_roughness.jpeg",
+      "bytes": 12620,
+      "sha256": "c1e0cadf9e1aa448079dfbb6b28a57379d76900ac4ebb9edbdbcac10433dab56"
+    },
+    {
+      "path": "textures/Beaks_1001_normal.png",
+      "bytes": 296084,
+      "sha256": "c61975acf2c8878f5a0c31261f7953603fc2a4e192e3e30c8ca919c437ebbb5f"
+    },
+    {
+      "path": "textures/Eyes_1001_AO.jpeg",
+      "bytes": 85448,
+      "sha256": "5e26ff2e5c0786a941c435a2955fcfbdb63b4332fe5a68ea33f6bbcc02be2334"
+    },
+    {
+      "path": "textures/Body_1001_AO.jpeg",
+      "bytes": 153330,
+      "sha256": "8bbb0b79acc0c9da123da28c5a029991744654d39e2d301de428e8ec9c4e884f"
+    },
+    {
+      "path": "textures/Body_1001_normal.png",
+      "bytes": 1345405,
+      "sha256": "973355b92a4a4556ade1a9ff7fa5412dfd7520569e67e03f20eb95ec8c2351e6"
+    }
+  ],
+  "rigAudit": "not-run"
+}

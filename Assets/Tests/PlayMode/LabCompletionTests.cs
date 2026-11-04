@@ -56,10 +56,10 @@ public sealed class LabCompletionTests
         float health=game.Player.Health;Time.timeScale=0;yield return new WaitForSecondsRealtime(.2f);Assert.AreEqual(health,game.Player.Health);Assert.IsTrue(marks.All(m=>m!=null&&!m.Detonated));Time.timeScale=1;
         boss.Damage(boss.HealthMaximum);yield return null;yield return null;Assert.IsFalse(Object.FindObjectsByType<EnemyMortar>(FindObjectsSortMode.None).Any(m=>m.Owner==boss));Assert.AreEqual("Dead",boss.BossState);Assert.IsFalse(boss.WindingUp);
     }
-    [UnityTest] public IEnumerator MeleeCompatibilityAndNonLabBehaviorRemainIntact()
+    [UnityTest] public IEnumerator MeleeCompatibilityAndLabTraitsStayWithinLab()
     {
         var melee=game.SpawnDrone(Vector3.up,false);melee.enabled=false;Assert.AreEqual(EnemyKind.Rusher,melee.Kind);Assert.IsFalse(melee.Ranged);
-        game.NewSession();game.StartMission((int)BiomeId.NeonStreets,6);game.Director.enabled=false;var hunter=game.SpawnDrone(Vector3.up,EnemyKind.Hunter);hunter.enabled=false;Assert.IsFalse(hunter.Ranged);Assert.AreEqual(0,hunter.Shield);Assert.IsFalse(Object.FindObjectsByType<Drone>(FindObjectsSortMode.None).Any(d=>d.IsLabBoss));
+        game.NewSession();game.StartMission((int)BiomeId.NeonStreets,6);game.Director.enabled=false;var hunter=game.SpawnDrone(Vector3.up,EnemyKind.Hunter);hunter.enabled=false;Assert.IsTrue(hunter.Ranged);Assert.IsTrue(hunter.IsBiomeHeavy);Assert.IsFalse(hunter.IsLabHeavy);Assert.AreEqual(90*(1+(hunter.Level-1)*.1f),hunter.Shield);Assert.IsFalse(Object.FindObjectsByType<Drone>(FindObjectsSortMode.None).Any(d=>d.IsLabBoss));
         Assert.Throws<System.ArgumentException>(()=>game.SpawnDrone(Vector3.up,EnemyKind.Hunter,true));yield return null;
     }
 }

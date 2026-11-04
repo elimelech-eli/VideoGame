@@ -1,0 +1,41 @@
+{
+  "author": "HighPolyDensity",
+  "source": "https://sketchfab.com/3d-models/7ce7efc6c061403087a783ee84d34bef",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "25265d9f75957f914d89aad6282b23263865319cce89f878592c1525ddbd41bc",
+  "files": [
+    {
+      "path": "source/Industrial.zip",
+      "bytes": 7924276,
+      "sha256": "d9d8360233fce9b33d2e13cf9d25ebf9896c7db1bf7a5ca51f49e62aae23f3d8"
+    },
+    {
+      "path": "textures/DefaultMaterial_roughness.jpeg",
+      "bytes": 388484,
+      "sha256": "5b7f10cffddd7982e3a845c00cf93c358385a672af7132075a7d016312efeab1"
+    },
+    {
+      "path": "textures/DefaultMaterial_albedo.jpeg",
+      "bytes": 783068,
+      "sha256": "bd7c4370204038e4f8729b4b8a66207256094a734be868375a8ddf8c01de65a5"
+    },
+    {
+      "path": "textures/DefaultMaterial_AO.jpeg",
+      "bytes": 376190,
+      "sha256": "398365d8ee9e6fd34e8b1c63134d4b4c61c8079cd9d0f53f99a0f6f872b07613"
+    },
+    {
+      "path": "textures/DefaultMaterial_metallic.jpeg",
+      "bytes": 73844,
+      "sha256": "424daed543095141aebc9bdcbb10893579557451d982c0faa08df127d392c385"
+    },
+    {
+      "path": "textures/DefaultMaterial_normal.png",
+      "bytes": 2271103,
+      "sha256": "17d73273d9ebb2692698964b219a52c882391a4d5023a92ed2f0508fc85fc13d"
+    }
+  ],
+  "rigAudit": "not-run"
+}

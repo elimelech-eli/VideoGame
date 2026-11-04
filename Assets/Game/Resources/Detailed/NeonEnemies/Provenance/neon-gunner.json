@@ -1,0 +1,49 @@
+{
+  "author": "Coconut",
+  "source": "https://sketchfab.com/3d-models/5a3556c3bc2b4cb39aba45af47cedf21",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "e598e5a43ecf4b167914f069f6be7c536a4eb15a043f15ed61b460ac9a002521",
+  "files": [
+    {
+      "path": "source/ernnie collab2.fbx",
+      "bytes": 2012192,
+      "sha256": "4a97152a50478635e08ccd98f6310e80a6c836cedb3abfcf0f9fe10aff742b13"
+    },
+    {
+      "path": "textures/Metal_txt.png",
+      "bytes": 1042881,
+      "sha256": "348d6557bd88ce8dccec6b15796602f49fbb8e6824aa509286779832e37e6cf0"
+    },
+    {
+      "path": "textures/dis_skin.png",
+      "bytes": 27175,
+      "sha256": "aea7d1de4a74b9f5f288da8184a1f7d210e9fa9b544797a409786f02e7e046b7"
+    },
+    {
+      "path": "textures/bump_txt.png",
+      "bytes": 1366492,
+      "sha256": "3ead558f0b0a67b87c4a613a568920a797ea7faf7679789b3c90c3970a3b2fd5"
+    },
+    {
+      "path": "textures/skin_bump_map.png",
+      "bytes": 450198,
+      "sha256": "9df932ab74f2e1c4b9dc9b853752f44e291033b0292976221aead2b5c6189516"
+    },
+    {
+      "path": "textures/dis_map.png",
+      "bytes": 217181,
+      "sha256": "ff98f9a38c4f18bae66d3a63dfd0bd427a8a21675df9d544806e03a8527ee7d1"
+    }
+  ],
+  "rigAudit": "not-run",
+  "officialConverted": {
+    "sha256": "281E8F2AE9AB09BCC01C1C34DC88DE00BBB3185450D1EB7A9D1417591163C8BF",
+    "licenseEvidence": "Official authenticated Sketchfab download dialog: CC Attribution, commercial use allowed",
+    "bytes": 3385816,
+    "file": "official-converted.glb",
+    "format": "GLB",
+    "textureSize": 1024
+  }
+}

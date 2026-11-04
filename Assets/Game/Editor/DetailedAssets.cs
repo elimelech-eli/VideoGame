@@ -9,7 +9,7 @@ namespace VideoGame.Editor
     {
         void OnPreprocessModel()
         {
-            if (!assetPath.Contains("/Detailed/")) return;
+            if (!assetPath.Contains("/Detailed/") || assetPath.Contains("/NeonEnemies/") || assetPath.Contains("/CorporateEnemies/") || assetPath.Contains("/UndercityEnemies/")) return;
             var importer = (ModelImporter)assetImporter;
             importer.importCameras = false; importer.importLights = false;
             importer.materialImportMode = ModelImporterMaterialImportMode.None;
@@ -18,7 +18,7 @@ namespace VideoGame.Editor
         }
         void OnPreprocessTexture()
         {
-            if (!assetPath.Contains("/Detailed/")) return;
+            if (!assetPath.Contains("/Detailed/") || assetPath.Contains("/NeonEnemies/") || assetPath.Contains("/CorporateEnemies/") || assetPath.Contains("/UndercityEnemies/")) return;
             var importer = (TextureImporter)assetImporter;
             importer.maxTextureSize = 2048;
             string lower = assetPath.ToLowerInvariant();

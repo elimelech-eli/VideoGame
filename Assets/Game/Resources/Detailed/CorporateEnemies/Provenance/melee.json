@@ -1,0 +1,16 @@
+{
+  "author": "lenat_1",
+  "source": "https://sketchfab.com/3d-models/b8b37615db1344da9ded592adba8e6b6",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "b336a3c16f9aeace0e1a459e5ec2202f0f0de3d01fc7a77b3ccd50a1cb0b3996",
+  "files": [
+    {
+      "path": "source/\u0441\u043e\u0431\u0430\u043a\u0435\u043d.fbx",
+      "bytes": 2768268,
+      "sha256": "1a1f5bab45dc4f16ad0097f4e722da29d822a1c5f87c3ffdb21cac61da3b08cf"
+    }
+  ],
+  "rigAudit": "not-run"
+}

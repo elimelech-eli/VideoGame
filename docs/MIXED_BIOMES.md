@@ -37,3 +37,5 @@ Final complete local validation: 38,420 Core assertions, 20/20 EditMode and 125/
 These are automated and static-render checks. Manual combat/controller/audio testing remains user review. Enemy proofs are isolated from the delivered runtime and do not change existing spawn rosters.
 
 PR validation found that the old smoke script's fixed eight-second total window could stop a cold CI player during scene loading without any runtime error. The smoke now allows a bounded 60-second initialization window and then requires eight additional healthy seconds; local revalidation initialized in0.56s and passed. Gameplay/test/build evidence is unchanged by this tooling-only correction.
+
+Dedicated enemy integration supersedes the earlier isolated-proof status: see REMAINING_ENEMIES.md for the approved twelve-model roster and current validation evidence.

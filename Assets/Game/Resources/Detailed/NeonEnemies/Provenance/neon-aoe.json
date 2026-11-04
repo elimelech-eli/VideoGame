@@ -1,0 +1,71 @@
+{
+  "author": "Kerem Kavalci",
+  "source": "https://sketchfab.com/3d-models/cba87a0ba2c54be6a429440f39daeb1b",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "Official authenticated download dialog; commercial use and creator credit stated.",
+  "date": "2026-11-02",
+  "archiveSha256": "728915256e480b7636e027352ced19492044947f00abb32520aa5b567e988e1e",
+  "files": [
+    {
+      "path": "source/drone_final.fbx",
+      "bytes": 3894204,
+      "sha256": "7c63cabb06d6b1ec7e3537b6559ec5f21e367b053e3896934ccc2e97d69a3da6"
+    },
+    {
+      "path": "textures/BASE_Normal_DirectX.png",
+      "bytes": 4824072,
+      "sha256": "9e48113d19b33b4011151c975da014b3cc6235d323448c874f72a5e835a4668c"
+    },
+    {
+      "path": "textures/Tires_Normal_DirectX.png",
+      "bytes": 16763823,
+      "sha256": "fa51ec50ac6a0c2e3922acc0ef7241e00e4ef573d783b730b4ff61bdeac6c387"
+    },
+    {
+      "path": "textures/BASE_Mixed_AO.png",
+      "bytes": 5286680,
+      "sha256": "1359119135d6bcecd82a7022643dba1f853005e3c1d39667a34af0269766416d"
+    },
+    {
+      "path": "textures/Tires_Mixed_AO.png",
+      "bytes": 4284855,
+      "sha256": "d851fc21a191ff9cf3f6c3d7e131e8d17199295ceca3c73c309c6d02c135240b"
+    },
+    {
+      "path": "textures/Tires_Metallic.png",
+      "bytes": 2863338,
+      "sha256": "7a810d08a4642793911f5372dc38b5f620c1e086584342503ceb1b0086507282"
+    },
+    {
+      "path": "textures/BASE_Base_color.png",
+      "bytes": 11611999,
+      "sha256": "e15a7c74627bee8fc2ca7fde93840096a844311043d35f5255bf05853edfe565"
+    },
+    {
+      "path": "textures/BASE_Emissive.png",
+      "bytes": 51847,
+      "sha256": "e1356d16733f1ba63c2aa65dbf3e80c02a40bad0429ec7093512444788eea5f5"
+    },
+    {
+      "path": "textures/BASE_Metallic.png",
+      "bytes": 6826707,
+      "sha256": "8454ed415153e77f668e01a61fa66bab75437404c5177dcf1f6f8e29a2a87fdc"
+    },
+    {
+      "path": "textures/Tires_Base_color.png",
+      "bytes": 9046412,
+      "sha256": "4e41d938a909e1ea8dd41b182f0c0ffb7df454e1e326684a1b245d54a36b0b9f"
+    },
+    {
+      "path": "textures/BASE_Roughness.png",
+      "bytes": 6783158,
+      "sha256": "d4b4abb61e577c12ced635a26dad15e396230f07532c71a31176a370b734b52a"
+    },
+    {
+      "path": "textures/Tires_Roughness.png",
+      "bytes": 4887570,
+      "sha256": "3cc9da43a9792cf8a43ca337acd33426f2cb82fd2c668e389374ddc17e70bb47"
+    }
+  ],
+  "rigAudit": "not-run"
+}

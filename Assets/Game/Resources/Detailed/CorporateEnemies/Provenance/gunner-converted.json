@@ -1,0 +1,8 @@
+{
+  "license": "CC-BY-4.0",
+  "reason": "Original blend native dependency evaluation crashes; official geometry/material conversion imported successfully",
+  "sha256": "9fe1177d36d9ac1bd6d32e9fc1d8b8c6be9d4de77039da00f2c4118585f60d7a",
+  "bytes": 141778148,
+  "format": "Official Sketchfab GLB2K conversion, same approved Patrol Droid",
+  "source": "https://sketchfab.com/3d-models/9d943813e89d433cbc68b3e8aaf114c7"
+}
