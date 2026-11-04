@@ -33,14 +33,11 @@ namespace VideoGame.Editor
         static DetailedAssets() => EditorApplication.delayCall += Build;
         public static void Build()
         {
-            if (!File.Exists(Root + "RawSoldier/Mesh.fbx")) return;
+            if (!Directory.Exists(Root + "RawIndustrial")) return;
             ProjectSetup.EnsureScene();
             Directory.CreateDirectory(Root + "Materials");
             Directory.CreateDirectory(Root + "Prefabs");
             AssetDatabase.Refresh();
-            Soldier("Operative", "FederalSoldierSkin", "Head1");
-            Soldier("Hunter", "EvilSkin", "Head2");
-            Soldier("Gunner", "EvilSkin", "Head3");
             foreach (string file in Directory.GetFiles(Root + "RawIndustrial", "*.fbx"))
             {
                 string name = Path.GetFileNameWithoutExtension(file);
@@ -82,22 +79,6 @@ namespace VideoGame.Editor
             material.enableInstancing = true; AssetDatabase.CreateAsset(material, path);
             return material;
         }
-        static void Soldier(string name, string skin, string head)
-        {
-            string path = Root + "Prefabs/" + name + ".prefab";
-            if (File.Exists(path)) return;
-            var model = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(Root + "RawSoldier/Mesh.fbx"));
-            model.name = name;
-            var material = Material(skin, "RawSoldier/" + skin + "_Albedo.tga", "RawSoldier/" + skin + "_NormalMap.png", "RawSoldier/" + skin + "_Specular.tga", "RawSoldier/" + skin + "_Occlusion.png");
-            material.SetTexture("_EmissionMap", Tex("RawSoldier/" + skin + "_Emission.png")); material.SetColor("_EmissionColor", Color.white * 1.1f);
-            foreach (var renderer in model.GetComponentsInChildren<Renderer>(true))
-            {
-                if (renderer.name.StartsWith("Head") && renderer.name != head) renderer.gameObject.SetActive(false);
-                if (renderer.name == "HandSimple") renderer.gameObject.SetActive(false);
-                renderer.sharedMaterials = Enumerable.Repeat(material, Mathf.Max(1, renderer.sharedMaterials.Length)).ToArray();
-            }
-            foreach (var animator in model.GetComponentsInChildren<Animator>()) Object.DestroyImmediate(animator);
-            PrefabUtility.SaveAsPrefabAsset(model, path); Object.DestroyImmediate(model);
-        }
+
     }
 }

@@ -8,12 +8,12 @@ namespace VideoGame.Editor
     // Rig-specific authored keyframes, baked into ordinary Unity animation clips.
     public static class ActorAnimationBuilder
     {
-        const string Folder = "Assets/Game/Resources/Animations/";
+        const string Folder = "Assets/Game/Resources/OperatorAnimations/";
         public static readonly string[] Names = { "Idle", "RunForward", "RunBack", "RunLeft", "RunRight", "Fire", "Melee", "Cast", "Dash", "Hit", "Death" };
         [MenuItem("Nexus/Rebuild actor animation clips")]
         public static void Rebuild() => Build(true);
         public static void Build() => Build(false);
-        static void Build(bool force) => BuildFor("Assets/Game/Resources/Detailed/Prefabs/Operative.prefab", Folder, force);
+        static void Build(bool force) => BuildFor("Assets/Game/Resources/Detailed/Prefabs/OperativeV03.prefab", Folder, force);
         public static void BuildFor(string sourcePath, string folder, bool force)
         {
             Directory.CreateDirectory(folder);
